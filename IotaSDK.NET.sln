@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33815.320
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IotaSDK.NET", "IotaSDK.NET\IotaSDK.NET.csproj", "{4EB65232-CF80-4F74-9E0C-A1C721F595C7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IotaSDK.NET.Main", "IotaSDK.NET.Main\IotaSDK.NET.Main.csproj", "{643AC414-716C-46DB-B7D4-D527689A8A8F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4EB65232-CF80-4F74-9E0C-A1C721F595C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EB65232-CF80-4F74-9E0C-A1C721F595C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EB65232-CF80-4F74-9E0C-A1C721F595C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EB65232-CF80-4F74-9E0C-A1C721F595C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{643AC414-716C-46DB-B7D4-D527689A8A8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{643AC414-716C-46DB-B7D4-D527689A8A8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{643AC414-716C-46DB-B7D4-D527689A8A8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{643AC414-716C-46DB-B7D4-D527689A8A8F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {40E79B15-0BC4-4A5B-A6DD-3A2F54A1AAA7}
+	EndGlobalSection
+EndGlobal
