@@ -1,7 +1,8 @@
-﻿using IotaSDK.NET.Common.Coin;
-using IotaSDK.NET.Common.Interfaces;
+﻿using IotaSDK.NET.Common.Interfaces;
+using IotaSDK.NET.Domain.Coin;
+using IotaSDK.NET.Domain.Options;
 
-namespace IotaSDK.NET.Common.Options.Builders
+namespace IotaSDK.NET.Domain.Options.Builders
 {
     internal class WalletOptionsBuilder
     {

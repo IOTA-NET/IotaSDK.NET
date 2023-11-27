@@ -1,7 +1,7 @@
-﻿using IotaSDK.NET.Common.Coin;
+﻿using IotaSDK.NET.Domain.Coin;
 using Newtonsoft.Json;
 
-namespace IotaSDK.NET.Common.Options
+namespace IotaSDK.NET.Domain.Options
 {
     public class WalletOptions
     {

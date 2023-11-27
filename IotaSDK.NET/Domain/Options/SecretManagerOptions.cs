@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace IotaSDK.NET.Common.Options
+namespace IotaSDK.NET.Domain.Options
 {
     public class SecretManagerOptions
     {

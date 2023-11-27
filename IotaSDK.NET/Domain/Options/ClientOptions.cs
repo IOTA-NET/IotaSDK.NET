@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace IotaSDK.NET.Common.Options
+namespace IotaSDK.NET.Domain.Options
 {
     public class ClientOptions
     {

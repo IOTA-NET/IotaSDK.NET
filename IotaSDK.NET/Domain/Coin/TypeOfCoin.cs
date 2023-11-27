@@ -1,4 +1,4 @@
-﻿namespace IotaSDK.NET.Common.Coin
+﻿namespace IotaSDK.NET.Domain.Coin
 {
     public enum TypeOfCoin : int
     {

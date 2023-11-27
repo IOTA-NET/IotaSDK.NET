@@ -1,6 +1,7 @@
 ﻿using IotaSDK.NET.Common.Interfaces;
+using IotaSDK.NET.Domain.Options;
 
-namespace IotaSDK.NET.Common.Options.Builders
+namespace IotaSDK.NET.Domain.Options.Builders
 {
     internal class SecretManagerOptionsBuilder
     {
