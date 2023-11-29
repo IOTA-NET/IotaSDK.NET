@@ -1,12 +1,25 @@
 ﻿using IotaSDK.NET.Common.Rust;
 using Newtonsoft.Json;
+using System;
 using System.Threading.Tasks;
 
 namespace IotaSDK.NET.Common.Interfaces
 {
-    public class IotaSDKInnerResponse<TPayload> where TPayload : class
+    public class IotaSDKErrorResponse
     {
-        public IotaSDKInnerResponse(string type)
+        public IotaSDKErrorResponse(string type, string error)
+        {
+            Type = type;
+            Error = error;
+        }
+
+        public string Type { get; }
+        public string Error { get; }
+    }
+
+    public class IotaSDKResponse<TPayload> where TPayload : class
+    {
+        public IotaSDKResponse(string type)
         {
             Type = type;
         }
@@ -20,29 +33,13 @@ namespace IotaSDK.NET.Common.Interfaces
             string json = JsonConvert.SerializeObject(this, Formatting.Indented);
             return json;
         }
-    }
-    public class IotaSDKResponse<TPayload> where TPayload : class
-    {
-        public IotaSDKInnerResponse<TPayload>? Response { get; set; }
-        public string? ErrorMessage { get; set; }
-
-
-        public override string ToString()
+        public static IotaSDKResponse<TPayload> CreateInstance(string? rawResponse)
         {
-            string json = JsonConvert.SerializeObject(this, Formatting.Indented);
-            return json;
+            if (rawResponse == null)
+                throw new ArgumentNullException("Cant create an instance of IotaSDKResponse as response is null.");
+
+            return JsonConvert.DeserializeObject<IotaSDKResponse<TPayload>>(rawResponse!)!;
         }
 
-        public static async Task<IotaSDKResponse<TPayload>> CreateInstanceAsync(string? rawResponse, RustBridgeCommon rustBridgeCommon)
-        {
-
-            IotaSDKResponse<TPayload> response = new IotaSDKResponse<TPayload>
-            {
-                Response = rawResponse == null ? null : JsonConvert.DeserializeObject<IotaSDKInnerResponse<TPayload>>(rawResponse),
-                ErrorMessage = rawResponse == null ? null : await rustBridgeCommon.GetLastErrorAsync()
-            };
-
-            return response;
-        }
     }
 }
