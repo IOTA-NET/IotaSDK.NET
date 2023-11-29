@@ -1,5 +1,4 @@
 ﻿using IotaSDK.NET.Domain.Coin;
-using Newtonsoft.Json;
 
 namespace IotaSDK.NET.Domain.Options
 {

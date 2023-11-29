@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace IotaSDK.NET.Domain.Options
+﻿namespace IotaSDK.NET.Domain.Options
 {
     public class SecretManagerOptions
     {

@@ -1,28 +1,24 @@
-﻿using IotaSDK.NET.Common.Options;
-using IotaSDK.NET.Common.Rust;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
+﻿using IotaSDK.NET.Common.Extensions;
+using IotaSDK.NET.Common.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace IotaSDK.NET.Main
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
-            // Configure Newtonsoft.Json to use camelCase
-            JsonConvert.DefaultSettings = () => new JsonSerializerSettings
+            IServiceCollection services = new ServiceCollection().AddIotaSDKServices();
+
+            IServiceProvider serviceProvider = services.BuildServiceProvider();
+
+            using (IServiceScope scope = serviceProvider.CreateScope())
             {
-                ContractResolver = new CamelCasePropertyNamesContractResolver()
-            };
-
-            WalletOptions options = new WalletOptions();
-
-            var walletOptionsJson = JsonConvert.SerializeObject(options);
-            var result = RustBridge.CreateWallet(walletOptionsJson);
-
-            var secretmanager = RustBridge.GetSecretManagerFromWallet(result);
-
-            bool destroyed = RustBridge.DestroyWallet(result);   
+                var iotaUtilities = scope.ServiceProvider.GetRequiredService<IIotaUtilities>();
+                var s = await iotaUtilities.GenerateMnemonicAsync();
+                Console.WriteLine(s);
+            }
         }
+
     }
 }

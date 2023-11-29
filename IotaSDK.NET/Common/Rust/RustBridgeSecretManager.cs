@@ -1,22 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using System.Text;
+using System.Threading.Tasks;
 
 namespace IotaSDK.NET.Common.Rust
 {
-    public static class RustBridgeSecretManager
+    internal class RustBridgeSecretManager
     {
         private const string DllName = "iota_sdk.dll";
 
-        public static IntPtr CreateSecretManager(string options)
+        public async Task<IntPtr?> CreateSecretManagerAsync(string options)
         {
             IntPtr optionsPtr = IntPtr.Zero;
 
             try
             {
                 optionsPtr = Marshal.StringToHGlobalAnsi(options);
-                return (IntPtr)PInvoke.DynamicPInvokeBuilder(typeof(IntPtr), DllName, "create_secret_manager", new object[] { optionsPtr }, new Type[] { typeof(IntPtr) });
+                object? secretManagerResponse = await PInvoke.DynamicPInvokeBuilderAsync(typeof(IntPtr), DllName, "create_secret_manager", new object[] { optionsPtr }, new Type[] { typeof(IntPtr) });
+                if (secretManagerResponse == null || (IntPtr)secretManagerResponse == IntPtr.Zero)
+                    return null;
+                else
+                    return (IntPtr)secretManagerResponse;
             }
             finally
             {
@@ -24,19 +27,24 @@ namespace IotaSDK.NET.Common.Rust
             }
         }
 
-        public static bool DestroySecretManager(IntPtr secretManagerPtr)
+        public async Task<bool?> DestroySecretManagerAsync(IntPtr secretManagerPtr)
         {
-            return (bool)PInvoke.DynamicPInvokeBuilder(typeof(bool), DllName, "destroy_secret_manager", new object[] { secretManagerPtr }, new Type[] { typeof(IntPtr) });
+            object? isDestroyed = await PInvoke.DynamicPInvokeBuilderAsync(typeof(bool), DllName, "destroy_secret_manager", new object[] { secretManagerPtr }, new Type[] { typeof(IntPtr) });
+            return (bool?)isDestroyed;
         }
 
-        public static string CallSecretManagerMethod(IntPtr secretManagerPtr, string method)
+        public async Task<string?> CallSecretManagerMethodAsync(IntPtr secretManagerPtr, string method)
         {
             IntPtr methodPtr = IntPtr.Zero;
 
             try
             {
                 methodPtr = Marshal.StringToHGlobalAnsi(method);
-                return Marshal.PtrToStringAnsi((IntPtr)PInvoke.DynamicPInvokeBuilder(typeof(IntPtr), DllName, "call_secret_manager_method", new object[] { secretManagerPtr, methodPtr }, new Type[] { typeof(IntPtr), typeof(IntPtr) }));
+                object? methodResponse = await PInvoke.DynamicPInvokeBuilderAsync(typeof(IntPtr), DllName, "call_secret_manager_method", new object[] { secretManagerPtr, methodPtr }, new Type[] { typeof(IntPtr), typeof(IntPtr) });
+
+                if (methodResponse == null || (IntPtr)methodResponse == IntPtr.Zero)
+                    return null;
+                return Marshal.PtrToStringAnsi((IntPtr)methodResponse);
             }
             finally
             {
