@@ -17,7 +17,7 @@ namespace IotaSDK.NET.Common.Interfaces
         public string Error { get; }
     }
 
-    public class IotaSDKResponse<TPayload> where TPayload : class
+    public class IotaSDKResponse<TPayload>
     {
         public IotaSDKResponse(string type)
         {
@@ -26,17 +26,20 @@ namespace IotaSDK.NET.Common.Interfaces
 
         public string Type { get; set; }
 
-        public TPayload? Payload { get; set; }
+        public TPayload Payload { get; set; }
 
         public override string ToString()
         {
             string json = JsonConvert.SerializeObject(this, Formatting.Indented);
             return json;
         }
-        public static IotaSDKResponse<TPayload> CreateInstance(string? rawResponse)
+        public static IotaSDKResponse<TPayload> CreateInstance(string? rawResponse, string type="")
         {
             if (rawResponse == null)
                 throw new ArgumentNullException("Cant create an instance of IotaSDKResponse as response is null.");
+
+            if (rawResponse.Contains("{\"type\":\"ok\"}"))
+                return new IotaSDKResponse<TPayload>(type);
 
             return JsonConvert.DeserializeObject<IotaSDKResponse<TPayload>>(rawResponse!)!;
         }
