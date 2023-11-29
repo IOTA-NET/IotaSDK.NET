@@ -20,8 +20,7 @@ namespace IotaSDK.NET.Main
                 try
                 {
 
-                var hexseed = await iotaUtilities.ConvertMnemonicToHexSeedAsync(mnemonic.Payload!+" asd");
-                Console.WriteLine(hexseed);
+                    var hexseed = await iotaUtilities.VerifyMnemonicAsync(mnemonic.Payload!);
                 }
                 catch (Exception ex)
                 {

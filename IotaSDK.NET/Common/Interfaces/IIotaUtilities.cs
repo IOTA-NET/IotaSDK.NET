@@ -7,5 +7,6 @@ namespace IotaSDK.NET.Common.Interfaces
         Task<IotaSDKResponse<string>> GenerateMnemonicAsync();
 
         Task<IotaSDKResponse<string>> ConvertMnemonicToHexSeedAsync(string mnemonic);
+        Task<IotaSDKResponse<bool>> VerifyMnemonicAsync(string mnemonic);
     }
 }
