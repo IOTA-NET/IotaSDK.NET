@@ -15,8 +15,18 @@ namespace IotaSDK.NET.Main
             using (IServiceScope scope = serviceProvider.CreateScope())
             {
                 var iotaUtilities = scope.ServiceProvider.GetRequiredService<IIotaUtilities>();
-                var s = await iotaUtilities.GenerateMnemonicAsync();
-                Console.WriteLine(s);
+                var mnemonic = await iotaUtilities.GenerateMnemonicAsync();
+                Console.WriteLine(mnemonic);
+                try
+                {
+
+                var hexseed = await iotaUtilities.ConvertMnemonicToHexSeedAsync(mnemonic.Payload!+" asd");
+                Console.WriteLine(hexseed);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                }
             }
         }
 

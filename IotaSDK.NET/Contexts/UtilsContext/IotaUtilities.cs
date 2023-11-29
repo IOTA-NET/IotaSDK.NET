@@ -1,5 +1,6 @@
 ﻿using IotaSDK.NET.Common.Interfaces;
 using IotaSDK.NET.Contexts.UtilsContext.Commands.GenerateMnemonic;
+using IotaSDK.NET.Contexts.UtilsContext.Commands.MnemonicToHexSeed;
 using MediatR;
 using System.Threading.Tasks;
 
@@ -14,9 +15,9 @@ namespace IotaSDK.NET.Contexts.UtilsContext
             _mediator = mediator;
         }
 
-        public Task<IotaSDKResponse<string>> ConvertMnemonicToHexSeedAsync()
+        public async Task<IotaSDKResponse<string>> ConvertMnemonicToHexSeedAsync(string mnemonic)
         {
-            throw new System.NotImplementedException();
+            return await _mediator.Send(new MnemonicToHexSeedCommand(mnemonic));
         }
 
         public async Task<IotaSDKResponse<string>> GenerateMnemonicAsync()

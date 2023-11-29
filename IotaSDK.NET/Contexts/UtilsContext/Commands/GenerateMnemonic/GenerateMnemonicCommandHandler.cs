@@ -1,4 +1,5 @@
-﻿using IotaSDK.NET.Common.Interfaces;
+﻿using IotaSDK.NET.Common.Exceptions;
+using IotaSDK.NET.Common.Interfaces;
 using IotaSDK.NET.Common.Rust;
 using MediatR;
 using System.Threading;
@@ -17,9 +18,14 @@ namespace IotaSDK.NET.Contexts.UtilsContext.Commands.GenerateMnemonic
 
         public async Task<IotaSDKResponse<string>> Handle(GenerateMnemonicCommand request, CancellationToken cancellationToken)
         {
-            string? callUtilsResponse = await _rustBridgeCommon.CallUtilsMethodAsync(new GenerateMnemonicCommandModel().AsJson());
+            IotaSDKModel model = new IotaSDKModel(name: "generateMnemonic");
+            string json = model.AsJson();
+            string? callUtilsResponse = await _rustBridgeCommon.CallUtilsMethodAsync(json);
 
-            return await IotaSDKResponse<string>.CreateInstanceAsync(callUtilsResponse, _rustBridgeCommon);
+            IotaSDKException.CheckException(callUtilsResponse!);
+
+
+            return IotaSDKResponse<string>.CreateInstance(callUtilsResponse);
         }
     }
 }

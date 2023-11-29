@@ -2,6 +2,8 @@
 using IotaSDK.NET.Common.Rust;
 using IotaSDK.NET.Contexts.UtilsContext;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using System.Reflection;
 
 namespace IotaSDK.NET.Common.Extensions
@@ -10,6 +12,11 @@ namespace IotaSDK.NET.Common.Extensions
     {
         public static IServiceCollection AddIotaSDKServices(this IServiceCollection serviceDescriptors)
         {
+            JsonConvert.DefaultSettings = () => new JsonSerializerSettings
+            {
+                ContractResolver = new CamelCasePropertyNamesContractResolver()
+            };
+
             serviceDescriptors
                 .AddMediatR(config => config.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 
