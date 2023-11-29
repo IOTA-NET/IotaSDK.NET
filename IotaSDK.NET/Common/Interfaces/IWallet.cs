@@ -1,4 +1,4 @@
-﻿using IotaSDK.NET.Common.Options;
+﻿using IotaSDK.NET.Domain.Options;
 
 namespace IotaSDK.NET.Common.Interfaces
 {

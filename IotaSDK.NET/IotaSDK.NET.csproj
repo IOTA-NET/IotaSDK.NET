@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.2.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
@@ -13,6 +14,14 @@
     <None Update="iota_sdk.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Contexts\ClientContext\" />
+    <Folder Include="Contexts\SecretManagerContext\Command\" />
+    <Folder Include="Contexts\SecretManagerContext\Queries\" />
+    <Folder Include="Contexts\UtilsContext\Queries\" />
+    <Folder Include="Contexts\WalletContext\" />
   </ItemGroup>
 
 </Project>

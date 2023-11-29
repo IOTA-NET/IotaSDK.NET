@@ -1,20 +1,25 @@
-﻿using System.Runtime.InteropServices;
-using System;
+﻿using System;
+using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 
 namespace IotaSDK.NET.Common.Rust
 {
-    public class RustBridgeClient
+    internal class RustBridgeClient
     {
         private const string DllName = "iota_sdk.dll";
 
-        public static IntPtr CreateClient(string options)
+        public async Task<IntPtr?> CreateClientAsync(string options)
         {
             IntPtr optionsPtr = IntPtr.Zero;
 
             try
             {
                 optionsPtr = Marshal.StringToHGlobalAnsi(options);
-                return (IntPtr)PInvoke.DynamicPInvokeBuilder(typeof(IntPtr), DllName, "create_client", new object[] { optionsPtr }, new Type[] { typeof(IntPtr) });
+                object? client = await PInvoke.DynamicPInvokeBuilderAsync(typeof(IntPtr), DllName, "create_client", new object[] { optionsPtr }, new Type[] { typeof(IntPtr) });
+
+                if (client == null || (IntPtr)client == IntPtr.Zero)
+                    return null;
+                return (IntPtr?)client;
             }
             finally
             {
@@ -22,19 +27,27 @@ namespace IotaSDK.NET.Common.Rust
             }
         }
 
-        public static bool DestroyClient(IntPtr clientPtr)
+        public async Task<bool?> DestroyClientAsync(IntPtr clientPtr)
         {
-            return (bool)PInvoke.DynamicPInvokeBuilder(typeof(bool), DllName, "destroy_client", new object[] { clientPtr }, new Type[] { typeof(IntPtr) });
+            object? isDestroyed = await PInvoke.DynamicPInvokeBuilderAsync(typeof(bool), DllName, "destroy_client", new object[] { clientPtr }, new Type[] { typeof(IntPtr) });
+
+            return (bool?)isDestroyed;
         }
 
-        public static string CallClientMethod(IntPtr clientPtr, string method)
+
+        public async Task<string?> CallClientMethodAsync(IntPtr clientPtr, string method)
         {
             IntPtr methodPtr = IntPtr.Zero;
 
             try
             {
                 methodPtr = Marshal.StringToHGlobalAnsi(method);
-                return Marshal.PtrToStringAnsi((IntPtr)PInvoke.DynamicPInvokeBuilder(typeof(IntPtr), DllName, "call_client_method", new object[] { clientPtr, methodPtr }, new Type[] { typeof(IntPtr), typeof(IntPtr) }));
+                object? clientResponse = await PInvoke.DynamicPInvokeBuilderAsync(typeof(IntPtr), DllName, "call_client_method", new object[] { clientPtr, methodPtr }, new Type[] { typeof(IntPtr), typeof(IntPtr) });
+
+                if (clientResponse == null || (IntPtr)clientResponse == IntPtr.Zero)
+                    return null;
+                else
+                    return Marshal.PtrToStringAnsi((IntPtr)clientResponse);
             }
             finally
             {
