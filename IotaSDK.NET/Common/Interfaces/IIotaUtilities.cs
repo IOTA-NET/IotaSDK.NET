@@ -11,5 +11,7 @@ namespace IotaSDK.NET.Common.Interfaces
         Task<IotaSDKResponse<bool>> VerifyMnemonicAsync(string mnemonic);
 
         Task<IotaSDKResponse<string>> ConvertNftIdToBech32Async(string nftId, HumanReadablePart humanReadablePart);
+
+        Task<IotaSDKResponse<string>> ConvertBech32ToHexStringAsync(string bech32Address);
     }
 }
