@@ -13,7 +13,7 @@ namespace IotaSDK.NET.Common.Exceptions
           System.Runtime.Serialization.SerializationInfo info,
           System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
 
-        public static void CheckException(string response)
+        public static void CheckForException(string response)
         {
             if (response!.HasError())
                 throw new IotaSDKException(IotaSDKResponse<IotaSDKErrorResponse>.CreateInstance(response).ToString());

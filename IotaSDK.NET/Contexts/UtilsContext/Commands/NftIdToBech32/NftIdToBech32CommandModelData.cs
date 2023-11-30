@@ -1,8 +1,8 @@
 ﻿namespace IotaSDK.NET.Contexts.UtilsContext.Commands.NftIdToBech32
 {
-    internal class NftIdToBech32ModelData
+    internal class NftIdToBech32CommandModelData
     {
-        public NftIdToBech32ModelData(string nftId, string bech32Hrp)
+        public NftIdToBech32CommandModelData(string nftId, string bech32Hrp)
         {
             NftId = nftId;
             Bech32Hrp = bech32Hrp;

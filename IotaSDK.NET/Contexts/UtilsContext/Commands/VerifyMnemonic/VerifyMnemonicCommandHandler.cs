@@ -26,7 +26,7 @@ namespace IotaSDK.NET.Contexts.UtilsContext.Commands.VerifyMnemonic
 
             string? callUtilsResponse = await _rustBridgeCommon.CallUtilsMethodAsync(json);
 
-            IotaSDKException.CheckException(callUtilsResponse!);
+            IotaSDKException.CheckForException(callUtilsResponse!);
 
             var response = IotaSDKResponse<bool>.CreateInstance(callUtilsResponse, type: "verifyMnemonic");
             response.Payload = true;

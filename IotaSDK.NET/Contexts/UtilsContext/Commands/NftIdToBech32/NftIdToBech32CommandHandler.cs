@@ -22,13 +22,13 @@ namespace IotaSDK.NET.Contexts.UtilsContext.Commands.NftIdToBech32
             string nftId = request.NftId;
             string humanReadablePart = HumanReadablePartEnumConverter.Convert(request.HumanReadablePart);
 
-            NftIdToBech32ModelData modelData = new NftIdToBech32ModelData(nftId, humanReadablePart);
-            IotaSDKModel<NftIdToBech32ModelData> model = new IotaSDKModel<NftIdToBech32ModelData>(name: "nftIdToBech32", modelData);
+            NftIdToBech32CommandModelData modelData = new NftIdToBech32CommandModelData(nftId, humanReadablePart);
+            IotaSDKModel<NftIdToBech32CommandModelData> model = new IotaSDKModel<NftIdToBech32CommandModelData>(name: "nftIdToBech32", modelData);
             string json = model.AsJson();
 
             string? callUtilsResponse = await _rustBridgeCommon.CallUtilsMethodAsync(json);
 
-            IotaSDKException.CheckException(callUtilsResponse!);
+            IotaSDKException.CheckForException(callUtilsResponse!);
 
             return IotaSDKResponse<string>.CreateInstance(callUtilsResponse);
         }

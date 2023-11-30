@@ -21,6 +21,9 @@ namespace IotaSDK.NET.Main
 
                     var bech32 = await iotaUtilities.ConvertNftIdToBech32Async("0xf52d0033cb801d960f5e02fbddae5102a9d8fa651408a277f763f9fc3e882f49", Domain.Network.HumanReadablePart.Rms);
                     Console.WriteLine(bech32);
+
+                    var hex = await iotaUtilities.ConvertBech32ToHexStringAsync(bech32.Payload!);
+                    Console.WriteLine(hex);
                 }
                 catch (Exception ex)
                 {

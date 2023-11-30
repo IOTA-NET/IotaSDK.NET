@@ -26,7 +26,7 @@ namespace IotaSDK.NET.Contexts.UtilsContext.Commands.MnemonicToHexSeed
             string json = model.AsJson();
             string? callUtilsResponse = await _rustBridgeCommon.CallUtilsMethodAsync(json);
             
-            IotaSDKException.CheckException(callUtilsResponse!);
+            IotaSDKException.CheckForException(callUtilsResponse!);
 
             return IotaSDKResponse<string>.CreateInstance(callUtilsResponse);
         }
