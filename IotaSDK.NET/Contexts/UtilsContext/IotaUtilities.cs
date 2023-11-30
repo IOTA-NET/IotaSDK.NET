@@ -1,7 +1,9 @@
 ﻿using IotaSDK.NET.Common.Interfaces;
 using IotaSDK.NET.Contexts.UtilsContext.Commands.GenerateMnemonic;
 using IotaSDK.NET.Contexts.UtilsContext.Commands.MnemonicToHexSeed;
+using IotaSDK.NET.Contexts.UtilsContext.Commands.NftIdToBech32;
 using IotaSDK.NET.Contexts.UtilsContext.Commands.VerifyMnemonic;
+using IotaSDK.NET.Domain.Network;
 using MediatR;
 using System.Threading.Tasks;
 
@@ -31,6 +33,11 @@ namespace IotaSDK.NET.Contexts.UtilsContext
             IotaSDKResponse<string> generateMnemonicResponse = await _mediator.Send(new GenerateMnemonicCommand());
 
             return generateMnemonicResponse;
+        }
+
+        public async Task<IotaSDKResponse<string>> ConvertNftIdToBech32Async(string nftId, HumanReadablePart humanReadablePart)
+        {
+            return await _mediator.Send(new NftIdToBech32Command(nftId, humanReadablePart));
         }
     }
 }

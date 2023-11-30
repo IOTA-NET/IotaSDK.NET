@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using IotaSDK.NET.Domain.Network;
+using System.Threading.Tasks;
 
 namespace IotaSDK.NET.Common.Interfaces
 {
@@ -8,5 +9,7 @@ namespace IotaSDK.NET.Common.Interfaces
 
         Task<IotaSDKResponse<string>> ConvertMnemonicToHexSeedAsync(string mnemonic);
         Task<IotaSDKResponse<bool>> VerifyMnemonicAsync(string mnemonic);
+
+        Task<IotaSDKResponse<string>> ConvertNftIdToBech32Async(string nftId, HumanReadablePart humanReadablePart);
     }
 }
