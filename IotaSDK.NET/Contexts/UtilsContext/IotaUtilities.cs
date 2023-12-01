@@ -1,4 +1,5 @@
 ﻿using IotaSDK.NET.Common.Interfaces;
+using IotaSDK.NET.Contexts.UtilsContext.Commands.AliasIdToBech32;
 using IotaSDK.NET.Contexts.UtilsContext.Commands.Bech32ToHex;
 using IotaSDK.NET.Contexts.UtilsContext.Commands.GenerateMnemonic;
 using IotaSDK.NET.Contexts.UtilsContext.Commands.MnemonicToHexSeed;
@@ -44,6 +45,11 @@ namespace IotaSDK.NET.Contexts.UtilsContext
         public async Task<IotaSDKResponse<string>> ConvertBech32ToHexStringAsync(string bech32Address)
         {
             return await _mediator.Send(new Bech32ToHexCommand(bech32Address));
+        }
+
+        public async Task<IotaSDKResponse<string>> ConvertAliasIdToBech32Async(string aliasId, HumanReadablePart humanReadablePart)
+        {
+            return await _mediator.Send(new AliasIdToBech32Command(aliasId, humanReadablePart));
         }
     }
 }
