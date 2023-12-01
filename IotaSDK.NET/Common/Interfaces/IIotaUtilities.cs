@@ -15,5 +15,7 @@ namespace IotaSDK.NET.Common.Interfaces
         Task<IotaSDKResponse<string>> ConvertBech32ToHexStringAsync(string bech32Address);
 
         Task<IotaSDKResponse<string>> ConvertAliasIdToBech32Async(string aliasId, HumanReadablePart humanReadablePart);
+
+        Task<IotaSDKResponse<bool>> VerifyBech32Address(string bech32Address);
     }
 }
