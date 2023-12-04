@@ -7,5 +7,5 @@ namespace IotaSDK.NET.Common.Interfaces
         public string AsJson() => JsonConvert.SerializeObject(this);
     }
 
-    
+
 }

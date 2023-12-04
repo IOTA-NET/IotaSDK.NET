@@ -23,7 +23,7 @@ namespace IotaSDK.NET.Contexts.UtilsContext.Commands.Bech32ToHash
             string json = model.AsJson();
 
             string? callUtilsResponse = await _rustBridgeCommon.CallUtilsMethodAsync(json);
-            
+
             IotaSDKException.CheckForException(callUtilsResponse!);
 
             return IotaSDKResponse<string>.CreateInstance(callUtilsResponse);

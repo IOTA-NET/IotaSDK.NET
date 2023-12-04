@@ -2,7 +2,6 @@
 using IotaSDK.NET.Common.Interfaces;
 using IotaSDK.NET.Common.Rust;
 using MediatR;
-using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 

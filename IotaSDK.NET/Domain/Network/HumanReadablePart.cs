@@ -14,7 +14,7 @@ namespace IotaSDK.NET.Domain.Network
     {
         public static string Convert(HumanReadablePart part)
         {
-            switch(part)
+            switch (part)
             {
                 case HumanReadablePart.Iota:
                     return "iota";

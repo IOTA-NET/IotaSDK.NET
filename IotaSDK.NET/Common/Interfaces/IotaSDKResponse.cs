@@ -1,7 +1,5 @@
-﻿using IotaSDK.NET.Common.Rust;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
-using System.Threading.Tasks;
 
 namespace IotaSDK.NET.Common.Interfaces
 {
@@ -33,7 +31,7 @@ namespace IotaSDK.NET.Common.Interfaces
             string json = JsonConvert.SerializeObject(this, Formatting.Indented);
             return json;
         }
-        public static IotaSDKResponse<TPayload> CreateInstance(string? rawResponse, string type="")
+        public static IotaSDKResponse<TPayload> CreateInstance(string? rawResponse, string type = "")
         {
             if (rawResponse == null)
                 throw new ArgumentNullException("Cant create an instance of IotaSDKResponse as response is null.");
