@@ -17,7 +17,7 @@ namespace IotaSDK.NET.Contexts.UtilsContext.Commands.NftIdToBech32
             _rustBridgeCommon = rustBridgeCommon;
         }
 
-        public async  Task<IotaSDKResponse<string>> Handle(NftIdToBech32Command request, CancellationToken cancellationToken)
+        public async Task<IotaSDKResponse<string>> Handle(NftIdToBech32Command request, CancellationToken cancellationToken)
         {
             string nftId = request.NftId;
             string humanReadablePart = HumanReadablePartEnumConverter.Convert(request.HumanReadablePart);

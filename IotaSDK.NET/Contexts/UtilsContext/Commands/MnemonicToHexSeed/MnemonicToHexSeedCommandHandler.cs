@@ -1,5 +1,4 @@
 ﻿using IotaSDK.NET.Common.Exceptions;
-using IotaSDK.NET.Common.Extensions;
 using IotaSDK.NET.Common.Interfaces;
 using IotaSDK.NET.Common.Rust;
 using MediatR;
@@ -21,11 +20,11 @@ namespace IotaSDK.NET.Contexts.UtilsContext.Commands.MnemonicToHexSeed
         {
             MnemonicToHexSeedCommandModelData modelData = new MnemonicToHexSeedCommandModelData(request.Mnemonic);
 
-            IotaSDKModel<MnemonicToHexSeedCommandModelData> model = new IotaSDKModel<MnemonicToHexSeedCommandModelData> ("mnemonicToHexSeed", modelData);
+            IotaSDKModel<MnemonicToHexSeedCommandModelData> model = new IotaSDKModel<MnemonicToHexSeedCommandModelData>("mnemonicToHexSeed", modelData);
 
             string json = model.AsJson();
             string? callUtilsResponse = await _rustBridgeCommon.CallUtilsMethodAsync(json);
-            
+
             IotaSDKException.CheckForException(callUtilsResponse!);
 
             return IotaSDKResponse<string>.CreateInstance(callUtilsResponse);
