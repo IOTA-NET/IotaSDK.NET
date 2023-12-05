@@ -1,5 +1,4 @@
 ﻿using IotaSDK.NET.Common.Interfaces;
-using MediatR;
 
 namespace IotaSDK.NET.Contexts.UtilsContext.Commands.VerifyBech32Address
 {

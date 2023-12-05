@@ -1,6 +1,5 @@
 ﻿using IotaSDK.NET.Common.Interfaces;
 using IotaSDK.NET.Domain.Network;
-using MediatR;
 
 namespace IotaSDK.NET.Contexts.UtilsContext.Commands.PublicKeyToBech32
 {

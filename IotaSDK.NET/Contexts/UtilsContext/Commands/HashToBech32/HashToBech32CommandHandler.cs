@@ -12,8 +12,8 @@ namespace IotaSDK.NET.Contexts.UtilsContext.Commands.HashToBech32
 
         public override HashToBech32CommandModelData CreateModelData(HashToBech32Command request)
         {
-           return new HashToBech32CommandModelData(request.HexEncodedHash, HumanReadablePartEnumConverter.Convert(request.HumanReadablePart));
+            return new HashToBech32CommandModelData(request.HexEncodedHash, HumanReadablePartEnumConverter.Convert(request.HumanReadablePart));
         }
     }
-    
+
 }
