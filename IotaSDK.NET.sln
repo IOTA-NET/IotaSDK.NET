@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IotaSDK.NET", "IotaSDK.NET\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IotaSDK.NET.Main", "IotaSDK.NET.Main\IotaSDK.NET.Main.csproj", "{643AC414-716C-46DB-B7D4-D527689A8A8F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary1", "ClassLibrary1\ClassLibrary1.csproj", "{930F7A50-7C91-433D-B2A6-196DAEC70B53}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{643AC414-716C-46DB-B7D4-D527689A8A8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{643AC414-716C-46DB-B7D4-D527689A8A8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{643AC414-716C-46DB-B7D4-D527689A8A8F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{930F7A50-7C91-433D-B2A6-196DAEC70B53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{930F7A50-7C91-433D-B2A6-196DAEC70B53}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{930F7A50-7C91-433D-B2A6-196DAEC70B53}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{930F7A50-7C91-433D-B2A6-196DAEC70B53}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
