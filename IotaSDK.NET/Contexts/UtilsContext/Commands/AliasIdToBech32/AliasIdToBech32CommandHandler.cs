@@ -5,10 +5,10 @@ using IotaSDK.NET.Domain.Network;
 namespace IotaSDK.NET.Contexts.UtilsContext.Commands.AliasIdToBech32
 {
 
-    internal class AliasIdToBech32CommandHandler 
+    internal class AliasIdToBech32CommandHandler
         : RustBridgeCommonHandler<AliasIdToBech32Command, IotaSDKResponse<string>, string, AliasIdToBech32CommandModelData>
     {
-        public AliasIdToBech32CommandHandler(RustBridgeCommon rustBridgeCommon) 
+        public AliasIdToBech32CommandHandler(RustBridgeCommon rustBridgeCommon)
             : base(rustBridgeCommon)
         {
         }

@@ -2,7 +2,7 @@
 
 namespace IotaSDK.NET.Common.Interfaces
 {
-    internal abstract class RustBridgeRequest<TInnerResponse>: IRequest<IotaSDKResponse<TInnerResponse>>
+    internal abstract class RustBridgeRequest<TInnerResponse> : IRequest<IotaSDKResponse<TInnerResponse>>
     {
 
         public RustBridgeRequest(string rustMethodName)
