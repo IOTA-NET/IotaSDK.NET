@@ -1,15 +1,14 @@
 ﻿using IotaSDK.NET.Common.Interfaces;
 using IotaSDK.NET.Domain.Network;
-using MediatR;
 
 namespace IotaSDK.NET.Contexts.UtilsContext.Commands.AliasIdToBech32
 {
-    internal class AliasIdToBech32Command : IRequest<IotaSDKResponse<string>>
+    internal class AliasIdToBech32Command : RustBridgeRequest<string>
     {
-        public AliasIdToBech32Command(string aliasId, HumanReadablePart humanReadablePart)
+        public AliasIdToBech32Command(string aliasId, HumanReadablePart humanReadablePart, string rustMethodName) : base(rustMethodName)
         {
-            AliasId = aliasId;
             HumanReadablePart = humanReadablePart;
+            AliasId = aliasId;
         }
 
         public string AliasId { get; }

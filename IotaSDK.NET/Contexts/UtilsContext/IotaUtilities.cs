@@ -25,49 +25,49 @@ namespace IotaSDK.NET.Contexts.UtilsContext
 
         public async Task<IotaSDKResponse<string>> ConvertMnemonicToHexSeedAsync(string mnemonic)
         {
-            return await _mediator.Send(new MnemonicToHexSeedCommand(mnemonic));
+            return await _mediator.Send(new MnemonicToHexSeedCommand(mnemonic, "mnemonicToHexSeed"));
         }
 
         public async Task<IotaSDKResponse<bool>> VerifyMnemonicAsync(string mnemonic)
         {
-            return await _mediator.Send(new VerifyMnemonicCommand(mnemonic));
+            return await _mediator.Send(new VerifyMnemonicCommand(mnemonic, "verifyMnemonic"));
         }
 
         public async Task<IotaSDKResponse<string>> GenerateMnemonicAsync()
         {
-            IotaSDKResponse<string> generateMnemonicResponse = await _mediator.Send(new GenerateMnemonicCommand());
+            IotaSDKResponse<string> generateMnemonicResponse = await _mediator.Send(new GenerateMnemonicCommand("generateMnemonic"));
 
             return generateMnemonicResponse;
         }
 
         public async Task<IotaSDKResponse<string>> ConvertNftIdToBech32Async(string nftId, HumanReadablePart humanReadablePart)
         {
-            return await _mediator.Send(new NftIdToBech32Command(nftId, humanReadablePart));
+            return await _mediator.Send(new NftIdToBech32Command(nftId, humanReadablePart, "nftIdToBech32"));
         }
 
         public async Task<IotaSDKResponse<string>> ConvertBech32ToHashAsync(string bech32Address)
         {
-            return await _mediator.Send(new Bech32ToHashCommand(bech32Address));
+            return await _mediator.Send(new Bech32ToHashCommand(bech32Address, "bech32ToHex"));
         }
 
         public async Task<IotaSDKResponse<string>> ConvertAliasIdToBech32Async(string aliasId, HumanReadablePart humanReadablePart)
         {
-            return await _mediator.Send(new AliasIdToBech32Command(aliasId, humanReadablePart));
+            return await _mediator.Send(new AliasIdToBech32Command(aliasId, humanReadablePart, "aliasIdToBech32"));
         }
 
         public async Task<IotaSDKResponse<bool>> VerifyBech32Address(string bech32Address)
         {
-            return await _mediator.Send(new VerifyBech32AddressCommand(bech32Address));
+            return await _mediator.Send(new VerifyBech32AddressCommand(bech32Address, "isAddressValid"));
         }
 
         public async Task<IotaSDKResponse<string>> ConvertPublicKeyToBech32Async(string hexEncodedPublicKey, HumanReadablePart humanReadablePart)
         {
-            return await _mediator.Send(new PublicKeyToBech32Command(hexEncodedPublicKey, humanReadablePart));
+            return await _mediator.Send(new PublicKeyToBech32Command(hexEncodedPublicKey, humanReadablePart, "hexPublicKeyToBech32Address"));
         }
 
         public async Task<IotaSDKResponse<string>> ConvertHashToBech32Async(string hexEncodedHash, HumanReadablePart humanReadablePart)
         {
-            return await _mediator.Send(new HashToBech32Command(hexEncodedHash, humanReadablePart));
+            return await _mediator.Send(new HashToBech32Command(hexEncodedHash, humanReadablePart, "hexToBech32"));
         }
     }
 }

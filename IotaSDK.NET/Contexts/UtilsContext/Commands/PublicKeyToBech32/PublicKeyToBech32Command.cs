@@ -4,9 +4,9 @@ using MediatR;
 
 namespace IotaSDK.NET.Contexts.UtilsContext.Commands.PublicKeyToBech32
 {
-    internal class PublicKeyToBech32Command : IRequest<IotaSDKResponse<string>>
+    internal class PublicKeyToBech32Command : RustBridgeRequest<string>
     {
-        public PublicKeyToBech32Command(string hexEncodedPublicKey, HumanReadablePart humanReadablePart)
+        public PublicKeyToBech32Command(string hexEncodedPublicKey, HumanReadablePart humanReadablePart, string rustMethodName) : base(rustMethodName)
         {
             HexEncodedPublicKey = hexEncodedPublicKey;
             HumanReadablePart = humanReadablePart;

@@ -1,32 +1,18 @@
-﻿using IotaSDK.NET.Common.Exceptions;
-using IotaSDK.NET.Common.Interfaces;
+﻿using IotaSDK.NET.Common.Interfaces;
 using IotaSDK.NET.Common.Rust;
-using MediatR;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace IotaSDK.NET.Contexts.UtilsContext.Commands.Bech32ToHash
 {
-    internal class Bech32ToHashCommandHandler : IRequestHandler<Bech32ToHashCommand, IotaSDKResponse<string>>
+    internal class Bech32ToHashCommandHandler : RustBridgeCommonHandler<Bech32ToHashCommand, IotaSDKResponse<string>, string, Bech32ToHashCommandModelData>
     {
-        private readonly RustBridgeCommon _rustBridgeCommon;
-
-        public Bech32ToHashCommandHandler(RustBridgeCommon rustBridgeCommon)
+        public Bech32ToHashCommandHandler(RustBridgeCommon rustBridgeCommon) : base(rustBridgeCommon)
         {
-            _rustBridgeCommon = rustBridgeCommon;
         }
 
-        public async Task<IotaSDKResponse<string>> Handle(Bech32ToHashCommand request, CancellationToken cancellationToken)
+        public override Bech32ToHashCommandModelData CreateModelData(Bech32ToHashCommand request)
         {
-            Bech32ToHashCommandModelData modelData = new Bech32ToHashCommandModelData(request.Bech32Address);
-            IotaSDKModel<Bech32ToHashCommandModelData> model = new IotaSDKModel<Bech32ToHashCommandModelData>("bech32ToHex", modelData);
-            string json = model.AsJson();
+            return new Bech32ToHashCommandModelData(request.Bech32Address);
 
-            string? callUtilsResponse = await _rustBridgeCommon.CallUtilsMethodAsync(json);
-
-            IotaSDKException.CheckForException(callUtilsResponse!);
-
-            return IotaSDKResponse<string>.CreateInstance(callUtilsResponse);
         }
     }
 }

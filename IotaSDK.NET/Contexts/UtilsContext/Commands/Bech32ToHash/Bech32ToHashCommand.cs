@@ -1,11 +1,10 @@
 ﻿using IotaSDK.NET.Common.Interfaces;
-using MediatR;
 
 namespace IotaSDK.NET.Contexts.UtilsContext.Commands.Bech32ToHash
 {
-    internal class Bech32ToHashCommand : IRequest<IotaSDKResponse<string>>
+    internal class Bech32ToHashCommand :RustBridgeRequest<string>
     {
-        public Bech32ToHashCommand(string bech32Address)
+        public Bech32ToHashCommand(string bech32Address, string rustMethodName) : base(rustMethodName)
         {
             Bech32Address = bech32Address;
         }

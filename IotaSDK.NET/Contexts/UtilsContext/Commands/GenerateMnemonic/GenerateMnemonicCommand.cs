@@ -3,7 +3,10 @@ using MediatR;
 
 namespace IotaSDK.NET.Contexts.UtilsContext.Commands.GenerateMnemonic
 {
-    internal class GenerateMnemonicCommand : IRequest<IotaSDKResponse<string>>
+    internal class GenerateMnemonicCommand : RustBridgeRequest<string>
     {
+        public GenerateMnemonicCommand(string rustMethodName) : base(rustMethodName)
+        {
+        }
     }
 }

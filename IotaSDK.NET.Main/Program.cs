@@ -22,7 +22,7 @@ namespace IotaSDK.NET.Main
                     var bech32 = await iotaUtilities.ConvertAliasIdToBech32Async("0x86c9a6c9abbc0206498bd08517352b92a022f1b5f6596237a31761101d1fa447", Domain.Network.HumanReadablePart.Rms);
                     Console.WriteLine(bech32);
 
-                    var hex = await iotaUtilities.VerifyBech32Address(bech32.Payload!);
+                    var hex = await iotaUtilities.VerifyBech32Address("asd");
                     Console.WriteLine(hex);
                 }
                 catch (Exception ex)

@@ -1,15 +1,13 @@
 ﻿using IotaSDK.NET.Common.Interfaces;
-using MediatR;
 
 namespace IotaSDK.NET.Contexts.UtilsContext.Commands.VerifyMnemonic
 {
-    internal class VerifyMnemonicCommand : IRequest<IotaSDKResponse<bool>>
+    internal class VerifyMnemonicCommand : RustBridgeRequest<bool>
     {
-        public VerifyMnemonicCommand(string mnemonic)
+        public VerifyMnemonicCommand(string mnemonic, string rustMethodName) : base(rustMethodName)
         {
             Mnemonic = mnemonic;
         }
-
         public string Mnemonic { get; }
     }
 }
