@@ -1,12 +1,11 @@
 ﻿using IotaSDK.NET.Common.Interfaces;
 using IotaSDK.NET.Domain.Network;
-using MediatR;
 
 namespace IotaSDK.NET.Contexts.UtilsContext.Commands.HashToBech32
 {
-    internal class HashToBech32Command : IRequest<IotaSDKResponse<string>>
+    internal class HashToBech32Command : RustBridgeRequest<string>
     {
-        public HashToBech32Command(string hexEncodedHash, HumanReadablePart humanReadablePart)
+        public HashToBech32Command(string hexEncodedHash, HumanReadablePart humanReadablePart, string rustMethodName) : base(rustMethodName)
         {
             HexEncodedHash = hexEncodedHash;
             HumanReadablePart = humanReadablePart;

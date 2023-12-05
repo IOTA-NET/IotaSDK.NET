@@ -20,7 +20,6 @@
     <Folder Include="Contexts\ClientContext\" />
     <Folder Include="Contexts\SecretManagerContext\Command\" />
     <Folder Include="Contexts\SecretManagerContext\Queries\" />
-    <Folder Include="Contexts\UtilsContext\Commands\NewFolder\" />
     <Folder Include="Contexts\UtilsContext\Queries\" />
     <Folder Include="Contexts\WalletContext\" />
   </ItemGroup>

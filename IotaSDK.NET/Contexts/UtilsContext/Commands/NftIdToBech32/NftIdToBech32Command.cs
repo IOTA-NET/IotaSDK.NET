@@ -1,12 +1,11 @@
 ﻿using IotaSDK.NET.Common.Interfaces;
 using IotaSDK.NET.Domain.Network;
-using MediatR;
 
 namespace IotaSDK.NET.Contexts.UtilsContext.Commands.NftIdToBech32
 {
-    internal class NftIdToBech32Command : IRequest<IotaSDKResponse<string>>
+    internal class NftIdToBech32Command : RustBridgeRequest<string>
     {
-        public NftIdToBech32Command(string nftId, HumanReadablePart humanReadablePart)
+        public NftIdToBech32Command(string nftId, HumanReadablePart humanReadablePart, string rustMethodName) : base(rustMethodName)
         {
             NftId = nftId;
             HumanReadablePart = humanReadablePart;
