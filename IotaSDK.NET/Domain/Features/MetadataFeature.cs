@@ -5,7 +5,7 @@
     /// </summary>
     public class MetadataFeature : Feature
     {
-        public MetadataFeature(int type, string data) : base(type)
+        public MetadataFeature(string data) : base((int)FeatureType.Metadata)
         {
             Data = data;
         }

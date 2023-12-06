@@ -7,7 +7,7 @@ namespace IotaSDK.NET.Domain.Features
     /// </summary>
     public class IssuerFeature : Feature
     {
-        public IssuerFeature(int type, Address address) : base(type)
+        public IssuerFeature(Address address) : base((int)FeatureType.Issuer)
         {
             Address = address;
         }

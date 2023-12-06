@@ -7,7 +7,7 @@ namespace IotaSDK.NET.Domain.UnlockConditions
      */
     public class StorageDepositReturnUnlockCondition : UnlockCondition
     {
-        public StorageDepositReturnUnlockCondition(int type, string amount, Address returnAddress) : base(type)
+        public StorageDepositReturnUnlockCondition(string amount, Address returnAddress) : base((int)UnlockConditionType.StorageDepositReturn)
         {
             Amount = amount;
             ReturnAddress = returnAddress;

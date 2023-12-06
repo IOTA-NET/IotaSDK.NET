@@ -7,7 +7,7 @@ namespace IotaSDK.NET.Domain.UnlockConditions
     /// </summary>
     public class GovernorAddressUnlockCondition : UnlockCondition
     {
-        public GovernorAddressUnlockCondition(int type, Address address) : base(type)
+        public GovernorAddressUnlockCondition(Address address) : base((int)UnlockConditionType.GovernorAddress)
         {
             Address = address;
         }

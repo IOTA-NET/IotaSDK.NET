@@ -7,9 +7,8 @@ namespace IotaSDK.NET.Domain.Outputs
     {
         public BasicOutput(
             string amount, 
-            int type, 
             List<UnlockCondition> unlockConditions) 
-            : base(amount, type, unlockConditions, null, null)
+            : base(amount, (int)OutputType.Basic, unlockConditions, null, null)
         {
         }
     }

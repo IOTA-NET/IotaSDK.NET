@@ -7,7 +7,7 @@ namespace IotaSDK.NET.Domain.UnlockConditions
     /// </summary>
     public class StateControllerAddressUnlockCondition : UnlockCondition
     {
-        public StateControllerAddressUnlockCondition(int type, Address address) : base(type)
+        public StateControllerAddressUnlockCondition(Address address) : base((int)UnlockConditionType.StateControllerAddress)
         {
             Address = address;
         }

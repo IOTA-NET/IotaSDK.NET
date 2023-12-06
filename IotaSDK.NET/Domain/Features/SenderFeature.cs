@@ -7,7 +7,7 @@ namespace IotaSDK.NET.Domain.Features
     /// </summary>
     public class SenderFeature : Feature
     {
-        public SenderFeature(int type, Address address) : base(type)
+        public SenderFeature(Address address) : base((int)FeatureType.Sender)
         {
             Address = address;
         }

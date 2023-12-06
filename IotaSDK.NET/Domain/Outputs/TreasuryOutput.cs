@@ -2,7 +2,7 @@
 {
     public class TreasuryOutput : Output
     {
-        public TreasuryOutput(string amount, int type) : base(amount, type)
+        public TreasuryOutput(string amount) : base(amount, (int)OutputType.Treasury)
         {
         }
     }

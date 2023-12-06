@@ -5,7 +5,7 @@
     /// </summary>
     public class TagFeature : Feature
     {
-        public TagFeature(int type, string tag) : base(type)
+        public TagFeature(string tag) : base((int)FeatureType.Tag)
         {
             Tag = tag;
         }

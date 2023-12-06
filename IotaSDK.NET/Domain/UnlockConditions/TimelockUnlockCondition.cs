@@ -5,7 +5,7 @@
      */
     public class TimelockUnlockCondition : UnlockCondition
     {
-        public TimelockUnlockCondition(int type, ulong unixTime) : base(type)
+        public TimelockUnlockCondition(ulong unixTime) : base((int)UnlockConditionType.Timelock)
         {
             UnixTime = unixTime;
         }

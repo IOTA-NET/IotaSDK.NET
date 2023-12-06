@@ -7,7 +7,7 @@ namespace IotaSDK.NET.Domain.UnlockConditions
      */
     public class ExpirationUnlockCondition : UnlockCondition
     {
-        public ExpirationUnlockCondition(int type, Address returnAddress, ulong unixTime) : base(type)
+        public ExpirationUnlockCondition(Address returnAddress, ulong unixTime) : base((int)UnlockConditionType.Expiration)
         {
             ReturnAddress = returnAddress;
             UnixTime = unixTime;

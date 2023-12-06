@@ -8,7 +8,7 @@ namespace IotaSDK.NET.Domain.UnlockConditions
      */
     public class AddressUnlockCondition : UnlockCondition
     {
-        public AddressUnlockCondition(int type, Address address) : base(type)
+        public AddressUnlockCondition(Address address) : base((int)UnlockConditionType.Address)
         {
             Address = address;
         }
