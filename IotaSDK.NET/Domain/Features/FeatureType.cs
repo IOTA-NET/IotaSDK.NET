@@ -1,6 +1,4 @@
-﻿using IotaSDK.NET.Domain.UnlockConditions;
-
-namespace IotaSDK.NET.Domain.Features
+﻿namespace IotaSDK.NET.Domain.Features
 {
     /**
      * All of the feature block types.
@@ -16,4 +14,5 @@ namespace IotaSDK.NET.Domain.Features
         /** A Tag feature. */
         Tag = 3,
     }
+
 }
