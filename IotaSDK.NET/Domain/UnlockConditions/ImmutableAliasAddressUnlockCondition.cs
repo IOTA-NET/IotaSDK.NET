@@ -7,7 +7,7 @@ namespace IotaSDK.NET.Domain.UnlockConditions
      */
     public class ImmutableAliasAddressUnlockCondition : UnlockCondition
     {
-        public ImmutableAliasAddressUnlockCondition(int type, Address address) : base(type)
+        public ImmutableAliasAddressUnlockCondition(Address address) : base((int)UnlockConditionType.ImmutableAliasAddress)
         {
             Address = address;
         }
