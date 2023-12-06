@@ -1,5 +1,4 @@
 ﻿using IotaSDK.NET.Domain.Features;
-using IotaSDK.NET.Domain.Tokens;
 using IotaSDK.NET.Domain.UnlockConditions;
 using System.Collections.Generic;
 
