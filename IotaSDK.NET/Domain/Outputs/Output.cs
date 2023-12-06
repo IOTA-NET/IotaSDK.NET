@@ -1,16 +1,15 @@
 ﻿using JsonSubTypes;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
 
 namespace IotaSDK.NET.Domain.Outputs
 {
     [JsonConverter(typeof(JsonSubtypes), "Type")]
-    //[JsonSubtypes.KnownSubType(typeof(AliasOutput), 4)]
-    //[JsonSubtypes.KnownSubType(typeof(BasicOutput), 3)]
-    //[JsonSubtypes.KnownSubType(typeof(FoundryOutput), 5)]
-    //[JsonSubtypes.KnownSubType(typeof(NftOutput), 6)]
-    //[JsonSubtypes.KnownSubType(typeof(TreasuryOutput), 2)]
+    [JsonSubtypes.KnownSubType(typeof(AliasOutput), (int)OutputType.Alias)]
+    [JsonSubtypes.KnownSubType(typeof(BasicOutput), (int)OutputType.Basic)]
+    [JsonSubtypes.KnownSubType(typeof(FoundryOutput), (int)OutputType.Foundry)]
+    [JsonSubtypes.KnownSubType(typeof(NftOutput), (int)OutputType.Nft)]
+    [JsonSubtypes.KnownSubType(typeof(TreasuryOutput), (int)OutputType.Treasury)]
     public abstract class Output
     {
         public Output(string amount, int type)
