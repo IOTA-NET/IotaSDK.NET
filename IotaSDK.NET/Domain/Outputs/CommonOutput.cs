@@ -1,6 +1,7 @@
 ﻿using IotaSDK.NET.Domain.Features;
 using IotaSDK.NET.Domain.Tokens;
 using IotaSDK.NET.Domain.UnlockConditions;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace IotaSDK.NET.Domain.Outputs
@@ -20,7 +21,10 @@ namespace IotaSDK.NET.Domain.Outputs
         }
 
         public List<UnlockCondition> UnlockConditions { get; }
+
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public List<NativeToken>? NativeTokens { get; }
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public List<Feature>? Features { get; }
     }
 }
