@@ -1,7 +1,4 @@
-﻿using IotaSDK.NET.Domain.Outputs;
-using System.Runtime.InteropServices;
-
-namespace IotaSDK.NET.Domain.UnlockConditions
+﻿namespace IotaSDK.NET.Domain.UnlockConditions
 {
     /**
      * All of the unlock condition types.
@@ -22,14 +19,5 @@ namespace IotaSDK.NET.Domain.UnlockConditions
         GovernorAddress = 5,
         /** An immutable alias address unlock condition. */
         ImmutableAliasAddress = 6,
-    }
-
-    public class AddressUnlockCondition : UnlockCondition
-    {
-        public AddressUnlockCondition(int type) : base(type)
-        {
-        }
-
-
     }
 }
