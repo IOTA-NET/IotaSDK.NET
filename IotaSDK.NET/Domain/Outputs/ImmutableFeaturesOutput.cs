@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace IotaSDK.NET.Domain.Outputs
 {
-    public class ImmutableFeaturesOutput : CommonOutput
+    public abstract class ImmutableFeaturesOutput : CommonOutput
     {
         public ImmutableFeaturesOutput(
             string amount, 
