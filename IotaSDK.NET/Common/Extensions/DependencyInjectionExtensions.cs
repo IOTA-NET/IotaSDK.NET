@@ -14,7 +14,8 @@ namespace IotaSDK.NET.Common.Extensions
         {
             JsonConvert.DefaultSettings = () => new JsonSerializerSettings
             {
-                ContractResolver = new CamelCasePropertyNamesContractResolver()
+                ContractResolver = new CamelCasePropertyNamesContractResolver(),
+                NullValueHandling = NullValueHandling.Ignore,
             };
 
             serviceDescriptors
