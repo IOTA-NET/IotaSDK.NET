@@ -1,4 +1,6 @@
 ﻿using IotaSDK.NET.Domain.Network;
+using IotaSDK.NET.Domain.Outputs;
+using IotaSDK.NET.Domain.Tokens;
 using System.Threading.Tasks;
 
 namespace IotaSDK.NET.Common.Interfaces
@@ -23,5 +25,7 @@ namespace IotaSDK.NET.Common.Interfaces
         Task<IotaSDKResponse<string>> ConvertHashToBech32Async(string hexEncodedHash, HumanReadablePart humanReadablePart);
 
         Task<IotaSDKResponse<string>> ConvertOutputIdToNftIdAsync(string hexEncodedOutputId);
+
+        Task<IotaSDKResponse<ulong>> ComputeStorageDepositAsync(Output output, Rent rent);
     }
 }

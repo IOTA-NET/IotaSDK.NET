@@ -31,6 +31,7 @@ namespace IotaSDK.NET.Common.Interfaces
             string json = model.AsJson();
 
             string? callUtilsResponse = await _rustBridgeCommon.CallUtilsMethodAsync(json);
+            string? lastError =  await _rustBridgeCommon.GetLastErrorAsync();
 
             IotaSDKException.CheckForException(callUtilsResponse!);
 

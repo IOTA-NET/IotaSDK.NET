@@ -1,6 +1,7 @@
 ﻿using IotaSDK.NET.Common.Interfaces;
 using IotaSDK.NET.Contexts.UtilsContext.Commands.AliasIdToBech32;
 using IotaSDK.NET.Contexts.UtilsContext.Commands.Bech32ToHash;
+using IotaSDK.NET.Contexts.UtilsContext.Commands.ComputeStorageDeposit;
 using IotaSDK.NET.Contexts.UtilsContext.Commands.GenerateMnemonic;
 using IotaSDK.NET.Contexts.UtilsContext.Commands.HashToBech32;
 using IotaSDK.NET.Contexts.UtilsContext.Commands.MnemonicToHexSeed;
@@ -10,6 +11,8 @@ using IotaSDK.NET.Contexts.UtilsContext.Commands.PublicKeyToBech32;
 using IotaSDK.NET.Contexts.UtilsContext.Commands.VerifyBech32Address;
 using IotaSDK.NET.Contexts.UtilsContext.Commands.VerifyMnemonic;
 using IotaSDK.NET.Domain.Network;
+using IotaSDK.NET.Domain.Outputs;
+using IotaSDK.NET.Domain.Tokens;
 using MediatR;
 using System.Threading.Tasks;
 
@@ -74,6 +77,15 @@ namespace IotaSDK.NET.Contexts.UtilsContext
         public async Task<IotaSDKResponse<string>> ConvertOutputIdToNftIdAsync(string hexEncodedOutputId)
         {
             return await _mediator.Send(new OutputIdToNftIdCommand(hexEncodedOutputId, "computeNftId"));
+        }
+
+        public async Task<IotaSDKResponse<ulong>> ComputeStorageDepositAsync(Output output, Rent rent)
+        {
+            var response = await _mediator.Send(new ComputeStorageDepositCommand(output, rent, "computeStorageDeposit"));
+            var finalResponse = new IotaSDKResponse<ulong>(response.Type);
+            finalResponse.Payload = ulong.Parse(response.Payload);
+
+            return finalResponse;
         }
     }
 }
