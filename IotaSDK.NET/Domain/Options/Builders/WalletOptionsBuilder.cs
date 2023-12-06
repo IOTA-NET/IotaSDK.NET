@@ -1,5 +1,5 @@
 ﻿using IotaSDK.NET.Common.Interfaces;
-using IotaSDK.NET.Domain.Coin;
+using IotaSDK.NET.Domain.Tokens;
 
 namespace IotaSDK.NET.Domain.Options.Builders
 {
