@@ -5,13 +5,13 @@ using System;
 namespace IotaSDK.NET.Domain.UnlockConditions
 {
     [JsonConverter(typeof(JsonSubtypes), "Type")]
-    [JsonSubtypes.KnownSubType(typeof(AddressUnlockCondition), 0)]
-    [JsonSubtypes.KnownSubType(typeof(StorageDepositReturnUnlockCondition), 1)]
-    [JsonSubtypes.KnownSubType(typeof(TimelockUnlockCondition), 2)]
-    [JsonSubtypes.KnownSubType(typeof(ExpirationUnlockCondition), 3)]
-    [JsonSubtypes.KnownSubType(typeof(StateControllerAddressUnlockCondition), 4)]
-    [JsonSubtypes.KnownSubType(typeof(GovernorAddressUnlockCondition), 5)]
-    [JsonSubtypes.KnownSubType(typeof(ImmutableAliasAddressUnlockCondition), 6)]
+    [JsonSubtypes.KnownSubType(typeof(AddressUnlockCondition), (int)UnlockConditionType.Address)]
+    [JsonSubtypes.KnownSubType(typeof(StorageDepositReturnUnlockCondition), (int)UnlockConditionType.StorageDepositReturn)]
+    [JsonSubtypes.KnownSubType(typeof(TimelockUnlockCondition), (int)UnlockConditionType.Timelock)]
+    [JsonSubtypes.KnownSubType(typeof(ExpirationUnlockCondition), (int)UnlockConditionType.Expiration)]
+    [JsonSubtypes.KnownSubType(typeof(StateControllerAddressUnlockCondition), (int)UnlockConditionType.StateControllerAddress)]
+    [JsonSubtypes.KnownSubType(typeof(GovernorAddressUnlockCondition), (int)UnlockConditionType.GovernorAddress)]
+    [JsonSubtypes.KnownSubType(typeof(ImmutableAliasAddressUnlockCondition), (int)UnlockConditionType.ImmutableAliasAddress)]
     public abstract class UnlockCondition
     {
         public UnlockCondition(int type)
