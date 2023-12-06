@@ -17,4 +17,11 @@ namespace IotaSDK.NET.Domain.Features
         /// </summary>
         public Address Address { get; }
     }
+
+    public class TagFeature : Feature
+    {
+        public TagFeature(int type, string tag) : base(type)
+        {
+        }
+    }
 }
