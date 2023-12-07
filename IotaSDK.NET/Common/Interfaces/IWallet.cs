@@ -12,6 +12,9 @@ namespace IotaSDK.NET.Common.Interfaces
         ClientOptionsBuilder ConfigureClientOptions();
         SecretManagerOptionsBuilder ConfigureSecretManagerOptions();
         WalletOptionsBuilder ConfigureWalletOptions();
+
+        Task StoreMnemonicAsync(string mnemonic);
+
         Task<IWallet> InitializeAsync();
     }
 }
