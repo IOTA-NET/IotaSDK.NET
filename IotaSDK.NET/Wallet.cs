@@ -1,6 +1,7 @@
 ﻿using IotaSDK.NET.Common.Exceptions;
 using IotaSDK.NET.Common.Interfaces;
 using IotaSDK.NET.Common.Rust;
+using IotaSDK.NET.Contexts.WalletContext.Commands.StoreMnemonic;
 using IotaSDK.NET.Domain.Options;
 using IotaSDK.NET.Domain.Options.Builders;
 using MediatR;
@@ -63,6 +64,11 @@ namespace IotaSDK.NET
         {
             _rustBridgeWallet.DestroyWalletAsync(_walletHandle).Wait();
             _walletHandle = IntPtr.Zero;
+        }
+
+        public async Task StoreMnemonicAsync(string mnemonic)
+        {
+            await _mediator.Send(new StoreMnemonicCommand(_walletHandle, mnemonic));
         }
     }
 

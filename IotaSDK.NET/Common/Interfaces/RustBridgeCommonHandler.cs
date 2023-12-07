@@ -53,8 +53,8 @@ namespace IotaSDK.NET.Common.Interfaces
 
         public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken)
         {
-
-            IotaSDKModel model = (IotaSDKModel)Activator.CreateInstance(typeof(IotaSDKModel));
+            string methodName = request.RustMethodName;
+            IotaSDKModel model = (IotaSDKModel)Activator.CreateInstance(typeof(IotaSDKModel), methodName);
 
             string json = model.AsJson();
 

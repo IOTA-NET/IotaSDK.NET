@@ -1,5 +1,6 @@
 ﻿using IotaSDK.NET.Common.Extensions;
 using IotaSDK.NET.Common.Interfaces;
+using IotaSDK.NET.Common.Rust;
 using IotaSDK.NET.Domain.Addresses;
 using IotaSDK.NET.Domain.Outputs;
 using IotaSDK.NET.Domain.Tokens;
@@ -36,8 +37,14 @@ namespace IotaSDK.NET.Main
                                 .Then()
                             .InitializeAsync();
 
-                int x = 34;
+                var iotaUtilities = scope.ServiceProvider.GetRequiredService<IIotaUtilities>();
+
+                var mnemonicResponse = await iotaUtilities.GenerateMnemonicAsync();
+                string mnemonic = mnemonicResponse.Payload;
+
+                await wallet.StoreMnemonicAsync(mnemonic);
             }
+
         }
 
     }
