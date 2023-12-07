@@ -3,7 +3,7 @@ using IotaSDK.NET.Domain.Tokens;
 
 namespace IotaSDK.NET.Domain.Options.Builders
 {
-    internal class WalletOptionsBuilder
+    public class WalletOptionsBuilder
     {
         private readonly IWallet _wallet;
         private readonly WalletOptions _walletOptions;

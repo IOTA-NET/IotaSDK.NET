@@ -2,7 +2,7 @@
 
 namespace IotaSDK.NET.Domain.Options.Builders
 {
-    internal class SecretManagerOptionsBuilder
+    public class SecretManagerOptionsBuilder
     {
         private readonly IWallet _wallet;
         private readonly StrongholdOptions _strongholdOptions;
