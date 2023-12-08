@@ -17,5 +17,7 @@ namespace IotaSDK.NET.Common.Interfaces
 
         Task<IWallet> InitializeAsync();
         Task<bool> CheckIfStrongholdPasswordExistsAsync();
+        
+        Task<IotaSDKResponse<bool>> AuthenticateToStrongholdAsync(string password);
     }
 }

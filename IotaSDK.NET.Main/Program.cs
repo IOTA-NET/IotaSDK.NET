@@ -71,6 +71,8 @@ namespace IotaSDK.NET.Main
                 //await wallet.StoreMnemonicAsync(mnemonic);
 
                 var r = await wallet.CheckIfStrongholdPasswordExistsAsync();
+
+               var rr = await wallet.AuthenticateToStrongholdAsync("password");
             }
 
         }
