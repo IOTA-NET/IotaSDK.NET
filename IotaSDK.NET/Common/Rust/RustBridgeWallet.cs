@@ -42,14 +42,14 @@ namespace IotaSDK.NET.Common.Rust
             try
             {
                 methodPtr = Marshal.StringToHGlobalAnsi(method);
-                object? walletResponse = await PInvoke.DynamicPInvokeBuilderAsync(typeof(IntPtr), DllName, "call_wallet_method", new object[] { walletPtr, methodPtr }, new Type[] { typeof(IntPtr), typeof(IntPtr) });
+                object? walletResponse = await PInvoke.DynamicPInvokeBuilderAsync(typeof(IntPtr), DllName, "call_wallet_method", new object[] { walletPtr, method }, new Type[] { typeof(IntPtr), typeof(string) });
 
                 if (walletResponse == null || (IntPtr)walletResponse == IntPtr.Zero)
                 {
                     return null;
                 }
 
-                return Marshal.PtrToStringAnsi(walletPtr);
+                return Marshal.PtrToStringAnsi((IntPtr)walletResponse);
             }
             finally
             {
