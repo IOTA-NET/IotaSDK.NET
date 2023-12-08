@@ -73,7 +73,7 @@ namespace IotaSDK.NET
             await _mediator.Send(new StoreMnemonicCommand(_walletHandle, mnemonic));
         }
 
-        public async Task<bool> CheckIfStrongholdPasswordExistsAsync()
+        public async Task<IotaSDKResponse<bool>> CheckIfStrongholdPasswordExistsAsync()
         {
             return await _mediator.Send(new CheckIfStrongholdPasswordExistsQuery(_walletHandle));
         }

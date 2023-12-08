@@ -16,7 +16,7 @@ namespace IotaSDK.NET.Common.Interfaces
         Task StoreMnemonicAsync(string mnemonic);
 
         Task<IWallet> InitializeAsync();
-        Task<bool> CheckIfStrongholdPasswordExistsAsync();
+        Task<IotaSDKResponse<bool>> CheckIfStrongholdPasswordExistsAsync();
         
         Task<IotaSDKResponse<bool>> AuthenticateToStrongholdAsync(string password);
     }
