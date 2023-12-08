@@ -2,6 +2,7 @@
 using IotaSDK.NET.Common.Interfaces;
 using IotaSDK.NET.Common.Rust;
 using IotaSDK.NET.Contexts.WalletContext.Commands.StoreMnemonic;
+using IotaSDK.NET.Contexts.WalletContext.Queries.CheckIfStrongholdPasswordExists;
 using IotaSDK.NET.Domain.Options;
 using IotaSDK.NET.Domain.Options.Builders;
 using MediatR;
@@ -69,6 +70,11 @@ namespace IotaSDK.NET
         public async Task StoreMnemonicAsync(string mnemonic)
         {
             await _mediator.Send(new StoreMnemonicCommand(_walletHandle, mnemonic));
+        }
+
+        public async Task<bool> CheckIfStrongholdPasswordExistsAsync()
+        {
+            return await _mediator.Send(new CheckIfStrongholdPasswordExistsQuery(_walletHandle));
         }
     }
 
