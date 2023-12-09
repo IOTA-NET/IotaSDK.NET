@@ -1,6 +1,7 @@
 ﻿using IotaSDK.NET.Domain.Options;
 using IotaSDK.NET.Domain.Options.Builders;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace IotaSDK.NET.Common.Interfaces
@@ -25,5 +26,7 @@ namespace IotaSDK.NET.Common.Interfaces
         Task<IotaSDKResponse<bool>> DeleteLatestAccountAsync();
 
         Task<IotaSDKResponse<bool>> SetStrongholdPasswordClearIntervalAsync(int intervalInMilliSeconds);
+
+        Task<IotaSDKResponse<List<int>>> GetAccountIndexesAsync();
     }
 }
