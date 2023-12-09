@@ -19,5 +19,7 @@ namespace IotaSDK.NET.Common.Interfaces
         Task<IotaSDKResponse<bool>> CheckIfStrongholdPasswordExistsAsync();
         
         Task<IotaSDKResponse<bool>> AuthenticateToStrongholdAsync(string password);
+
+        Task<IotaSDKResponse<IAccount>> CreateAccountAsync(string? username=null);
     }
 }
