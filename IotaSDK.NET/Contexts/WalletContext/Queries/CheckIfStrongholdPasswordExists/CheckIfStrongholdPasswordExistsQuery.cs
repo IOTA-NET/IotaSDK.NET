@@ -1,17 +1,13 @@
 ﻿using IotaSDK.NET.Common.Interfaces;
-using MediatR;
 using System;
 
 namespace IotaSDK.NET.Contexts.WalletContext.Queries.CheckIfStrongholdPasswordExists
 {
-    internal class CheckIfStrongholdPasswordExistsQuery : IRequest<IotaSDKResponse<bool>>
+    internal class CheckIfStrongholdPasswordExistsQuery : WalletRequest<IotaSDKResponse<bool>>
     {
 
-        public CheckIfStrongholdPasswordExistsQuery(IntPtr walletHandle)
+        public CheckIfStrongholdPasswordExistsQuery(IntPtr walletHandle) : base(walletHandle) 
         {
-            WalletHandle = walletHandle;
         }
-
-        public IntPtr WalletHandle { get; }
     }
 }
