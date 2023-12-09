@@ -1,7 +1,4 @@
-﻿using IotaSDK.NET.Domain.Outputs;
-using IotaSDK.NET.Domain.Transactions.EssenceTypes;
-
-namespace IotaSDK.NET.Domain.Inputs
+﻿namespace IotaSDK.NET.Domain.Inputs
 {
     public enum InputType
     {
