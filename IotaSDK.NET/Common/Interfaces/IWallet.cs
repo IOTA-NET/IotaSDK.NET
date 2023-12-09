@@ -23,5 +23,7 @@ namespace IotaSDK.NET.Common.Interfaces
         Task<IotaSDKResponse<IAccount>> CreateAccountAsync(string? username=null);
 
         Task<IotaSDKResponse<bool>> DeleteLatestAccountAsync();
+
+        Task<IotaSDKResponse<bool>> SetStrongholdPasswordClearIntervalAsync(int intervalInMilliSeconds);
     }
 }
