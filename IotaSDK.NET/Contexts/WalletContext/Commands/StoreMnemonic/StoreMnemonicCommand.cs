@@ -1,17 +1,15 @@
-﻿using MediatR;
+﻿using IotaSDK.NET.Common.Interfaces;
+using MediatR;
 using System;
 
 namespace IotaSDK.NET.Contexts.WalletContext.Commands.StoreMnemonic
 {
-    internal class StoreMnemonicCommand : IRequest
+    internal class StoreMnemonicCommand : WalletRequest
     {
-        public StoreMnemonicCommand(IntPtr walletHandle, string mnemonic)
+        public StoreMnemonicCommand(IntPtr walletHandle, string mnemonic) : base(walletHandle)
         {
-            WalletHandle = walletHandle;
             Mnemonic = mnemonic;
         }
-
-        public IntPtr WalletHandle { get; }
         public string Mnemonic { get; }
     }
 }

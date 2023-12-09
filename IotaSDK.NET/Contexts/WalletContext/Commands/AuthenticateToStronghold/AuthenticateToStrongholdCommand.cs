@@ -4,16 +4,13 @@ using System;
 
 namespace IotaSDK.NET.Contexts.WalletContext.Commands.AuthenticateToStronghold
 {
-    internal class AuthenticateToStrongholdCommand : IRequest<IotaSDKResponse<bool>>
+    internal class AuthenticateToStrongholdCommand : WalletRequest<IotaSDKResponse<bool>>
     {
-        public AuthenticateToStrongholdCommand(IntPtr walletHandle, string password)
+        public AuthenticateToStrongholdCommand(IntPtr walletHandle, string password) : base(walletHandle)
         {
             Password = password;
-            WalletHandle = walletHandle;
 
         }
-        public IntPtr WalletHandle { get; }
-
         public string Password { get; }
     }
 }
