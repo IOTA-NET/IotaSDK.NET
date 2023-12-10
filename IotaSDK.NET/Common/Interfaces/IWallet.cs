@@ -28,5 +28,8 @@ namespace IotaSDK.NET.Common.Interfaces
         Task<IotaSDKResponse<bool>> SetStrongholdPasswordClearIntervalAsync(int intervalInMilliSeconds);
 
         Task<IotaSDKResponse<List<int>>> GetAccountIndexesAsync();
+
+        Task<IotaSDKResponse<IAccount>> GetAccountAsync(int accountIndex);
+        Task<IotaSDKResponse<IAccount>> GetAccountAsync(string accountAlias);
     }
 }

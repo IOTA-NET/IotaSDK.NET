@@ -72,7 +72,8 @@ namespace IotaSDK.NET.Main
 
                 var r = await wallet.CheckIfStrongholdPasswordExistsAsync();
 
-                var rrr = await wallet.CreateAccountAsync();
+                var rrr = await wallet.CreateAccountAsync(username: "cookiemonster");
+                var xxx = await wallet.GetAccountAsync("cookiemonster");
                 var rr = await wallet.DeleteLatestAccountAsync();
             }
 
