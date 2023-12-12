@@ -3,9 +3,9 @@ using System;
 
 namespace IotaSDK.NET.Contexts.WalletContext.Queries.GetAccountWithIndex
 {
-    internal class GetAccountWithIndexCommand : WalletRequest<IotaSDKResponse<IAccount>>
+    internal class GetAccountWithIndexQuery : WalletRequest<IotaSDKResponse<IAccount>>
     {
-        public GetAccountWithIndexCommand(IntPtr walletHandle, int index) : base(walletHandle)
+        public GetAccountWithIndexQuery(IntPtr walletHandle, int index) : base(walletHandle)
         {
             Index = index;
         }

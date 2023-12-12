@@ -8,6 +8,7 @@ using IotaSDK.NET.Contexts.WalletContext.Commands.SetStrongholdPasswordClearInte
 using IotaSDK.NET.Contexts.WalletContext.Commands.StoreMnemonic;
 using IotaSDK.NET.Contexts.WalletContext.Queries.CheckIfStrongholdPasswordExists;
 using IotaSDK.NET.Contexts.WalletContext.Queries.GetAccountIndexes;
+using IotaSDK.NET.Contexts.WalletContext.Queries.GetAccounts;
 using IotaSDK.NET.Contexts.WalletContext.Queries.GetAccountWithAlias;
 using IotaSDK.NET.Contexts.WalletContext.Queries.GetAccountWithIndex;
 using IotaSDK.NET.Domain.Options;
@@ -112,12 +113,17 @@ namespace IotaSDK.NET
 
         public async Task<IotaSDKResponse<IAccount>> GetAccountAsync(int accountIndex)
         {
-            return await _mediator.Send(new GetAccountWithIndexCommand(_walletHandle, accountIndex));
+            return await _mediator.Send(new GetAccountWithIndexQuery(_walletHandle, accountIndex));
         }
 
         public async Task<IotaSDKResponse<IAccount>> GetAccountAsync(string accountAlias)
         {
-            return await _mediator.Send(new GetAccountWithAliasCommand(_walletHandle, accountAlias));
+            return await _mediator.Send(new GetAccountWithAliasQuery(_walletHandle, accountAlias));
+        }
+
+        public async Task<IotaSDKResponse<List<IAccount>>> GetAccountsAsync()
+        {
+            return await _mediator.Send(new GetAccountsQuery(_walletHandle));
         }
     }
 

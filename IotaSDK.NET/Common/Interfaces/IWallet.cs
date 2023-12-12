@@ -30,6 +30,9 @@ namespace IotaSDK.NET.Common.Interfaces
         Task<IotaSDKResponse<List<int>>> GetAccountIndexesAsync();
 
         Task<IotaSDKResponse<IAccount>> GetAccountAsync(int accountIndex);
+
         Task<IotaSDKResponse<IAccount>> GetAccountAsync(string accountAlias);
+        
+        Task<IotaSDKResponse<List<IAccount>>> GetAccountsAsync();
     }
 }

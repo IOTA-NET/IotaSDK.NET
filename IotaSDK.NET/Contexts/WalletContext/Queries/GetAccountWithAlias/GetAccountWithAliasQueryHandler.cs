@@ -8,18 +8,18 @@ using System.Threading.Tasks;
 
 namespace IotaSDK.NET.Contexts.WalletContext.Queries.GetAccountWithAlias
 {
-    internal class GetAccountWithAliasCommandHandler : IRequestHandler<GetAccountWithAliasCommand, IotaSDKResponse<IAccount>>
+    internal class GetAccountWithAliasQueryHandler : IRequestHandler<GetAccountWithAliasQuery, IotaSDKResponse<IAccount>>
     {
         private readonly RustBridgeWallet _rustBridgeWallet;
 
-        public GetAccountWithAliasCommandHandler(RustBridgeWallet rustBridgeWallet)
+        public GetAccountWithAliasQueryHandler(RustBridgeWallet rustBridgeWallet)
         {
             _rustBridgeWallet = rustBridgeWallet;
         }
-        public async Task<IotaSDKResponse<IAccount>> Handle(GetAccountWithAliasCommand request, CancellationToken cancellationToken)
+        public async Task<IotaSDKResponse<IAccount>> Handle(GetAccountWithAliasQuery request, CancellationToken cancellationToken)
         {
-            GetAccountWithAliasCommandModelData modelData = new GetAccountWithAliasCommandModelData(request.Alias);
-            IotaSDKModel<GetAccountWithAliasCommandModelData> model = new IotaSDKModel<GetAccountWithAliasCommandModelData>("getAccount", modelData);
+            GetAccountWithAliasQueryModelData modelData = new GetAccountWithAliasQueryModelData(request.Alias);
+            IotaSDKModel<GetAccountWithAliasQueryModelData> model = new IotaSDKModel<GetAccountWithAliasQueryModelData>("getAccount", modelData);
             string json = model.AsJson();
 
             string? walletResponse =  await _rustBridgeWallet.CallWalletMethodAsync(request.WalletHandle, json);

@@ -1,8 +1,8 @@
 ﻿namespace IotaSDK.NET.Contexts.WalletContext.Queries.GetAccountWithAlias
 {
-    internal class GetAccountWithAliasCommandModelData
+    internal class GetAccountWithAliasQueryModelData
     {
-        public GetAccountWithAliasCommandModelData(string alias)
+        public GetAccountWithAliasQueryModelData(string alias)
         {
             AccountId = alias;
         }
