@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace IotaSDK.NET.Contexts.WalletContext.Queries.GetAccountWithIndex
 {
-    internal class GetAccountWithIndexCommandHandler : IRequestHandler<GetAccountWithIndexCommand, IotaSDKResponse<IAccount>>
+    internal class GetAccountWithIndexCommandHandler : IRequestHandler<GetAccountWithIndexQuery, IotaSDKResponse<IAccount>>
     {
         private readonly RustBridgeWallet _rustBridgeWallet;
 
@@ -16,7 +16,7 @@ namespace IotaSDK.NET.Contexts.WalletContext.Queries.GetAccountWithIndex
         {
             _rustBridgeWallet = rustBridgeWallet;
         }
-        public async Task<IotaSDKResponse<IAccount>> Handle(GetAccountWithIndexCommand request, CancellationToken cancellationToken)
+        public async Task<IotaSDKResponse<IAccount>> Handle(GetAccountWithIndexQuery request, CancellationToken cancellationToken)
         {
             GetAccountWithIndexCommandModelData modelData = new GetAccountWithIndexCommandModelData(request.Index);
             IotaSDKModel<GetAccountWithIndexCommandModelData> model = new IotaSDKModel<GetAccountWithIndexCommandModelData>("getAccount", modelData);

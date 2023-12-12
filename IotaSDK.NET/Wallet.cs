@@ -112,12 +112,12 @@ namespace IotaSDK.NET
 
         public async Task<IotaSDKResponse<IAccount>> GetAccountAsync(int accountIndex)
         {
-            return await _mediator.Send(new GetAccountWithIndexCommand(_walletHandle, accountIndex));
+            return await _mediator.Send(new GetAccountWithIndexQuery(_walletHandle, accountIndex));
         }
 
         public async Task<IotaSDKResponse<IAccount>> GetAccountAsync(string accountAlias)
         {
-            return await _mediator.Send(new GetAccountWithAliasCommand(_walletHandle, accountAlias));
+            return await _mediator.Send(new GetAccountWithAliasQuery(_walletHandle, accountAlias));
         }
     }
 
