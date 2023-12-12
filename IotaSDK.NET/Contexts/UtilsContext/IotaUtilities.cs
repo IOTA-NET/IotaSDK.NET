@@ -1,4 +1,5 @@
 ﻿using IotaSDK.NET.Common.Interfaces;
+using IotaSDK.NET.Common.Rust;
 using IotaSDK.NET.Contexts.UtilsContext.Commands.AliasIdToBech32;
 using IotaSDK.NET.Contexts.UtilsContext.Commands.Bech32ToHash;
 using IotaSDK.NET.Contexts.UtilsContext.Commands.ComputeStorageDeposit;
@@ -8,6 +9,7 @@ using IotaSDK.NET.Contexts.UtilsContext.Commands.MnemonicToHexSeed;
 using IotaSDK.NET.Contexts.UtilsContext.Commands.NftIdToBech32;
 using IotaSDK.NET.Contexts.UtilsContext.Commands.OutputIdToNftId;
 using IotaSDK.NET.Contexts.UtilsContext.Commands.PublicKeyToBech32;
+using IotaSDK.NET.Contexts.UtilsContext.Commands.StartLogger;
 using IotaSDK.NET.Contexts.UtilsContext.Commands.VerifyBech32Address;
 using IotaSDK.NET.Contexts.UtilsContext.Commands.VerifyMnemonic;
 using IotaSDK.NET.Domain.Network;
@@ -86,6 +88,11 @@ namespace IotaSDK.NET.Contexts.UtilsContext
             finalResponse.Payload = ulong.Parse(response.Payload);
 
             return finalResponse;
+        }
+
+        public async Task<IotaSDKResponse<bool>> StartLoggerAsync(RustLoggerConfiguration rustLoggerConfiguration)
+        {
+            return await _mediator.Send(new StartLoggerCommand(rustLoggerConfiguration));
         }
     }
 }
