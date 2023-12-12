@@ -34,5 +34,8 @@ namespace IotaSDK.NET.Common.Interfaces
         Task<IotaSDKResponse<IAccount>> GetAccountAsync(string accountAlias);
         
         Task<IotaSDKResponse<List<IAccount>>> GetAccountsAsync();
+
+        Task<IotaSDKResponse<bool>> ClearStrongholdPasswordAsync();
+
     }
 }
