@@ -63,6 +63,7 @@ namespace IotaSDK.NET.Main
                                 .Then()
                             .InitializeAsync();
 
+                await wallet.ClearStrongholdPasswordAsync();
                 var iotaUtilities = scope.ServiceProvider.GetRequiredService<IIotaUtilities>();
 
                 //var mnemonicResponse = await iotaUtilities.GenerateMnemonicAsync();

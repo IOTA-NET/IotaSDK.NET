@@ -2,6 +2,7 @@
 using IotaSDK.NET.Common.Interfaces;
 using IotaSDK.NET.Common.Rust;
 using IotaSDK.NET.Contexts.WalletContext.Commands.AuthenticateToStronghold;
+using IotaSDK.NET.Contexts.WalletContext.Commands.ClearStrongholdPassword;
 using IotaSDK.NET.Contexts.WalletContext.Commands.CreateAccount;
 using IotaSDK.NET.Contexts.WalletContext.Commands.DeleteLatestAccount;
 using IotaSDK.NET.Contexts.WalletContext.Commands.SetStrongholdPasswordClearInterval;
@@ -124,6 +125,11 @@ namespace IotaSDK.NET
         public async Task<IotaSDKResponse<List<IAccount>>> GetAccountsAsync()
         {
             return await _mediator.Send(new GetAccountsQuery(_walletHandle));
+        }
+
+        public async Task<IotaSDKResponse<bool>> ClearStrongholdPasswordAsync()
+        {
+            return await _mediator.Send(new ClearStrongholdPasswordCommand(_walletHandle));
         }
     }
 
