@@ -18,18 +18,6 @@ namespace IotaSDK.NET.Main
         // public LogLevel MinLevel { get; set; }
         // public LogLevel MaxLevel { get; set; }
     }
-    public class LoggerConfig
-    {
-        // Color flag of an output.
-        public bool ColorEnabled { get; set; } = true;
-
-        // Log level filter of an output.
-        public string LevelFilter { get; set; } = "debug";
-
-        // Name of an output file, or `stdout` for standard output.
-        public string Name { get; set; } = "stdout";
-    }
-
     internal class Program
     {
         static async Task Main(string[] args)
@@ -40,10 +28,11 @@ namespace IotaSDK.NET.Main
 
             using (IServiceScope scope = serviceProvider.CreateScope())
             {
-                var common = scope.ServiceProvider.GetRequiredService<RustBridgeCommon>();
-                var log = new LoggerConfig();
+                var iotaUtilities = scope.ServiceProvider.GetRequiredService<IIotaUtilities>();
+                var log = new RustLoggerConfiguration(LogLevelFilter.debug);
 
-                var x = await common.InitLoggerAsync(JsonConvert.SerializeObject(log));
+
+                var x = await iotaUtilities.StartLoggerAsync(log);
 
                 var wallet = scope.ServiceProvider.GetRequiredService<IWallet>();
 
@@ -64,7 +53,6 @@ namespace IotaSDK.NET.Main
                             .InitializeAsync();
 
                 await wallet.ClearStrongholdPasswordAsync();
-                var iotaUtilities = scope.ServiceProvider.GetRequiredService<IIotaUtilities>();
 
                 //var mnemonicResponse = await iotaUtilities.GenerateMnemonicAsync();
                 //string mnemonic = mnemonicResponse.Payload;
