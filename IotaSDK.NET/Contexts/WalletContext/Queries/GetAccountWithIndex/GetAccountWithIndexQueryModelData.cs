@@ -1,8 +1,8 @@
 ﻿namespace IotaSDK.NET.Contexts.WalletContext.Queries.GetAccountWithIndex
 {
-    internal class GetAccountWithIndexCommandModelData
+    internal class GetAccountWithIndexQueryModelData
     {
-        public GetAccountWithIndexCommandModelData(int index)
+        public GetAccountWithIndexQueryModelData(int index)
         {
             AccountId = index;
         }
