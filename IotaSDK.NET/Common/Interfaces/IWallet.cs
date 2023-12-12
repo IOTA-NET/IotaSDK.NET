@@ -37,5 +37,7 @@ namespace IotaSDK.NET.Common.Interfaces
 
         Task<IotaSDKResponse<bool>> ClearStrongholdPasswordAsync();
 
+        Task<IotaSDKResponse<bool>> ChangeStrongholdPasswordAsync(string currentPassword, string newPassword);
+
     }
 }
