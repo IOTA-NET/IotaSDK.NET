@@ -1,4 +1,5 @@
-﻿using IotaSDK.NET.Domain.Options;
+﻿using IotaSDK.NET.Domain.Accounts;
+using IotaSDK.NET.Domain.Options;
 using IotaSDK.NET.Domain.Options.Builders;
 using System;
 using System.Collections.Generic;
@@ -38,6 +39,7 @@ namespace IotaSDK.NET.Common.Interfaces
         Task<IotaSDKResponse<bool>> ClearStrongholdPasswordAsync();
 
         Task<IotaSDKResponse<bool>> ChangeStrongholdPasswordAsync(string currentPassword, string newPassword);
+        Task<IotaSDKResponse<bool>> StartBackgroundSyncAsync(SyncOptions? syncOptions = null, ulong? intervalInMilliseconds = null);
 
     }
 }
