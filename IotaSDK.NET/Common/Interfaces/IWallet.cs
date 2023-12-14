@@ -40,6 +40,7 @@ namespace IotaSDK.NET.Common.Interfaces
 
         Task<IotaSDKResponse<bool>> ChangeStrongholdPasswordAsync(string currentPassword, string newPassword);
         Task<IotaSDKResponse<bool>> StartBackgroundSyncAsync(SyncOptions? syncOptions = null, ulong? intervalInMilliseconds = null);
+        Task<IotaSDKResponse<bool>> StopBackgroundSyncAsync();
 
     }
 }
