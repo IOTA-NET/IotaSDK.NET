@@ -10,5 +10,7 @@ namespace IotaSDK.NET.Common.Interfaces
         Task<IotaSDKResponse<AccountBalance>> SyncAcountAsync(SyncOptions? syncOptions=null);
 
         Task<IotaSDKResponse<List<AccountAddress>>> GetAddressesAsync();
+
+        Task SetAliasAsync(string alias);
     }
 }
