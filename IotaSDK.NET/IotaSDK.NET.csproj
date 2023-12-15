@@ -18,7 +18,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Contexts\AccountContext\Queries\" />
     <Folder Include="Contexts\ClientContext\" />
     <Folder Include="Contexts\SecretManagerContext\Command\" />
     <Folder Include="Contexts\SecretManagerContext\Queries\" />
