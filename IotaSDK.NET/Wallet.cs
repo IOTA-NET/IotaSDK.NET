@@ -34,6 +34,7 @@ namespace IotaSDK.NET
         private IMediator _mediator;
         private readonly RustBridgeWallet _rustBridgeWallet;
         private readonly RustBridgeCommon _rustBridgeCommon;
+        private IAccount? Account { get; set; }
 
         public Wallet(IMediator mediator, RustBridgeWallet rustBridgeWallet, RustBridgeCommon rustBridgeCommon)
         {
@@ -44,6 +45,7 @@ namespace IotaSDK.NET
             _mediator = mediator;
             _rustBridgeWallet = rustBridgeWallet;
             _rustBridgeCommon = rustBridgeCommon;
+            Account = null;
         }
         public async Task<IWallet> InitializeAsync()
         {
@@ -99,7 +101,9 @@ namespace IotaSDK.NET
 
         public async Task<IotaSDKResponse<IAccount>> CreateAccountAsync(string? username=null)
         {
-            return await _mediator.Send(new CreateAccountCommand(_walletHandle, username));
+            IotaSDKResponse<AccountMeta> iotaSDKResponse = await _mediator.Send(new CreateAccountCommand(_walletHandle, username));
+            IAccount account = new Account(_walletHandle, _mediator, iotaSDKResponse.Payload.Index, iotaSDKResponse.Payload.Alias);
+            return new IotaSDKResponse<IAccount>(iotaSDKResponse.Type) { Payload = account};
         }
 
         public async Task<IotaSDKResponse<bool>> DeleteLatestAccountAsync()
@@ -119,17 +123,32 @@ namespace IotaSDK.NET
 
         public async Task<IotaSDKResponse<IAccount>> GetAccountAsync(int accountIndex)
         {
-            return await _mediator.Send(new GetAccountWithIndexQuery(_walletHandle, accountIndex));
+            IotaSDKResponse<AccountMeta> iotaSDKResponse = await _mediator.Send(new GetAccountWithIndexQuery(_walletHandle, accountIndex));
+            IAccount account = new Account(_walletHandle, _mediator, iotaSDKResponse.Payload.Index, iotaSDKResponse.Payload.Alias);
+            return new IotaSDKResponse<IAccount>(iotaSDKResponse.Type) { Payload = account };
         }
 
         public async Task<IotaSDKResponse<IAccount>> GetAccountAsync(string accountAlias)
         {
-            return await _mediator.Send(new GetAccountWithAliasQuery(_walletHandle, accountAlias));
+            IotaSDKResponse<AccountMeta> iotaSDKResponse = await _mediator.Send(new GetAccountWithAliasQuery(_walletHandle, accountAlias));
+            IAccount account = new Account(_walletHandle, _mediator, iotaSDKResponse.Payload.Index, iotaSDKResponse.Payload.Alias);
+            return new IotaSDKResponse<IAccount>(iotaSDKResponse.Type) { Payload = account };
         }
 
         public async Task<IotaSDKResponse<List<IAccount>>> GetAccountsAsync()
         {
-            return await _mediator.Send(new GetAccountsQuery(_walletHandle));
+            IotaSDKResponse<List<AccountMeta>> iotaSDKResponse = await _mediator.Send(new GetAccountsQuery(_walletHandle));
+            List<IAccount> accountList = new List<IAccount>();
+
+            var accountMetas = iotaSDKResponse.Payload;
+
+            foreach(var accountMeta in accountMetas)
+            {
+                IAccount account = new Account(_walletHandle, _mediator, accountMeta.Index, accountMeta.Alias);
+                accountList.Add(account);
+            }
+
+            return new IotaSDKResponse<List<IAccount>>(iotaSDKResponse.Type) { Payload = accountList };
         }
 
         public async Task<IotaSDKResponse<bool>> ClearStrongholdPasswordAsync()

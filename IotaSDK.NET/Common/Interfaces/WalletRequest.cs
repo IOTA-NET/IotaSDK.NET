@@ -3,6 +3,7 @@ using System;
 
 namespace IotaSDK.NET.Common.Interfaces
 {
+
     internal abstract class WalletRequest : IRequest
     {
         public WalletRequest(IntPtr walletHandle)

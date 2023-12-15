@@ -1,5 +1,6 @@
 ﻿namespace IotaSDK.NET.Common.Interfaces
 {
+
     internal class IotaSDKModel : SerializableModel
     {
         public IotaSDKModel(string name)

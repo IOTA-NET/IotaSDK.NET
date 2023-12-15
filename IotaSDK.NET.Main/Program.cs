@@ -52,18 +52,11 @@ namespace IotaSDK.NET.Main
                                 .Then()
                             .InitializeAsync();
 
-                await wallet.ClearStrongholdPasswordAsync();
 
-                //var mnemonicResponse = await iotaUtilities.GenerateMnemonicAsync();
-                //string mnemonic = mnemonicResponse.Payload;
-
-                //await wallet.StoreMnemonicAsync(mnemonic);
-
-                var r = await wallet.CheckIfStrongholdPasswordExistsAsync();
-
-                var rrr = await wallet.CreateAccountAsync(username: "cookiemonster");
-                var xxx = await wallet.GetAccountAsync("cookiemonster");
-                var rr = await wallet.DeleteLatestAccountAsync();
+                var rrr = await wallet.GetAccountAsync("cookiemonster2");
+                IAccount account = rrr.Payload;
+                var balance = await account.SyncAcountAsync();
+                Console.WriteLine(balance);
             }
 
         }

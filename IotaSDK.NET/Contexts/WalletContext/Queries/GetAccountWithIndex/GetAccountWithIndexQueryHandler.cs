@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace IotaSDK.NET.Contexts.WalletContext.Queries.GetAccountWithIndex
 {
-    internal class GetAccountWithIndexQueryHandler : IRequestHandler<GetAccountWithIndexQuery, IotaSDKResponse<IAccount>>
+    internal class GetAccountWithIndexQueryHandler : IRequestHandler<GetAccountWithIndexQuery, IotaSDKResponse<AccountMeta>>
     {
         private readonly RustBridgeWallet _rustBridgeWallet;
 
@@ -16,7 +16,7 @@ namespace IotaSDK.NET.Contexts.WalletContext.Queries.GetAccountWithIndex
         {
             _rustBridgeWallet = rustBridgeWallet;
         }
-        public async Task<IotaSDKResponse<IAccount>> Handle(GetAccountWithIndexQuery request, CancellationToken cancellationToken)
+        public async Task<IotaSDKResponse<AccountMeta>> Handle(GetAccountWithIndexQuery request, CancellationToken cancellationToken)
         {
             GetAccountWithIndexQueryModelData modelData = new GetAccountWithIndexQueryModelData(request.Index);
             IotaSDKModel<GetAccountWithIndexQueryModelData> model = new IotaSDKModel<GetAccountWithIndexQueryModelData>("getAccount", modelData);
@@ -26,14 +26,8 @@ namespace IotaSDK.NET.Contexts.WalletContext.Queries.GetAccountWithIndex
             
             IotaSDKException.CheckForException(walletResponse!);
 
-            IotaSDKResponse<AccountMeta> response = IotaSDKResponse<AccountMeta>.CreateInstance(walletResponse);
+            return IotaSDKResponse<AccountMeta>.CreateInstance(walletResponse);
 
-            IAccount account = new Account(response.Payload.Index, response.Payload.Alias);
-
-            var newResponse = new IotaSDKResponse<IAccount>("getAccount");
-            newResponse.Payload = account;
-
-            return newResponse;
         }
     }
 }
