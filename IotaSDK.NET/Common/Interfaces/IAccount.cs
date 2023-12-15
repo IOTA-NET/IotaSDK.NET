@@ -2,6 +2,7 @@
 using IotaSDK.NET.Domain.Addresses;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace IotaSDK.NET.Common.Interfaces
 {
@@ -12,5 +13,8 @@ namespace IotaSDK.NET.Common.Interfaces
         Task<IotaSDKResponse<List<AccountAddress>>> GetAddressesAsync();
 
         Task SetAliasAsync(string alias);
+
+        Task<IotaSDKResponse<Transaction>> SendBaseCoinAsync(ulong amount, string bech32ReceiverAddress, TransactionOptions? transactionOptions = null);
+
     }
 }

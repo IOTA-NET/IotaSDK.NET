@@ -7,10 +7,13 @@ namespace IotaSDK.NET.Domain.Transactions.Payloads
     public class TransactionPayload : Payload
     {
         public TransactionPayload(TransactionEssence essence, List<Unlock> unlocks)
-            : base((int)PayloadType.Transaction)
         {
             Essence = essence;
             Unlocks = unlocks;
+        }
+        public TransactionPayload()
+        {
+            Type = (int)PayloadType.Transaction;
         }
         /// <summary>
         /// The index namae

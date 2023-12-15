@@ -1,8 +1,5 @@
-﻿using IotaSDK.NET.Domain.Network;
-using IotaSDK.NET.Domain.Tokens;
-using System.Linq;
+﻿using System;
 using System.Text;
-using System;
 
 namespace IotaSDK.NET.Common.Extensions
 {

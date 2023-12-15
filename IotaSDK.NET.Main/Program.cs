@@ -57,6 +57,8 @@ namespace IotaSDK.NET.Main
                 IAccount account = rrr.Payload;
                 var balance = await account.SyncAcountAsync();
                 Console.WriteLine(balance);
+                var tx = await account.SendBaseCoinAsync(1000000, "rms1qz8v2j4rrqs2yw5nf39jmvfsdlmna3pydpap4fmyrsapdw3mptckysx9yst");
+                Console.WriteLine(tx);
             }
 
         }

@@ -5,12 +5,12 @@ namespace IotaSDK.NET.Domain.Transactions.Payloads
     public class MilestonePayload : Payload
     {
         public MilestonePayload(string previousMilestoneId, List<string> parents, string inclusionMerkleRoot, string appliedMerkleRoot)
-            :base((int)PayloadType.Milestone)
         {
             PreviousMilestoneId = previousMilestoneId;
             Parents = parents;
             InclusionMerkleRoot = inclusionMerkleRoot;
             AppliedMerkleRoot = appliedMerkleRoot;
+            Type = (int)PayloadType.Milestone;
             //Signatures = signatures;
         }
         /// <summary>
