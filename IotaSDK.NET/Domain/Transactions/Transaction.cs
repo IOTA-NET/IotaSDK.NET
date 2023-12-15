@@ -4,16 +4,16 @@ namespace IotaSDK.NET.Domain.Transactions
 {
     public class Transaction
     {
-        //public Transaction(TransactionPayload payload, string blockId, string timestamp, string transactionId, string networkId, bool incoming, string inclusionState)
-        //{
-        //    Payload = payload;
-        //    BlockId = blockId;
-        //    Timestamp = timestamp;
-        //    TransactionId = transactionId;
-        //    NetworkId = networkId;
-        //    Incoming = incoming;
-        //    InclusionState = inclusionState;
-        //}
+        public Transaction(TransactionPayload payload, string blockId, string timestamp, string transactionId, string networkId, bool incoming, string inclusionState)
+        {
+            Payload = payload;
+            BlockId = blockId;
+            Timestamp = timestamp;
+            TransactionId = transactionId;
+            NetworkId = networkId;
+            Incoming = incoming;
+            InclusionState = inclusionState;
+        }
 
         /// <summary>
         /// The transaction payload

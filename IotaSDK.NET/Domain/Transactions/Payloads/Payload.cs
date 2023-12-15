@@ -11,7 +11,11 @@ namespace IotaSDK.NET.Domain.Transactions.Payloads
     [JsonSubtypes.KnownSubType(typeof(TreasuryTransactionPayload), (int)PayloadType.TreasuryTransaction)]
     public abstract class Payload
     {
-        public int Type { get; protected set; }
+        public Payload(int type)
+        {
+            Type = type;
+        }
+        public int Type { get; private set; }
 
         public PayloadType GetPayloadType()
         {

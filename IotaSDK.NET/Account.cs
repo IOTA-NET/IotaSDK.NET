@@ -5,11 +5,11 @@ using IotaSDK.NET.Contexts.AccountContext.Commands.Sync;
 using IotaSDK.NET.Contexts.AccountContext.Queries.GetAddresses;
 using IotaSDK.NET.Domain.Accounts;
 using IotaSDK.NET.Domain.Addresses;
+using IotaSDK.NET.Domain.Transactions;
 using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Transactions;
 
 namespace IotaSDK.NET
 {

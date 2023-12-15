@@ -1,4 +1,5 @@
-﻿using System.Transactions;
+﻿
+using IotaSDK.NET.Domain.Transactions;
 
 namespace IotaSDK.NET.Contexts.AccountContext.Commands.SendBaseCoin
 {

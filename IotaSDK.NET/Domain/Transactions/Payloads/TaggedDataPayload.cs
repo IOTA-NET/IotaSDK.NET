@@ -5,10 +5,11 @@ namespace IotaSDK.NET.Domain.Transactions.Payloads
     public class TaggedDataPayload : Payload
     {
         public TaggedDataPayload(string tag, string data)
+            :base((int)PayloadType.TaggedData)
+
         {
             Tag = tag.ToHexString();
             Data = data.ToHexString();
-            Type = (int)PayloadType.TaggedData;
         }
         /// <summary>
         /// [HexEncoded] The tag to use to categorize the data.

@@ -4,6 +4,7 @@ using IotaSDK.NET.Common.Rust;
 using IotaSDK.NET.Domain.Addresses;
 using IotaSDK.NET.Domain.Outputs;
 using IotaSDK.NET.Domain.Tokens;
+using IotaSDK.NET.Domain.Transactions;
 using IotaSDK.NET.Domain.UnlockConditions;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
