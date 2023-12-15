@@ -53,12 +53,10 @@ namespace IotaSDK.NET.Main
                             .InitializeAsync();
 
 
-                var rrr = await wallet.GetAccountAsync("cookiemonster2");
+                var rrr = await wallet.GetAccountAsync("cookie");
                 IAccount account = rrr.Payload;
                 var balance = await account.SyncAcountAsync();
                 Console.WriteLine(balance);
-                var addresses = await account.GetAddressesAsync();
-                Console.WriteLine(addresses);
             }
 
         }
