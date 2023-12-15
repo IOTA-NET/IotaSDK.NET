@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace IotaSDK.NET.Contexts.WalletContext.Commands.CreateAccount
 {
-    internal class CreateAccountCommandHandler : IRequestHandler<CreateAccountCommand, IotaSDKResponse<IAccount>>
+    internal class CreateAccountCommandHandler : IRequestHandler<CreateAccountCommand, IotaSDKResponse<AccountMeta>>
     {
         private readonly RustBridgeWallet _rustBridgeWallet;
 
@@ -17,7 +17,7 @@ namespace IotaSDK.NET.Contexts.WalletContext.Commands.CreateAccount
             _rustBridgeWallet = rustBridgeWallet;
         }
 
-        public async Task<IotaSDKResponse<IAccount>> Handle(CreateAccountCommand request, CancellationToken cancellationToken)
+        public async Task<IotaSDKResponse<AccountMeta>> Handle(CreateAccountCommand request, CancellationToken cancellationToken)
         {
             CreateAccountCommandModelData modelData = string.IsNullOrEmpty(request.Username)
                                                         ? new CreateAccountCommandModelData()
@@ -34,12 +34,7 @@ namespace IotaSDK.NET.Contexts.WalletContext.Commands.CreateAccount
 
             var response = IotaSDKResponse<AccountMeta>.CreateInstance(walletResponse);
 
-            IAccount account = new Account(response.Payload.Index, response.Payload.Alias);
-
-            var newResponse = new IotaSDKResponse<IAccount>(type: "createAccount");
-            newResponse.Payload = account;
-
-            return newResponse;
+            return response;
         }
     }
 }
