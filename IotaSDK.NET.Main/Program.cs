@@ -4,6 +4,7 @@ using IotaSDK.NET.Common.Rust;
 using IotaSDK.NET.Domain.Addresses;
 using IotaSDK.NET.Domain.Outputs;
 using IotaSDK.NET.Domain.Tokens;
+using IotaSDK.NET.Domain.Transactions;
 using IotaSDK.NET.Domain.UnlockConditions;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
@@ -57,6 +58,8 @@ namespace IotaSDK.NET.Main
                 IAccount account = rrr.Payload;
                 var balance = await account.SyncAcountAsync();
                 Console.WriteLine(balance);
+                var tx = await account.SendBaseCoinAsync(1000000, "rms1qz8v2j4rrqs2yw5nf39jmvfsdlmna3pydpap4fmyrsapdw3mptckysx9yst");
+                Console.WriteLine(tx);
             }
 
         }

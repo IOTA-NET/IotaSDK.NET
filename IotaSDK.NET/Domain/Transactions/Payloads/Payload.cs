@@ -15,8 +15,7 @@ namespace IotaSDK.NET.Domain.Transactions.Payloads
         {
             Type = type;
         }
-
-        public int Type { get; }
+        public int Type { get; private set; }
 
         public PayloadType GetPayloadType()
         {

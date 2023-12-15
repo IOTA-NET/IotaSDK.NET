@@ -1,9 +1,11 @@
 ﻿using IotaSDK.NET.Common.Interfaces;
+using IotaSDK.NET.Contexts.AccountContext.Commands.SendBaseCoin;
 using IotaSDK.NET.Contexts.AccountContext.Commands.SetAlias;
 using IotaSDK.NET.Contexts.AccountContext.Commands.Sync;
 using IotaSDK.NET.Contexts.AccountContext.Queries.GetAddresses;
 using IotaSDK.NET.Domain.Accounts;
 using IotaSDK.NET.Domain.Addresses;
+using IotaSDK.NET.Domain.Transactions;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -31,6 +33,11 @@ namespace IotaSDK.NET
         {
             return await _mediator.Send(new GetAddressesQuery(_walletHandle, Index));
 
+        }
+
+        public async Task<IotaSDKResponse<Transaction>> SendBaseCoinAsync(ulong amount, string bech32ReceiverAddress, TransactionOptions? transactionOptions = null)
+        {
+            return await _mediator.Send(new SendBaseCoinCommand(_walletHandle, Index, amount, bech32ReceiverAddress, transactionOptions));
         }
 
         public async Task SetAliasAsync(string alias)
