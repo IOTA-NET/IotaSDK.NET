@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IotaSDK.NET.Common.Exceptions;
+using System;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
@@ -46,6 +47,10 @@ namespace IotaSDK.NET.Common.Rust
 
                 if (walletResponse == null || (IntPtr)walletResponse == IntPtr.Zero)
                 {
+                    string? err = await new RustBridgeCommon().GetLastErrorAsync();
+                    if (err != null)
+                        throw new IotaSDKException($"Binding error: {err}");
+
                     return null;
                 }
 

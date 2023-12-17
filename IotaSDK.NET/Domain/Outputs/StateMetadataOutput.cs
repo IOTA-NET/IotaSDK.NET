@@ -6,10 +6,10 @@ namespace IotaSDK.NET.Domain.Outputs
     public abstract class StateMetadataOutput : ImmutableFeaturesOutput
     {
         protected StateMetadataOutput(
-            string amount, 
-            int type, 
-            List<UnlockCondition> unlockConditions, 
-            string? stateMetadata) 
+            string amount,
+            int type,
+            List<UnlockCondition> unlockConditions,
+            string? stateMetadata)
             : base(amount, type, unlockConditions, null)
         {
             StateMetadata = stateMetadata;

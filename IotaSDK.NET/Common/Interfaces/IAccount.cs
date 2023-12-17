@@ -10,7 +10,7 @@ namespace IotaSDK.NET.Common.Interfaces
 {
     public interface IAccount
     {
-        Task<IotaSDKResponse<AccountBalance>> SyncAcountAsync(SyncOptions? syncOptions=null);
+        Task<IotaSDKResponse<AccountBalance>> SyncAcountAsync(SyncOptions? syncOptions = null);
 
         Task<IotaSDKResponse<List<AccountAddress>>> GetAddressesAsync();
 
@@ -21,5 +21,7 @@ namespace IotaSDK.NET.Common.Interfaces
         Task<IotaSDKResponse<Transaction>> SignAndSubmitTransactionAsync(PreparedTransactionData transactionData);
 
         Task<IotaSDKResponse<PreparedTransactionData>> PrepareMintNftsAsync(List<NftOptions> nftOptionsList, TransactionOptions? transactionOptions = null);
+
+        Task<IotaSDKResponse<Transaction>> MintNftsAsync(List<NftOptions> nftOptionsList, TransactionOptions? transactionOptions = null);
     }
 }

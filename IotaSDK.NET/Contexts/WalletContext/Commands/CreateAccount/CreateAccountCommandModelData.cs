@@ -4,7 +4,7 @@
     {
         public CreateAccountCommandModelData()
         {
-            
+
         }
 
         public CreateAccountCommandModelData(string alias)

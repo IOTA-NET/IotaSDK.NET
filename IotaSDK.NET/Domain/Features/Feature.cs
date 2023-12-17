@@ -1,5 +1,4 @@
-﻿using IotaSDK.NET.Domain.Addresses;
-using JsonSubTypes;
+﻿using JsonSubTypes;
 using Newtonsoft.Json;
 using System;
 

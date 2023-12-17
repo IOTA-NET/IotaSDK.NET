@@ -24,7 +24,7 @@ namespace IotaSDK.NET.Contexts.AccountContext.Commands.Sync
             AccountModelData<SyncCommandModelData> accountModelData = new AccountModelData<SyncCommandModelData>(request.AccountIndex, innerModel);
             IotaSDKAccountModel<SyncCommandModelData> iotaSDKAccountModel = new IotaSDKAccountModel<SyncCommandModelData>(accountModelData);
             string json = iotaSDKAccountModel.AsJson();
-            
+
             string? accountResponse = await _rustBridgeWallet.CallWalletMethodAsync(request.WalletHandle, json);
 
             IotaSDKException.CheckForException(accountResponse!);

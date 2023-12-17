@@ -29,4 +29,4 @@ namespace IotaSDK.NET.Domain.Inputs
             }
         }
     }
-    }
+}

@@ -1,12 +1,8 @@
 ﻿using IotaSDK.NET.Common.Extensions;
 using IotaSDK.NET.Common.Interfaces;
 using IotaSDK.NET.Common.Rust;
-using IotaSDK.NET.Domain.Addresses;
 using IotaSDK.NET.Domain.Nft;
-using IotaSDK.NET.Domain.Outputs;
 using IotaSDK.NET.Domain.Tokens;
-using IotaSDK.NET.Domain.Transactions;
-using IotaSDK.NET.Domain.UnlockConditions;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 
@@ -31,10 +27,7 @@ namespace IotaSDK.NET.Main
             using (IServiceScope scope = serviceProvider.CreateScope())
             {
                 var iotaUtilities = scope.ServiceProvider.GetRequiredService<IIotaUtilities>();
-                var log = new RustLoggerConfiguration(LogLevelFilter.debug);
 
-
-                var x = await iotaUtilities.StartLoggerAsync(log);
 
                 var wallet = scope.ServiceProvider.GetRequiredService<IWallet>();
 
@@ -55,18 +48,23 @@ namespace IotaSDK.NET.Main
                             .InitializeAsync();
 
 
+                var log = new RustLoggerConfiguration(LogLevelFilter.debug);
+                var x = await iotaUtilities.StartLoggerAsync(log);
+
                 var rrr = await wallet.GetAccountAsync("cookie");
                 IAccount account = rrr.Payload;
                 var balance = await account.SyncAcountAsync();
                 Console.WriteLine(balance);
+
+                var address = (await account.GetAddressesAsync()).Payload.First().Address;
 
                 NftIrc27 nftIrc27 = new NftIrc27("jpeg/image", "hello", "www.google.com")
                     .AddAttribute("cool", "story");
 
                 NftOptions nftOptions = new NftOptions() { ImmutableMetadata = JsonConvert.SerializeObject(nftIrc27).ToHexString() };
 
-                var xxxxxx = await account.PrepareMintNftsAsync(new List<NftOptions>() { nftOptions });
-                var qwe = xxxxxx.Payload.Essence.GetTransactionEssenceType();
+
+                var xxxxxx = await account.MintNftsAsync(new List<NftOptions>() { nftOptions });
                 int xs = 33;
             }
 

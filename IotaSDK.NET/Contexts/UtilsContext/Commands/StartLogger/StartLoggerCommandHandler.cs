@@ -20,7 +20,7 @@ namespace IotaSDK.NET.Contexts.UtilsContext.Commands.StartLogger
         {
             bool? response = await _rustBridgeCommon.InitLoggerAsync(JsonConvert.SerializeObject(request.RustLoggerConfiguration));
 
-            if(!response.HasValue)
+            if (!response.HasValue)
             {
                 string? error = await _rustBridgeCommon.GetLastErrorAsync();
                 throw new IotaSDKException(error);

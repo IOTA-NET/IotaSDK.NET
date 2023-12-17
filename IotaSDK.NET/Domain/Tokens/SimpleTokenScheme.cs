@@ -3,7 +3,7 @@
     public class SimpleTokenScheme : TokenScheme
     {
         public SimpleTokenScheme(ulong mintedTokens, ulong meltedTokens, ulong maximumSupply)
-            :base((int)TokenSchemeType.Simple)
+            : base((int)TokenSchemeType.Simple)
         {
             MintedTokens = mintedTokens;
             MeltedTokens = meltedTokens;

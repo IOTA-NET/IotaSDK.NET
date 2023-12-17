@@ -24,7 +24,7 @@ namespace IotaSDK.NET.Contexts.WalletContext.Commands.DeleteLatestAccount
 
             IotaSDKException.CheckForException(walletResponse!);
 
-            var response =  IotaSDKResponse<bool>.CreateInstance(walletResponse, type: "removeLatestAccount");
+            var response = IotaSDKResponse<bool>.CreateInstance(walletResponse, type: "removeLatestAccount");
 
             response.Payload = true;
             return response;

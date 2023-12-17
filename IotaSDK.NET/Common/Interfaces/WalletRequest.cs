@@ -14,7 +14,7 @@ namespace IotaSDK.NET.Common.Interfaces
         public IntPtr WalletHandle { get; }
     }
 
-    internal abstract class WalletRequest<TResponse> :IRequest<TResponse>
+    internal abstract class WalletRequest<TResponse> : IRequest<TResponse>
     {
         public WalletRequest(IntPtr walletHandle)
         {

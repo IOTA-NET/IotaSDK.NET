@@ -22,14 +22,14 @@ namespace IotaSDK.NET.Contexts.WalletContext.Queries.GetAccountWithAlias
             IotaSDKModel<GetAccountWithAliasQueryModelData> model = new IotaSDKModel<GetAccountWithAliasQueryModelData>("getAccount", modelData);
             string json = model.AsJson();
 
-            string? walletResponse =  await _rustBridgeWallet.CallWalletMethodAsync(request.WalletHandle, json);
-            
+            string? walletResponse = await _rustBridgeWallet.CallWalletMethodAsync(request.WalletHandle, json);
+
             IotaSDKException.CheckForException(walletResponse!);
 
-            var response =  IotaSDKResponse<AccountMeta>.CreateInstance(walletResponse);
+            var response = IotaSDKResponse<AccountMeta>.CreateInstance(walletResponse);
 
 
-            return response;    
+            return response;
         }
     }
 }

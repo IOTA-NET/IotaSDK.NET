@@ -53,7 +53,7 @@ namespace IotaSDK.NET
 
             IntPtr? walletHandle = await _rustBridgeWallet.CreateWalletAsync(walletOptions);
 
-            if(walletHandle.HasValue == false)
+            if (walletHandle.HasValue == false)
             {
                 string? error = await _rustBridgeCommon.GetLastErrorAsync();
                 throw new IotaSDKException($"Unable to create wallet.\nError:{error}");
@@ -99,11 +99,11 @@ namespace IotaSDK.NET
             return await _mediator.Send(new AuthenticateToStrongholdCommand(_walletHandle, password));
         }
 
-        public async Task<IotaSDKResponse<IAccount>> CreateAccountAsync(string? username=null)
+        public async Task<IotaSDKResponse<IAccount>> CreateAccountAsync(string? username = null)
         {
             IotaSDKResponse<AccountMeta> iotaSDKResponse = await _mediator.Send(new CreateAccountCommand(_walletHandle, username));
             IAccount account = new Account(_walletHandle, _mediator, iotaSDKResponse.Payload.Index, iotaSDKResponse.Payload.Alias);
-            return new IotaSDKResponse<IAccount>(iotaSDKResponse.Type) { Payload = account};
+            return new IotaSDKResponse<IAccount>(iotaSDKResponse.Type) { Payload = account };
         }
 
         public async Task<IotaSDKResponse<bool>> DeleteLatestAccountAsync()
@@ -142,7 +142,7 @@ namespace IotaSDK.NET
 
             var accountMetas = iotaSDKResponse.Payload;
 
-            foreach(var accountMeta in accountMetas)
+            foreach (var accountMeta in accountMetas)
             {
                 IAccount account = new Account(_walletHandle, _mediator, accountMeta.Index, accountMeta.Alias);
                 accountList.Add(account);

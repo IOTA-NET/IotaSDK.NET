@@ -7,7 +7,7 @@ namespace IotaSDK.NET.Domain.Transactions.Payloads
     public class TransactionPayload : Payload
     {
         public TransactionPayload(TransactionEssence essence, List<Unlock> unlocks)
-            :base((int)PayloadType.Transaction)
+            : base((int)PayloadType.Transaction)
         {
             Essence = essence;
             Unlocks = unlocks;

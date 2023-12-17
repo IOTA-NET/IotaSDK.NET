@@ -28,7 +28,7 @@ namespace IotaSDK.NET.Common.Interfaces
         Task<IotaSDKResponse<string>> ConvertOutputIdToNftIdAsync(string hexEncodedOutputId);
 
         Task<IotaSDKResponse<ulong>> ComputeStorageDepositAsync(Output output, Rent rent);
-        
+
         Task<IotaSDKResponse<bool>> StartLoggerAsync(RustLoggerConfiguration rustLoggerConfiguration);
     }
 }

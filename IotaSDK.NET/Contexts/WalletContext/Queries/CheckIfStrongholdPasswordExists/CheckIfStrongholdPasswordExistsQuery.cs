@@ -6,7 +6,7 @@ namespace IotaSDK.NET.Contexts.WalletContext.Queries.CheckIfStrongholdPasswordEx
     internal class CheckIfStrongholdPasswordExistsQuery : WalletRequest<IotaSDKResponse<bool>>
     {
 
-        public CheckIfStrongholdPasswordExistsQuery(IntPtr walletHandle) : base(walletHandle) 
+        public CheckIfStrongholdPasswordExistsQuery(IntPtr walletHandle) : base(walletHandle)
         {
         }
     }

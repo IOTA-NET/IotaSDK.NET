@@ -1,7 +1,7 @@
 ﻿using IotaSDK.NET.Common.Interfaces;
+using IotaSDK.NET.Domain.Accounts;
 using System;
 using System.Collections.Generic;
-using IotaSDK.NET.Domain.Accounts;
 
 namespace IotaSDK.NET.Contexts.WalletContext.Queries.GetAccounts
 {
