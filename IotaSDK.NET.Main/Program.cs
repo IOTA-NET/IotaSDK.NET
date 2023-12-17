@@ -2,6 +2,7 @@
 using IotaSDK.NET.Common.Interfaces;
 using IotaSDK.NET.Common.Rust;
 using IotaSDK.NET.Domain.Addresses;
+using IotaSDK.NET.Domain.Nft;
 using IotaSDK.NET.Domain.Outputs;
 using IotaSDK.NET.Domain.Tokens;
 using IotaSDK.NET.Domain.Transactions;
@@ -58,8 +59,15 @@ namespace IotaSDK.NET.Main
                 IAccount account = rrr.Payload;
                 var balance = await account.SyncAcountAsync();
                 Console.WriteLine(balance);
-                var tx = await account.SendBaseCoinAsync(1000000, "rms1qz8v2j4rrqs2yw5nf39jmvfsdlmna3pydpap4fmyrsapdw3mptckysx9yst");
-                Console.WriteLine(tx);
+
+                NftIrc27 nftIrc27 = new NftIrc27("jpeg/image", "hello", "www.google.com")
+                    .AddAttribute("cool", "story");
+
+                NftOptions nftOptions = new NftOptions() { ImmutableMetadata = JsonConvert.SerializeObject(nftIrc27).ToHexString() };
+
+                var xxxxxx = await account.PrepareMintNftsAsync(new List<NftOptions>() { nftOptions });
+                var qwe = xxxxxx.Payload.Essence.GetTransactionEssenceType();
+                int xs = 33;
             }
 
         }
