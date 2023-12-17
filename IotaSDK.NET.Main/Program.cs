@@ -58,14 +58,15 @@ namespace IotaSDK.NET.Main
 
                 var address = (await account.GetAddressesAsync()).Payload.First().Address;
 
-                NftIrc27 nftIrc27 = new NftIrc27("jpeg/image", "hello", "www.google.com")
-                    .AddAttribute("cool", "story");
+                var unspenOutputsResponse = await account.GetUnspentOutputsAsync();
+                int xxa = 3;
+                //NftIrc27 nftIrc27 = new NftIrc27("jpeg/image", "hello", "www.google.com")
+                //    .AddAttribute("cool", "story");
 
-                NftOptions nftOptions = new NftOptions() { ImmutableMetadata = JsonConvert.SerializeObject(nftIrc27).ToHexString() };
+                //NftOptions nftOptions = new NftOptions() { ImmutableMetadata = JsonConvert.SerializeObject(nftIrc27).ToHexString() };
 
 
-                var xxxxxx = await account.MintNftsAsync(new List<NftOptions>() { nftOptions });
-                int xs = 33;
+                //var xxxxxx = await account.MintNftsAsync(new List<NftOptions>() { nftOptions });
             }
 
         }
