@@ -1,4 +1,6 @@
-﻿using IotaSDK.NET.Domain.UnlockConditions;
+﻿using IotaSDK.NET.Domain.Features;
+using IotaSDK.NET.Domain.Tokens;
+using IotaSDK.NET.Domain.UnlockConditions;
 using System.Collections.Generic;
 
 namespace IotaSDK.NET.Domain.Outputs
@@ -9,8 +11,11 @@ namespace IotaSDK.NET.Domain.Outputs
             string amount,
             int type,
             List<UnlockCondition> unlockConditions,
+            List<NativeToken>? nativeTokens,
+            List<Feature>? features,
+            List<Feature>? immutableFeatures,
             string? stateMetadata)
-            : base(amount, type, unlockConditions, null)
+            : base(amount, type, unlockConditions, nativeTokens, features, immutableFeatures)
         {
             StateMetadata = stateMetadata;
         }

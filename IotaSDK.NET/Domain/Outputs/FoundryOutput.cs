@@ -1,4 +1,5 @@
-﻿using IotaSDK.NET.Domain.Tokens;
+﻿using IotaSDK.NET.Domain.Features;
+using IotaSDK.NET.Domain.Tokens;
 using IotaSDK.NET.Domain.UnlockConditions;
 using System.Collections.Generic;
 
@@ -6,12 +7,8 @@ namespace IotaSDK.NET.Domain.Outputs
 {
     public class FoundryOutput : ImmutableFeaturesOutput
     {
-        public FoundryOutput(
-            string amount,
-            int serialNumber,
-            List<UnlockCondition> unlockConditions,
-            TokenScheme tokenScheme)
-            : base(amount, (int)OutputType.Foundry, unlockConditions, null)
+        public FoundryOutput(string amount, List<UnlockCondition> unlockConditions, List<Feature>? immutableFeatures, int serialNumber, TokenScheme tokenScheme) 
+            : base(amount, (int)OutputType.Foundry, unlockConditions, immutableFeatures)
         {
             SerialNumber = serialNumber;
             TokenScheme = tokenScheme;

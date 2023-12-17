@@ -1,4 +1,5 @@
 ﻿using IotaSDK.NET.Domain.Features;
+using IotaSDK.NET.Domain.Tokens;
 using IotaSDK.NET.Domain.UnlockConditions;
 using System.Collections.Generic;
 
@@ -10,8 +11,10 @@ namespace IotaSDK.NET.Domain.Outputs
             string amount,
             string nftId,
             List<UnlockCondition> unlockConditions,
-            List<Feature> immutableFeatures)
-            : base(amount, (int)OutputType.Nft, unlockConditions, immutableFeatures)
+            List<NativeToken>? nativeTokens,
+            List<Feature>? immutableFeatures,
+            List<Feature>? features)
+            : base(amount, (int)OutputType.Nft, unlockConditions, nativeTokens, features, immutableFeatures)
         {
             NftId = nftId;
         }
