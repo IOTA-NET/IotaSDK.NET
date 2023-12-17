@@ -5,11 +5,11 @@
     /// </summary>
     public class Rent
     {
-        public Rent(int virtualByteCost, int virtualByteFactorData, int virtualByteFactorKey)
+        public Rent(int vByteCost, int vByteFactorData, int vByteFactorKey)
         {
-            VByteCost = virtualByteCost;
-            VByteFactorData = virtualByteFactorData;
-            VByteFactorKey = virtualByteFactorKey;
+            VByteCost = vByteCost;
+            VByteFactorData = vByteFactorData;
+            VByteFactorKey = vByteFactorKey;
         }
 
         /// <summary>

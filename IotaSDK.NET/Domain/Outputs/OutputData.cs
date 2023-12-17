@@ -12,14 +12,14 @@ namespace IotaSDK.NET.Domain.Outputs
             string networkId,
             Address address,
             Output output,
-            OutputMetadataResponse outputMetadata
+            OutputMetadataResponse metadata
             )
         {
             OutputId = outputId;
             NetworkId = networkId;
             Address = address;
             Output = output;
-            Metadata = outputMetadata;
+            Metadata = metadata;
         }
 
         /// <summary>
