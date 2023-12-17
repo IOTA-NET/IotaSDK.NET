@@ -21,4 +21,4 @@
         /// </summary>
         public int TransactionOutputIndex { get; }
     }
-    }
+}

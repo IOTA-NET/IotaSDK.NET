@@ -19,10 +19,10 @@ namespace IotaSDK.NET.Common.Interfaces
 
         Task<IWallet> InitializeAsync();
         Task<IotaSDKResponse<bool>> CheckIfStrongholdPasswordExistsAsync();
-        
+
         Task<IotaSDKResponse<bool>> AuthenticateToStrongholdAsync(string password);
 
-        Task<IotaSDKResponse<IAccount>> CreateAccountAsync(string? username=null);
+        Task<IotaSDKResponse<IAccount>> CreateAccountAsync(string? username = null);
 
         Task<IotaSDKResponse<bool>> DeleteLatestAccountAsync();
 
@@ -33,7 +33,7 @@ namespace IotaSDK.NET.Common.Interfaces
         Task<IotaSDKResponse<IAccount>> GetAccountAsync(int accountIndex);
 
         Task<IotaSDKResponse<IAccount>> GetAccountAsync(string accountAlias);
-        
+
         Task<IotaSDKResponse<List<IAccount>>> GetAccountsAsync();
 
         Task<IotaSDKResponse<bool>> ClearStrongholdPasswordAsync();

@@ -20,7 +20,7 @@ namespace IotaSDK.NET.Contexts.WalletContext.Queries.CheckIfStrongholdPasswordEx
         {
             IotaSDKModel model = new IotaSDKModel("isStrongholdPasswordAvailable");
             string json = model.AsJson();
-            string? walletResponse =  await _rustBridgeWallet.CallWalletMethodAsync(request.WalletHandle, json);
+            string? walletResponse = await _rustBridgeWallet.CallWalletMethodAsync(request.WalletHandle, json);
 
             IotaSDKException.CheckForException(walletResponse!);
 

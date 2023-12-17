@@ -7,9 +7,9 @@ namespace IotaSDK.NET.Contexts.AccountContext.Commands.SendBaseCoin
     internal class SendBaseCoinCommand : AccountRequest<IotaSDKResponse<Transaction>>
     {
         public SendBaseCoinCommand(
-            IntPtr walletHandle, int accountIndex, 
-            ulong amount, string bech32ReceiverAddress, 
-            TransactionOptions? transactionOptions=null) 
+            IntPtr walletHandle, int accountIndex,
+            ulong amount, string bech32ReceiverAddress,
+            TransactionOptions? transactionOptions = null)
             : base(walletHandle, accountIndex)
         {
             Amount = amount;

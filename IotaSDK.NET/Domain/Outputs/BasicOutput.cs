@@ -6,8 +6,8 @@ namespace IotaSDK.NET.Domain.Outputs
     public class BasicOutput : CommonOutput
     {
         public BasicOutput(
-            string amount, 
-            List<UnlockCondition> unlockConditions) 
+            string amount,
+            List<UnlockCondition> unlockConditions)
             : base(amount, (int)OutputType.Basic, unlockConditions, null, null)
         {
         }

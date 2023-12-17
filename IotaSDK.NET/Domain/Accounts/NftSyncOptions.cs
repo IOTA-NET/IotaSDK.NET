@@ -1,6 +1,6 @@
 ﻿namespace IotaSDK.NET.Domain.Accounts
 {
-    public class NftSyncOptions: AccountSyncOptions
+    public class NftSyncOptions : AccountSyncOptions
     {
 
     }

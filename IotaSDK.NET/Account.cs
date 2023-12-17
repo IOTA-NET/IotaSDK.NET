@@ -1,4 +1,5 @@
 ﻿using IotaSDK.NET.Common.Interfaces;
+using IotaSDK.NET.Contexts.AccountContext.Commands.MintNft;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareMintNfts;
 using IotaSDK.NET.Contexts.AccountContext.Commands.SendBaseCoin;
 using IotaSDK.NET.Contexts.AccountContext.Commands.SetAlias;
@@ -22,7 +23,7 @@ namespace IotaSDK.NET
         private readonly IntPtr _walletHandle;
         private readonly IMediator _mediator;
 
-        public Account(IntPtr walletHandle, IMediator mediator,  int index, string username)
+        public Account(IntPtr walletHandle, IMediator mediator, int index, string username)
         {
             _walletHandle = walletHandle;
             _mediator = mediator;
@@ -37,6 +38,11 @@ namespace IotaSDK.NET
         {
             return await _mediator.Send(new GetAddressesQuery(_walletHandle, Index));
 
+        }
+
+        public async Task<IotaSDKResponse<Transaction>> MintNftsAsync(List<NftOptions> nftOptionsList, TransactionOptions? transactionOptions = null)
+        {
+            return await _mediator.Send(new MintNftsCommand(_walletHandle, Index, nftOptionsList, transactionOptions, _mediator));
         }
 
         public async Task<IotaSDKResponse<PreparedTransactionData>> PrepareMintNftsAsync(List<NftOptions> nftOptionsList, TransactionOptions? transactionOptions = null)
@@ -57,12 +63,12 @@ namespace IotaSDK.NET
 
         public async Task<IotaSDKResponse<Transaction>> SignAndSubmitTransactionAsync(PreparedTransactionData transactionData)
         {
-            return await _mediator.Send(new SignAndSubmitTransactionCommand(_walletHandle, Index, transactionData));    
+            return await _mediator.Send(new SignAndSubmitTransactionCommand(_walletHandle, Index, transactionData));
         }
 
-        public async Task<IotaSDKResponse<AccountBalance>> SyncAcountAsync(SyncOptions? syncOptions=null)
+        public async Task<IotaSDKResponse<AccountBalance>> SyncAcountAsync(SyncOptions? syncOptions = null)
         {
-             return await _mediator.Send(new SyncCommand(_walletHandle, Index, syncOptions));
+            return await _mediator.Send(new SyncCommand(_walletHandle, Index, syncOptions));
 
         }
     }

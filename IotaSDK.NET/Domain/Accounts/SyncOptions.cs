@@ -57,6 +57,6 @@ namespace IotaSDK.NET.Domain.Accounts
         */
         public bool? SyncOnlyMostBasicOutputs { get; set; }
 
-        public bool? SyncNativeTokenFoundries { get; set; } 
+        public bool? SyncNativeTokenFoundries { get; set; }
     }
 }

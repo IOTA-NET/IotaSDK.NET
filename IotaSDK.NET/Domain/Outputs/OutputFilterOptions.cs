@@ -17,7 +17,7 @@ namespace IotaSDK.NET.Domain.Outputs
         /// <summary>
         /// Filter all outputs for the provided types (Basic = 3, Alias = 4, Foundry = 5, NFT = 6)
         /// </summary>
-        public List<int>? OutputTypes{ get; set; }
+        public List<int>? OutputTypes { get; set; }
 
         /// <summary>
         /// Return all alias outputs matching these IDs.

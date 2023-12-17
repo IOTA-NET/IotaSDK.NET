@@ -7,7 +7,7 @@
         }
     }
 
-    internal class IotaSDKAccountModel<TInnerModel> : IotaSDKModel<AccountModelData<TInnerModel>> where TInnerModel : class 
+    internal class IotaSDKAccountModel<TInnerModel> : IotaSDKModel<AccountModelData<TInnerModel>> where TInnerModel : class
     {
         public IotaSDKAccountModel(AccountModelData<TInnerModel> data) : base("callAccountMethod", data)
         {

@@ -6,12 +6,12 @@ namespace IotaSDK.NET.Domain.Transactions.Payloads
     public class TreasuryTransactionPayload : Payload
     {
         public TreasuryTransactionPayload(TreasuryInput input, TreasuryOutput output)
-            :base((int)PayloadType.TreasuryTransaction)
+            : base((int)PayloadType.TreasuryTransaction)
         {
             Input = input;
             Output = output;
         }
-        
+
         /// <summary>
         /// The input of this transaction.
         /// </summary>

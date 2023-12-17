@@ -6,7 +6,7 @@ namespace IotaSDK.NET.Contexts.WalletContext.Commands.CreateAccount
 {
     internal class CreateAccountCommand : WalletRequest<IotaSDKResponse<AccountMeta>>
     {
-        public CreateAccountCommand(IntPtr walletHandle, string? username=null) : base(walletHandle)
+        public CreateAccountCommand(IntPtr walletHandle, string? username = null) : base(walletHandle)
         {
             Username = username;
         }

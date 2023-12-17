@@ -14,7 +14,7 @@
         /// Whether to sync Alias outputs.
         /// </summary>
         public bool? AliasOutputs { get; set; }
-        
+
         /// <summary>
         /// Whether to sync Nft outputs.
         /// </summary>

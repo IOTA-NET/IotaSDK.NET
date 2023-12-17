@@ -13,7 +13,7 @@ namespace IotaSDK.NET.Common.Rust
         public RustLoggerConfiguration(LogLevelFilter logLevelFilter)
             : this("stdout", logLevelFilter)
         {
-            
+
         }
         /// <summary>
         /// Name of an output file, or `stdout` for standard output

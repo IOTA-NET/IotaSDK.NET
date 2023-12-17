@@ -8,11 +8,11 @@ namespace IotaSDK.NET.Domain.Outputs
 {
     public abstract class CommonOutput : Output
     {
-        protected CommonOutput(string amount, 
-            int type, 
-            List<UnlockCondition> unlockConditions, 
+        protected CommonOutput(string amount,
+            int type,
+            List<UnlockCondition> unlockConditions,
             List<NativeToken>? nativeTokens,
-            List<Feature>? features) 
+            List<Feature>? features)
             : base(amount, type)
         {
             UnlockConditions = unlockConditions;

@@ -7,4 +7,4 @@
         /** The treasury input. */
         Treasury = 1,
     }
-    }
+}

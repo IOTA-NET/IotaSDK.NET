@@ -6,7 +6,7 @@ namespace IotaSDK.NET.Contexts.WalletContext.Queries.GetAccountIndexes
 {
     internal class GetAccountIndexesQuery : WalletRequest<IotaSDKResponse<List<int>>>
     {
-        public GetAccountIndexesQuery(IntPtr walletHandle) 
+        public GetAccountIndexesQuery(IntPtr walletHandle)
             : base(walletHandle)
         {
         }

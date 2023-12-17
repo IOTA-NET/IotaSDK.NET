@@ -33,10 +33,10 @@ namespace IotaSDK.NET.Domain.Outputs
                 throw new ArgumentOutOfRangeException(nameof(this.Type), "Invalid OutputType value");
             }
         }
-        
+
         public ulong GetAmount()
         {
-            if(ulong.TryParse(this.Amount, out var value))
+            if (ulong.TryParse(this.Amount, out var value))
             {
                 return value;
             }

@@ -23,7 +23,7 @@ namespace IotaSDK.NET.Contexts.WalletContext.Queries.GetAccountIndexes
             IotaSDKModel model = new IotaSDKModel("getAccountIndexes");
             string json = model.AsJson();
 
-            string? walletResponse =  await _rustBridgeWallet.CallWalletMethodAsync(request.WalletHandle, json);
+            string? walletResponse = await _rustBridgeWallet.CallWalletMethodAsync(request.WalletHandle, json);
 
             IotaSDKException.CheckForException(walletResponse!);
 

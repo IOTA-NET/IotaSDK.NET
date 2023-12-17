@@ -4,7 +4,6 @@ using IotaSDK.NET.Common.Rust;
 using IotaSDK.NET.Domain.Accounts;
 using MediatR;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 

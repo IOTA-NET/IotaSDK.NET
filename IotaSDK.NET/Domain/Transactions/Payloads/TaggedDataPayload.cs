@@ -5,7 +5,7 @@ namespace IotaSDK.NET.Domain.Transactions.Payloads
     public class TaggedDataPayload : Payload
     {
         public TaggedDataPayload(string tag, string data)
-            :base((int)PayloadType.TaggedData)
+            : base((int)PayloadType.TaggedData)
 
         {
             Tag = tag.ToHexString();

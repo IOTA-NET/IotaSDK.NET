@@ -6,12 +6,12 @@ namespace IotaSDK.NET.Domain.Outputs
     public class AliasOutput : StateMetadataOutput
     {
         public AliasOutput(
-            string amount, 
+            string amount,
             string aliasId,
-            List<UnlockCondition> unlockConditions, 
+            List<UnlockCondition> unlockConditions,
             string? stateMetadata,
             int foundryCounter,
-            int stateIndex) 
+            int stateIndex)
             : base(amount, (int)OutputType.Alias, unlockConditions, stateMetadata)
         {
             AliasId = aliasId;
