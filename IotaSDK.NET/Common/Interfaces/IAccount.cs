@@ -13,6 +13,8 @@ namespace IotaSDK.NET.Common.Interfaces
     {
         Task<IotaSDKResponse<AccountBalance>> SyncAcountAsync(SyncOptions? syncOptions = null);
 
+        Task<IotaSDKResponse<AccountBalance>> GetBalanceAsync();
+        
         Task<IotaSDKResponse<List<AccountAddress>>> GetAddressesAsync();
 
         Task SetAliasAsync(string alias);
@@ -25,6 +27,6 @@ namespace IotaSDK.NET.Common.Interfaces
 
         Task<IotaSDKResponse<List<OutputData>>> GetUnspentOutputsAsync(OutputFilterOptions? filterOptions = null);
         Task<IotaSDKResponse<Transaction>> MintNftsAsync(List<NftOptions> nftOptionsList, TransactionOptions? transactionOptions = null);
-        
+
     }
 }
