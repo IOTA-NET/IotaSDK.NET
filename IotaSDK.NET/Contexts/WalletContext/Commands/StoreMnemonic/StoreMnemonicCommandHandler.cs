@@ -1,4 +1,4 @@
-﻿using IotaSDK.NET.Common.Interfaces;
+﻿using IotaSDK.NET.Common.Models;
 using IotaSDK.NET.Common.Rust;
 using MediatR;
 using System.Threading;

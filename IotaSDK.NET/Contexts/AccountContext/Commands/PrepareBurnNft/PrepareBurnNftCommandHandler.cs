@@ -1,5 +1,5 @@
 ﻿using IotaSDK.NET.Common.Exceptions;
-using IotaSDK.NET.Common.Interfaces;
+using IotaSDK.NET.Common.Models;
 using IotaSDK.NET.Common.Rust;
 using IotaSDK.NET.Domain.Transactions.Prepared;
 using MediatR;
@@ -12,18 +12,18 @@ namespace IotaSDK.NET.Contexts.AccountContext.Commands.PrepareBurnNft
     internal class PrepareBurnNftCommandHandler : IRequestHandler<PrepareBurnNftCommand, IotaSDKResponse<PreparedTransactionData>>
     {
         private readonly RustBridgeWallet _rustBridgeWallet;
+        private readonly IotaSDKAccountModelCreator<PrepareBurnNftCommandModelData> _iotaSDKAccountModelCreator;
 
-        public PrepareBurnNftCommandHandler(RustBridgeWallet rustBridgeWallet)
+        public PrepareBurnNftCommandHandler(RustBridgeWallet rustBridgeWallet, IotaSDKAccountModelCreator<PrepareBurnNftCommandModelData> iotaSDKAccountModelCreator)
         {
             _rustBridgeWallet = rustBridgeWallet;
+            _iotaSDKAccountModelCreator = iotaSDKAccountModelCreator;
         }
         public async Task<IotaSDKResponse<PreparedTransactionData>> Handle(PrepareBurnNftCommand request, CancellationToken cancellationToken)
         {
             PrepareBurnNftCommandModelDataBurn innerModelDataBurn = new PrepareBurnNftCommandModelDataBurn(new List<string> { request.NftId });
             PrepareBurnNftCommandModelData innerModelData = new PrepareBurnNftCommandModelData(innerModelDataBurn, request.TransactionOptions);
-            IotaSDKModel<PrepareBurnNftCommandModelData> innerModel = new IotaSDKModel<PrepareBurnNftCommandModelData>("prepareBurn", innerModelData);
-            AccountModelData<PrepareBurnNftCommandModelData> accountModelData = new AccountModelData<PrepareBurnNftCommandModelData>(request.AccountIndex, innerModel);
-            IotaSDKAccountModel<PrepareBurnNftCommandModelData> accountModel = new IotaSDKAccountModel<PrepareBurnNftCommandModelData>(accountModelData);
+            var accountModel = _iotaSDKAccountModelCreator.Create("prepareBurn", request.AccountIndex, innerModelData);
             string json = accountModel.AsJson();
 
             string? accountResponse = await _rustBridgeWallet.CallWalletMethodAsync(request.WalletHandle, json);

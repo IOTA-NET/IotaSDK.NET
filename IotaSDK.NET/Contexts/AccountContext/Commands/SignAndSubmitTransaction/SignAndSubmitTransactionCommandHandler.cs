@@ -1,5 +1,5 @@
 ﻿using IotaSDK.NET.Common.Exceptions;
-using IotaSDK.NET.Common.Interfaces;
+using IotaSDK.NET.Common.Models;
 using IotaSDK.NET.Common.Rust;
 using IotaSDK.NET.Domain.Transactions;
 using MediatR;
@@ -11,23 +11,20 @@ namespace IotaSDK.NET.Contexts.AccountContext.Commands.SignAndSubmitTransaction
     internal class SignAndSubmitTransactionCommandHandler : IRequestHandler<SignAndSubmitTransactionCommand, IotaSDKResponse<Transaction>>
     {
         private readonly RustBridgeWallet _rustBridgeWallet;
-        private readonly RustBridgeCommon _rustBridgeCommon;
+        private readonly IotaSDKAccountModelCreator<SignAndSubmitTransactionCommandModelData> _iotaSDKAccountModelCreator;
 
-        public SignAndSubmitTransactionCommandHandler(RustBridgeWallet rustBridgeWallet, RustBridgeCommon rustBridgeCommon)
+        public SignAndSubmitTransactionCommandHandler(RustBridgeWallet rustBridgeWallet, IotaSDKAccountModelCreator<SignAndSubmitTransactionCommandModelData> iotaSDKAccountModelCreator)
         {
             _rustBridgeWallet = rustBridgeWallet;
-            _rustBridgeCommon = rustBridgeCommon;
+            _iotaSDKAccountModelCreator = iotaSDKAccountModelCreator;
         }
+
         public async Task<IotaSDKResponse<Transaction>> Handle(SignAndSubmitTransactionCommand request, CancellationToken cancellationToken)
         {
-            SignAndSubmitTransactionCommandModelData innerModelData = new SignAndSubmitTransactionCommandModelData(request.PreparedTransactionData);
-            IotaSDKModel<SignAndSubmitTransactionCommandModelData> innerModel = new IotaSDKModel<SignAndSubmitTransactionCommandModelData>("signAndSubmitTransaction", innerModelData);
-            AccountModelData<SignAndSubmitTransactionCommandModelData> accountModelData = new AccountModelData<SignAndSubmitTransactionCommandModelData>(request.AccountIndex, innerModel);
-            IotaSDKAccountModel<SignAndSubmitTransactionCommandModelData> accountModel = new IotaSDKAccountModel<SignAndSubmitTransactionCommandModelData>(accountModelData);
+            var accountModel = _iotaSDKAccountModelCreator.Create("signAndSubmitTransaction", request.AccountIndex, new SignAndSubmitTransactionCommandModelData(request.PreparedTransactionData));
             string json = accountModel.AsJson();
 
             string? accountResponse = await _rustBridgeWallet.CallWalletMethodAsync(request.WalletHandle, json);
-            string err = await _rustBridgeCommon.GetLastErrorAsync();
 
             IotaSDKException.CheckForException(accountResponse!);
 

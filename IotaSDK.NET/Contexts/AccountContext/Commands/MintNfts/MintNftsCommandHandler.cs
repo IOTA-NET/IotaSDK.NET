@@ -1,4 +1,4 @@
-﻿using IotaSDK.NET.Common.Interfaces;
+﻿using IotaSDK.NET.Common.Models;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareMintNfts;
 using IotaSDK.NET.Contexts.AccountContext.Commands.SignAndSubmitTransaction;
 using IotaSDK.NET.Domain.Transactions;
@@ -15,8 +15,7 @@ namespace IotaSDK.NET.Contexts.AccountContext.Commands.MintNft
         {
             IotaSDKResponse<PreparedTransactionData> prepareMintNftsResponse = await request.Mediator.Send(new PrepareMintNftsCommand(request.WalletHandle, request.AccountIndex, request.NftOptionsList, request.TransactionOptions));
             PreparedTransactionData preparedTransactionData = prepareMintNftsResponse.Payload;
-            var xxx = await request.Mediator.Send(new SignAndSubmitTransactionCommand(request.WalletHandle, request.AccountIndex, preparedTransactionData));
-            return xxx;
+            return await request.Mediator.Send(new SignAndSubmitTransactionCommand(request.WalletHandle, request.AccountIndex, preparedTransactionData));
         }
     }
 }

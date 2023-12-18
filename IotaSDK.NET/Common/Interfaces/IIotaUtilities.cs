@@ -1,4 +1,5 @@
-﻿using IotaSDK.NET.Common.Rust;
+﻿using IotaSDK.NET.Common.Models;
+using IotaSDK.NET.Common.Rust;
 using IotaSDK.NET.Domain.Network;
 using IotaSDK.NET.Domain.Outputs;
 using IotaSDK.NET.Domain.Tokens;

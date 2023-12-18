@@ -1,5 +1,5 @@
 ﻿using IotaSDK.NET.Common.Exceptions;
-using IotaSDK.NET.Common.Interfaces;
+using IotaSDK.NET.Common.Models;
 using IotaSDK.NET.Common.Rust;
 using IotaSDK.NET.Domain.Transactions.Prepared;
 using MediatR;
@@ -11,18 +11,17 @@ namespace IotaSDK.NET.Contexts.AccountContext.Commands.PrepareBurn
     internal class PrepareBurnCommandHandler : IRequestHandler<PrepareBurnCommand, IotaSDKResponse<PreparedTransactionData>>
     {
         private readonly RustBridgeWallet _rustBridgeWallet;
+        private readonly IotaSDKAccountModelCreator<PrepareBurnCommandModelData> _iotaSDKAccountModelCreator;
 
-        public PrepareBurnCommandHandler(RustBridgeWallet rustBridgeWallet)
+        public PrepareBurnCommandHandler(RustBridgeWallet rustBridgeWallet, IotaSDKAccountModelCreator<PrepareBurnCommandModelData> iotaSDKAccountModelCreator)
         {
             _rustBridgeWallet = rustBridgeWallet;
+            _iotaSDKAccountModelCreator = iotaSDKAccountModelCreator;
         }
 
         public async Task<IotaSDKResponse<PreparedTransactionData>> Handle(PrepareBurnCommand request, CancellationToken cancellationToken)
         {
-            PrepareBurnCommandModelData innerModelData = new PrepareBurnCommandModelData(request.BurnIds, request.TransactionOptions);
-            IotaSDKModel<PrepareBurnCommandModelData> innerModel = new IotaSDKModel<PrepareBurnCommandModelData>("prepareBurn", innerModelData);
-            AccountModelData<PrepareBurnCommandModelData> accountModelData = new AccountModelData<PrepareBurnCommandModelData>(request.AccountIndex, innerModel);
-            IotaSDKAccountModel<PrepareBurnCommandModelData> accountModel = new IotaSDKAccountModel<PrepareBurnCommandModelData>(accountModelData);
+            var accountModel = _iotaSDKAccountModelCreator.Create("prepareBurn", request.AccountIndex, new PrepareBurnCommandModelData(request.BurnIds, request.TransactionOptions));
             string json = accountModel.AsJson();
 
             string? accountResponse = await _rustBridgeWallet.CallWalletMethodAsync(request.WalletHandle, json);

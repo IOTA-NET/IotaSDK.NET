@@ -1,4 +1,5 @@
-﻿using IotaSDK.NET.Domain.Accounts;
+﻿using IotaSDK.NET.Common.Models;
+using IotaSDK.NET.Domain.Accounts;
 using IotaSDK.NET.Domain.Addresses;
 using IotaSDK.NET.Domain.Nft;
 using IotaSDK.NET.Domain.Outputs;
@@ -14,7 +15,7 @@ namespace IotaSDK.NET.Common.Interfaces
         Task<IotaSDKResponse<AccountBalance>> SyncAcountAsync(SyncOptions? syncOptions = null);
 
         Task<IotaSDKResponse<AccountBalance>> GetBalanceAsync();
-        
+
         Task<IotaSDKResponse<List<AccountAddress>>> GetAddressesAsync();
 
         Task SetAliasAsync(string alias);
@@ -26,9 +27,9 @@ namespace IotaSDK.NET.Common.Interfaces
         Task<IotaSDKResponse<PreparedTransactionData>> PrepareMintNftsAsync(List<NftOptions> nftOptionsList, TransactionOptions? transactionOptions = null);
 
         Task<IotaSDKResponse<List<OutputData>>> GetUnspentOutputsAsync(OutputFilterOptions? filterOptions = null);
-        
+
         Task<IotaSDKResponse<OutputData>> GetOutputAsync(string outputId);
-     
+
         Task<IotaSDKResponse<Transaction>> MintNftsAsync(List<NftOptions> nftOptionsList, TransactionOptions? transactionOptions = null);
 
         Task<IotaSDKResponse<PreparedTransactionData>> PrepareBurnNftAsync(string nftId, TransactionOptions? transactionOptions = null);

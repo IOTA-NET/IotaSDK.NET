@@ -1,4 +1,5 @@
-﻿using IotaSDK.NET.Domain.Accounts;
+﻿using IotaSDK.NET.Common.Models;
+using IotaSDK.NET.Domain.Accounts;
 using IotaSDK.NET.Domain.Options;
 using IotaSDK.NET.Domain.Options.Builders;
 using System;
