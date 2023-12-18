@@ -20,7 +20,7 @@ namespace IotaSDK.NET.Contexts.AccountContext.Commands.PrepareMintNfts
         }
         public async Task<IotaSDKResponse<PreparedTransactionData>> Handle(PrepareMintNftsCommand request, CancellationToken cancellationToken)
         {
-            var accountModel = _iotaSDKAccountModelCreator.Create("", request.AccountIndex, new PrepareMintNftsCommandModelData(request.NftOptionsList, request.TransactionOptions));
+            var accountModel = _iotaSDKAccountModelCreator.Create("prepareMintNfts", request.AccountIndex, new PrepareMintNftsCommandModelData(request.NftOptionsList, request.TransactionOptions));
             string json = accountModel.AsJson();
 
             string? accountResponse = await _rustBridgeWallet.CallWalletMethodAsync(request.WalletHandle, json);
