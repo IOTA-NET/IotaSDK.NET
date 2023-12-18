@@ -7,6 +7,7 @@ using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareBurnNft;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareMintNfts;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareSendNfts;
 using IotaSDK.NET.Contexts.AccountContext.Commands.SendBaseCoin;
+using IotaSDK.NET.Contexts.AccountContext.Commands.SendNfts;
 using IotaSDK.NET.Contexts.AccountContext.Commands.SetAlias;
 using IotaSDK.NET.Contexts.AccountContext.Commands.SignAndSubmitTransaction;
 using IotaSDK.NET.Contexts.AccountContext.Commands.Sync;
@@ -45,7 +46,7 @@ namespace IotaSDK.NET
 
         public async Task<IotaSDKResponse<Transaction>> BurnAsync(BurnIds burnIds, TransactionOptions? transactionOptions = null)
         {
-            return await _mediator.Send(new BurnCommand(_walletHandle, Index, burnIds, transactionOptions, _mediator));
+            return await _mediator.Send(new BurnCommand(_walletHandle, Index, burnIds, transactionOptions));
         }
 
         public async Task<IotaSDKResponse<List<AccountAddress>>> GetAddressesAsync()
@@ -97,6 +98,11 @@ namespace IotaSDK.NET
         public async Task<IotaSDKResponse<Transaction>> SendBaseCoinAsync(ulong amount, string bech32ReceiverAddress, TransactionOptions? transactionOptions = null)
         {
             return await _mediator.Send(new SendBaseCoinCommand(_walletHandle, Index, amount, bech32ReceiverAddress, transactionOptions));
+        }
+
+        public async Task<IotaSDKResponse<Transaction>> SendNftsAsync(List<AddressAndNftId> addressAndNftIds, TransactionOptions? transactionOptions = null)
+        {
+            return await _mediator.Send(new SendNftsCommand(_walletHandle, Index, addressAndNftIds, transactionOptions));
         }
 
         public async Task SetAliasAsync(string alias)
