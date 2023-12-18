@@ -2,7 +2,6 @@
 using IotaSDK.NET.Common.Models;
 using IotaSDK.NET.Domain.Nft;
 using IotaSDK.NET.Domain.Transactions;
-using MediatR;
 using System;
 using System.Collections.Generic;
 
@@ -20,6 +19,4 @@ namespace IotaSDK.NET.Contexts.AccountContext.Commands.SendNfts
         public List<AddressAndNftId> AddressAndNftIds { get; }
         public TransactionOptions? TransactionOptions { get; }
     }
-
-    internal class SendNftsCommandHandler : IRequestHandler<SendNftsCommand, IotaSDKResponse<Transaction>>
 }
