@@ -11,14 +11,21 @@ namespace IotaSDK.NET.Contexts.AccountContext.Commands.Burn
 {
     internal class BurnCommandHandler : IRequestHandler<BurnCommand, IotaSDKResponse<Transaction>>
     {
+        private readonly IMediator _mediator;
+
+        public BurnCommandHandler(IMediator mediator)
+        {
+            _mediator = mediator;
+        }
+
         public async Task<IotaSDKResponse<Transaction>> Handle(BurnCommand request, CancellationToken cancellationToken)
         {
             IotaSDKResponse<PreparedTransactionData> prepareBurnResponse =
-                await request.Mediator.Send(new PrepareBurnCommand(request.WalletHandle, request.AccountIndex, request.BurnIds, request.TransactionOptions));
+                await _mediator.Send(new PrepareBurnCommand(request.WalletHandle, request.AccountIndex, request.BurnIds, request.TransactionOptions));
 
             PreparedTransactionData preparedTransactionData = prepareBurnResponse.Payload;
 
-            IotaSDKResponse<Transaction> transactionResponse = await request.Mediator.Send(new SignAndSubmitTransactionCommand(request.WalletHandle, request.AccountIndex, preparedTransactionData));
+            IotaSDKResponse<Transaction> transactionResponse = await _mediator.Send(new SignAndSubmitTransactionCommand(request.WalletHandle, request.AccountIndex, preparedTransactionData));
 
             return transactionResponse;
         }
