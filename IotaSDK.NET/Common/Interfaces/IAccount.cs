@@ -32,5 +32,7 @@ namespace IotaSDK.NET.Common.Interfaces
         Task<IotaSDKResponse<Transaction>> MintNftsAsync(List<NftOptions> nftOptionsList, TransactionOptions? transactionOptions = null);
 
         Task<IotaSDKResponse<PreparedTransactionData>> PrepareBurnNftAsync(string nftId, TransactionOptions? transactionOptions = null);
+
+        Task<IotaSDKResponse<PreparedTransactionData>> PrepareBurn(BurnIds burnIds, TransactionOptions? transactionOptions = null);
     }
 }
