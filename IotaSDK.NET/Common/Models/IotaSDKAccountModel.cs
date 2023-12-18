@@ -1,4 +1,4 @@
-﻿namespace IotaSDK.NET.Common.Interfaces
+﻿namespace IotaSDK.NET.Common.Models
 {
     internal class IotaSDKAccountModel : IotaSDKModel<AccountModelData>
     {

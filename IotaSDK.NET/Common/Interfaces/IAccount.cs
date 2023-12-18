@@ -1,4 +1,5 @@
-﻿using IotaSDK.NET.Domain.Accounts;
+﻿using IotaSDK.NET.Common.Models;
+using IotaSDK.NET.Domain.Accounts;
 using IotaSDK.NET.Domain.Addresses;
 using IotaSDK.NET.Domain.Nft;
 using IotaSDK.NET.Domain.Outputs;
