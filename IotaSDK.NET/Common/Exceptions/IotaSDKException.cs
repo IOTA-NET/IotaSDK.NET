@@ -1,5 +1,5 @@
 ﻿using IotaSDK.NET.Common.Extensions;
-using IotaSDK.NET.Common.Interfaces;
+using IotaSDK.NET.Common.Models;
 
 namespace IotaSDK.NET.Common.Exceptions
 {

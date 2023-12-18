@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 
-namespace IotaSDK.NET.Common.Interfaces
+namespace IotaSDK.NET.Common.Models
 {
     public class IotaSDKErrorResponse
     {

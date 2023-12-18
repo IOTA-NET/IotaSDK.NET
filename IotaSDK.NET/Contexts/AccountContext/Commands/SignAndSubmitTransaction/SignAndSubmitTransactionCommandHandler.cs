@@ -1,5 +1,5 @@
 ﻿using IotaSDK.NET.Common.Exceptions;
-using IotaSDK.NET.Common.Interfaces;
+using IotaSDK.NET.Common.Models;
 using IotaSDK.NET.Common.Rust;
 using IotaSDK.NET.Domain.Transactions;
 using MediatR;

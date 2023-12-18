@@ -1,4 +1,5 @@
 ﻿using IotaSDK.NET.Common.Interfaces;
+using IotaSDK.NET.Common.Models;
 using IotaSDK.NET.Common.Rust;
 
 namespace IotaSDK.NET.Contexts.UtilsContext.Commands.ComputeStorageDeposit

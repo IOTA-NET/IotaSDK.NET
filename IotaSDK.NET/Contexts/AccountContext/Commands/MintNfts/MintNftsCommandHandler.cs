@@ -1,4 +1,4 @@
-﻿using IotaSDK.NET.Common.Interfaces;
+﻿using IotaSDK.NET.Common.Models;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareMintNfts;
 using IotaSDK.NET.Contexts.AccountContext.Commands.SignAndSubmitTransaction;
 using IotaSDK.NET.Domain.Transactions;

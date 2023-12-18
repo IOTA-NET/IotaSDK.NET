@@ -1,4 +1,5 @@
 ﻿using IotaSDK.NET.Common.Interfaces;
+using IotaSDK.NET.Common.Models;
 using IotaSDK.NET.Common.Rust;
 using IotaSDK.NET.Contexts.UtilsContext.Commands.AliasIdToBech32;
 using IotaSDK.NET.Contexts.UtilsContext.Commands.Bech32ToHash;

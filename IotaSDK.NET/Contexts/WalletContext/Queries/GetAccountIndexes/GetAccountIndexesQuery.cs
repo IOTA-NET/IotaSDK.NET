@@ -1,4 +1,5 @@
 ﻿using IotaSDK.NET.Common.Interfaces;
+using IotaSDK.NET.Common.Models;
 using System;
 using System.Collections.Generic;
 

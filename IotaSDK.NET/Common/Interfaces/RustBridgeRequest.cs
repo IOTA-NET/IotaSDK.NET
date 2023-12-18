@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using IotaSDK.NET.Common.Models;
+using MediatR;
 
 namespace IotaSDK.NET.Common.Interfaces
 {
