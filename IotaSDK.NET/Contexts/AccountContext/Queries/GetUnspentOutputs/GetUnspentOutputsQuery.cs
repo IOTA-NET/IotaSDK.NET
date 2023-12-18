@@ -8,7 +8,7 @@ namespace IotaSDK.NET.Contexts.AccountContext.Queries.GetUnspentOutputs
 {
     internal class GetUnspentOutputsQuery : AccountRequest<IotaSDKResponse<List<OutputData>>>
     {
-        public GetUnspentOutputsQuery(IntPtr walletHandle, int accountIndex, OutputFilterOptions? filterOptions=null) : base(walletHandle, accountIndex)
+        public GetUnspentOutputsQuery(IntPtr walletHandle, int accountIndex, OutputFilterOptions? filterOptions = null) : base(walletHandle, accountIndex)
         {
             FilterOptions = filterOptions;
         }

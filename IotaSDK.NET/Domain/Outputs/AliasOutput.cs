@@ -11,9 +11,9 @@ namespace IotaSDK.NET.Domain.Outputs
             string amount,
             string aliasId,
             List<UnlockCondition> unlockConditions,
-            List<NativeToken>?  nativeTokens,
-            List<Feature>?  features,
-            List<Feature>?  immutableFeatures,
+            List<NativeToken>? nativeTokens,
+            List<Feature>? features,
+            List<Feature>? immutableFeatures,
             string? stateMetadata,
             int foundryCounter,
             int stateIndex)

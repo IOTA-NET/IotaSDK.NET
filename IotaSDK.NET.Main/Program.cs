@@ -1,10 +1,8 @@
 ﻿using IotaSDK.NET.Common.Extensions;
 using IotaSDK.NET.Common.Interfaces;
 using IotaSDK.NET.Common.Rust;
-using IotaSDK.NET.Domain.Nft;
 using IotaSDK.NET.Domain.Tokens;
 using Microsoft.Extensions.DependencyInjection;
-using Newtonsoft.Json;
 
 namespace IotaSDK.NET.Main
 {
@@ -59,7 +57,7 @@ namespace IotaSDK.NET.Main
                 var address = (await account.GetAddressesAsync()).Payload.First().Address;
 
                 var xxs = await account.PrepareBurnNftAsync("0x3cbdece493667765b5c287ccdf349503a3775da7a9d90b89597ecf78806f7ab2");
-                var qwe  = await account.SignAndSubmitTransactionAsync(xxs.Payload);
+                var qwe = await account.SignAndSubmitTransactionAsync(xxs.Payload);
                 Console.WriteLine(qwe);
                 int xxa = 3;
                 //NftIrc27 nftIrc27 = new NftIrc27("jpeg/image", "hello", "www.google.com")

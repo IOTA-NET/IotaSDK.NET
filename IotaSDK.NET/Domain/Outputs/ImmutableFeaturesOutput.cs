@@ -7,7 +7,7 @@ namespace IotaSDK.NET.Domain.Outputs
 {
     public abstract class ImmutableFeaturesOutput : CommonOutput
     {
-        protected ImmutableFeaturesOutput(string amount, int type, List<UnlockCondition> unlockConditions, List<NativeToken>? nativeTokens, List<Feature>? features, List<Feature>? immutableFeatures) 
+        protected ImmutableFeaturesOutput(string amount, int type, List<UnlockCondition> unlockConditions, List<NativeToken>? nativeTokens, List<Feature>? features, List<Feature>? immutableFeatures)
             : base(amount, type, unlockConditions, nativeTokens, features)
         {
             ImmutableFeatures = immutableFeatures;
