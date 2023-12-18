@@ -1,4 +1,5 @@
 ﻿using IotaSDK.NET.Common.Interfaces;
+using IotaSDK.NET.Common.Models;
 using IotaSDK.NET.Common.Rust;
 using IotaSDK.NET.Contexts.UtilsContext;
 using Microsoft.Extensions.DependencyInjection;
@@ -30,6 +31,10 @@ namespace IotaSDK.NET.Common.Extensions
                 .AddTransient<RustBridgeCommon>()
                 .AddTransient<RustBridgeSecretManager>()
                 .AddTransient<RustBridgeWallet>();
+
+            serviceDescriptors
+                .AddTransient<IotaSDKAccountModelCreator, IotaSDKAccountModelCreator>()
+                .AddTransient(typeof(IotaSDKAccountModelCreator<>), typeof(IotaSDKAccountModelCreator<>));
 
 
             serviceDescriptors
