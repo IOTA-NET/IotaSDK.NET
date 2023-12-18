@@ -10,19 +10,18 @@ namespace IotaSDK.NET.Contexts.AccountContext.Commands.SetAlias
     internal class SetAliasCommandHandler : IRequestHandler<SetAliasCommand>
     {
         private readonly RustBridgeWallet _rustBridgeWallet;
+        private readonly IotaSDKAccountModelCreator<SetAliasCommandModelData> _iotaSDKAccountModelCreator;
 
-        public SetAliasCommandHandler(RustBridgeWallet rustBridgeWallet)
+        public SetAliasCommandHandler(RustBridgeWallet rustBridgeWallet, IotaSDKAccountModelCreator<SetAliasCommandModelData> iotaSDKAccountModelCreator)
         {
             _rustBridgeWallet = rustBridgeWallet;
+            _iotaSDKAccountModelCreator = iotaSDKAccountModelCreator;
         }
 
         public async Task Handle(SetAliasCommand request, CancellationToken cancellationToken)
         {
-            SetAliasCommandModelData innerModelData = new SetAliasCommandModelData(request.Alias);
-            IotaSDKModel<SetAliasCommandModelData> innerModel = new IotaSDKModel<SetAliasCommandModelData>("setAlias", innerModelData);
-            AccountModelData<SetAliasCommandModelData> accountModelData = new AccountModelData<SetAliasCommandModelData>(request.AccountIndex, innerModel);
-            IotaSDKAccountModel<SetAliasCommandModelData> model = new IotaSDKAccountModel<SetAliasCommandModelData>(accountModelData);
-            string json = model.AsJson();
+            var accountModel = _iotaSDKAccountModelCreator.Create("setAlias", request.AccountIndex, new SetAliasCommandModelData(request.Alias));
+            string json = accountModel.AsJson();
 
             string? accountResponse = await _rustBridgeWallet.CallWalletMethodAsync(request.WalletHandle, json);
 

@@ -11,18 +11,17 @@ namespace IotaSDK.NET.Contexts.AccountContext.Queries.GetOutput
     internal class GetOutputQueryHandler : IRequestHandler<GetOutputQuery, IotaSDKResponse<OutputData>>
     {
         private readonly RustBridgeWallet _rustBridgeWallet;
+        private readonly IotaSDKAccountModelCreator<GetOutputQueryModelData> _iotaSDKAccountModelCreator;
 
-        public GetOutputQueryHandler(RustBridgeWallet rustBridgeWallet)
+        public GetOutputQueryHandler(RustBridgeWallet rustBridgeWallet, IotaSDKAccountModelCreator<GetOutputQueryModelData> iotaSDKAccountModelCreator)
         {
             _rustBridgeWallet = rustBridgeWallet;
+            _iotaSDKAccountModelCreator = iotaSDKAccountModelCreator;
         }
 
         public async Task<IotaSDKResponse<OutputData>> Handle(GetOutputQuery request, CancellationToken cancellationToken)
         {
-            GetOutputQueryModelData innerModelData = new GetOutputQueryModelData(request.OutputId);
-            IotaSDKModel<GetOutputQueryModelData> modelData = new IotaSDKModel<GetOutputQueryModelData>("getOutput", innerModelData);
-            AccountModelData<GetOutputQueryModelData> accountModelData = new AccountModelData<GetOutputQueryModelData>(request.AccountIndex, modelData);
-            IotaSDKAccountModel<GetOutputQueryModelData> accountModel = new IotaSDKAccountModel<GetOutputQueryModelData>(accountModelData);
+            var accountModel = _iotaSDKAccountModelCreator.Create("getOutput", request.AccountIndex, new GetOutputQueryModelData(request.OutputId));
             string json = accountModel.AsJson();
 
             string? accountResponse = await _rustBridgeWallet.CallWalletMethodAsync(request.WalletHandle, json);

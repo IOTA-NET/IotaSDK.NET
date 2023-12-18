@@ -11,17 +11,16 @@ namespace IotaSDK.NET.Contexts.AccountContext.Commands.PrepareMintNfts
     internal class PrepareMintNftsCommandHandler : IRequestHandler<PrepareMintNftsCommand, IotaSDKResponse<PreparedTransactionData>>
     {
         private readonly RustBridgeWallet _rustBridgeWallet;
+        private readonly IotaSDKAccountModelCreator<PrepareMintNftsCommandModelData> _iotaSDKAccountModelCreator;
 
-        public PrepareMintNftsCommandHandler(RustBridgeWallet rustBridgeWallet)
+        public PrepareMintNftsCommandHandler(RustBridgeWallet rustBridgeWallet, IotaSDKAccountModelCreator<PrepareMintNftsCommandModelData> iotaSDKAccountModelCreator)
         {
             _rustBridgeWallet = rustBridgeWallet;
+            _iotaSDKAccountModelCreator = iotaSDKAccountModelCreator;
         }
         public async Task<IotaSDKResponse<PreparedTransactionData>> Handle(PrepareMintNftsCommand request, CancellationToken cancellationToken)
         {
-            PrepareMintNftsCommandModelData innerModelData = new PrepareMintNftsCommandModelData(request.NftOptionsList, request.TransactionOptions);
-            IotaSDKModel<PrepareMintNftsCommandModelData> innerModel = new IotaSDKModel<PrepareMintNftsCommandModelData>("prepareMintNfts", innerModelData);
-            AccountModelData<PrepareMintNftsCommandModelData> accountModelData = new AccountModelData<PrepareMintNftsCommandModelData>(request.AccountIndex, innerModel);
-            IotaSDKAccountModel<PrepareMintNftsCommandModelData> accountModel = new IotaSDKAccountModel<PrepareMintNftsCommandModelData>(accountModelData);
+            var accountModel = _iotaSDKAccountModelCreator.Create("", request.AccountIndex, new PrepareMintNftsCommandModelData(request.NftOptionsList, request.TransactionOptions));
             string json = accountModel.AsJson();
 
             string? accountResponse = await _rustBridgeWallet.CallWalletMethodAsync(request.WalletHandle, json);

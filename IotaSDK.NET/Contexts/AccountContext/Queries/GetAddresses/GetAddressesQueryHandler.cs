@@ -12,19 +12,18 @@ namespace IotaSDK.NET.Contexts.AccountContext.Queries.GetAddresses
     internal class GetAddressesQueryHandler : IRequestHandler<GetAddressesQuery, IotaSDKResponse<List<AccountAddress>>>
     {
         private readonly RustBridgeWallet _rustBridgeWallet;
+        private readonly IotaSDKAccountModelCreator _iotaSDKAccountModelCreator;
 
-        public GetAddressesQueryHandler(RustBridgeWallet rustBridgeWallet)
+        public GetAddressesQueryHandler(RustBridgeWallet rustBridgeWallet, IotaSDKAccountModelCreator iotaSDKAccountModelCreator)
         {
             _rustBridgeWallet = rustBridgeWallet;
+            _iotaSDKAccountModelCreator = iotaSDKAccountModelCreator;
         }
 
         public async Task<IotaSDKResponse<List<AccountAddress>>> Handle(GetAddressesQuery request, CancellationToken cancellationToken)
         {
-            IotaSDKModel innerModel = new IotaSDKModel("addresses");
-
-            AccountModelData accountModelData = new AccountModelData(request.AccountIndex, innerModel);
-            IotaSDKAccountModel model = new IotaSDKAccountModel(accountModelData);
-            string json = model.AsJson();
+            var accountModel = _iotaSDKAccountModelCreator.Create("addresses", request.AccountIndex);
+            string json = accountModel.AsJson();
 
 
             string? accountResponse = await _rustBridgeWallet.CallWalletMethodAsync(request.WalletHandle, json);
