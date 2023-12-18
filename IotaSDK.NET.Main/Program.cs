@@ -1,8 +1,11 @@
 ﻿using IotaSDK.NET.Common.Extensions;
 using IotaSDK.NET.Common.Interfaces;
 using IotaSDK.NET.Common.Rust;
+using IotaSDK.NET.Domain.Nft;
 using IotaSDK.NET.Domain.Tokens;
+using IotaSDK.NET.Domain.Transactions;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
 
 namespace IotaSDK.NET.Main
 {
@@ -56,13 +59,12 @@ namespace IotaSDK.NET.Main
 
                 var address = (await account.GetAddressesAsync()).Payload.First().Address;
 
-                var xxs = await account.PrepareBurnNftAsync("0x3cbdece493667765b5c287ccdf349503a3775da7a9d90b89597ecf78806f7ab2");
-                var qwe = await account.SignAndSubmitTransactionAsync(xxs.Payload);
+
+
+                var qwe = await account.BurnAsync(new BurnIds() { Nfts = new List<string> { "0xfa6ec2da9b498ce0413fee9e897e6be8e886a5b4a4ee1108b2f79220b286bb0f", "0x16a0fb96755e36d33b29e08f6dcf9c7f54f127ff31153d14f07d385f653def8d" } });
                 Console.WriteLine(qwe);
-                int xxa = 3;
                 //NftIrc27 nftIrc27 = new NftIrc27("jpeg/image", "hello", "www.google.com")
                 //    .AddAttribute("cool", "story");
-
                 //NftOptions nftOptions = new NftOptions() { ImmutableMetadata = JsonConvert.SerializeObject(nftIrc27).ToHexString() };
 
 

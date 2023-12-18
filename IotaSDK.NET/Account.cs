@@ -1,5 +1,6 @@
 ﻿using IotaSDK.NET.Common.Interfaces;
 using IotaSDK.NET.Common.Models;
+using IotaSDK.NET.Contexts.AccountContext.Commands.Burn;
 using IotaSDK.NET.Contexts.AccountContext.Commands.MintNft;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareBurn;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareBurnNft;
@@ -41,6 +42,11 @@ namespace IotaSDK.NET
         public int Index { get; }
         public string Username { get; private set; }
 
+        public async Task<IotaSDKResponse<Transaction>> BurnAsync(BurnIds burnIds, TransactionOptions? transactionOptions = null)
+        {
+            return await _mediator.Send(new BurnCommand(_walletHandle, Index, burnIds, transactionOptions, _mediator));
+        }
+
         public async Task<IotaSDKResponse<List<AccountAddress>>> GetAddressesAsync()
         {
             return await _mediator.Send(new GetAddressesQuery(_walletHandle, Index));
@@ -67,7 +73,7 @@ namespace IotaSDK.NET
             return await _mediator.Send(new MintNftsCommand(_walletHandle, Index, nftOptionsList, transactionOptions, _mediator));
         }
 
-        public async Task<IotaSDKResponse<PreparedTransactionData>> PrepareBurn(BurnIds burnIds, TransactionOptions? transactionOptions = null)
+        public async Task<IotaSDKResponse<PreparedTransactionData>> PrepareBurnAsync(BurnIds burnIds, TransactionOptions? transactionOptions = null)
         {
             return await _mediator.Send(new PrepareBurnCommand(_walletHandle, Index, burnIds, transactionOptions));
         }
