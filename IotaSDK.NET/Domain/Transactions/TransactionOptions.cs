@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace IotaSDK.NET.Domain.Transactions
 {
-    public class Burn
+    public class BurnIds
     {
         /** Aliases to burn */
         public List<string>? Aliases { get; set; }
@@ -51,13 +51,13 @@ namespace IotaSDK.NET.Domain.Transactions
         /// <summary>
         /// Specifies what needs to be burned during input selection.
         /// </summary>
-        public Burn? Burn { get; set; }
+        public BurnIds? Burn { get; set; }
         /// <summary>
         /// Whether to allow sending a micro amount.
         /// </summary>
         public bool AllowMicroAmount { get; set; } = true;
 
-        public TransactionOptions AddBurnInformation(Burn burn)
+        public TransactionOptions AddBurnInformation(BurnIds burn)
         {
             Burn = burn;
             return this;
