@@ -4,6 +4,7 @@ using IotaSDK.NET.Contexts.AccountContext.Commands.Burn;
 using IotaSDK.NET.Contexts.AccountContext.Commands.MintNft;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareBurn;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareBurnNft;
+using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareConsolidateOutputs;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareMintNfts;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareSendNfts;
 using IotaSDK.NET.Contexts.AccountContext.Commands.SendBaseCoin;
@@ -20,6 +21,7 @@ using IotaSDK.NET.Contexts.AccountContext.Queries.GetUnspentOutputs;
 using IotaSDK.NET.Domain.Accounts;
 using IotaSDK.NET.Domain.Addresses;
 using IotaSDK.NET.Domain.Nft;
+using IotaSDK.NET.Domain.Options;
 using IotaSDK.NET.Domain.Outputs;
 using IotaSDK.NET.Domain.Transactions;
 using IotaSDK.NET.Domain.Transactions.Prepared;
@@ -90,6 +92,12 @@ namespace IotaSDK.NET
         public async Task<IotaSDKResponse<PreparedTransactionData>> PrepareBurnNftAsync(string nftId, TransactionOptions? transactionOptions = null)
         {
             return await _mediator.Send(new PrepareBurnNftCommand(_walletHandle, Index, nftId, transactionOptions));
+        }
+
+        public async Task<IotaSDKResponse<PreparedTransactionData>> PrepareConsolidateOutputsAsync(bool force, int? outputThreshold = null, string? targetAddress = null)
+        {
+            ConsolidationOptions consolidationOptions = new ConsolidationOptions(force) { OutputThreshold = outputThreshold, TargetAddress=targetAddress };
+            return await _mediator.Send(new PrepareConsolidateOutputsCommand(_walletHandle, Index, consolidationOptions));
         }
 
         public async Task<IotaSDKResponse<PreparedTransactionData>> PrepareMintNftsAsync(List<NftOptions> nftOptionsList, TransactionOptions? transactionOptions = null)
