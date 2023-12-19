@@ -43,5 +43,7 @@ namespace IotaSDK.NET.Common.Interfaces
         Task<IotaSDKResponse<Transaction>> SendNftsAsync(List<AddressAndNftId> addressAndNftIds, TransactionOptions? transactionOptions = null);
         
         Task SetDefaultSyncOptionsAsync(SyncOptions syncOptions);
+
+        Task<IotaSDKResponse<List<Transaction>>> GetTransactionsAsync();
     }
 }
