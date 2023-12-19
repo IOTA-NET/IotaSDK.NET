@@ -59,7 +59,7 @@ namespace IotaSDK.NET.Main
 
                 var address = (await account.GetAddressesAsync()).Payload.First().Address;
 
-
+                var txs = await account.GetTransactionsAsync();
 
                 var qwe = await account.BurnAsync(new BurnIds() { Nfts = new List<string> { "0xfa6ec2da9b498ce0413fee9e897e6be8e886a5b4a4ee1108b2f79220b286bb0f", "0x16a0fb96755e36d33b29e08f6dcf9c7f54f127ff31153d14f07d385f653def8d" } });
                 Console.WriteLine(qwe);
