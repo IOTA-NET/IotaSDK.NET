@@ -4,7 +4,7 @@
 
 # Introduction :smile:
 
-This project aims to port IOTA's official SDK, [Iota SDK](https://github.com/iotaledger/iota-sdk) to C# .NET, by leveraging its official native bindings, Iota-SDK-native-bindings(https://github.com/iotaledger/iota-sdk-native-bindings).
+This project aims to port IOTA's official SDK, [Iota SDK](https://github.com/iotaledger/iota-sdk) to C# .NET, by leveraging its official native bindings, [Iota-SDK-native-bindings](https://github.com/iotaledger/iota-sdk-native-bindings).
 
 Now .Net developers can have a chance trying out IOTA/Shimmer as well!
 
