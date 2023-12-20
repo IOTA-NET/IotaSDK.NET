@@ -1,6 +1,7 @@
 ﻿using IotaSDK.NET.Common.Interfaces;
 using IotaSDK.NET.Common.Models;
 using IotaSDK.NET.Contexts.AccountContext.Commands.Burn;
+using IotaSDK.NET.Contexts.AccountContext.Commands.ConsolidateOutputs;
 using IotaSDK.NET.Contexts.AccountContext.Commands.MintNft;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareBurn;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareBurnNft;
@@ -51,6 +52,12 @@ namespace IotaSDK.NET
         public async Task<IotaSDKResponse<Transaction>> BurnAsync(BurnIds burnIds, TransactionOptions? transactionOptions = null)
         {
             return await _mediator.Send(new BurnCommand(_walletHandle, Index, burnIds, transactionOptions));
+        }
+
+        public async Task<IotaSDKResponse<Transaction>> ConsolidateOutputsAsync(bool force, int? outputThreshold = null, string? targetAddress = null)
+        {
+            var consolidationOptions = new ConsolidationOptions(force) { OutputThreshold = outputThreshold, TargetAddress = targetAddress };
+            return await _mediator.Send(new ConsolidateOutputsCommand(_walletHandle, Index, consolidationOptions));
         }
 
         public async Task<IotaSDKResponse<List<AccountAddress>>> GetAddressesAsync()
