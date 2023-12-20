@@ -32,41 +32,38 @@ namespace IotaSDK.NET.Main
 
                 wallet = await wallet
                             .ConfigureWalletOptions()
-                                .SetStoragePath("./storage")
+                                .SetStoragePath("./storage2")
                                 .SetCoinType(TypeOfCoin.Shimmer)
                                 .Then()
                             .ConfigureClientOptions()
-                                .SetFaucetUrl("https://faucet.testnet.shimmer.network")
+                                .SetFaucetUrl("https://faucet.testnet.shimmer.network/api/enqueue")
                                 .AddNodeUrl("https://api.testnet.shimmer.network")
                                 .IsLocalPow()
                                 .Then()
                             .ConfigureSecretManagerOptions()
-                                .SetSnapshotPath("./snapshot")
+                                .SetSnapshotPath("./snapshot2")
                                 .SetPassword("password")
                                 .Then()
                             .InitializeAsync();
 
+                var logerConfig = new RustLoggerConfiguration(LogLevelFilter.debug);
+                await iotaUtilities.StartLoggerAsync(logerConfig);
 
-                var log = new RustLoggerConfiguration(LogLevelFilter.debug);
-                var x = await iotaUtilities.StartLoggerAsync(log);
+                string mnemonic = iotaUtilities.GenerateMnemonicAsync().Result.Payload;
 
-                var rrr = await wallet.GetAccountAsync("cookie");
-                IAccount account = rrr.Payload;
-                var balance = await account.SyncAcountAsync();
-                Console.WriteLine(balance);
+                
+                var createAccountResponse =  await wallet.CreateAccountAsync(username:"myAccount_4");
+                IAccount account = createAccountResponse.Payload;
+                string mainAddress = (await account.GetAddressesAsync()).Payload.First().Address;
 
-                var address = (await account.GetAddressesAsync()).Payload.First().Address;
+                IClient client = wallet.GetClient();
+                var faucetResponse = await client.RequestFundsFromFaucetAsync(mainAddress);
 
-                var txs = await account.GetTransactionsAsync();
+                await Task.Delay(20000);
 
-                var qwe = await account.BurnAsync(new BurnIds() { Nfts = new List<string> { "0xfa6ec2da9b498ce0413fee9e897e6be8e886a5b4a4ee1108b2f79220b286bb0f", "0x16a0fb96755e36d33b29e08f6dcf9c7f54f127ff31153d14f07d385f653def8d" } });
-                Console.WriteLine(qwe);
-                //NftIrc27 nftIrc27 = new NftIrc27("jpeg/image", "hello", "www.google.com")
-                //    .AddAttribute("cool", "story");
-                //NftOptions nftOptions = new NftOptions() { ImmutableMetadata = JsonConvert.SerializeObject(nftIrc27).ToHexString() };
+                var balanceResponse = await account.SyncAcountAsync();
 
-
-                //var xxxxxx = await account.MintNftsAsync(new List<NftOptions>() { nftOptions });
+                Console.WriteLine(balanceResponse);
             }
 
         }
