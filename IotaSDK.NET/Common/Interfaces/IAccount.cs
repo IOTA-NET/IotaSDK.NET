@@ -49,5 +49,7 @@ namespace IotaSDK.NET.Common.Interfaces
         Task<IotaSDKResponse<PreparedTransactionData>> PrepareConsolidateOutputsAsync(bool force, int? outputThreshold=null, string? targetAddress = null);
         
         Task<IotaSDKResponse<Transaction>> ConsolidateOutputsAsync(bool force, int? outputThreshold = null, string? targetAddress = null);
+
+        Task<IotaSDKResponse<List<Transaction>>> GetPendingTransactionsAsync();
     }
 }
