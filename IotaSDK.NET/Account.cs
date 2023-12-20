@@ -17,6 +17,7 @@ using IotaSDK.NET.Contexts.AccountContext.Commands.SignAndSubmitTransaction;
 using IotaSDK.NET.Contexts.AccountContext.Commands.Sync;
 using IotaSDK.NET.Contexts.AccountContext.Queries.GetAddresses;
 using IotaSDK.NET.Contexts.AccountContext.Queries.GetBalance;
+using IotaSDK.NET.Contexts.AccountContext.Queries.GetIncomingTransactions;
 using IotaSDK.NET.Contexts.AccountContext.Queries.GetOutput;
 using IotaSDK.NET.Contexts.AccountContext.Queries.GetPendingTransactions;
 using IotaSDK.NET.Contexts.AccountContext.Queries.GetTransactions;
@@ -71,6 +72,11 @@ namespace IotaSDK.NET
         public async Task<IotaSDKResponse<AccountBalance>> GetBalanceAsync()
         {
             return await _mediator.Send(new GetBalanceQuery(_walletHandle, Index));
+        }
+
+        public async Task<IotaSDKResponse<List<Transaction>>> GetIncomingTransactionsAsync()
+        {
+            return await _mediator.Send(new GetIncomingTransactionsQuery(_walletHandle, Index));
         }
 
         public async Task<IotaSDKResponse<OutputData>> GetOutputAsync(string outputId)

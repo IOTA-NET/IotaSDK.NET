@@ -53,5 +53,11 @@ namespace IotaSDK.NET.Common.Interfaces
         Task<IotaSDKResponse<List<Transaction>>> GetPendingTransactionsAsync();
 
         Task<IotaSDKResponse<string>> RetryTransactionUntilIncludedAsync(string transactionId, int? interval, int? maxAttempts);
+
+        /// <summary>
+        /// List all incoming transactions of the account.
+        /// </summary>
+        /// <returns>The incoming transactions with their inputs.</returns>
+        Task<IotaSDKResponse<List<Transaction>>> GetIncomingTransactionsAsync();
     }
 }
