@@ -94,6 +94,7 @@ TBD
    <li>GetIncomingTransactions</li>
    <li>GetOutput</li>
    <li>GetPendingTransactions</li>
+   <li>GetTransaction</li>
    <li>GetTransactions</li>
    <li>GetUnspentOutputs</li>
   </ul>
