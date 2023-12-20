@@ -59,5 +59,12 @@ namespace IotaSDK.NET.Common.Interfaces
         /// </summary>
         /// <returns>The incoming transactions with their inputs.</returns>
         Task<IotaSDKResponse<List<Transaction>>> GetIncomingTransactionsAsync();
+
+        /// <summary>
+        /// Get outputs with additional unlock conditions.
+        /// </summary>
+        /// <param name="claimableOutputType">The type of outputs to claim.</param>
+        /// <returns>The output IDs of the unlockable outputs.</returns>
+        Task<IotaSDKResponse<List<string>>> GetClaimableOutputsAsync(ClaimableOutputType claimableOutputType);
     }
 }
