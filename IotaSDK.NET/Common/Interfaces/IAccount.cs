@@ -74,5 +74,12 @@ namespace IotaSDK.NET.Common.Interfaces
         /// <param name="transactionOptions">Additional transaction options or custom inputs.</param>
         /// <returns>The prepared transaction data.</returns>
         Task<IotaSDKResponse<PreparedTransactionData>> PrepareTransactionAsync(List<Output> outputs, TransactionOptions? transactionOptions);
+
+        /// <summary>
+        /// Get a transaction stored in the account.
+        /// </summary>
+        /// <param name="transactionId">transactionId The ID of the transaction to get.</param>
+        /// <returns>The transaction.</returns>
+        Task<IotaSDKResponse<Transaction>> GetTransactionAsync(string transactionId);
     }
 }

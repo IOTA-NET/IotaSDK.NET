@@ -22,6 +22,7 @@ using IotaSDK.NET.Contexts.AccountContext.Queries.GetClaimableOutputs;
 using IotaSDK.NET.Contexts.AccountContext.Queries.GetIncomingTransactions;
 using IotaSDK.NET.Contexts.AccountContext.Queries.GetOutput;
 using IotaSDK.NET.Contexts.AccountContext.Queries.GetPendingTransactions;
+using IotaSDK.NET.Contexts.AccountContext.Queries.GetTransaction;
 using IotaSDK.NET.Contexts.AccountContext.Queries.GetTransactions;
 using IotaSDK.NET.Contexts.AccountContext.Queries.GetUnspentOutputs;
 using IotaSDK.NET.Domain.Accounts;
@@ -96,6 +97,11 @@ namespace IotaSDK.NET
             return await _mediator.Send(new GetPendingTransactionsQuery(_walletHandle, Index));
         }
 
+        public async Task<IotaSDKResponse<Transaction>> GetTransactionAsync(string transactionId)
+        {
+            return await _mediator.Send(new GetTransactionQuery(_walletHandle, Index, transactionId));
+        }
+
         public async Task<IotaSDKResponse<List<Transaction>>> GetTransactionsAsync()
         {
             return await _mediator.Send(new GetTransactionsQuery(_walletHandle, Index));
@@ -139,7 +145,7 @@ namespace IotaSDK.NET
 
         public async Task<IotaSDKResponse<PreparedTransactionData>> PrepareTransactionAsync(List<Output> outputs, TransactionOptions? transactionOptions)
         {
-            return await _mediator.Send(new PrepareTransactionCommand(_walletHandle, in, outputs, transactionOptions));
+            return await _mediator.Send(new PrepareTransactionCommand(_walletHandle, Index, outputs, transactionOptions));
         }
 
         public async Task<IotaSDKResponse<string>> RetryTransactionUntilIncludedAsync(string transactionId, int? interval, int? maxAttempts)
