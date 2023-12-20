@@ -89,6 +89,7 @@ TBD
   <ul>
    <li>GetAddress</li>
    <li>GetBalance</li>
+   <li>GetIncomingTransactions</li>
    <li>GetOutput</li>
    <li>GetPendingTransactions</li>
    <li>GetTransactions</li>
