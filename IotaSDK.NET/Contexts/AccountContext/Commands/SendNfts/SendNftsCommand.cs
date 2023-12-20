@@ -9,7 +9,7 @@ namespace IotaSDK.NET.Contexts.AccountContext.Commands.SendNfts
 {
     internal class SendNftsCommand : AccountRequest<IotaSDKResponse<Transaction>>
     {
-        public SendNftsCommand(IntPtr walletHandle, int accountIndex, List<AddressAndNftId> addressAndNftIds, TransactionOptions? transactionOptions) 
+        public SendNftsCommand(IntPtr walletHandle, int accountIndex, List<AddressAndNftId> addressAndNftIds, TransactionOptions? transactionOptions)
             : base(walletHandle, accountIndex)
         {
             AddressAndNftIds = addressAndNftIds;

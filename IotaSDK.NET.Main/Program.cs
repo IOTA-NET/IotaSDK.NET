@@ -1,11 +1,9 @@
 ﻿using IotaSDK.NET.Common.Extensions;
 using IotaSDK.NET.Common.Interfaces;
 using IotaSDK.NET.Common.Rust;
-using IotaSDK.NET.Domain.Nft;
 using IotaSDK.NET.Domain.Tokens;
 using IotaSDK.NET.Domain.Transactions;
 using Microsoft.Extensions.DependencyInjection;
-using Newtonsoft.Json;
 
 namespace IotaSDK.NET.Main
 {

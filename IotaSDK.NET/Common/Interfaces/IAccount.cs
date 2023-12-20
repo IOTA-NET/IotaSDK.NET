@@ -39,15 +39,17 @@ namespace IotaSDK.NET.Common.Interfaces
         Task<IotaSDKResponse<Transaction>> BurnAsync(BurnIds burnIds, TransactionOptions? transactionOptions = null);
 
         Task<IotaSDKResponse<PreparedTransactionData>> PrepareSendNftsAsync(List<AddressAndNftId> addressAndNftIds, TransactionOptions? transactionOptions = null);
-        
+
         Task<IotaSDKResponse<Transaction>> SendNftsAsync(List<AddressAndNftId> addressAndNftIds, TransactionOptions? transactionOptions = null);
-        
+
         Task SetDefaultSyncOptionsAsync(SyncOptions syncOptions);
 
         Task<IotaSDKResponse<List<Transaction>>> GetTransactionsAsync();
 
-        Task<IotaSDKResponse<PreparedTransactionData>> PrepareConsolidateOutputsAsync(bool force, int? outputThreshold=null, string? targetAddress = null);
-        
+        Task<IotaSDKResponse<PreparedTransactionData>> PrepareConsolidateOutputsAsync(bool force, int? outputThreshold = null, string? targetAddress = null);
+
         Task<IotaSDKResponse<Transaction>> ConsolidateOutputsAsync(bool force, int? outputThreshold = null, string? targetAddress = null);
+
+        Task<IotaSDKResponse<List<Transaction>>> GetPendingTransactionsAsync();
     }
 }

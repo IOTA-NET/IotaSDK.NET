@@ -1,7 +1,6 @@
 ﻿using IotaSDK.NET.Common.Interfaces;
 using IotaSDK.NET.Common.Models;
 using IotaSDK.NET.Domain.Transactions;
-using MediatR;
 using System;
 
 namespace IotaSDK.NET.Contexts.AccountContext.Commands.Burn

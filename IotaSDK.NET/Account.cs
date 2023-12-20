@@ -17,6 +17,7 @@ using IotaSDK.NET.Contexts.AccountContext.Commands.Sync;
 using IotaSDK.NET.Contexts.AccountContext.Queries.GetAddresses;
 using IotaSDK.NET.Contexts.AccountContext.Queries.GetBalance;
 using IotaSDK.NET.Contexts.AccountContext.Queries.GetOutput;
+using IotaSDK.NET.Contexts.AccountContext.Queries.GetPendingTransactions;
 using IotaSDK.NET.Contexts.AccountContext.Queries.GetTransactions;
 using IotaSDK.NET.Contexts.AccountContext.Queries.GetUnspentOutputs;
 using IotaSDK.NET.Domain.Accounts;
@@ -76,6 +77,11 @@ namespace IotaSDK.NET
             return await _mediator.Send(new GetOutputQuery(_walletHandle, Index, outputId));
         }
 
+        public async Task<IotaSDKResponse<List<Transaction>>> GetPendingTransactionsAsync()
+        {
+            return await _mediator.Send(new GetPendingTransactionsQuery(_walletHandle, Index));
+        }
+
         public async Task<IotaSDKResponse<List<Transaction>>> GetTransactionsAsync()
         {
             return await _mediator.Send(new GetTransactionsQuery(_walletHandle, Index));
@@ -103,7 +109,7 @@ namespace IotaSDK.NET
 
         public async Task<IotaSDKResponse<PreparedTransactionData>> PrepareConsolidateOutputsAsync(bool force, int? outputThreshold = null, string? targetAddress = null)
         {
-            ConsolidationOptions consolidationOptions = new ConsolidationOptions(force) { OutputThreshold = outputThreshold, TargetAddress=targetAddress };
+            ConsolidationOptions consolidationOptions = new ConsolidationOptions(force) { OutputThreshold = outputThreshold, TargetAddress = targetAddress };
             return await _mediator.Send(new PrepareConsolidateOutputsCommand(_walletHandle, Index, consolidationOptions));
         }
 
@@ -135,7 +141,7 @@ namespace IotaSDK.NET
 
         public async Task SetDefaultSyncOptionsAsync(SyncOptions syncOptions)
         {
-            await _mediator.Send(new SetDefaultSyncOptionsCommand(_walletHandle, Index, syncOptions));  
+            await _mediator.Send(new SetDefaultSyncOptionsCommand(_walletHandle, Index, syncOptions));
         }
 
         public async Task<IotaSDKResponse<Transaction>> SignAndSubmitTransactionAsync(PreparedTransactionData transactionData)
