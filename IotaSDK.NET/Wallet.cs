@@ -35,7 +35,9 @@ namespace IotaSDK.NET
         private IMediator _mediator;
         private readonly RustBridgeWallet _rustBridgeWallet;
         private readonly RustBridgeCommon _rustBridgeCommon;
-        private IAccount? Account { get; set; }
+        
+        private IClient? _client;
+        private IAccount? _account;
 
         public Wallet(IMediator mediator, RustBridgeWallet rustBridgeWallet, RustBridgeCommon rustBridgeCommon)
         {
@@ -46,8 +48,10 @@ namespace IotaSDK.NET
             _mediator = mediator;
             _rustBridgeWallet = rustBridgeWallet;
             _rustBridgeCommon = rustBridgeCommon;
-            Account = null;
+            _account = null;
+            _client = null;
         }
+
         public async Task<IWallet> InitializeAsync()
         {
             string walletOptions = JsonConvert.SerializeObject(GetWalletOptions());
@@ -62,9 +66,21 @@ namespace IotaSDK.NET
 
             _walletHandle = walletHandle!.Value;
 
+            IntPtr? clientHandle = await _rustBridgeWallet.GetClientFromWalletAsync(_walletHandle);
+
+            if(clientHandle.HasValue == false)
+            {
+                string? error = await _rustBridgeCommon.GetLastErrorAsync();
+                throw new IotaSDKException($"Unable to create client.\nError:{error}");
+            }
+
+            _client = new Client(_mediator, clientHandle.Value, faucetUrl: _walletOptions.ClientOptions.FaucetUrl);
+
             return this;
         }
 
+        public IClient GetClient()
+            => _client!;
         public ClientOptionsBuilder ConfigureClientOptions()
             => new ClientOptionsBuilder(this);
 
