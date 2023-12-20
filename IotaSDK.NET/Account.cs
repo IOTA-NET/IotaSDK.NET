@@ -109,7 +109,7 @@ namespace IotaSDK.NET
 
         public async Task<IotaSDKResponse<PreparedTransactionData>> PrepareConsolidateOutputsAsync(bool force, int? outputThreshold = null, string? targetAddress = null)
         {
-            ConsolidationOptions consolidationOptions = new ConsolidationOptions(force) { OutputThreshold = outputThreshold, TargetAddress=targetAddress };
+            ConsolidationOptions consolidationOptions = new ConsolidationOptions(force) { OutputThreshold = outputThreshold, TargetAddress = targetAddress };
             return await _mediator.Send(new PrepareConsolidateOutputsCommand(_walletHandle, Index, consolidationOptions));
         }
 
@@ -141,7 +141,7 @@ namespace IotaSDK.NET
 
         public async Task SetDefaultSyncOptionsAsync(SyncOptions syncOptions)
         {
-            await _mediator.Send(new SetDefaultSyncOptionsCommand(_walletHandle, Index, syncOptions));  
+            await _mediator.Send(new SetDefaultSyncOptionsCommand(_walletHandle, Index, syncOptions));
         }
 
         public async Task<IotaSDKResponse<Transaction>> SignAndSubmitTransactionAsync(PreparedTransactionData transactionData)

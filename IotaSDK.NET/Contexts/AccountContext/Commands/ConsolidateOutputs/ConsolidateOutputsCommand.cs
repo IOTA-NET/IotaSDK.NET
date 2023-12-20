@@ -8,7 +8,7 @@ namespace IotaSDK.NET.Contexts.AccountContext.Commands.ConsolidateOutputs
 {
     internal class ConsolidateOutputsCommand : AccountRequest<IotaSDKResponse<Transaction>>
     {
-        public ConsolidateOutputsCommand(IntPtr walletHandle, int accountIndex, ConsolidationOptions consolidationOptions) 
+        public ConsolidateOutputsCommand(IntPtr walletHandle, int accountIndex, ConsolidationOptions consolidationOptions)
             : base(walletHandle, accountIndex)
         {
             ConsolidationOptions = consolidationOptions;

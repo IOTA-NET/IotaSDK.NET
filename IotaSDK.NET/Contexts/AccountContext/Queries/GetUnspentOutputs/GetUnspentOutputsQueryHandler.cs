@@ -1,7 +1,6 @@
 ﻿using IotaSDK.NET.Common.Exceptions;
 using IotaSDK.NET.Common.Models;
 using IotaSDK.NET.Common.Rust;
-using IotaSDK.NET.Contexts.AccountContext.Queries.GetOutput;
 using IotaSDK.NET.Domain.Outputs;
 using MediatR;
 using System.Collections.Generic;
