@@ -66,5 +66,13 @@ namespace IotaSDK.NET.Common.Interfaces
         /// <param name="claimableOutputType">The type of outputs to claim.</param>
         /// <returns>The output IDs of the unlockable outputs.</returns>
         Task<IotaSDKResponse<List<string>>> GetClaimableOutputsAsync(ClaimableOutputType claimableOutputType);
+
+        /// <summary>
+        /// Prepare a transaction, useful for offline signing.
+        /// </summary>
+        /// <param name="outputs">Outputs to use in the transaction.</param>
+        /// <param name="transactionOptions">Additional transaction options or custom inputs.</param>
+        /// <returns>The prepared transaction data.</returns>
+        Task<IotaSDKResponse<PreparedTransactionData>> PrepareTransactionAsync(List<Output> outputs, TransactionOptions? transactionOptions);
     }
 }

@@ -72,6 +72,7 @@ TBD
     <li>PrepareConsolidateOutputs</li>
     <li>PrepareMintNfts</li>
     <li>PrepareSendNfts</li>
+    <li>PrepareTransactions</li>
     <li>RetryTransactionUntilIncluded</li>
     <li>SendBaseCoin</li>
     <li>SendNfts</li>
