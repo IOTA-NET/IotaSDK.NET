@@ -76,6 +76,7 @@ TBD
     <li>RetryTransactionUntilIncluded</li>
     <li>SendBaseCoin</li>
     <li>SendNfts</li>
+    <li>SendTransaction</li>
     <li>SetAlias</li>
     <li>SetDefaultSyncOptions</li>
     <li>SignAndSubmitTransaction</li>
