@@ -95,6 +95,7 @@ We have yet to publish the package as it is still in development.
    <li>GetClaimableOutputs</li>
    <li>GetIncomingTransactions</li>
    <li>GetOutput</li>
+   <li>GetOutputs</li>
    <li>GetPendingTransactions</li>
    <li>GetTransaction</li>
    <li>GetTransactions</li>

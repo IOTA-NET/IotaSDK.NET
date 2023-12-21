@@ -210,5 +210,12 @@ namespace IotaSDK.NET.Common.Interfaces
         /// <param name="transactionOptions">Additional transaction options</param>
         /// <returns>The transaction data.</returns>
         Task<IotaSDKResponse<Transaction>> SendTransactionAsync(List<Output> outputs, TransactionOptions? transactionOptions);
+
+        /// <summary>
+        /// List all outputs of the account.
+        /// </summary>
+        /// <param name="outputFilterOptions">Options to filter the to be returned outputs.</param>
+        /// <returns>The outputs with metadata.</returns>
+        Task<IotaSDKResponse<List<OutputData>>> GetOutputsAsync(OutputFilterOptions? outputFilterOptions);
     }
 }
