@@ -57,10 +57,10 @@ namespace IotaSDK.NET.Main.Examples.Accounts_and_Addresses.Create_Wallet_and_Acc
                 //Let's proceed to create 2 accounts, with usernames "savings" and "spending"
                 //Note: You can name them any names you want
                 var accountResponse = await wallet.CreateAccountAsync(username: "savings");
-                IAccount cookieMonsterAccount = accountResponse.Payload;
+                IAccount savingsAccount = accountResponse.Payload;
 
                 accountResponse = await wallet.CreateAccountAsync(username: "spending");
-                IAccount elmo = accountResponse.Payload;
+                IAccount spendingAccount = accountResponse.Payload;
 
                 Console.WriteLine("Great, we have successfully created 2 accounts, our \"savings\" account and \"spending\" account");
             }
