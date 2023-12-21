@@ -12,6 +12,7 @@ using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareTransaction;
 using IotaSDK.NET.Contexts.AccountContext.Commands.RetryTransactionUntilIncluded;
 using IotaSDK.NET.Contexts.AccountContext.Commands.SendBaseCoin;
 using IotaSDK.NET.Contexts.AccountContext.Commands.SendNfts;
+using IotaSDK.NET.Contexts.AccountContext.Commands.SendTransaction;
 using IotaSDK.NET.Contexts.AccountContext.Commands.SetAlias;
 using IotaSDK.NET.Contexts.AccountContext.Commands.SetDefaultSyncOptions;
 using IotaSDK.NET.Contexts.AccountContext.Commands.SignAndSubmitTransaction;
@@ -161,6 +162,11 @@ namespace IotaSDK.NET
         public async Task<IotaSDKResponse<Transaction>> SendNftsAsync(List<AddressAndNftId> addressAndNftIds, TransactionOptions? transactionOptions = null)
         {
             return await _mediator.Send(new SendNftsCommand(_walletHandle, Index, addressAndNftIds, transactionOptions));
+        }
+
+        public async Task<IotaSDKResponse<Transaction>> SendTransactionAsync(List<Output> outputs, TransactionOptions? transactionOptions)
+        {
+            return await _mediator.Send(new SendTransactionCommand(_walletHandle, Index, outputs, transactionOptions));
         }
 
         public async Task SetAliasAsync(string alias)
