@@ -2,6 +2,7 @@
 using IotaSDK.NET.Common.Models;
 using IotaSDK.NET.Contexts.AccountContext.Commands.Burn;
 using IotaSDK.NET.Contexts.AccountContext.Commands.ConsolidateOutputs;
+using IotaSDK.NET.Contexts.AccountContext.Commands.CreateNativeToken;
 using IotaSDK.NET.Contexts.AccountContext.Commands.MintNft;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareBurn;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareBurnNft;
@@ -67,6 +68,11 @@ namespace IotaSDK.NET
         {
             var consolidationOptions = new ConsolidationOptions(force) { OutputThreshold = outputThreshold, TargetAddress = targetAddress };
             return await _mediator.Send(new ConsolidateOutputsCommand(_walletHandle, Index, consolidationOptions));
+        }
+
+        public async Task<IotaSDKResponse<Transaction>> CreateNativeTokenAsync(NativeTokenCreationOptions nativeTokenCreationOptions, TransactionOptions? transactionOptions = null)
+        {
+            return await _mediator.Send(new CreateNativeTokenCommand(_walletHandle, Index, nativeTokenCreationOptions, transactionOptions));
         }
 
         public async Task<IotaSDKResponse<List<AccountAddress>>> GetAddressesAsync()
@@ -141,7 +147,7 @@ namespace IotaSDK.NET
             return await _mediator.Send(new PrepareConsolidateOutputsCommand(_walletHandle, Index, consolidationOptions));
         }
 
-        public async Task<IotaSDKResponse<PreparedNativeTokenTransactionData>> PrepareCreateNativeTokenAsync(NativeTokenCreationOptions nativeTokenCreationOptions, TransactionOptions? transactionOptions)
+        public async Task<IotaSDKResponse<PreparedNativeTokenTransactionData>> PrepareCreateNativeTokenAsync(NativeTokenCreationOptions nativeTokenCreationOptions, TransactionOptions? transactionOptions = null)
         {
             return await _mediator.Send(new PrepareCreateNativeTokenCommand(_walletHandle, Index, nativeTokenCreationOptions, transactionOptions));
         }
@@ -156,7 +162,7 @@ namespace IotaSDK.NET
             return await _mediator.Send(new PrepareSendNftsCommand(_walletHandle, Index, addressAndNftIds, transactionOptions));
         }
 
-        public async Task<IotaSDKResponse<PreparedTransactionData>> PrepareTransactionAsync(List<Output> outputs, TransactionOptions? transactionOptions)
+        public async Task<IotaSDKResponse<PreparedTransactionData>> PrepareTransactionAsync(List<Output> outputs, TransactionOptions? transactionOptions = null)
         {
             return await _mediator.Send(new PrepareTransactionCommand(_walletHandle, Index, outputs, transactionOptions));
         }
@@ -176,7 +182,7 @@ namespace IotaSDK.NET
             return await _mediator.Send(new SendNftsCommand(_walletHandle, Index, addressAndNftIds, transactionOptions));
         }
 
-        public async Task<IotaSDKResponse<Transaction>> SendTransactionAsync(List<Output> outputs, TransactionOptions? transactionOptions)
+        public async Task<IotaSDKResponse<Transaction>> SendTransactionAsync(List<Output> outputs, TransactionOptions? transactionOptions = null)
         {
             return await _mediator.Send(new SendTransactionCommand(_walletHandle, Index, outputs, transactionOptions));
         }

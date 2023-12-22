@@ -195,7 +195,7 @@ namespace IotaSDK.NET.Common.Interfaces
         /// <param name="outputs">Outputs to use in the transaction.</param>
         /// <param name="transactionOptions">Additional transaction options or custom inputs.</param>
         /// <returns>The prepared transaction data.</returns>
-        Task<IotaSDKResponse<PreparedTransactionData>> PrepareTransactionAsync(List<Output> outputs, TransactionOptions? transactionOptions);
+        Task<IotaSDKResponse<PreparedTransactionData>> PrepareTransactionAsync(List<Output> outputs, TransactionOptions? transactionOptions=null);
 
         /// <summary>
         /// Get a transaction stored in the account.
@@ -210,7 +210,7 @@ namespace IotaSDK.NET.Common.Interfaces
         /// <param name="outputs">Outputs to use in the transaction.</param>
         /// <param name="transactionOptions">Additional transaction options</param>
         /// <returns>The transaction data.</returns>
-        Task<IotaSDKResponse<Transaction>> SendTransactionAsync(List<Output> outputs, TransactionOptions? transactionOptions);
+        Task<IotaSDKResponse<Transaction>> SendTransactionAsync(List<Output> outputs, TransactionOptions? transactionOptions = null);
 
         /// <summary>
         /// List all outputs of the account.
@@ -225,6 +225,15 @@ namespace IotaSDK.NET.Common.Interfaces
         /// <param name="nativeTokenCreationOptions">The options for creating a native token.</param>
         /// <param name="transactionOptions">Additional transaction options or custom inputs.</param>
         /// <returns>The created transaction and the token ID.</returns>
-        Task<IotaSDKResponse<PreparedNativeTokenTransactionData>> PrepareCreateNativeTokenAsync(NativeTokenCreationOptions nativeTokenCreationOptions, TransactionOptions? transactionOptions);
+        Task<IotaSDKResponse<PreparedNativeTokenTransactionData>> PrepareCreateNativeTokenAsync(NativeTokenCreationOptions nativeTokenCreationOptions, TransactionOptions? transactionOptions = null);
+
+
+        /// <summary>
+        /// Create a native token.
+        /// </summary>
+        /// <param name="nativeTokenCreationOptions">The options for creating a native token.</param>
+        /// <param name="transactionOptions">Additional transaction options or custom inputs.</param>
+        /// <returns>The created transaction</returns>
+        Task<IotaSDKResponse<Transaction>> CreateNativeTokenAsync(NativeTokenCreationOptions nativeTokenCreationOptions, TransactionOptions? transactionOptions = null);
     }
 }
