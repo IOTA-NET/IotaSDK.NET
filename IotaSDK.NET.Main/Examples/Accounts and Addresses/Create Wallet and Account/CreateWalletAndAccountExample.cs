@@ -1,5 +1,6 @@
 ﻿using IotaSDK.NET.Common.Extensions;
 using IotaSDK.NET.Common.Interfaces;
+using IotaSDK.NET.Domain.Options;
 using IotaSDK.NET.Domain.Tokens;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -20,12 +21,13 @@ namespace IotaSDK.NET.Main.Examples.Accounts_and_Addresses.Create_Wallet_and_Acc
             {
                 //Request IIotaUtilities service from service provider
                 IIotaUtilities iotaUtilities = scope.ServiceProvider.GetRequiredService<IIotaUtilities>();
+                await iotaUtilities.StartLoggerAsync(new Common.Rust.RustLoggerConfiguration(Common.Rust.LogLevelFilter.debug));
 
-                //Let's generate a new Mnemonic using IIotaUtilities
-                var generateMnemonicResponse = await iotaUtilities.GenerateMnemonicAsync();
-                string mnemonic = generateMnemonicResponse.Payload;
+                ////Let's generate a new Mnemonic using IIotaUtilities
+                //var generateMnemonicResponse = await iotaUtilities.GenerateMnemonicAsync();
+                //string mnemonic = generateMnemonicResponse.Payload;
 
-                Console.WriteLine($"The mnemonic we are going to use to create our wallet is:\n{mnemonic}");
+                //Console.WriteLine($"The mnemonic we are going to use to create our wallet is:\n{mnemonic}");
 
                 //Request IWallet service from service provider
                 IWallet wallet = scope.ServiceProvider.GetRequiredService<IWallet>();
@@ -48,21 +50,34 @@ namespace IotaSDK.NET.Main.Examples.Accounts_and_Addresses.Create_Wallet_and_Acc
                                 .InitializeAsync();
 
 
-                
-                //Let's now store the mnemonic into stronghold
-                //Stronghold is an open-source software library that was originally built to protect IOTA Seeds
-                //https://wiki.iota.org/stronghold.rs/welcome/
-                await wallet.StoreMnemonicAsync(mnemonic);
 
-                //Let's proceed to create 2 accounts, with usernames "savings" and "spending"
-                //Note: You can name them any names you want
-                var accountResponse = await wallet.CreateAccountAsync(username: "savings");
-                IAccount savingsAccount = accountResponse.Payload;
+                ////Let's now store the mnemonic into stronghold
+                ////Stronghold is an open-source software library that was originally built to protect IOTA Seeds
+                ////https://wiki.iota.org/stronghold.rs/welcome/
+                //await wallet.StoreMnemonicAsync(mnemonic);
 
-                accountResponse = await wallet.CreateAccountAsync(username: "spending");
-                IAccount spendingAccount = accountResponse.Payload;
+                ////Let's proceed to create 2 accounts, with usernames "savings" and "spending"
+                ////Note: You can name them any names you want
+                //var accountResponse = await wallet.CreateAccountAsync(username: "savings");
+                //IAccount savingsAccount = accountResponse.Payload;
 
-                Console.WriteLine("Great, we have successfully created 2 accounts, our \"savings\" account and \"spending\" account");
+                //accountResponse = await wallet.CreateAccountAsync(username: "spending");
+                //IAccount spendingAccount = accountResponse.Payload;
+
+                //Console.WriteLine("Great, we have successfully created 2 accounts, our \"savings\" account and \"spending\" account");
+
+                var savingsAccount = (await wallet.GetAccountAsync("savings")).Payload;
+
+                var balance = await savingsAccount.SyncAcountAsync();
+                Console.WriteLine(balance);
+                //await wallet.GetClient().RequestFundsFromFaucetAsync((await savingsAccount.GetAddressesAsync()).Payload.First().Address);
+
+                //await savingsAccount.CreateAliasOutputAsync();
+
+                NativeTokenIrc30 nativeTokenIrc30 = new NativeTokenIrc30("razali", "raz", 0);
+                NativeTokenCreationOptions nativeTokenCreationOptions = new NativeTokenCreationOptions(1, 1000000, nativeTokenIrc30);
+                var x = await savingsAccount.CreateNativeTokenAsync(nativeTokenCreationOptions);
+
             }
         }
 

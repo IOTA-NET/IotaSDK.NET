@@ -1,11 +1,16 @@
-﻿namespace IotaSDK.NET.Domain.Tokens
+﻿using IotaSDK.NET.Common.Extensions;
+using Newtonsoft.Json;
+
+namespace IotaSDK.NET.Domain.Tokens
 {
     public class NativeToken
     {
-        public NativeToken(string id, ulong amount)
+        [JsonConstructor]
+
+        public NativeToken(string id, string amount)
         {
             Id = id;
-            Amount = amount;
+            Amount = amount.FromHexToULong();
         }
 
         /// <summary>

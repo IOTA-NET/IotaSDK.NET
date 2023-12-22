@@ -22,7 +22,7 @@ namespace IotaSDK.NET.Contexts.AccountContext.Commands.CreateNativeToken
             var prepareCreateNativeTokenResponse = await _mediator.Send(new PrepareCreateNativeTokenCommand(request.WalletHandle, request.AccountIndex, request.NativeTokenCreationOptions, request.TransactionOptions));
             PreparedNativeTokenTransactionData preparedNativeTokenTransactionData = prepareCreateNativeTokenResponse.Payload;
 
-            return await _mediator.Send(new SignAndSubmitTransactionCommand(request.WalletHandle, request.AccountIndex, preparedNativeTokenTransactionData.PreparedTransactionData));
+            return await _mediator.Send(new SignAndSubmitTransactionCommand(request.WalletHandle, request.AccountIndex, preparedNativeTokenTransactionData.Transaction));
         }
     }
 }

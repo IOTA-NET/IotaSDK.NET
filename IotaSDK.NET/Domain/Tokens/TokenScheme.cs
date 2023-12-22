@@ -1,7 +1,11 @@
-﻿using System;
+﻿using JsonSubTypes;
+using Newtonsoft.Json;
+using System;
 
 namespace IotaSDK.NET.Domain.Tokens
 {
+    [JsonConverter(typeof(JsonSubtypes), "Type")]
+    [JsonSubtypes.KnownSubType(typeof(SimpleTokenScheme), (int)TokenSchemeType.Simple)]
     public abstract class TokenScheme
     {
         public TokenScheme(int type)

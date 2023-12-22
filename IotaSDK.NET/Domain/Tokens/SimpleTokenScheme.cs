@@ -1,13 +1,15 @@
-﻿namespace IotaSDK.NET.Domain.Tokens
+﻿using IotaSDK.NET.Common.Extensions;
+
+namespace IotaSDK.NET.Domain.Tokens
 {
     public class SimpleTokenScheme : TokenScheme
     {
-        public SimpleTokenScheme(ulong mintedTokens, ulong meltedTokens, ulong maximumSupply)
+        public SimpleTokenScheme(string mintedTokens, string meltedTokens, string maximumSupply)
             : base((int)TokenSchemeType.Simple)
         {
-            MintedTokens = mintedTokens;
-            MeltedTokens = meltedTokens;
-            MaximumSupply = maximumSupply;
+            MintedTokens = mintedTokens.FromHexToULong();
+            MeltedTokens = meltedTokens.FromHexToULong();
+            MaximumSupply = maximumSupply.FromHexToULong();
         }
 
 
