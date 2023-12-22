@@ -67,10 +67,13 @@ We have yet to publish the package as it is still in development.
   <ul>
     <li>Burn</li>
     <li>ConsolidateOutputs</li>
+    <li>CreateAliasOutput</li>
+    <li>CreateNativeToken</li>
     <li>MintNfts</li>
     <li>PrepareBurn</li>
     <li>PrepareBurnNft</li>
     <li>PrepareConsolidateOutputs</li>
+    <li>PrepareCreateAliasOutput</li>
     <li>PrepareCreateNativeToken</li>
     <li>PrepareMintNfts</li>
     <li>PrepareSendNfts</li>
