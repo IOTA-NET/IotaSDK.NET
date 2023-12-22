@@ -2,13 +2,13 @@
 {
     public class PreparedNativeTokenTransactionData
     {
-        public PreparedNativeTokenTransactionData(string tokenId, PreparedTransactionData preparedTransactionData)
+        public PreparedNativeTokenTransactionData(string tokenId, PreparedTransactionData transaction)
         {
             TokenId = tokenId;
-            PreparedTransactionData = preparedTransactionData;
+            Transaction = transaction;
         }
 
         public string TokenId { get; }
-        public PreparedTransactionData PreparedTransactionData { get; }
+        public PreparedTransactionData Transaction { get; }
     }
 }

@@ -1,8 +1,15 @@
-﻿namespace IotaSDK.NET.Domain.Tokens
+﻿using IotaSDK.NET.Common.Extensions;
+using IotaSDK.NET.Common.Serializers;
+using Newtonsoft.Json;
+using System.Numerics;
+
+namespace IotaSDK.NET.Domain.Tokens
 {
     public class NativeToken
     {
-        public NativeToken(string id, ulong amount)
+        [JsonConstructor]
+
+        public NativeToken(string id, BigInteger amount)
         {
             Id = id;
             Amount = amount;
@@ -16,6 +23,7 @@
         /// <summary>
         /// Amount of native tokens of the given Token ID.
         /// </summary>
-        public ulong Amount { get; set; }
+        [JsonConverter(typeof(BigIntJsonConverter))]
+        public BigInteger Amount { get; set; }
     }
 }

@@ -8,7 +8,7 @@ namespace IotaSDK.NET.Domain.Transactions.EssenceTypes
 {
     public class RegularTransactionEssence : TransactionEssence
     {
-        public RegularTransactionEssence(string networkId, string inputsCommitment, List<Input> inputs, List<Output> outputs, Payload? payload)
+        public RegularTransactionEssence(string networkId, string inputsCommitment, List<Input> inputs, List<Output> outputs, TaggedDataPayload? payload)
             : base((int)TransactionEssenceType.Regular)
         {
             NetworkId = networkId;
@@ -41,7 +41,7 @@ namespace IotaSDK.NET.Domain.Transactions.EssenceTypes
         /// <summary>
         /// An optional Tagged Data payload.
         /// </summary>
-        [JsonProperty(NullValueHandling = NullValueHandling.Include)] // This property will include null values
-        public Payload? Payload { get; }
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)] // This property will include null values
+        public TaggedDataPayload? Payload { get; }
     }
 }

@@ -1,10 +1,4 @@
-﻿using IotaSDK.NET.Common.Extensions;
-using IotaSDK.NET.Common.Interfaces;
-using IotaSDK.NET.Common.Rust;
-using IotaSDK.NET.Domain.Tokens;
-using IotaSDK.NET.Domain.Transactions;
-using IotaSDK.NET.Main.Examples.Accounts_and_Addresses.Create_Wallet_and_Account;
-using Microsoft.Extensions.DependencyInjection;
+﻿using IotaSDK.NET.Main.Examples.Accounts_and_Addresses.Create_Wallet_and_Account;
 
 namespace IotaSDK.NET.Main
 {

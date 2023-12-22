@@ -3,6 +3,7 @@ using IotaSDK.NET.Common.Models;
 using IotaSDK.NET.Common.Rust;
 using IotaSDK.NET.Domain.Transactions.Prepared;
 using MediatR;
+using Newtonsoft.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -27,7 +28,11 @@ namespace IotaSDK.NET.Contexts.AccountContext.Commands.PrepareCreateNativeToken
 
             IotaSDKException.CheckForException(accountResponse!);
 
-            return IotaSDKResponse<PreparedNativeTokenTransactionData>.CreateInstance(accountResponse);
+            var x = IotaSDKResponse<PreparedNativeTokenTransactionData>.CreateInstance(accountResponse);
+
+            var check = JsonConvert.SerializeObject(x.Payload);
+
+            return x;
         }
     }
 }

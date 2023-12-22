@@ -48,7 +48,7 @@ namespace IotaSDK.NET.Main.Examples.Accounts_and_Addresses.Create_Wallet_and_Acc
                                 .InitializeAsync();
 
 
-                
+
                 //Let's now store the mnemonic into stronghold
                 //Stronghold is an open-source software library that was originally built to protect IOTA Seeds
                 //https://wiki.iota.org/stronghold.rs/welcome/
