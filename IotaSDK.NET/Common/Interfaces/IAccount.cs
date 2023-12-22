@@ -2,6 +2,7 @@
 using IotaSDK.NET.Domain.Accounts;
 using IotaSDK.NET.Domain.Addresses;
 using IotaSDK.NET.Domain.Nft;
+using IotaSDK.NET.Domain.Options;
 using IotaSDK.NET.Domain.Outputs;
 using IotaSDK.NET.Domain.Transactions;
 using IotaSDK.NET.Domain.Transactions.Prepared;
@@ -217,5 +218,13 @@ namespace IotaSDK.NET.Common.Interfaces
         /// <param name="outputFilterOptions">Options to filter the to be returned outputs.</param>
         /// <returns>The outputs with metadata.</returns>
         Task<IotaSDKResponse<List<OutputData>>> GetOutputsAsync(OutputFilterOptions? outputFilterOptions);
+
+        /// <summary>
+        /// Create a native token.
+        /// </summary>
+        /// <param name="nativeTokenCreationOptions">The options for creating a native token.</param>
+        /// <param name="transactionOptions">Additional transaction options or custom inputs.</param>
+        /// <returns>The created transaction and the token ID.</returns>
+        Task<IotaSDKResponse<PreparedNativeTokenTransactionData>> PrepareCreateNativeTokenAsync(NativeTokenCreationOptions nativeTokenCreationOptions, TransactionOptions? transactionOptions);
     }
 }
