@@ -39,4 +39,5 @@ namespace IotaSDK.NET.Common.Extensions
         }
 
     }
+
 }
