@@ -1,8 +1,12 @@
-﻿namespace IotaSDK.NET.Domain.Accounts
+﻿using IotaSDK.NET.Common.Serializers;
+using Newtonsoft.Json;
+using System.Numerics;
+
+namespace IotaSDK.NET.Domain.Accounts
 {
     public class NativeTokenBalance
     {
-        public NativeTokenBalance(string tokenId, ulong total, ulong available, string? metadata)
+        public NativeTokenBalance(string tokenId, BigInteger total, BigInteger available, string? metadata)
         {
             TokenId = tokenId;
             Total = total;
@@ -18,12 +22,14 @@
         /// <summary>
         /// The total native token balance
         /// </summary>
-        public ulong Total { get; }
+        [JsonConverter(typeof(BigIntJsonConverter))]
+        public BigInteger Total { get; }
 
         /// <summary>
         /// The available amount of the total native token balance
         /// </summary>
-        public ulong Available { get; }
+        [JsonConverter(typeof(BigIntJsonConverter))]
+        public BigInteger Available { get; }
 
         /// <summary>
         /// Some metadata of the native token
