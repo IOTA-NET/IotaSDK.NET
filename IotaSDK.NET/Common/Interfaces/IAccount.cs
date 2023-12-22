@@ -235,5 +235,13 @@ namespace IotaSDK.NET.Common.Interfaces
         /// <param name="transactionOptions">Additional transaction options or custom inputs.</param>
         /// <returns>The created transaction</returns>
         Task<IotaSDKResponse<Transaction>> CreateNativeTokenAsync(NativeTokenCreationOptions nativeTokenCreationOptions, TransactionOptions? transactionOptions = null);
+
+        /// <summary>
+        /// Creates an alias output
+        /// </summary>
+        /// <param name="aliasOutputCreationOptions">The alias output options.</param>
+        /// <param name="transactionOptions">Additional transaction options or custom inputs.</param>
+        /// <returns>The prepared transaction.</returns>
+        Task<IotaSDKResponse<PreparedTransactionData>> PrepareCreateAliasOutputAsync(AliasOutputCreationOptions? aliasOutputCreationOptions=null,  TransactionOptions? transactionOptions=null);
     }
 }
