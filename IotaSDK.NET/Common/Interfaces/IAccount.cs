@@ -259,5 +259,13 @@ namespace IotaSDK.NET.Common.Interfaces
         /// <param name="tokenId">The native token ID to get the foundry for.</param>
         /// <returns>The `FoundryOutput` that minted the token.</returns>
         Task<IotaSDKResponse<FoundryOutput>> GetFoundryOutputAsync(string tokenId);
+
+        /// <summary>
+        /// Get the transaction with inputs of an incoming transaction stored in the account
+        /// List might not be complete, if the node pruned the data already
+        /// </summary>
+        /// <param name="transactionId">The ID of the transaction to get.</param>
+        /// <returns>The transaction.</returns>
+        Task<IotaSDKResponse<Transaction>> GetIncomingTransactionAsync(string transactionId);
     }
 }
