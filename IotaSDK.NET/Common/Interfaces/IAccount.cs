@@ -251,5 +251,13 @@ namespace IotaSDK.NET.Common.Interfaces
         /// <param name="transactionOptions">Additional transaction options or custom inputs.</param>
         /// <returns>The transaction.</returns>
         Task<IotaSDKResponse<Transaction>> CreateAliasOutputAsync(AliasOutputCreationOptions? aliasOutputCreationOptions = null, TransactionOptions? transactionOptions = null);
+
+        /// <summary>
+        /// Get a `FoundryOutput` by native token ID. It will try to get the foundry from
+        /// the account, if it isn't in the account it will try to get it from the node.
+        /// </summary>
+        /// <param name="tokenId">The native token ID to get the foundry for.</param>
+        /// <returns>The `FoundryOutput` that minted the token.</returns>
+        Task<IotaSDKResponse<FoundryOutput>> GetFoundryOutputAsync(string tokenId);
     }
 }
