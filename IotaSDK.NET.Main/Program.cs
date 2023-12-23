@@ -1,4 +1,5 @@
-﻿using IotaSDK.NET.Main.Examples.Accounts_and_Addresses.Create_Wallet_and_Account;
+﻿using IotaSDK.NET.Main.Examples.Accounts_and_Addresses.Check_Balance;
+using IotaSDK.NET.Main.Examples.Accounts_and_Addresses.Create_Wallet_and_Account;
 
 namespace IotaSDK.NET.Main
 {
@@ -7,8 +8,8 @@ namespace IotaSDK.NET.Main
         static async Task Main(string[] args)
         {
 
-            await CreateWalletAndAccountExample.Run();
-
+            //await CreateWalletAndAccountExample.Run();
+            await CheckBalanceExample.Run();
         }
 
     }
