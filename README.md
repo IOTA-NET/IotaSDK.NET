@@ -99,6 +99,7 @@ We have yet to publish the package as it is still in development.
    <li>GetBalance</li>
    <li>GetClaimableOutputs</li>
    <li>GetFoundryOutput</li>
+   <li>GetIncomingTransaction</li>
    <li>GetIncomingTransactions</li>
    <li>GetOutput</li>
    <li>GetOutputs</li>
