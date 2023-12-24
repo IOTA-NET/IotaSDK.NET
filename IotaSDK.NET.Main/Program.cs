@@ -9,7 +9,8 @@ namespace IotaSDK.NET.Main
         {
 
             //await CreateWalletAndAccountExample.Run();
-            await CheckBalanceExample.Run();
+            //await CheckBalanceExample.Run();
+            await GenerateAddressExample.Run();
         }
 
     }

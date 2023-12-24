@@ -53,8 +53,8 @@ namespace IotaSDK.NET.Main.Examples.Accounts_and_Addresses.Create_Wallet_and_Acc
                                                          .First()
                                                          .Address;
 
-                Console.WriteLine($"[* Savings Account] Main Address: {mainAddress}");
-                Console.WriteLine($"[* Savings Account] New  Address: {newAddress}");
+                Console.WriteLine($"[* Savings Account]\n Main Address: {mainAddress}\n");
+                Console.WriteLine($"[* Savings Account]\n New  Address: {newAddress}\n");
             }
         }
 
