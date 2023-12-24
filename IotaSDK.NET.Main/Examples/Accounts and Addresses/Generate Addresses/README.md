@@ -1,16 +1,16 @@
-# Check Balance Example
+# Generate Address Example
 
 ## Code Example
 
 The following example will:
 
 1. Create a wallet
-2. Retrieve your accounts
-3. Synchronize with the Tangle
-4. View your balances
+2. Retrieve your `savings` account
+3. Retrieve your `saving's` account's main address
+4. Generate a new address in the account
 
 ```cs
-public static class CheckBalanceExample
+public static class GenerateAddressExample
 {
     public static async Task Run()
     {
@@ -43,25 +43,25 @@ public static class CheckBalanceExample
                                 .Then()
                             .InitializeAsync();
 
-            //Let's proceed to retrieve our previously created accounts.
-            //We named them as "savings" and "spending"
-            var accountResponse = await wallet.GetAccountAsync("savings");
-            IAccount savingsAccount = accountResponse.Payload;
+            //Let's proceed to retrieve our "savings" account and try to generate a new address
+            //Note: By default the account already has one main address when the account is created
+            IAccount savingsAccount = (await wallet.GetAccountAsync("savings")).Payload;
 
-            accountResponse = await wallet.GetAccountAsync("spending");
-            IAccount spendingAccount = accountResponse.Payload;
+            //Let's get the main address!
+            string mainAddress = (await savingsAccount.GetAddressesAsync())
+                                                        .Payload
+                                                        .First()
+                                                        .Address;
 
-            //Lets synchronize them with the Tangle and see thier latest balances!
+            string newAddress = (await savingsAccount.GenerateEd25519AddressesAsync(numberOfAddresses: 1))
+                                                        .Payload
+                                                        .First()
+                                                        .Address;
 
-            var savingsBalance = await savingsAccount.SyncAcountAsync();
-            var spendingBalance = await spendingAccount.SyncAcountAsync();
-
-            Console.WriteLine("[* Savings Account Balance ]");
-            Console.WriteLine(savingsBalance);
-            Console.WriteLine("\n\n");
-            Console.WriteLine("[* Spending Account Balance ]");
-            Console.WriteLine(spendingBalance);
+            Console.WriteLine($"[* Savings Account] Main Address: {mainAddress}");
+            Console.WriteLine($"[* Savings Account] New  Address: {newAddress}");
         }
     }
+
 }
 ```

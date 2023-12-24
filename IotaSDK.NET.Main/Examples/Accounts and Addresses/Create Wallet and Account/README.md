@@ -4,7 +4,7 @@
 
 The following example will:
 
-1. Create an wallet
+1. Create a wallet
 2. Create a Stronghold mnemonic
 2. Use the wallet to store the Stronghold mnemonic into a stronghold file
 3. Create 2 accounts with usernames `savings` and `spendings`
