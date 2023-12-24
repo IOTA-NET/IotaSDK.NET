@@ -275,5 +275,13 @@ namespace IotaSDK.NET.Common.Interfaces
         /// <param name="bech32Address">The address to send the funds to.</param>
         /// <returns>The faucet response.</returns>
         Task<IotaSDKResponse<FaucetResponse>> RequestFundsFromFaucetAsync(string? bech32Address);
+
+        /// <summary>
+        /// Generate new unused Ed25519 addresses.
+        /// </summary>
+        /// <param name="numberOfAddresses">The amount of addresses to generate.</param>
+        /// <param name="addressGenerationOptions">Options for address generation.</param>
+        /// <returns>The addresses.</returns>
+        Task<IotaSDKResponse<List<AccountAddress>>> GenerateEd25519AddressesAsync(int numberOfAddresses, AddressGenerationOptions? addressGenerationOptions = null);
     }
 }
