@@ -70,6 +70,7 @@ We have yet to publish the package as it is still in development.
     <li>ConsolidateOutputs</li>
     <li>CreateAliasOutput</li>
     <li>CreateNativeToken</li>
+	<li>GenerateEd25519Addresses</li>
     <li>MintNfts</li>
     <li>PrepareBurn</li>
     <li>PrepareBurnNft</li>
@@ -79,6 +80,7 @@ We have yet to publish the package as it is still in development.
     <li>PrepareMintNfts</li>
     <li>PrepareSendNfts</li>
     <li>PrepareTransactions</li>
+	<li>RequestFundsFromFaucet</li>
     <li>RetryTransactionUntilIncluded</li>
     <li>SendBaseCoin</li>
     <li>SendNfts</li>
