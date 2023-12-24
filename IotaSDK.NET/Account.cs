@@ -90,7 +90,7 @@ namespace IotaSDK.NET
 
         public async Task<IotaSDKResponse<List<AccountAddress>>> GenerateEd25519AddressesAsync(int numberOfAddresses, AddressGenerationOptions? addressGenerationOptions = null)
         {
-            return await _mediator.Send(new GenerateEd25519AddressesCommand(_walletHandle, in, numberOfAddresses, addressGenerationOptions));
+            return await _mediator.Send(new GenerateEd25519AddressesCommand(_walletHandle, Index, numberOfAddresses, addressGenerationOptions));
         }
 
         public async Task<IotaSDKResponse<List<AccountAddress>>> GetAddressesAsync()
