@@ -35,6 +35,7 @@ using IotaSDK.NET.Contexts.AccountContext.Queries.GetTransactions;
 using IotaSDK.NET.Contexts.AccountContext.Queries.GetUnspentOutputs;
 using IotaSDK.NET.Domain.Accounts;
 using IotaSDK.NET.Domain.Addresses;
+using IotaSDK.NET.Domain.Faucet;
 using IotaSDK.NET.Domain.Nft;
 using IotaSDK.NET.Domain.Options;
 using IotaSDK.NET.Domain.Outputs;
@@ -50,11 +51,13 @@ namespace IotaSDK.NET
     public class Account : IAccount
     {
         private readonly IntPtr _walletHandle;
+        private readonly IWallet _wallet;
         private readonly IMediator _mediator;
 
-        public Account(IntPtr walletHandle, IMediator mediator, int index, string username)
+        public Account(IntPtr walletHandle, IWallet wallet, IMediator mediator, int index, string username)
         {
             _walletHandle = walletHandle;
+            _wallet = wallet;
             _mediator = mediator;
             Index = index;
             Username = username;
@@ -189,6 +192,12 @@ namespace IotaSDK.NET
         public async Task<IotaSDKResponse<PreparedTransactionData>> PrepareTransactionAsync(List<Output> outputs, TransactionOptions? transactionOptions = null)
         {
             return await _mediator.Send(new PrepareTransactionCommand(_walletHandle, Index, outputs, transactionOptions));
+        }
+
+        public async Task<IotaSDKResponse<FaucetResponse>> RequestFundsFromFaucetAsync(string? bech32Address)
+        {
+            IClient client = _wallet.GetClient();
+            return await _mediator.Send(new Contexts.AccountContext.Commands.RequestFundsFromFaucet.RequestFundsFromFaucetCommand(_walletHandle, Index, client, this, bech32Address));
         }
 
         public async Task<IotaSDKResponse<string>> RetryTransactionUntilIncludedAsync(string transactionId, int? interval, int? maxAttempts)

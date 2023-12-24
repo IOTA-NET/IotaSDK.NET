@@ -1,6 +1,7 @@
 ﻿using IotaSDK.NET.Common.Models;
 using IotaSDK.NET.Domain.Accounts;
 using IotaSDK.NET.Domain.Addresses;
+using IotaSDK.NET.Domain.Faucet;
 using IotaSDK.NET.Domain.Nft;
 using IotaSDK.NET.Domain.Options;
 using IotaSDK.NET.Domain.Outputs;
@@ -267,5 +268,12 @@ namespace IotaSDK.NET.Common.Interfaces
         /// <param name="transactionId">The ID of the transaction to get.</param>
         /// <returns>The transaction.</returns>
         Task<IotaSDKResponse<Transaction>> GetIncomingTransactionAsync(string transactionId);
+
+        /// <summary>
+        /// Request funds from a faucet.
+        /// </summary>
+        /// <param name="bech32Address">The address to send the funds to.</param>
+        /// <returns>The faucet response.</returns>
+        Task<IotaSDKResponse<FaucetResponse>> RequestFundsFromFaucetAsync(string? bech32Address);
     }
 }

@@ -119,7 +119,7 @@ namespace IotaSDK.NET
         public async Task<IotaSDKResponse<IAccount>> CreateAccountAsync(string? username = null)
         {
             IotaSDKResponse<AccountMeta> iotaSDKResponse = await _mediator.Send(new CreateAccountCommand(_walletHandle, username));
-            IAccount account = new Account(_walletHandle, _mediator, iotaSDKResponse.Payload.Index, iotaSDKResponse.Payload.Alias);
+            IAccount account = new Account(_walletHandle, this, _mediator, iotaSDKResponse.Payload.Index, iotaSDKResponse.Payload.Alias);
             return new IotaSDKResponse<IAccount>(iotaSDKResponse.Type) { Payload = account };
         }
 
@@ -141,14 +141,14 @@ namespace IotaSDK.NET
         public async Task<IotaSDKResponse<IAccount>> GetAccountAsync(int accountIndex)
         {
             IotaSDKResponse<AccountMeta> iotaSDKResponse = await _mediator.Send(new GetAccountWithIndexQuery(_walletHandle, accountIndex));
-            IAccount account = new Account(_walletHandle, _mediator, iotaSDKResponse.Payload.Index, iotaSDKResponse.Payload.Alias);
+            IAccount account = new Account(_walletHandle, this, _mediator, iotaSDKResponse.Payload.Index, iotaSDKResponse.Payload.Alias);
             return new IotaSDKResponse<IAccount>(iotaSDKResponse.Type) { Payload = account };
         }
 
         public async Task<IotaSDKResponse<IAccount>> GetAccountAsync(string accountAlias)
         {
             IotaSDKResponse<AccountMeta> iotaSDKResponse = await _mediator.Send(new GetAccountWithAliasQuery(_walletHandle, accountAlias));
-            IAccount account = new Account(_walletHandle, _mediator, iotaSDKResponse.Payload.Index, iotaSDKResponse.Payload.Alias);
+            IAccount account = new Account(_walletHandle, this, _mediator, iotaSDKResponse.Payload.Index, iotaSDKResponse.Payload.Alias);
             return new IotaSDKResponse<IAccount>(iotaSDKResponse.Type) { Payload = account };
         }
 
@@ -161,7 +161,7 @@ namespace IotaSDK.NET
 
             foreach (var accountMeta in accountMetas)
             {
-                IAccount account = new Account(_walletHandle, _mediator, accountMeta.Index, accountMeta.Alias);
+                IAccount account = new Account(_walletHandle, this, _mediator, accountMeta.Index, accountMeta.Alias);
                 accountList.Add(account);
             }
 
