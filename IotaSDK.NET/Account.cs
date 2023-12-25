@@ -205,7 +205,7 @@ namespace IotaSDK.NET
             return await _mediator.Send(new PrepareTransactionCommand(_walletHandle, Index, outputs, transactionOptions));
         }
 
-        public async Task<IotaSDKResponse<FaucetResponse>> RequestFundsFromFaucetAsync(string? bech32Address)
+        public async Task<IotaSDKResponse<FaucetResponse>> RequestFundsFromFaucetAsync(string? bech32Address=null)
         {
             IClient client = _wallet.GetClient();
             return await _mediator.Send(new Contexts.AccountContext.Commands.RequestFundsFromFaucet.RequestFundsFromFaucetCommand(_walletHandle, Index, client, this, bech32Address));
