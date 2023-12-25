@@ -26,6 +26,8 @@ We have yet to publish the package as it is still in development.
   - [Create Wallet & Accounts](https://github.com/IOTA-NET/IotaSDK.NET/blob/main/IotaSDK.NET.Main/Examples/Accounts%20and%20Addresses/Create%20Wallet%20and%20Account/README.md)
   - [Retrieve Account & Check Balance](https://github.com/IOTA-NET/IotaSDK.NET/blob/main/IotaSDK.NET.Main/Examples/Accounts%20and%20Addresses/Check%20Balance/README.md)
   - [Generate Address](https://github.com/IOTA-NET/IotaSDK.NET/blob/main/IotaSDK.NET.Main/Examples/Accounts%20and%20Addresses/Generate%20Addresses/README.md)
+- Outputs and Transactions
+  - [Request Funds from Faucet](https://github.com/IOTA-NET/IotaSDK.NET/blob/main/IotaSDK.NET.Main/Examples/Outputs%20and%20Transactions/Request%20Tokens%20From%20Faucet/README.md)
 
 # Supported bindings
 
