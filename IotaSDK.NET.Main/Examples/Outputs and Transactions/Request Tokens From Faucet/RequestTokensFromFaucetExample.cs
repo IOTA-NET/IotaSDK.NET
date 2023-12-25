@@ -43,20 +43,21 @@ namespace IotaSDK.NET.Main.Examples.Accounts_and_Addresses.Check_Balance
                 IAccount savingsAccount = (await wallet.GetAccountAsync("savings")).Payload;
 
                 //Since we are in a testnet, let's ask for some free Shimmer testnet tokens (RMS)!
+                //[Note*] 1 RMS = 1,000,000 GLOW
                 await savingsAccount.RequestFundsFromFaucetAsync();
 
                 // Let's learn to turn on periodic syncing!
-                // This allows your account to be automatically synced in the background
+                // This allows your account to be automatically synced in the background to the TANGLE
                 // without you manually calling the sync function, great for UI!
                 await wallet.StartBackgroundSyncAsync(intervalInMilliseconds: 5000); // sync every 5 seconds
 
-                //Let's check our balance every second untill we are given some RMS
+                //Let's check our balance every second until we are given some GLOW
                 int shimmerBalance= 0;
                 while(shimmerBalance == 0)
                 {
                     string balance = (await savingsAccount.GetBalanceAsync()).Payload.BaseCoin.Total;
                     shimmerBalance = int.Parse(balance);
-                    Console.WriteLine($"[*] Balance : {shimmerBalance} RMS");
+                    Console.WriteLine($"[*] Balance : {shimmerBalance} GLOW");
                     await Task.Delay(1000);
                 }
             }
