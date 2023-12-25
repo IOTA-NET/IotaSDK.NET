@@ -88,6 +88,12 @@ namespace IotaSDK.NET.Common.Interfaces
         Task<IotaSDKResponse<Transaction>> MintNftsAsync(List<NftOptions> nftOptionsList, TransactionOptions? transactionOptions = null);
 
         /// <summary>
+        /// Users a fluent builder to mint Nfts
+        /// </summary>
+        /// <returns></returns>
+        MintNftBuilder MintNftsUsingBuilder();
+
+        /// <summary>
         /// Burn an nft output.
         /// </summary>
         /// <param name="nftId">The NftId.</param>

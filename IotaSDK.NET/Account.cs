@@ -159,6 +159,11 @@ namespace IotaSDK.NET
             return await _mediator.Send(new MintNftsCommand(_walletHandle, Index, nftOptionsList, transactionOptions, _mediator));
         }
 
+        public MintNftBuilder MintNftsUsingBuilder()
+        {
+            return new MintNftBuilder(this);
+        }
+
         public async Task<IotaSDKResponse<PreparedTransactionData>> PrepareBurnAsync(BurnIds burnIds, TransactionOptions? transactionOptions = null)
         {
             return await _mediator.Send(new PrepareBurnCommand(_walletHandle, Index, burnIds, transactionOptions));
