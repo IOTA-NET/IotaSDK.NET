@@ -73,6 +73,7 @@ We have yet to publish the package as it is still in development.
     <li>CreateNativeToken</li>
 	<li>GenerateEd25519Addresses</li>
     <li>MintNfts</li>
+	<li>MintNftsUsingBuilder</li>
     <li>PrepareBurn</li>
     <li>PrepareBurnNft</li>
     <li>PrepareConsolidateOutputs</li>
