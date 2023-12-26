@@ -70,6 +70,7 @@ We have yet to publish the package as it is still in development.
   </summary>
   <ul>
     <li>Burn</li>
+    <li>BurnNft</li>
     <li>ConsolidateOutputs</li>
     <li>CreateAliasOutput</li>
     <li>CreateNativeToken</li>
