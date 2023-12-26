@@ -102,6 +102,13 @@ namespace IotaSDK.NET.Common.Interfaces
         Task<IotaSDKResponse<PreparedTransactionData>> PrepareBurnNftAsync(string nftId, TransactionOptions? transactionOptions = null);
 
         /// <summary>
+        /// Burn an nft output.
+        /// </summary>
+        /// <param name="nftId">The NftId.</param>
+        /// <param name="transactionOptions">Additional transaction options or custom inputs.</param>
+        /// <returns>The  transaction.</returns>
+        Task<IotaSDKResponse<Transaction>> BurnNftAsync(string nftId, TransactionOptions? transactionOptions= null);
+        /// <summary>
         /// A generic function that can be used to prepare to burn native tokens, nfts, foundries and aliases.
         /// </summary>
         /// <param name="burnIds">The outputs or native tokens to burn</param>
