@@ -24,6 +24,7 @@ using IotaSDK.NET.Contexts.AccountContext.Commands.SetDefaultSyncOptions;
 using IotaSDK.NET.Contexts.AccountContext.Commands.SignAndSubmitTransaction;
 using IotaSDK.NET.Contexts.AccountContext.Commands.Sync;
 using IotaSDK.NET.Contexts.AccountContext.Queries.GetAddresses;
+using IotaSDK.NET.Contexts.AccountContext.Queries.GetAddressesWithUnspentOutputs;
 using IotaSDK.NET.Contexts.AccountContext.Queries.GetBalance;
 using IotaSDK.NET.Contexts.AccountContext.Queries.GetClaimableOutputs;
 using IotaSDK.NET.Contexts.AccountContext.Queries.GetFoundryOutput;
@@ -103,6 +104,11 @@ namespace IotaSDK.NET
         {
             return await _mediator.Send(new GetAddressesQuery(_walletHandle, Index));
 
+        }
+
+        public async Task<IotaSDKResponse<List<AddressWithUnspentOutputs>>> GetAddressesWithUnspentOutputsAsync()
+        {
+            return await _mediator.Send(new GetAddressesWithUnspentOutputsQuery(_walletHandle, Index));
         }
 
         public async Task<IotaSDKResponse<AccountBalance>> GetBalanceAsync()

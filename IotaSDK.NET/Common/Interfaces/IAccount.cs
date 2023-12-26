@@ -296,5 +296,12 @@ namespace IotaSDK.NET.Common.Interfaces
         /// <param name="addressGenerationOptions">Options for address generation.</param>
         /// <returns>The addresses.</returns>
         Task<IotaSDKResponse<List<AccountAddress>>> GenerateEd25519AddressesAsync(int numberOfAddresses, AddressGenerationOptions? addressGenerationOptions = null);
+
+
+        /// <summary>
+        /// List the addresses of the account with unspent outputs.
+        /// </summary>
+        /// <returns>The addresses.</returns>
+        Task<IotaSDKResponse<List<AddressWithUnspentOutputs>>> GetAddressesWithUnspentOutputsAsync();
     }
 }
