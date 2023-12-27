@@ -1,4 +1,7 @@
-﻿using IotaSDK.NET.Domain.Transactions.Payloads;
+﻿using IotaSDK.NET.Common.Interfaces;
+using IotaSDK.NET.Common.Models;
+using IotaSDK.NET.Domain.Transactions.Payloads;
+using System.Threading.Tasks;
 
 namespace IotaSDK.NET.Domain.Transactions
 {
@@ -51,5 +54,11 @@ namespace IotaSDK.NET.Domain.Transactions
         ///  Note that can be set when sending a transaction and is only stored locally
         /// </summary>
         public string? Note { get; set; }
+
+        public async Task<IotaSDKResponse<string>> RetryTransactionUntilIncludedAsync(IAccount account, int? interval = null, int? maxAttempts = null)
+        {
+            return await account.RetryTransactionUntilIncludedAsync(TransactionId, interval, maxAttempts);
+        }
+
     }
 }
