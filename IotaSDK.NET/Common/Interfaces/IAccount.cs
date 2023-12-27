@@ -313,5 +313,14 @@ namespace IotaSDK.NET.Common.Interfaces
         /// <param name="transactionOptions">Additional transaction options or custom inputs.</param>
         /// <returns>The prepared minting transaction.</returns>
         Task<IotaSDKResponse<PreparedTransactionData>> PrepareMintNativeTokensAsync(string tokenId, BigInteger numberOfTokensToMint, TransactionOptions? transactionOptions = null);
+
+        /// <summary>
+        /// Mint additional native tokens.
+        /// </summary>
+        /// <param name="tokenId">The native token id.</param>
+        /// <param name="numberOfTokensToMint">To be minted amount.</param>
+        /// <param name="transactionOptions">Additional transaction options or custom inputs.</param>
+        /// <returns>The minting transaction.</returns>
+        Task<IotaSDKResponse<Transaction>> MintNativeTokensAsync(string tokenId, BigInteger numberOfTokensToMint, TransactionOptions? transactionOptions = null);
     }
 }

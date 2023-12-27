@@ -6,6 +6,7 @@ using IotaSDK.NET.Contexts.AccountContext.Commands.ConsolidateOutputs;
 using IotaSDK.NET.Contexts.AccountContext.Commands.CreateAliasOutput;
 using IotaSDK.NET.Contexts.AccountContext.Commands.CreateNativeToken;
 using IotaSDK.NET.Contexts.AccountContext.Commands.GenerateEd25519Addresses;
+using IotaSDK.NET.Contexts.AccountContext.Commands.MintNativeTokens;
 using IotaSDK.NET.Contexts.AccountContext.Commands.MintNft;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareBurn;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareBurnNft;
@@ -166,6 +167,11 @@ namespace IotaSDK.NET
         public async Task<IotaSDKResponse<List<OutputData>>> GetUnspentOutputsAsync(OutputFilterOptions? filterOptions = null)
         {
             return await _mediator.Send(new GetUnspentOutputsQuery(_walletHandle, Index, filterOptions));
+        }
+
+        public async Task<IotaSDKResponse<Transaction>> MintNativeTokensAsync(string tokenId, BigInteger numberOfTokensToMint, TransactionOptions? transactionOptions = null)
+        {
+            return await _mediator.Send(new MintNativeTokensCommand(_walletHandle, Index, tokenId, numberOfTokensToMint, transactionOptions));
         }
 
         public async Task<IotaSDKResponse<Transaction>> MintNftsAsync(List<NftOptions> nftOptionsList, TransactionOptions? transactionOptions = null)
