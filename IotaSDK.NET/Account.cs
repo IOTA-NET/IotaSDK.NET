@@ -236,7 +236,7 @@ namespace IotaSDK.NET
             return await _mediator.Send(new Contexts.AccountContext.Commands.RequestFundsFromFaucet.RequestFundsFromFaucetCommand(_walletHandle, Index, client, this, bech32Address));
         }
 
-        public async Task<IotaSDKResponse<string>> RetryTransactionUntilIncludedAsync(string transactionId, int? interval, int? maxAttempts)
+        public async Task<IotaSDKResponse<string>> RetryTransactionUntilIncludedAsync(string transactionId, int? interval = null, int? maxAttempts = null)
         {
             return await _mediator.Send(new RetryTransactionUntilIncludedCommand(_walletHandle, Index, transactionId, interval, maxAttempts));
         }

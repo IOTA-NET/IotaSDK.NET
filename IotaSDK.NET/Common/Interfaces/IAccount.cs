@@ -189,7 +189,7 @@ namespace IotaSDK.NET.Common.Interfaces
         /// <param name="transactionId">The id of the transaction to retry.</param>
         /// <param name="interval">The interval in seconds, defaults to 1 second</param>
         /// <param name="maxAttempts">Maximum number of retry attempts, defaults to 40</param>
-        Task<IotaSDKResponse<string>> RetryTransactionUntilIncludedAsync(string transactionId, int? interval, int? maxAttempts);
+        Task<IotaSDKResponse<string>> RetryTransactionUntilIncludedAsync(string transactionId, int? interval=null, int? maxAttempts = null);
 
         /// <summary>
         /// List all incoming transactions of the account.

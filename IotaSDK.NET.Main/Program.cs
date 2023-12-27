@@ -7,11 +7,11 @@ namespace IotaSDK.NET.Main
     {
         static async Task Main(string[] args)
         {
-
             //await CreateWalletAndAccountExample.Run();
             //await CheckBalanceExample.Run();
             //await GenerateAddressExample.Run();
-            await RequestTokensFromFaucetExample.Run();
+            //await RequestTokensFromFaucetExample.Run();
+            await SendBasecoinTransactionExample.Run();
         }
 
     }
