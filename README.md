@@ -28,6 +28,7 @@ We have yet to publish the package as it is still in development.
   - [Generate Address](https://github.com/IOTA-NET/IotaSDK.NET/blob/main/IotaSDK.NET.Main/Examples/Accounts%20and%20Addresses/Generate%20Addresses/README.md)
 - Outputs and Transactions
   - [Request Funds from Faucet](https://github.com/IOTA-NET/IotaSDK.NET/blob/main/IotaSDK.NET.Main/Examples/Outputs%20and%20Transactions/Request%20Tokens%20From%20Faucet/README.md)
+  - [Send simple Basecoin Transaction](https://github.com/IOTA-NET/IotaSDK.NET/blob/main/IotaSDK.NET.Main/Examples/Outputs%20and%20Transactions/Send%20a%20Basecoin%20Transaction/README.md)
 
 # Supported bindings
 
