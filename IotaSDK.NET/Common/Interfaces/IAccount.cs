@@ -8,6 +8,7 @@ using IotaSDK.NET.Domain.Outputs;
 using IotaSDK.NET.Domain.Transactions;
 using IotaSDK.NET.Domain.Transactions.Prepared;
 using System.Collections.Generic;
+using System.Numerics;
 using System.Threading.Tasks;
 
 namespace IotaSDK.NET.Common.Interfaces
@@ -303,5 +304,14 @@ namespace IotaSDK.NET.Common.Interfaces
         /// </summary>
         /// <returns>The addresses.</returns>
         Task<IotaSDKResponse<List<AddressWithUnspentOutputs>>> GetAddressesWithUnspentOutputsAsync();
+
+        /// <summary>
+        /// Mint additional native tokens.
+        /// </summary>
+        /// <param name="tokenId">The native token id.</param>
+        /// <param name="numberOfTokensToMint">To be minted amount.</param>
+        /// <param name="transactionOptions">Additional transaction options or custom inputs.</param>
+        /// <returns>The prepared minting transaction.</returns>
+        Task<IotaSDKResponse<PreparedTransactionData>> PrepareMintNativeTokensAsync(string tokenId, BigInteger numberOfTokensToMint, TransactionOptions? transactionOptions = null);
     }
 }
