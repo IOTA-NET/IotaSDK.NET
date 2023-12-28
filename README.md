@@ -96,6 +96,7 @@ We have yet to publish the package as it is still in development.
     <li>SetAlias</li>
     <li>SetDefaultSyncOptions</li>
     <li>SignAndSubmitTransaction</li>
+	<li>SignTransactionEssenceAsync</li>
     <li>Sync</li>
   </ul>
 </details>
