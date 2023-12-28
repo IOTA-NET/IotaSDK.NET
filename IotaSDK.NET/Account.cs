@@ -15,6 +15,7 @@ using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareClaimOutputs;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareConsolidateOutputs;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareCreateAliasOutput;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareCreateNativeToken;
+using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareMeltNativeTokens;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareMintNativeTokens;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareMintNfts;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareSendNfts;
@@ -222,6 +223,11 @@ namespace IotaSDK.NET
         public async Task<IotaSDKResponse<PreparedNativeTokenTransactionData>> PrepareCreateNativeTokenAsync(NativeTokenCreationOptions nativeTokenCreationOptions, TransactionOptions? transactionOptions = null)
         {
             return await _mediator.Send(new PrepareCreateNativeTokenCommand(_walletHandle, Index, nativeTokenCreationOptions, transactionOptions));
+        }
+
+        public async Task<IotaSDKResponse<PreparedTransactionData>> PrepareMeltNativeTokensAsync(string tokenId, BigInteger numberOfTokensToMelt, TransactionOptions? transactionOptions = null)
+        {
+            return await _mediator.Send(new PrepareMeltNativeTokensCommand(_walletHandle, Index, tokenId, numberOfTokensToMelt, transactionOptions));
         }
 
         public async Task<IotaSDKResponse<PreparedTransactionData>> PrepareMintNativeTokensAsync(string tokenId, BigInteger numberOfTokensToMint, TransactionOptions? transactionOptions = null)

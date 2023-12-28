@@ -6,7 +6,7 @@ using MediatR;
 using System;
 using System.Collections.Generic;
 
-namespace IotaSDK.NET.Contexts.AccountContext.Commands.MintNft
+namespace IotaSDK.NET.Contexts.AccountContext.Commands.MintNfts
 {
     internal class MintNftsCommand : AccountRequest<IotaSDKResponse<Transaction>>
     {

@@ -5,11 +5,11 @@ using IotaSDK.NET.Domain.Transactions;
 using IotaSDK.NET.Domain.Transactions.Prepared;
 using System;
 
-namespace IotaSDK.NET.Contexts.AccountContext.Commands.PrepareCreateNativeToken
+namespace IotaSDK.NET.Contexts.AccountContext.Commands.PrepareCreateNativeTokens
 {
-    internal class PrepareCreateNativeTokenCommand : AccountRequest<IotaSDKResponse<PreparedNativeTokenTransactionData>>
+    internal class PrepareCreateNativeTokensCommand : AccountRequest<IotaSDKResponse<PreparedNativeTokenTransactionData>>
     {
-        public PrepareCreateNativeTokenCommand(IntPtr walletHandle, int accountIndex, NativeTokenCreationOptions nativeTokenCreationOptions, TransactionOptions? transactionOptions)
+        public PrepareCreateNativeTokensCommand(IntPtr walletHandle, int accountIndex, NativeTokenCreationOptions nativeTokenCreationOptions, TransactionOptions? transactionOptions)
             : base(walletHandle, accountIndex)
         {
             NativeTokenCreationOptions = nativeTokenCreationOptions;

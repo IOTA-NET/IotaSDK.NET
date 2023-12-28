@@ -7,7 +7,7 @@ using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace IotaSDK.NET.Contexts.AccountContext.Commands.MintNft
+namespace IotaSDK.NET.Contexts.AccountContext.Commands.MintNfts
 {
     internal class MintNftsCommandHandler : IRequestHandler<MintNftsCommand, IotaSDKResponse<Transaction>>
     {

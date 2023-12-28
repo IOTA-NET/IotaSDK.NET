@@ -87,7 +87,8 @@ We have yet to publish the package as it is still in development.
 	<li>PrepareClaimOutputs</li>
     <li>PrepareConsolidateOutputs</li>
     <li>PrepareCreateAliasOutput</li>
-    <li>PrepareCreateNativeToken</li>
+    <li>PrepareCreateNativeTokens</li>
+	<li>PrepareMeltNativeTokens</li?
 	<li>PrepareMintNativeTokens</li>
     <li>PrepareMintNfts</li>
     <li>PrepareSendNfts</li>
