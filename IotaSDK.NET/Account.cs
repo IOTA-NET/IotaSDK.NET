@@ -16,6 +16,7 @@ using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareClaimOutputs;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareConsolidateOutputs;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareCreateAliasOutput;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareCreateNativeTokens;
+using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareDestroyAlias;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareMeltNativeTokens;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareMintNativeTokens;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareMintNfts;
@@ -29,6 +30,7 @@ using IotaSDK.NET.Contexts.AccountContext.Commands.SetAlias;
 using IotaSDK.NET.Contexts.AccountContext.Commands.SetDefaultSyncOptions;
 using IotaSDK.NET.Contexts.AccountContext.Commands.SignAndSubmitTransaction;
 using IotaSDK.NET.Contexts.AccountContext.Commands.SignTransactionEssence;
+using IotaSDK.NET.Contexts.AccountContext.Commands.SubmitSignedTransaction;
 using IotaSDK.NET.Contexts.AccountContext.Commands.Sync;
 using IotaSDK.NET.Contexts.AccountContext.Queries.GetAddresses;
 using IotaSDK.NET.Contexts.AccountContext.Queries.GetAddressesWithUnspentOutputs;
@@ -43,7 +45,6 @@ using IotaSDK.NET.Contexts.AccountContext.Queries.GetPendingTransactions;
 using IotaSDK.NET.Contexts.AccountContext.Queries.GetTransaction;
 using IotaSDK.NET.Contexts.AccountContext.Queries.GetTransactions;
 using IotaSDK.NET.Contexts.AccountContext.Queries.GetUnspentOutputs;
-using IotaSDK.NET.Contexts.UtilsContext.Commands.SubmitSignedTransaction;
 using IotaSDK.NET.Domain.Accounts;
 using IotaSDK.NET.Domain.Addresses;
 using IotaSDK.NET.Domain.Faucet;
@@ -230,6 +231,11 @@ namespace IotaSDK.NET
         public async Task<IotaSDKResponse<PreparedNativeTokenTransactionData>> PrepareCreateNativeTokenAsync(NativeTokenCreationOptions nativeTokenCreationOptions, TransactionOptions? transactionOptions = null)
         {
             return await _mediator.Send(new PrepareCreateNativeTokensCommand(_walletHandle, Index, nativeTokenCreationOptions, transactionOptions));
+        }
+
+        public async Task<IotaSDKResponse<PreparedTransactionData>> PrepareDestroyAliasAsync(string aliasId, TransactionOptions? transactionOptions = null)
+        {
+            return await _mediator.Send(new PrepareDestroyAliasCommand(_walletHandle, Index, aliasId, transactionOptions));
         }
 
         public async Task<IotaSDKResponse<PreparedTransactionData>> PrepareMeltNativeTokensAsync(string tokenId, BigInteger numberOfTokensToMelt, TransactionOptions? transactionOptions = null)
