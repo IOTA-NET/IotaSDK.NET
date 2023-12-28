@@ -11,7 +11,8 @@ namespace IotaSDK.NET.Main
             //await CheckBalanceExample.Run();
             //await GenerateAddressExample.Run();
             //await RequestTokensFromFaucetExample.Run();
-            await SendBasecoinTransactionExample.Run();
+            //await SendBasecoinTransactionExample.Run();
+            await MintNftExample.Run();
         }
 
     }
