@@ -81,6 +81,7 @@ We have yet to publish the package as it is still in development.
 	<li>MintNftsUsingBuilder</li>
     <li>PrepareBurn</li>
     <li>PrepareBurnNft</li>
+	<li>PrepareClaimOutputs</li>
     <li>PrepareConsolidateOutputs</li>
     <li>PrepareCreateAliasOutput</li>
     <li>PrepareCreateNativeToken</li>
@@ -96,7 +97,7 @@ We have yet to publish the package as it is still in development.
     <li>SetAlias</li>
     <li>SetDefaultSyncOptions</li>
     <li>SignAndSubmitTransaction</li>
-	<li>SignTransactionEssenceAsync</li>
+	<li>SignTransactionEssence</li>
     <li>Sync</li>
   </ul>
 </details>
