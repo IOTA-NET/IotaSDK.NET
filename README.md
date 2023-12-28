@@ -103,6 +103,7 @@ We have yet to publish the package as it is still in development.
     <li>SetDefaultSyncOptions</li>
     <li>SignAndSubmitTransaction</li>
 	<li>SignTransactionEssence</li>
+	<li>SubmitSignedTransactionEssence</li>
     <li>Sync</li>
   </ul>
 </details>

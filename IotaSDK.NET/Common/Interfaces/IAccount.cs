@@ -366,5 +366,12 @@ namespace IotaSDK.NET.Common.Interfaces
         /// <param name="transactionOptions">Additional transaction options or custom inputs.</param>
         /// <returns>The transaction.</returns>
         Task<IotaSDKResponse<Transaction>> MeltNativeTokensAsync(string tokenId, BigInteger numberOfTokensToMelt, TransactionOptions? transactionOptions = null);
+
+        /// <summary>
+        /// Validate the transaction, submit it to a node and store it in the account.
+        /// </summary>
+        /// <param name="signedTransactionEssence">A signed transaction to submit and store.</param>
+        /// <returns>The sent transaction.</returns>
+        Task<IotaSDKResponse<Transaction>> SubmitSignedTransactionAsync(SignedTransactionEssence signedTransactionEssence);
     }
 }
