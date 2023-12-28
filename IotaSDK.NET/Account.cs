@@ -24,6 +24,7 @@ using IotaSDK.NET.Contexts.AccountContext.Commands.SendTransaction;
 using IotaSDK.NET.Contexts.AccountContext.Commands.SetAlias;
 using IotaSDK.NET.Contexts.AccountContext.Commands.SetDefaultSyncOptions;
 using IotaSDK.NET.Contexts.AccountContext.Commands.SignAndSubmitTransaction;
+using IotaSDK.NET.Contexts.AccountContext.Commands.SignTransactionEssence;
 using IotaSDK.NET.Contexts.AccountContext.Commands.Sync;
 using IotaSDK.NET.Contexts.AccountContext.Queries.GetAddresses;
 using IotaSDK.NET.Contexts.AccountContext.Queries.GetAddressesWithUnspentOutputs;
@@ -44,6 +45,7 @@ using IotaSDK.NET.Domain.Faucet;
 using IotaSDK.NET.Domain.Nft;
 using IotaSDK.NET.Domain.Options;
 using IotaSDK.NET.Domain.Outputs;
+using IotaSDK.NET.Domain.Signatures;
 using IotaSDK.NET.Domain.Transactions;
 using IotaSDK.NET.Domain.Transactions.Prepared;
 using MediatR;
@@ -270,6 +272,11 @@ namespace IotaSDK.NET
         public async Task<IotaSDKResponse<Transaction>> SignAndSubmitTransactionAsync(PreparedTransactionData transactionData)
         {
             return await _mediator.Send(new SignAndSubmitTransactionCommand(_walletHandle, Index, transactionData));
+        }
+
+        public async Task<IotaSDKResponse<SignedTransactionEssence>> SignTransactionEssenceAsync(PreparedTransactionData preparedTransactionData)
+        {
+            return await _mediator.Send(new SignTransactionEssenceCommand(_walletHandle, Index, preparedTransactionData));
         }
 
         public async Task<IotaSDKResponse<AccountBalance>> SyncAcountAsync(SyncOptions? syncOptions = null)

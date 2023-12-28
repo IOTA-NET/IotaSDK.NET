@@ -5,6 +5,7 @@ using IotaSDK.NET.Domain.Faucet;
 using IotaSDK.NET.Domain.Nft;
 using IotaSDK.NET.Domain.Options;
 using IotaSDK.NET.Domain.Outputs;
+using IotaSDK.NET.Domain.Signatures;
 using IotaSDK.NET.Domain.Transactions;
 using IotaSDK.NET.Domain.Transactions.Prepared;
 using System.Collections.Generic;
@@ -322,5 +323,12 @@ namespace IotaSDK.NET.Common.Interfaces
         /// <param name="transactionOptions">Additional transaction options or custom inputs.</param>
         /// <returns>The minting transaction.</returns>
         Task<IotaSDKResponse<Transaction>> MintNativeTokensAsync(string tokenId, BigInteger numberOfTokensToMint, TransactionOptions? transactionOptions = null);
+
+        /// <summary>
+        /// Sign a prepared transaction, useful for offline signing.
+        /// </summary>
+        /// <param name="preparedTransactionData">The prepared transaction data to sign.</param>
+        /// <returns>The signed transaction essence.</returns>
+        Task<IotaSDKResponse<SignedTransactionEssence>> SignTransactionEssenceAsync(PreparedTransactionData preparedTransactionData);
     }
 }
