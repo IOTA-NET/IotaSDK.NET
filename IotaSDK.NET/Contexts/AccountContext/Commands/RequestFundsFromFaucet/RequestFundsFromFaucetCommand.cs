@@ -7,7 +7,7 @@ namespace IotaSDK.NET.Contexts.AccountContext.Commands.RequestFundsFromFaucet
 {
     internal class RequestFundsFromFaucetCommand : AccountRequest<IotaSDKResponse<FaucetResponse>>
     {
-        public RequestFundsFromFaucetCommand(IntPtr walletHandle, int accountIndex, IClient client, IAccount account, string? bech32Address=null) 
+        public RequestFundsFromFaucetCommand(IntPtr walletHandle, int accountIndex, IClient client, IAccount account, string? bech32Address = null)
             : base(walletHandle, accountIndex)
         {
             Client = client;

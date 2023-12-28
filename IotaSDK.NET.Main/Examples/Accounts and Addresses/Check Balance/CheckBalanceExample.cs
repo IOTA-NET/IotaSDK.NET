@@ -1,7 +1,7 @@
-﻿using IotaSDK.NET.Common.Interfaces;
+﻿using IotaSDK.NET.Common.Extensions;
+using IotaSDK.NET.Common.Interfaces;
 using IotaSDK.NET.Domain.Tokens;
 using Microsoft.Extensions.DependencyInjection;
-using IotaSDK.NET.Common.Extensions;
 
 namespace IotaSDK.NET.Main.Examples.Accounts_and_Addresses.Check_Balance
 {

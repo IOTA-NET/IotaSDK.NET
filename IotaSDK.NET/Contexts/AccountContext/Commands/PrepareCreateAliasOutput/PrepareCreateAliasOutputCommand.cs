@@ -9,7 +9,7 @@ namespace IotaSDK.NET.Contexts.AccountContext.Commands.PrepareCreateAliasOutput
 {
     internal class PrepareCreateAliasOutputCommand : AccountRequest<IotaSDKResponse<PreparedTransactionData>>
     {
-        public PrepareCreateAliasOutputCommand(IntPtr walletHandle, int accountIndex, AliasOutputCreationOptions? aliasOutputCreationOptions=null, TransactionOptions? transactionOptions=null) : base(walletHandle, accountIndex)
+        public PrepareCreateAliasOutputCommand(IntPtr walletHandle, int accountIndex, AliasOutputCreationOptions? aliasOutputCreationOptions = null, TransactionOptions? transactionOptions = null) : base(walletHandle, accountIndex)
         {
             AliasOutputCreationOptions = aliasOutputCreationOptions;
             TransactionOptions = transactionOptions;

@@ -23,7 +23,10 @@ namespace IotaSDK.NET.Contexts.UtilsContext.Commands.StartLogger
             if (!response.HasValue)
             {
                 string? error = await _rustBridgeCommon.GetLastErrorAsync();
-                throw new IotaSDKException(error);
+                if (error != null)
+                    throw new IotaSDKException(error);
+                else
+                    throw new IotaSDKException("Unknown error occured...");
             }
 
             return new IotaSDKResponse<bool>("InitLoggerAsync") { Payload = true };

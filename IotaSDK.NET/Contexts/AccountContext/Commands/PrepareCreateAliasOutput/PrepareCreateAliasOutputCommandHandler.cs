@@ -21,7 +21,7 @@ namespace IotaSDK.NET.Contexts.AccountContext.Commands.PrepareCreateAliasOutput
 
         public async Task<IotaSDKResponse<PreparedTransactionData>> Handle(PrepareCreateAliasOutputCommand request, CancellationToken cancellationToken)
         {
-            var accountModel = _iotaSDKAccountModelCreator.Create("prepareCreateAliasOutput", request.AccountIndex,new PrepareCreateAliasOutputCommandModelData(request.AliasOutputCreationOptions, request.TransactionOptions));
+            var accountModel = _iotaSDKAccountModelCreator.Create("prepareCreateAliasOutput", request.AccountIndex, new PrepareCreateAliasOutputCommandModelData(request.AliasOutputCreationOptions, request.TransactionOptions));
             var json = accountModel.AsJson();
 
             string? accountResponse = await _rustBridgeWallet.CallWalletMethodAsync(request.WalletHandle, json);

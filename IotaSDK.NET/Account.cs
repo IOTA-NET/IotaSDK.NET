@@ -7,14 +7,15 @@ using IotaSDK.NET.Contexts.AccountContext.Commands.ConsolidateOutputs;
 using IotaSDK.NET.Contexts.AccountContext.Commands.CreateAliasOutput;
 using IotaSDK.NET.Contexts.AccountContext.Commands.CreateNativeToken;
 using IotaSDK.NET.Contexts.AccountContext.Commands.GenerateEd25519Addresses;
+using IotaSDK.NET.Contexts.AccountContext.Commands.MeltNativeTokens;
 using IotaSDK.NET.Contexts.AccountContext.Commands.MintNativeTokens;
-using IotaSDK.NET.Contexts.AccountContext.Commands.MintNft;
+using IotaSDK.NET.Contexts.AccountContext.Commands.MintNfts;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareBurn;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareBurnNft;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareClaimOutputs;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareConsolidateOutputs;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareCreateAliasOutput;
-using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareCreateNativeToken;
+using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareCreateNativeTokens;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareMeltNativeTokens;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareMintNativeTokens;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareMintNfts;
@@ -179,6 +180,11 @@ namespace IotaSDK.NET
             return await _mediator.Send(new GetUnspentOutputsQuery(_walletHandle, Index, filterOptions));
         }
 
+        public async Task<IotaSDKResponse<Transaction>> MeltNativeTokensAsync(string tokenId, BigInteger numberOfTokensToMelt, TransactionOptions? transactionOptions = null)
+        {
+            return await _mediator.Send(new MeltNativeTokensCommand(_walletHandle, Index, tokenId, numberOfTokensToMelt, transactionOptions));
+        }
+
         public async Task<IotaSDKResponse<Transaction>> MintNativeTokensAsync(string tokenId, BigInteger numberOfTokensToMint, TransactionOptions? transactionOptions = null)
         {
             return await _mediator.Send(new MintNativeTokensCommand(_walletHandle, Index, tokenId, numberOfTokensToMint, transactionOptions));
@@ -222,7 +228,7 @@ namespace IotaSDK.NET
 
         public async Task<IotaSDKResponse<PreparedNativeTokenTransactionData>> PrepareCreateNativeTokenAsync(NativeTokenCreationOptions nativeTokenCreationOptions, TransactionOptions? transactionOptions = null)
         {
-            return await _mediator.Send(new PrepareCreateNativeTokenCommand(_walletHandle, Index, nativeTokenCreationOptions, transactionOptions));
+            return await _mediator.Send(new PrepareCreateNativeTokensCommand(_walletHandle, Index, nativeTokenCreationOptions, transactionOptions));
         }
 
         public async Task<IotaSDKResponse<PreparedTransactionData>> PrepareMeltNativeTokensAsync(string tokenId, BigInteger numberOfTokensToMelt, TransactionOptions? transactionOptions = null)
@@ -250,7 +256,7 @@ namespace IotaSDK.NET
             return await _mediator.Send(new PrepareTransactionCommand(_walletHandle, Index, outputs, transactionOptions));
         }
 
-        public async Task<IotaSDKResponse<FaucetResponse>> RequestFundsFromFaucetAsync(string? bech32Address=null)
+        public async Task<IotaSDKResponse<FaucetResponse>> RequestFundsFromFaucetAsync(string? bech32Address = null)
         {
             IClient client = _wallet.GetClient();
             return await _mediator.Send(new Contexts.AccountContext.Commands.RequestFundsFromFaucet.RequestFundsFromFaucetCommand(_walletHandle, Index, client, this, bech32Address));

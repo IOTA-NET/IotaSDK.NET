@@ -1,17 +1,14 @@
 ﻿using IotaSDK.NET.Common.Interfaces;
 using IotaSDK.NET.Common.Models;
-using IotaSDK.NET.Common.Serializers;
 using IotaSDK.NET.Domain.Transactions;
-using IotaSDK.NET.Domain.Transactions.Prepared;
-using Newtonsoft.Json;
 using System;
 using System.Numerics;
 
-namespace IotaSDK.NET.Contexts.AccountContext.Commands.PrepareMeltNativeTokens
+namespace IotaSDK.NET.Contexts.AccountContext.Commands.MeltNativeTokens
 {
-    internal class PrepareMeltNativeTokensCommand : AccountRequest<IotaSDKResponse<PreparedTransactionData>>
+    internal class MeltNativeTokensCommand : AccountRequest<IotaSDKResponse<Transaction>>
     {
-        public PrepareMeltNativeTokensCommand(IntPtr walletHandle, int accountIndex, string tokenId, BigInteger numberOfTokensToMelt, TransactionOptions? transactionOptions = null)
+        public MeltNativeTokensCommand(IntPtr walletHandle, int accountIndex, string tokenId, BigInteger numberOfTokensToMelt, TransactionOptions? transactionOptions = null)
             : base(walletHandle, accountIndex)
         {
             TokenId = tokenId;
@@ -20,8 +17,6 @@ namespace IotaSDK.NET.Contexts.AccountContext.Commands.PrepareMeltNativeTokens
         }
 
         public string TokenId { get; }
-
-        [JsonConverter(typeof(BigIntJsonConverter))]
         public BigInteger NumberOfTokensToMelt { get; }
         public TransactionOptions? TransactionOptions { get; }
     }

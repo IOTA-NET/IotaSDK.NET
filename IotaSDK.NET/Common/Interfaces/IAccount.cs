@@ -109,7 +109,7 @@ namespace IotaSDK.NET.Common.Interfaces
         /// <param name="nftId">The NftId.</param>
         /// <param name="transactionOptions">Additional transaction options or custom inputs.</param>
         /// <returns>The  transaction.</returns>
-        Task<IotaSDKResponse<Transaction>> BurnNftAsync(string nftId, TransactionOptions? transactionOptions= null);
+        Task<IotaSDKResponse<Transaction>> BurnNftAsync(string nftId, TransactionOptions? transactionOptions = null);
         /// <summary>
         /// A generic function that can be used to prepare to burn native tokens, nfts, foundries and aliases.
         /// </summary>
@@ -190,7 +190,7 @@ namespace IotaSDK.NET.Common.Interfaces
         /// <param name="transactionId">The id of the transaction to retry.</param>
         /// <param name="interval">The interval in seconds, defaults to 1 second</param>
         /// <param name="maxAttempts">Maximum number of retry attempts, defaults to 40</param>
-        Task<IotaSDKResponse<string>> RetryTransactionUntilIncludedAsync(string transactionId, int? interval=null, int? maxAttempts = null);
+        Task<IotaSDKResponse<string>> RetryTransactionUntilIncludedAsync(string transactionId, int? interval = null, int? maxAttempts = null);
 
         /// <summary>
         /// List all incoming transactions of the account.
@@ -211,7 +211,7 @@ namespace IotaSDK.NET.Common.Interfaces
         /// <param name="outputs">Outputs to use in the transaction.</param>
         /// <param name="transactionOptions">Additional transaction options or custom inputs.</param>
         /// <returns>The prepared transaction data.</returns>
-        Task<IotaSDKResponse<PreparedTransactionData>> PrepareTransactionAsync(List<Output> outputs, TransactionOptions? transactionOptions=null);
+        Task<IotaSDKResponse<PreparedTransactionData>> PrepareTransactionAsync(List<Output> outputs, TransactionOptions? transactionOptions = null);
 
         /// <summary>
         /// Get a transaction stored in the account.
@@ -258,7 +258,7 @@ namespace IotaSDK.NET.Common.Interfaces
         /// <param name="aliasOutputCreationOptions">The alias output options.</param>
         /// <param name="transactionOptions">Additional transaction options or custom inputs.</param>
         /// <returns>The prepared transaction.</returns>
-        Task<IotaSDKResponse<PreparedTransactionData>> PrepareCreateAliasOutputAsync(AliasOutputCreationOptions? aliasOutputCreationOptions=null,  TransactionOptions? transactionOptions=null);
+        Task<IotaSDKResponse<PreparedTransactionData>> PrepareCreateAliasOutputAsync(AliasOutputCreationOptions? aliasOutputCreationOptions = null, TransactionOptions? transactionOptions = null);
 
         /// <summary>
         /// Creates an alias output
@@ -289,7 +289,7 @@ namespace IotaSDK.NET.Common.Interfaces
         /// </summary>
         /// <param name="bech32Address">The address to send the funds to.</param>
         /// <returns>The faucet response.</returns>
-        Task<IotaSDKResponse<FaucetResponse>> RequestFundsFromFaucetAsync(string? bech32Address=null);
+        Task<IotaSDKResponse<FaucetResponse>> RequestFundsFromFaucetAsync(string? bech32Address = null);
 
         /// <summary>
         /// Generate new unused Ed25519 addresses.
@@ -356,5 +356,15 @@ namespace IotaSDK.NET.Common.Interfaces
         /// <param name="transactionOptions">Additional transaction options or custom inputs.</param>
         /// <returns>The prepared transaction.</returns>
         Task<IotaSDKResponse<PreparedTransactionData>> PrepareMeltNativeTokensAsync(string tokenId, BigInteger numberOfTokensToMelt, TransactionOptions? transactionOptions = null);
+
+        /// <summary>
+        /// Melt native tokens. This happens with the foundry output which minted them, by increasing its
+        /// `melted_tokens` field.
+        /// </summary>
+        /// <param name="tokenId">The native token id.</param>
+        /// <param name="numberOfTokensToMelt">To be melted amount.</param>
+        /// <param name="transactionOptions">Additional transaction options or custom inputs.</param>
+        /// <returns>The transaction.</returns>
+        Task<IotaSDKResponse<Transaction>> MeltNativeTokensAsync(string tokenId, BigInteger numberOfTokensToMelt, TransactionOptions? transactionOptions = null);
     }
 }

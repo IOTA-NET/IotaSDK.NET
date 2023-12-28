@@ -9,13 +9,13 @@ namespace IotaSDK.NET.Domain.Options
     /// </summary>
     public class NativeTokenCreationOptions
     {
-        public NativeTokenCreationOptions(ulong circulatingSupply, ulong maximumSupply, NativeTokenIrc30? nativeTokenIrc30, string? aliasId=null)
+        public NativeTokenCreationOptions(ulong circulatingSupply, ulong maximumSupply, NativeTokenIrc30? nativeTokenIrc30, string? aliasId = null)
         {
             AliasId = aliasId;
             CirculatingSupply = circulatingSupply.ToHex();
             MaximumSupply = maximumSupply.ToHex();
 
-            if(nativeTokenIrc30 != null)
+            if (nativeTokenIrc30 != null)
                 FoundryMetadata = JsonConvert.SerializeObject(nativeTokenIrc30).ToHexString();
         }
 

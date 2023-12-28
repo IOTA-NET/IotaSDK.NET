@@ -8,7 +8,7 @@ namespace IotaSDK.NET.Contexts.AccountContext.Commands.BurnNft
     internal class BurnNftCommand : AccountRequest<IotaSDKResponse<Transaction>>
     {
 
-        public BurnNftCommand(IntPtr walletHandle, int accountIndex, string nftId, TransactionOptions? transactionOptions=null) : base(walletHandle, accountIndex)
+        public BurnNftCommand(IntPtr walletHandle, int accountIndex, string nftId, TransactionOptions? transactionOptions = null) : base(walletHandle, accountIndex)
         {
             NftId = nftId;
             TransactionOptions = transactionOptions;

@@ -79,6 +79,7 @@ We have yet to publish the package as it is still in development.
     <li>CreateAliasOutput</li>
     <li>CreateNativeToken</li>
 	<li>GenerateEd25519Addresses</li>
+	<li>MeltNativeTokens</li>
 	<li>MintNativeTokens</li>
     <li>MintNfts</li>
 	<li>MintNftsUsingBuilder</li>

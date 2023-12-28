@@ -6,7 +6,7 @@ namespace IotaSDK.NET.Contexts.AccountContext.Commands.PrepareTransaction
 {
     internal class PrepareTransactionCommandModelData
     {
-        public PrepareTransactionCommandModelData(List<Output> outputs, TransactionOptions? options=null)
+        public PrepareTransactionCommandModelData(List<Output> outputs, TransactionOptions? options = null)
         {
             Outputs = outputs;
             Options = options;

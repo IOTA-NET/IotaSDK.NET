@@ -1,5 +1,4 @@
-﻿using IotaSDK.NET.Common.Extensions;
-using IotaSDK.NET.Common.Serializers;
+﻿using IotaSDK.NET.Common.Serializers;
 using Newtonsoft.Json;
 using System.Numerics;
 

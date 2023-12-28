@@ -1,7 +1,7 @@
-﻿using IotaSDK.NET.Common.Interfaces;
+﻿using IotaSDK.NET.Common.Extensions;
+using IotaSDK.NET.Common.Interfaces;
 using IotaSDK.NET.Domain.Tokens;
 using Microsoft.Extensions.DependencyInjection;
-using IotaSDK.NET.Common.Extensions;
 
 namespace IotaSDK.NET.Main.Examples.Accounts_and_Addresses.Check_Balance
 {
@@ -52,8 +52,8 @@ namespace IotaSDK.NET.Main.Examples.Accounts_and_Addresses.Check_Balance
                 await wallet.StartBackgroundSyncAsync(intervalInMilliseconds: 5000); // sync every 5 seconds
 
                 //Let's check our balance every second until we are given some GLOW
-                int shimmerBalance= 0;
-                while(shimmerBalance == 0)
+                int shimmerBalance = 0;
+                while (shimmerBalance == 0)
                 {
                     string balance = (await savingsAccount.GetBalanceAsync()).Payload.BaseCoin.Total;
                     shimmerBalance = int.Parse(balance);

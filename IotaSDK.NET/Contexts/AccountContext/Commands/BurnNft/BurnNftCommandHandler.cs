@@ -20,7 +20,7 @@ namespace IotaSDK.NET.Contexts.AccountContext.Commands.BurnNft
 
         public async Task<IotaSDKResponse<Transaction>> Handle(BurnNftCommand request, CancellationToken cancellationToken)
         {
-            PreparedTransactionData preparedTransactionData =  (await _mediator.Send(new PrepareBurnNftCommand(request.WalletHandle, request.AccountIndex, request.NftId, request.TransactionOptions))).Payload;
+            PreparedTransactionData preparedTransactionData = (await _mediator.Send(new PrepareBurnNftCommand(request.WalletHandle, request.AccountIndex, request.NftId, request.TransactionOptions))).Payload;
 
             return await _mediator.Send(new SignAndSubmitTransactionCommand(request.WalletHandle, request.AccountIndex, preparedTransactionData));
 

@@ -11,8 +11,8 @@ namespace IotaSDK.NET.Common.Serializers
         public override bool CanConvert(Type objectType)
         {
             List<Type> validTypes = new List<Type>() { typeof(int), typeof(uint), typeof(long), typeof(ulong), typeof(string), typeof(BigInteger) };
-            
-            if(validTypes.Contains(objectType))
+
+            if (validTypes.Contains(objectType))
                 return true;
             return false;
         }

@@ -14,7 +14,7 @@ namespace IotaSDK.NET
         private readonly IntPtr _clientHandle;
         private readonly string? _faucetUrl;
 
-        public Client(IMediator mediator, IntPtr clientHandle, string? faucetUrl=null)
+        public Client(IMediator mediator, IntPtr clientHandle, string? faucetUrl = null)
         {
             _mediator = mediator;
             _clientHandle = clientHandle;
@@ -23,7 +23,7 @@ namespace IotaSDK.NET
 
         public async Task<IotaSDKResponse<FaucetResponse>> RequestFundsFromFaucetAsync(string bech32Address)
         {
-            return _faucetUrl == null 
+            return _faucetUrl == null
                 ? await _mediator.Send(new RequestFundsFromFaucetCommand(_clientHandle, bech32Address))
                 : await _mediator.Send(new RequestFundsFromFaucetCommand(_clientHandle, bech32Address, _faucetUrl));
         }
