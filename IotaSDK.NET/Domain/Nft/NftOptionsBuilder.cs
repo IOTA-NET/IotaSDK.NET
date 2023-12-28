@@ -51,7 +51,7 @@ namespace IotaSDK.NET.Domain.Nft
         public NftOptionsBuilder AddIssuer(string address)
         {
             _options.Issuer = address;
-            return this;    
+            return this;
         }
 
         public MintNftBuilder Then()

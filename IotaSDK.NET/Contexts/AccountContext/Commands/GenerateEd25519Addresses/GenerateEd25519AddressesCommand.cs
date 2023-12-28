@@ -9,7 +9,7 @@ namespace IotaSDK.NET.Contexts.AccountContext.Commands.GenerateEd25519Addresses
 {
     internal class GenerateEd25519AddressesCommand : AccountRequest<IotaSDKResponse<List<AccountAddress>>>
     {
-        public GenerateEd25519AddressesCommand(IntPtr walletHandle, int accountIndex, int numberOfAddresses, AddressGenerationOptions? addressGenerationOptions=null) : base(walletHandle, accountIndex)
+        public GenerateEd25519AddressesCommand(IntPtr walletHandle, int accountIndex, int numberOfAddresses, AddressGenerationOptions? addressGenerationOptions = null) : base(walletHandle, accountIndex)
         {
             NumberOfAddresses = numberOfAddresses;
             AddressGenerationOptions = addressGenerationOptions;

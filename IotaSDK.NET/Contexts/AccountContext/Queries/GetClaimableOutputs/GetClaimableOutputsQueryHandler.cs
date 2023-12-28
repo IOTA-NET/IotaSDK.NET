@@ -24,7 +24,7 @@ namespace IotaSDK.NET.Contexts.AccountContext.Queries.GetClaimableOutputs
             var json = accountModel.AsJson();
 
             string? accountResponse = await _rustBridgeWallet.CallWalletMethodAsync(request.WalletHandle, json);
-            
+
             IotaSDKException.CheckForException(accountResponse!);
 
             return IotaSDKResponse<List<string>>.CreateInstance(accountResponse);

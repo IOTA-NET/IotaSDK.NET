@@ -16,8 +16,8 @@ namespace IotaSDK.NET.Contexts.AccountContext.Commands.RequestFundsFromFaucet
         public async Task<IotaSDKResponse<FaucetResponse>> Handle(RequestFundsFromFaucetCommand request, CancellationToken cancellationToken)
         {
             string? bech32Address = request.Bech32Address;
-            
-            if(bech32Address == null)
+
+            if (bech32Address == null)
             {
                 bech32Address = (await request.Account.GetAddressesAsync()).Payload.First().Address;
             }

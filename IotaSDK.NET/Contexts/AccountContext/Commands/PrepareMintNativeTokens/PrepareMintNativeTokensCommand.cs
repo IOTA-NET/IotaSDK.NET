@@ -11,7 +11,7 @@ namespace IotaSDK.NET.Contexts.AccountContext.Commands.PrepareMintNativeTokens
 {
     internal class PrepareMintNativeTokensCommand : AccountRequest<IotaSDKResponse<PreparedTransactionData>>
     {
-        public PrepareMintNativeTokensCommand(IntPtr walletHandle, int accountIndex, string tokenId, BigInteger numberOfTokensToMint, TransactionOptions? transactionOptions=null) : base(walletHandle, accountIndex)
+        public PrepareMintNativeTokensCommand(IntPtr walletHandle, int accountIndex, string tokenId, BigInteger numberOfTokensToMint, TransactionOptions? transactionOptions = null) : base(walletHandle, accountIndex)
         {
             TokenId = tokenId;
             NumberOfTokensToMint = numberOfTokensToMint;

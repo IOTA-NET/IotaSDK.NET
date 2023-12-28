@@ -1,8 +1,8 @@
-﻿using IotaSDK.NET.Common.Interfaces;
+﻿using IotaSDK.NET.Common.Extensions;
+using IotaSDK.NET.Common.Interfaces;
 using IotaSDK.NET.Domain.Tokens;
-using Microsoft.Extensions.DependencyInjection;
-using IotaSDK.NET.Common.Extensions;
 using IotaSDK.NET.Domain.Transactions;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace IotaSDK.NET.Main.Examples.Accounts_and_Addresses.Check_Balance
 {
@@ -62,7 +62,7 @@ namespace IotaSDK.NET.Main.Examples.Accounts_and_Addresses.Check_Balance
                 //Let's send 100 RMS from our savings account to our spending account
                 Console.WriteLine("[*] Transfering 100 RMS");
                 Transaction transaction = (await savingsAccount.SendBaseCoinAsync(amount: 100 * 1000000, spendingAccountAddress)).Payload;
-                
+
                 //Wait until tx is confirmed
                 await savingsAccount.RetryTransactionUntilIncludedAsync(transaction.TransactionId);
 

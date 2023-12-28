@@ -2,7 +2,7 @@
 
 namespace IotaSDK.NET.Common.Extensions
 {
-    public static class NumberExtensions  
+    public static class NumberExtensions
     {
         public static string ToHex(this ulong value)
         {

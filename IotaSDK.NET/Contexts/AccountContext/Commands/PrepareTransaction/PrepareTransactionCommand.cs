@@ -11,9 +11,9 @@ namespace IotaSDK.NET.Contexts.AccountContext.Commands.PrepareTransaction
     internal class PrepareTransactionCommand : AccountRequest<IotaSDKResponse<PreparedTransactionData>>
     {
         public PrepareTransactionCommand(
-                IntPtr walletHandle, int accountIndex, 
-                List<Output> outputs, TransactionOptions? transactionOptions=null
-            ) 
+                IntPtr walletHandle, int accountIndex,
+                List<Output> outputs, TransactionOptions? transactionOptions = null
+            )
             : base(walletHandle, accountIndex)
         {
             Outputs = outputs;

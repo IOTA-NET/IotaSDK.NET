@@ -7,7 +7,7 @@ namespace IotaSDK.NET.Domain.Options
     /// </summary>
     public class AliasOutputCreationOptions
     {
-        public AliasOutputCreationOptions(string? address=null, string? metadata=null, string? immutableMetadata=null, string? stateMetadata=null)
+        public AliasOutputCreationOptions(string? address = null, string? metadata = null, string? immutableMetadata = null, string? stateMetadata = null)
         {
             Address = address;
             Metadata = metadata?.ToHexString();

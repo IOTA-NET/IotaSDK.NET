@@ -8,7 +8,7 @@ namespace IotaSDK.NET.Contexts.AccountContext.Commands.PrepareClaimOutputs
 {
     internal class PrepareClaimOutputsCommand : AccountRequest<IotaSDKResponse<PreparedTransactionData>>
     {
-        public PrepareClaimOutputsCommand(IntPtr walletHandle, int accountIndex, List<string> outputIds) 
+        public PrepareClaimOutputsCommand(IntPtr walletHandle, int accountIndex, List<string> outputIds)
             : base(walletHandle, accountIndex)
         {
             OutputIds = outputIds;

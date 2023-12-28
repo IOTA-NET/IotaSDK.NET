@@ -1,6 +1,5 @@
-﻿using System.IO;
-using System;
-using IotaSDK.NET.Common.Extensions;
+﻿using IotaSDK.NET.Common.Extensions;
+using System.IO;
 
 namespace IotaSDK.NET.Domain.Tokens
 {

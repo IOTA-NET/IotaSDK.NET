@@ -13,7 +13,7 @@ namespace IotaSDK.NET.Contexts.ClientContext.Commands.RequestFundsFromFaucet
     {
         private readonly RustBridgeClient _rustBridgeClient;
 
-        public RequestFundsFromFaucetCommandHandler(RustBridgeClient  rustBridgeClient)
+        public RequestFundsFromFaucetCommandHandler(RustBridgeClient rustBridgeClient)
         {
             _rustBridgeClient = rustBridgeClient;
         }
