@@ -1,11 +1,11 @@
 ﻿using IotaSDK.NET.Domain.Options;
 using IotaSDK.NET.Domain.Transactions;
 
-namespace IotaSDK.NET.Contexts.AccountContext.Commands.PrepareCreateNativeToken
+namespace IotaSDK.NET.Contexts.AccountContext.Commands.PrepareCreateNativeTokens
 {
-    internal class PrepareCreateNativeTokenCommandModelData
+    internal class PrepareCreateNativeTokensCommandModelData
     {
-        public PrepareCreateNativeTokenCommandModelData(NativeTokenCreationOptions @params, TransactionOptions? options)
+        public PrepareCreateNativeTokensCommandModelData(NativeTokenCreationOptions @params, TransactionOptions? options)
         {
             Params = @params;
             Options = options;
