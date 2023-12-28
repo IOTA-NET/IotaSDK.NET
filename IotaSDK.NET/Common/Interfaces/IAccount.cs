@@ -381,5 +381,13 @@ namespace IotaSDK.NET.Common.Interfaces
         /// <param name="transactionOptions">Additional transaction options or custom inputs.</param>
         /// <returns>The prepared transaction.</returns>
         Task<IotaSDKResponse<PreparedTransactionData>> PrepareDestroyAliasAsync(string aliasId, TransactionOptions? transactionOptions = null);
+
+        /// <summary>
+        /// Destroy an alias output.
+        /// </summary>
+        /// <param name="aliasId">The AliasId.</param>
+        /// <param name="transactionOptions">Additional transaction options or custom inputs.</param>
+        /// <returns>The transaction.</returns>
+        Task<IotaSDKResponse<Transaction>> DestroyAliasAsync(string aliasId, TransactionOptions? transactionOptions = null);
     }
 }

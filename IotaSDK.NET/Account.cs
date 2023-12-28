@@ -6,6 +6,7 @@ using IotaSDK.NET.Contexts.AccountContext.Commands.ClaimOutputs;
 using IotaSDK.NET.Contexts.AccountContext.Commands.ConsolidateOutputs;
 using IotaSDK.NET.Contexts.AccountContext.Commands.CreateAliasOutput;
 using IotaSDK.NET.Contexts.AccountContext.Commands.CreateNativeToken;
+using IotaSDK.NET.Contexts.AccountContext.Commands.DestroyAlias;
 using IotaSDK.NET.Contexts.AccountContext.Commands.GenerateEd25519Addresses;
 using IotaSDK.NET.Contexts.AccountContext.Commands.MeltNativeTokens;
 using IotaSDK.NET.Contexts.AccountContext.Commands.MintNativeTokens;
@@ -109,6 +110,11 @@ namespace IotaSDK.NET
         public async Task<IotaSDKResponse<Transaction>> CreateNativeTokenAsync(NativeTokenCreationOptions nativeTokenCreationOptions, TransactionOptions? transactionOptions = null)
         {
             return await _mediator.Send(new CreateNativeTokenCommand(_walletHandle, Index, nativeTokenCreationOptions, transactionOptions));
+        }
+
+        public async Task<IotaSDKResponse<Transaction>> DestroyAliasAsync(string aliasId, TransactionOptions? transactionOptions = null)
+        {
+            return await _mediator.Send(new DestroyAliasCommand(_walletHandle, Index, aliasId, transactionOptions));
         }
 
         public async Task<IotaSDKResponse<List<AccountAddress>>> GenerateEd25519AddressesAsync(int numberOfAddresses, AddressGenerationOptions? addressGenerationOptions = null)
