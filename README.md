@@ -78,6 +78,7 @@ We have yet to publish the package as it is still in development.
     <li>ConsolidateOutputs</li>
     <li>CreateAliasOutput</li>
     <li>CreateNativeToken</li>
+	<li>DestroyAlias</li>
 	<li>GenerateEd25519Addresses</li>
 	<li>MeltNativeTokens</li>
 	<li>MintNativeTokens</li>
