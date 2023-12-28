@@ -373,5 +373,13 @@ namespace IotaSDK.NET.Common.Interfaces
         /// <param name="signedTransactionEssence">A signed transaction to submit and store.</param>
         /// <returns>The sent transaction.</returns>
         Task<IotaSDKResponse<Transaction>> SubmitSignedTransactionAsync(SignedTransactionEssence signedTransactionEssence);
+
+        /// <summary>
+        /// Destroy an alias output.
+        /// </summary>
+        /// <param name="aliasId">The AliasId.</param>
+        /// <param name="transactionOptions">Additional transaction options or custom inputs.</param>
+        /// <returns>The prepared transaction.</returns>
+        Task<IotaSDKResponse<PreparedTransactionData>> PrepareDestroyAliasAsync(string aliasId, TransactionOptions? transactionOptions = null);
     }
 }
