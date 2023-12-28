@@ -330,5 +330,13 @@ namespace IotaSDK.NET.Common.Interfaces
         /// <param name="preparedTransactionData">The prepared transaction data to sign.</param>
         /// <returns>The signed transaction essence.</returns>
         Task<IotaSDKResponse<SignedTransactionEssence>> SignTransactionEssenceAsync(PreparedTransactionData preparedTransactionData);
+
+        /// <summary>
+        /// Claim basic or nft outputs that have additional unlock conditions
+        /// to their `AddressUnlockCondition` from the account.
+        /// </summary>
+        /// <param name="outputIds">The outputs to claim.</param>
+        /// <returns>The prepared transaction</returns>
+        Task<IotaSDKResponse<PreparedTransactionData>> PrepareClaimOutputsAsync(List<string> outputIds);
     }
 }
