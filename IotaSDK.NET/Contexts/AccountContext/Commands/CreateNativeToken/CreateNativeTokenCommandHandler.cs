@@ -1,5 +1,5 @@
 ﻿using IotaSDK.NET.Common.Models;
-using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareCreateNativeToken;
+using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareCreateNativeTokens;
 using IotaSDK.NET.Contexts.AccountContext.Commands.SignAndSubmitTransaction;
 using IotaSDK.NET.Domain.Transactions;
 using IotaSDK.NET.Domain.Transactions.Prepared;
@@ -19,7 +19,7 @@ namespace IotaSDK.NET.Contexts.AccountContext.Commands.CreateNativeToken
         }
         public async Task<IotaSDKResponse<Transaction>> Handle(CreateNativeTokenCommand request, CancellationToken cancellationToken)
         {
-            var prepareCreateNativeTokenResponse = await _mediator.Send(new PrepareCreateNativeTokenCommand(request.WalletHandle, request.AccountIndex, request.NativeTokenCreationOptions, request.TransactionOptions));
+            var prepareCreateNativeTokenResponse = await _mediator.Send(new PrepareCreateNativeTokensCommand(request.WalletHandle, request.AccountIndex, request.NativeTokenCreationOptions, request.TransactionOptions));
             PreparedNativeTokenTransactionData preparedNativeTokenTransactionData = prepareCreateNativeTokenResponse.Payload;
 
             return await _mediator.Send(new SignAndSubmitTransactionCommand(request.WalletHandle, request.AccountIndex, preparedNativeTokenTransactionData.Transaction));

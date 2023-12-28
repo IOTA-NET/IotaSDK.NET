@@ -356,5 +356,15 @@ namespace IotaSDK.NET.Common.Interfaces
         /// <param name="transactionOptions">Additional transaction options or custom inputs.</param>
         /// <returns>The prepared transaction.</returns>
         Task<IotaSDKResponse<PreparedTransactionData>> PrepareMeltNativeTokensAsync(string tokenId, BigInteger numberOfTokensToMelt, TransactionOptions? transactionOptions = null);
+
+        /// <summary>
+        /// Melt native tokens. This happens with the foundry output which minted them, by increasing its
+        /// `melted_tokens` field.
+        /// </summary>
+        /// <param name="tokenId">The native token id.</param>
+        /// <param name="numberOfTokensToMelt">To be melted amount.</param>
+        /// <param name="transactionOptions">Additional transaction options or custom inputs.</param>
+        /// <returns>The transaction.</returns>
+        Task<IotaSDKResponse<Transaction>> MeltNativeTokensAsync(string tokenId, BigInteger numberOfTokensToMelt, TransactionOptions? transactionOptions = null);
     }
 }
