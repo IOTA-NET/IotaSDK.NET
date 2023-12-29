@@ -398,5 +398,13 @@ namespace IotaSDK.NET.Common.Interfaces
         /// <param name="transactionOptions">Additional transaction options or custom inputs.</param>
         /// <returns>The prepared transaction data.</returns>
         Task<IotaSDKResponse<PreparedTransactionData>> PrepareSendBaseCoinToAddressesAsync(SendBaseCoinToAddressOptions sendBaseCoinToAddressOptions, TransactionOptions? transactionOptions = null);
+
+        /// <summary>
+        /// Send base coins with amounts from input addresses.
+        /// </summary>
+        /// <param name="sendBaseCoinToAddressOptions">Address with amounts to send.</param>
+        /// <param name="transactionOptions">Additional transaction options or custom inputs.</param>
+        /// <returns>The transaction data.</returns>
+        Task<IotaSDKResponse<Transaction>> SendBaseCoinToAddressesAsync(SendBaseCoinToAddressOptions sendBaseCoinToAddressOptions, TransactionOptions? transactionOptions = null);
     }
 }
