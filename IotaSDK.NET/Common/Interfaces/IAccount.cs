@@ -389,5 +389,14 @@ namespace IotaSDK.NET.Common.Interfaces
         /// <param name="transactionOptions">Additional transaction options or custom inputs.</param>
         /// <returns>The transaction.</returns>
         Task<IotaSDKResponse<Transaction>> DestroyAliasAsync(string aliasId, TransactionOptions? transactionOptions = null);
+
+
+        /// <summary>
+        /// Prepare to send base coins, useful for offline signing.
+        /// </summary>
+        /// <param name="sendBaseCoinToAddressOptions">Address with amounts to send.</param>
+        /// <param name="transactionOptions">Additional transaction options or custom inputs.</param>
+        /// <returns>The prepared transaction data.</returns>
+        Task<IotaSDKResponse<PreparedTransactionData>> PrepareSendBaseCoinToAddressesAsync(SendBaseCoinToAddressOptions sendBaseCoinToAddressOptions, TransactionOptions? transactionOptions = null);
     }
 }
