@@ -100,6 +100,7 @@ We have yet to publish the package as it is still in development.
 	<li>RequestFundsFromFaucet</li>
     <li>RetryTransactionUntilIncluded</li>
     <li>SendBaseCoin</li>
+	<li>SendBaseCoinToAddresses</li>
     <li>SendNfts</li>
     <li>SendTransaction</li>
     <li>SetAlias</li>
