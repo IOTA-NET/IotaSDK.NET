@@ -23,6 +23,7 @@
     <Folder Include="Contexts\SecretManagerContext\Command\" />
     <Folder Include="Contexts\SecretManagerContext\Queries\" />
     <Folder Include="Contexts\UtilsContext\Queries\" />
+    <Folder Include="Domain\StorageDeposit\" />
   </ItemGroup>
 
 </Project>
