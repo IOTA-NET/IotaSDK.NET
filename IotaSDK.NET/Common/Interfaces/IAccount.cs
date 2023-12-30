@@ -4,6 +4,7 @@ using IotaSDK.NET.Domain.Addresses;
 using IotaSDK.NET.Domain.Faucet;
 using IotaSDK.NET.Domain.Nft;
 using IotaSDK.NET.Domain.Options;
+using IotaSDK.NET.Domain.Options.PrepareOutput;
 using IotaSDK.NET.Domain.Outputs;
 using IotaSDK.NET.Domain.Signatures;
 using IotaSDK.NET.Domain.Transactions;
@@ -406,5 +407,21 @@ namespace IotaSDK.NET.Common.Interfaces
         /// <param name="transactionOptions">Additional transaction options or custom inputs.</param>
         /// <returns>The transaction data.</returns>
         Task<IotaSDKResponse<Transaction>> SendBaseCoinToAddressesAsync(SendBaseCoinToAddressOptions sendBaseCoinToAddressOptions, TransactionOptions? transactionOptions = null);
+
+        /// <summary>
+        /// Prepare an output for sending, useful for offline signing.
+        /// </summary>
+        /// <param name="prepareOutputOptions">
+        /// The options for preparing an output.
+        /// If the amount is below the minimum required storage deposit, by default the remaining
+        /// amount will automatically be added with a `StorageDepositReturn` `UnlockCondition`.
+        /// When setting the `ReturnStrategy` to `gift`, the full minimum required
+        /// storage deposit will be sent to the recipient.
+        /// When the assets contain an nft id, the data from the existing `NftOutput` will be used, just with
+        /// the address unlock conditions replaced.
+        /// </param>
+        /// <param name="transactionOptions">Additional transaction options or custom inputs.</param>
+        /// <returns>The prepared output.</returns>
+        Task<IotaSDKResponse<Output>> PrepareOutputAsync(PrepareOutputOptions prepareOutputOptions, TransactionOptions? transactionOptions = null);
     }
 }
