@@ -31,6 +31,7 @@ We have yet to publish the package as it is still in development.
   - [Send simple Basecoin Transaction](https://github.com/IOTA-NET/IotaSDK.NET/blob/main/IotaSDK.NET.Main/Examples/Outputs%20and%20Transactions/Send%20a%20Basecoin%20Transaction/README.md)
 - NFTs
   - [Mint Nfts](https://github.com/IOTA-NET/IotaSDK.NET/blob/main/IotaSDK.NET.Main/Examples/Nfts/Mint%20an%20NFT/README.md)
+  - [Send Nfts](https://github.com/IOTA-NET/IotaSDK.NET/blob/main/IotaSDK.NET.Main/Examples/Nfts/Send%20an%20NFT/README.md)
 
 # Supported bindings
 
