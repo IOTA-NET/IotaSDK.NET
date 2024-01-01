@@ -431,5 +431,14 @@ namespace IotaSDK.NET.Common.Interfaces
         /// <param name="transactionOptions">Additional transaction options or custom inputs.</param>
         /// <returns>The prepared transaction.</returns>
         Task<IotaSDKResponse<PreparedTransactionData>> PrepareSendNativeTokensAsync(List<SendNativeTokensOptions> sendNativeTokensOptions, TransactionOptions? transactionOptions = null);
+
+        /// <summary>
+        /// Send native tokens.
+        /// </summary>
+        /// <param name="sendNativeTokensOptions">Addresses amounts and native tokens.</param>
+        /// <param name="transactionOptions">Additional transaction options or custom inputs.</param>
+        /// <returns>The transaction.</returns>
+        Task<IotaSDKResponse<Transaction>> SendNativeTokensAsync(List<SendNativeTokensOptions> sendNativeTokensOptions, TransactionOptions? transactionOptions = null);
+
     }
 }
