@@ -18,6 +18,7 @@ using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareConsolidateOutputs;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareCreateAliasOutput;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareCreateNativeTokens;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareDestroyAlias;
+using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareDestroyFoundry;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareMeltNativeTokens;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareMintNativeTokens;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareMintNfts;
@@ -248,6 +249,11 @@ namespace IotaSDK.NET
         public async Task<IotaSDKResponse<PreparedTransactionData>> PrepareDestroyAliasAsync(string aliasId, TransactionOptions? transactionOptions = null)
         {
             return await _mediator.Send(new PrepareDestroyAliasCommand(_walletHandle, Index, aliasId, transactionOptions));
+        }
+
+        public async Task<IotaSDKResponse<PreparedTransactionData>> PrepareDestroyFoundryAsync(string foundryId, TransactionOptions? transactionOptions = null)
+        {
+            return await _mediator.Send(new PrepareDestroyFoundryCommand(_walletHandle, Index, foundryId, transactionOptions));
         }
 
         public async Task<IotaSDKResponse<PreparedTransactionData>> PrepareMeltNativeTokensAsync(string tokenId, BigInteger numberOfTokensToMelt, TransactionOptions? transactionOptions = null)
