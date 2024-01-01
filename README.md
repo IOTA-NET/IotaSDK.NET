@@ -97,12 +97,14 @@ We have yet to publish the package as it is still in development.
     <li>PrepareMintNfts</li>
 	<li>PrepareOutput</li>
 	<li>PrepareSendBaseCoinToAddresses</li>
+	<li>PrepareSendNativeTokens</li>
     <li>PrepareSendNfts</li>
     <li>PrepareTransactions</li>
 	<li>RequestFundsFromFaucet</li>
     <li>RetryTransactionUntilIncluded</li>
     <li>SendBaseCoin</li>
 	<li>SendBaseCoinToAddresses</li>
+	<li>SendNativeTokens</li>
     <li>SendNfts</li>
     <li>SendTransaction</li>
     <li>SetAlias</li>
