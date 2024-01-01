@@ -1,12 +1,13 @@
 ﻿using IotaSDK.NET.Common.Extensions;
 using IotaSDK.NET.Common.Interfaces;
-using IotaSDK.NET.Domain.Nft;
+using IotaSDK.NET.Common.Models;
 using IotaSDK.NET.Domain.Tokens;
+using IotaSDK.NET.Domain.Transactions;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace IotaSDK.NET.Main.Examples.Nfts.Send_an_NFT
+namespace IotaSDK.NET.Main.Examples.Nfts.Burn_an_NFT
 {
-    public static class SendNftExample
+    public static class BurnNftExample
     {
         public static async Task Run()
         {
@@ -45,16 +46,22 @@ namespace IotaSDK.NET.Main.Examples.Nfts.Send_an_NFT
 
                 //Let's sync our account to the Tangle
                 var balance = await spendingAccount.SyncAcountAsync();
+                Console.WriteLine($"Before:\n{balance}\n\n");
 
-                //Let's get the nftId of the first nft that we created
-                string nftId = balance.Payload.Nfts.First();
+                //Let's get all the nftIds we have
+                List<string> nftIds = balance.Payload.Nfts;
 
-                //Sending to another wallet, eg bloom
-                string receiverAddress = "rms1qrwp0umeexltwgmqh57jmag4c93qjgww4wnhk3ln5ylc6d2axnzfsy5kdya";
-                AddressAndNftId addressAndNftId = new AddressAndNftId(receiverAddress, nftId);
+                //Let's use the generic Burn API which can burn more than one NFT
+                IotaSDKResponse<Transaction> burnResponse =  await spendingAccount.BurnAsync(new BurnIds{ Nfts = nftIds });
+                Transaction transaction = burnResponse.Payload;
 
-                //Send the NFT
-                await spendingAccount.SendNftsAsync(new List<AddressAndNftId> { addressAndNftId });
+                //Let's wait until the transaction is included
+                await spendingAccount.RetryTransactionUntilIncludedAsync(transaction.TransactionId);
+
+
+                //Let's sync our account to the Tangle and ensure all nfts deleted
+                balance = await spendingAccount.SyncAcountAsync();
+                Console.WriteLine($"After:\n{balance}\n\n");
             }
         }
     }

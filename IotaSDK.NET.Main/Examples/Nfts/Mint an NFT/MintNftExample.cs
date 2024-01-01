@@ -5,7 +5,7 @@ using IotaSDK.NET.Domain.Transactions;
 using Microsoft.Extensions.DependencyInjection;
 using MimeMapping;
 
-namespace IotaSDK.NET.Main.Examples.Accounts_and_Addresses.Check_Balance
+namespace IotaSDK.NET.Main.Examples.Nfts.Mint_an_NFT
 {
     public static class MintNftExample
     {
