@@ -74,6 +74,7 @@ We have yet to publish the package as it is still in development.
   </summary>
   <ul>
     <li>Burn</li>
+	<li>BurnNativeTokens</li>
     <li>BurnNft</li>
 	<li>ClaimOutputs</li>
     <li>ConsolidateOutputs</li>
