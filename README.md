@@ -32,6 +32,7 @@ We have yet to publish the package as it is still in development.
 - NFTs
   - [Mint Nfts](https://github.com/IOTA-NET/IotaSDK.NET/blob/main/IotaSDK.NET.Main/Examples/Nfts/Mint%20an%20NFT/README.md)
   - [Send Nfts](https://github.com/IOTA-NET/IotaSDK.NET/blob/main/IotaSDK.NET.Main/Examples/Nfts/Send%20an%20NFT/README.md)
+  - [Burn Nfts](https://github.com/IOTA-NET/IotaSDK.NET/blob/main/IotaSDK.NET.Main/Examples/Nfts/Burn%20an%20NFT/README.md)
 
 # Supported bindings
 
