@@ -87,6 +87,7 @@ We have yet to publish the package as it is still in development.
     <li>MintNfts</li>
 	<li>MintNftsUsingBuilder</li>
     <li>PrepareBurn</li>
+	<li>PrepareBurnNativeTokens</li>
     <li>PrepareBurnNft</li>
 	<li>PrepareClaimOutputs</li>
     <li>PrepareConsolidateOutputs</li>

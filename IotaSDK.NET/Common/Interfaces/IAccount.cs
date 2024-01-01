@@ -459,5 +459,16 @@ namespace IotaSDK.NET.Common.Interfaces
         /// <returns>The transaction.</returns>
         Task<IotaSDKResponse<Transaction>> DestroyFoundryAsync(string foundryId, TransactionOptions? transactionOptions = null);
 
+        /// <summary>
+        /// Burn native tokens. This doesn't require the foundry output which minted them, but will not increase
+        /// the foundries `melted_tokens` field, which makes it impossible to destroy the foundry output. Therefore it's
+        /// recommended to use melting, if the foundry output is available.
+        /// </summary>
+        /// <param name="tokenId">The native token id</param>
+        /// <param name="numberOfTokensToBurn">The to be burned amount.</param>
+        /// <param name="transactionOptions">Additional transaction options or custom inputs.</param>
+        /// <returns>The prepared transaction.</returns>
+        Task<IotaSDKResponse<PreparedTransactionData>> PrepareBurnNativeTokensAsync(string tokenId, BigInteger numberOfTokensToBurn,  TransactionOptions? transactionOptions = null);
+
     }
 }
