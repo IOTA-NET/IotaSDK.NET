@@ -13,6 +13,7 @@ using IotaSDK.NET.Contexts.AccountContext.Commands.MeltNativeTokens;
 using IotaSDK.NET.Contexts.AccountContext.Commands.MintNativeTokens;
 using IotaSDK.NET.Contexts.AccountContext.Commands.MintNfts;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareBurn;
+using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareBurnNativeTokens;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareBurnNft;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareClaimOutputs;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareConsolidateOutputs;
@@ -224,6 +225,11 @@ namespace IotaSDK.NET
         public async Task<IotaSDKResponse<PreparedTransactionData>> PrepareBurnAsync(BurnIds burnIds, TransactionOptions? transactionOptions = null)
         {
             return await _mediator.Send(new PrepareBurnCommand(_walletHandle, Index, burnIds, transactionOptions));
+        }
+
+        public async Task<IotaSDKResponse<PreparedTransactionData>> PrepareBurnNativeTokensAsync(string tokenId, BigInteger numberOfTokensToBurn, TransactionOptions? transactionOptions = null)
+        {
+            return await _mediator.Send(new PrepareBurnNativeTokensCommand(_walletHandle, Index, tokenId, numberOfTokensToBurn, transactionOptions));
         }
 
         public async Task<IotaSDKResponse<PreparedTransactionData>> PrepareBurnNftAsync(string nftId, TransactionOptions? transactionOptions = null)
