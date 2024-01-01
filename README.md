@@ -92,7 +92,8 @@ We have yet to publish the package as it is still in development.
     <li>PrepareCreateAliasOutput</li>
     <li>PrepareCreateNativeTokens</li>
 	<li>PrepareDestroyAlias</li>
-	<li>PrepareMeltNativeTokens</li?
+	<li>PrepareDestroyFoundry</li>
+	<li>PrepareMeltNativeTokens</li>
 	<li>PrepareMintNativeTokens</li>
     <li>PrepareMintNfts</li>
 	<li>PrepareOutput</li>
