@@ -1,4 +1,4 @@
-﻿using IotaSDK.NET.Main.Examples.Accounts_and_Addresses.Check_Balance;
+﻿using IotaSDK.NET.Main.Examples.Nfts.Burn_an_NFT;
 
 namespace IotaSDK.NET.Main
 {
@@ -12,7 +12,8 @@ namespace IotaSDK.NET.Main
             //await RequestTokensFromFaucetExample.Run();
             //await SendBasecoinTransactionExample.Run();
             //await MintNftExample.Run();
-            await SendNftExample.Run();
+            //await SendNftExample.Run();
+            await BurnNftExample.Run();
         }
 
     }
