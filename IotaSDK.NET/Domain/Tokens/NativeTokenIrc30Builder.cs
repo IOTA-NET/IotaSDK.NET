@@ -6,10 +6,10 @@ namespace IotaSDK.NET.Domain.Tokens
     {
         private string? _name, _symbol, _logoUrl, _description, _resourceUrl;
         private uint _decimals;
-        private readonly NativeTokenBuilder _nativeTokenBuilder;
+        private readonly CreateNativeTokenBuilder _nativeTokenBuilder;
         private readonly Action<NativeTokenIrc30> _setNativeTokenIrc30;
 
-        public NativeTokenIrc30Builder(NativeTokenBuilder nativeTokenBuilder, Action<NativeTokenIrc30> setNativeTokenIrc30)
+        public NativeTokenIrc30Builder(CreateNativeTokenBuilder nativeTokenBuilder, Action<NativeTokenIrc30> setNativeTokenIrc30)
         {
             _nativeTokenBuilder = nativeTokenBuilder;
             _setNativeTokenIrc30 = setNativeTokenIrc30;
@@ -51,7 +51,7 @@ namespace IotaSDK.NET.Domain.Tokens
             return this;
         }
 
-        public NativeTokenBuilder Then()
+        public CreateNativeTokenBuilder Then()
         {
             if(_name == null || _symbol == null)
             {

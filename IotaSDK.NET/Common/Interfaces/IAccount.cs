@@ -7,6 +7,7 @@ using IotaSDK.NET.Domain.Options;
 using IotaSDK.NET.Domain.Options.PrepareOutput;
 using IotaSDK.NET.Domain.Outputs;
 using IotaSDK.NET.Domain.Signatures;
+using IotaSDK.NET.Domain.Tokens;
 using IotaSDK.NET.Domain.Transactions;
 using IotaSDK.NET.Domain.Transactions.Prepared;
 using System.Collections.Generic;
@@ -93,8 +94,14 @@ namespace IotaSDK.NET.Common.Interfaces
         /// <summary>
         /// Users a fluent builder to mint Nfts
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A builder</returns>
         MintNftBuilder MintNftsUsingBuilder();
+
+        // <summary>
+        /// Users a fluent builder to create native tokens
+        /// </summary>
+        /// <returns>A builder</returns>
+        CreateNativeTokenBuilder CreateNativeTokensUsingBuilder();
 
         /// <summary>
         /// Burn an nft output.
