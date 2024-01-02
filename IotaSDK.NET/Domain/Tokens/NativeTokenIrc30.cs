@@ -1,7 +1,4 @@
-﻿using IotaSDK.NET.Common.Extensions;
-using System.IO;
-
-namespace IotaSDK.NET.Domain.Tokens
+﻿namespace IotaSDK.NET.Domain.Tokens
 {
     /// <summary>
     /// IRC30 Native Token Metadata Schema
@@ -66,19 +63,19 @@ namespace IotaSDK.NET.Domain.Tokens
             return this;
         }
 
-        public string? Logo { get; set; }
+        //public string? Logo { get; set; }
 
-        public NativeTokenIrc30 SetLogo(string logoFilePath)
-        {
-            if (File.Exists(logoFilePath))
-            {
-                byte[] fileBytes = File.ReadAllBytes(logoFilePath);
-                Logo = fileBytes.ToHexString();
-                return this;
-            }
+        //public NativeTokenIrc30 SetLogo(string logoFilePath)
+        //{
+        //    if (File.Exists(logoFilePath))
+        //    {
+        //        byte[] fileBytes = File.ReadAllBytes(logoFilePath);
+        //        Logo = fileBytes.ToHexString();
+        //        return this;
+        //    }
 
-            throw new FileNotFoundException($"{logoFilePath} not found.");
-        }
+        //    throw new FileNotFoundException($"{logoFilePath} not found.");
+        //}
 
 
     }
