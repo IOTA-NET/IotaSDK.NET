@@ -33,7 +33,9 @@ We have yet to publish the package as it is still in development.
   - [Mint Nfts](https://github.com/IOTA-NET/IotaSDK.NET/blob/main/IotaSDK.NET.Main/Examples/Nfts/Mint%20an%20NFT/README.md)
   - [Send Nfts](https://github.com/IOTA-NET/IotaSDK.NET/blob/main/IotaSDK.NET.Main/Examples/Nfts/Send%20an%20NFT/README.md)
   - [Burn Nfts](https://github.com/IOTA-NET/IotaSDK.NET/blob/main/IotaSDK.NET.Main/Examples/Nfts/Burn%20an%20NFT/README.md)
-
+- Native Tokens
+  - [Creating a Foundry](https://github.com/IOTA-NET/IotaSDK.NET/blob/main/IotaSDK.NET.Main/Examples/Native%20Tokens/Creating%20a%20Foundry/README.md)
+  - 
 # Supported bindings
 
 ## Wallet
