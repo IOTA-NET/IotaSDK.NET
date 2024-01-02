@@ -63,6 +63,7 @@ using IotaSDK.NET.Domain.Options;
 using IotaSDK.NET.Domain.Options.PrepareOutput;
 using IotaSDK.NET.Domain.Outputs;
 using IotaSDK.NET.Domain.Signatures;
+using IotaSDK.NET.Domain.Tokens;
 using IotaSDK.NET.Domain.Transactions;
 using IotaSDK.NET.Domain.Transactions.Prepared;
 using MediatR;
@@ -125,6 +126,11 @@ namespace IotaSDK.NET
         public async Task<IotaSDKResponse<Transaction>> CreateNativeTokenAsync(NativeTokenCreationOptions nativeTokenCreationOptions, TransactionOptions? transactionOptions = null)
         {
             return await _mediator.Send(new CreateNativeTokenCommand(_walletHandle, Index, nativeTokenCreationOptions, transactionOptions));
+        }
+
+        public CreateNativeTokenBuilder CreateNativeTokensUsingBuilder()
+        {
+            return new CreateNativeTokenBuilder(this);
         }
 
         public async Task<IotaSDKResponse<Transaction>> DestroyAliasAsync(string aliasId, TransactionOptions? transactionOptions = null)

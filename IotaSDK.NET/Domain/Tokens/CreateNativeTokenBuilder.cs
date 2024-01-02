@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace IotaSDK.NET.Domain.Tokens
 {
-    public class NativeTokenBuilder
+    public class CreateNativeTokenBuilder
     {
         private NativeTokenIrc30Builder _nativeTokenIrc30Builder;
         private NativeTokenIrc30? _nativeTokenIrc30;
@@ -16,7 +16,7 @@ namespace IotaSDK.NET.Domain.Tokens
         private string? _aliasId;
         private readonly IAccount _account;
 
-        public NativeTokenBuilder(IAccount account)
+        public CreateNativeTokenBuilder(IAccount account)
         {
             _nativeTokenIrc30Builder = new NativeTokenIrc30Builder(this, x => _nativeTokenIrc30=x);
             _circulatingSupply = null;
@@ -30,19 +30,19 @@ namespace IotaSDK.NET.Domain.Tokens
             return _nativeTokenIrc30Builder;
         }
 
-        public NativeTokenBuilder SetCirculatingSupply(ulong circulatingSupply)
+        public CreateNativeTokenBuilder SetCirculatingSupply(ulong circulatingSupply)
         {
             _circulatingSupply= circulatingSupply;
             return this;
         }
 
-        public NativeTokenBuilder SetMaximumSupply(ulong maximumSupply)
+        public CreateNativeTokenBuilder SetMaximumSupply(ulong maximumSupply)
         {
             _maximumSupply= maximumSupply;
             return this;
         }
 
-        public NativeTokenBuilder SetAliasId(string aliasId)
+        public CreateNativeTokenBuilder SetAliasId(string aliasId)
         {
             _aliasId = aliasId;
             return this;    
