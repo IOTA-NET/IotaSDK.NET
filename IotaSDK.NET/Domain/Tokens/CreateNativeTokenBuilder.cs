@@ -48,7 +48,7 @@ namespace IotaSDK.NET.Domain.Tokens
             return this;    
         }
 
-        public async Task<IotaSDKResponse<Transaction>> CreateNativeTokensAsync(TransactionOptions? transactionOptions)
+        public async Task<IotaSDKResponse<Transaction>> CreateNativeTokensAsync(TransactionOptions? transactionOptions=null)
         {
             if (_circulatingSupply == null || _maximumSupply == null)
                 throw new ArgumentNullException("Set both Circulating supply and Maximum supply");
