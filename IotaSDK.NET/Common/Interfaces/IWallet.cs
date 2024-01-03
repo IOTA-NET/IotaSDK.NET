@@ -46,5 +46,7 @@ namespace IotaSDK.NET.Common.Interfaces
         Task<IotaSDKResponse<bool>> StopBackgroundSyncAsync();
         Task<IotaSDKResponse<bool>> SetClientOptionsAsync(ClientOptions clientOptions);
 
+        Task<IotaSDKResponse<bool>> BackupStrongholdAsync(string destinationPath, string password);
+
     }
 }

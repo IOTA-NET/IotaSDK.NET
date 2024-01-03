@@ -45,6 +45,7 @@ We have yet to publish the package as it is still in development.
   </summary>
   <ul>
     <li>AuthenticateToStronghold</li>
+    <li>BackupStronghold</li>
     <li>ChangeStrongholdPassword</li>
     <li>ClearStrongholdPassword</li>
     <li>CreateAccount</li>
