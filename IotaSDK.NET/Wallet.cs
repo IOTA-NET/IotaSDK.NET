@@ -8,6 +8,7 @@ using IotaSDK.NET.Contexts.WalletContext.Commands.ChangeStrongholdPassword;
 using IotaSDK.NET.Contexts.WalletContext.Commands.ClearStrongholdPassword;
 using IotaSDK.NET.Contexts.WalletContext.Commands.CreateAccount;
 using IotaSDK.NET.Contexts.WalletContext.Commands.DeleteLatestAccount;
+using IotaSDK.NET.Contexts.WalletContext.Commands.RestoreBackup;
 using IotaSDK.NET.Contexts.WalletContext.Commands.SetClientOptions;
 using IotaSDK.NET.Contexts.WalletContext.Commands.SetStrongholdPasswordClearInterval;
 using IotaSDK.NET.Contexts.WalletContext.Commands.StartBackgroundSync;
@@ -197,6 +198,11 @@ namespace IotaSDK.NET
         public async Task<IotaSDKResponse<bool>> BackupStrongholdAsync(string destinationPath, string password)
         {
             return await _mediator.Send(new BackupStrongholdCommand(_walletHandle, destinationPath, password));
+        }
+
+        public async Task<IotaSDKResponse<bool>> RestoreBackupAsync(string sourcePath, string password, bool ignoreIfCoinTypeMismatch = true, bool ignoreIfBech32Mismatch = true)
+        {
+            return await _mediator.Send(new RestoreBackupCommand(_walletHandle, sourcePath, password, ignoreIfCoinTypeMismatch, ignoreIfBech32Mismatch));
         }
     }
 

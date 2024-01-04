@@ -42,11 +42,16 @@ namespace IotaSDK.NET.Common.Interfaces
         Task<IotaSDKResponse<bool>> ClearStrongholdPasswordAsync();
 
         Task<IotaSDKResponse<bool>> ChangeStrongholdPasswordAsync(string currentPassword, string newPassword);
+
         Task<IotaSDKResponse<bool>> StartBackgroundSyncAsync(SyncOptions? syncOptions = null, ulong? intervalInMilliseconds = null);
+
         Task<IotaSDKResponse<bool>> StopBackgroundSyncAsync();
+
         Task<IotaSDKResponse<bool>> SetClientOptionsAsync(ClientOptions clientOptions);
 
         Task<IotaSDKResponse<bool>> BackupStrongholdAsync(string destinationPath, string password);
+
+        Task<IotaSDKResponse<bool>> RestoreBackupAsync(string sourcePath, string password, bool ignoreIfCoinTypeMismatch = true, bool ignoreIfBech32Mismatch = true);
 
     }
 }

@@ -49,7 +49,8 @@ We have yet to publish the package as it is still in development.
     <li>ChangeStrongholdPassword</li>
     <li>ClearStrongholdPassword</li>
     <li>CreateAccount</li>
-    <li>DeleteLastAccount</li>
+    <li>DeleteLatestAccount</li>
+	<li>RestoreBackup</li>
     <li>SetClientOptions</li>
     <li>SetStrongholdPasswordClearInterval</li>
     <li>StartBackgroundSync</li>
