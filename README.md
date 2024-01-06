@@ -114,6 +114,7 @@ We have yet to publish the package as it is still in development.
     <li>SendBaseCoin</li>
 	<li>SendBaseCoinToAddresses</li>
 	<li>SendNativeTokens</li>
+	<li>SendNativeTokensUsingBuilder</li>
     <li>SendNfts</li>
     <li>SendTransaction</li>
     <li>SetAlias</li>

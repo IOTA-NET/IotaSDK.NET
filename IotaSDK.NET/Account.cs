@@ -346,6 +346,11 @@ namespace IotaSDK.NET
             return await _mediator.Send(new SendNativeTokensCommand(_walletHandle, Index, sendNativeTokensOptions, transactionOptions));
         }
 
+        public SendNativeTokensBuilder SendNativeTokensUsingBuilder()
+        {
+            return new SendNativeTokensBuilder(this);
+        }
+
         public async Task<IotaSDKResponse<Transaction>> SendNftsAsync(List<AddressAndNftId> addressAndNftIds, TransactionOptions? transactionOptions = null)
         {
             return await _mediator.Send(new SendNftsCommand(_walletHandle, Index, addressAndNftIds, transactionOptions));

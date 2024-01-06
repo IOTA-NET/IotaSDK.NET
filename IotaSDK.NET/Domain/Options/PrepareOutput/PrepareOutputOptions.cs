@@ -13,6 +13,7 @@
             Features = features;
             Unlocks = unlocks;
             Amount = amount.ToString();
+            StorageDeposit = storageDeposit;
         }
 
         /// <summary>
@@ -34,6 +35,11 @@
         /// Unlocks to include
         /// </summary>
         public PrepareOutputUnlockOptions? Unlocks { get; }
+
+        /// <summary>
+        /// The storage deposit strategy to use. 
+        /// </summary>
+        public PrepareOutputStorageDepositOptions? StorageDeposit { get; set; }
 
         /// <summary>
         /// An amount

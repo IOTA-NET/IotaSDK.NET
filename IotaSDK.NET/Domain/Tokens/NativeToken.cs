@@ -1,5 +1,4 @@
 ﻿using IotaSDK.NET.Common.Serializers;
-using MediatR;
 using Newtonsoft.Json;
 using System.Numerics;
 

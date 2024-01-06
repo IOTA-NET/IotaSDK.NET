@@ -2,11 +2,11 @@
 {
     internal class GetClaimableOutputsQueryModelData
     {
-        public GetClaimableOutputsQueryModelData(string outputs)
+        public GetClaimableOutputsQueryModelData(string outputsToClaim)
         {
-            Outputs = outputs;
+            OutputsToClaim = outputsToClaim;
         }
 
-        public string Outputs { get; }
+        public string OutputsToClaim { get; }
     }
 }

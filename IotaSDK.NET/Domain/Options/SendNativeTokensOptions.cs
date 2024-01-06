@@ -1,16 +1,17 @@
-﻿using System.Collections.Generic;
-using System.Numerics;
+﻿using IotaSDK.NET.Common.Extensions;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace IotaSDK.NET.Domain.Options
 {
     public class SendNativeTokensOptions
     {
-        public SendNativeTokensOptions(string address, List<(string tokenId, BigInteger amount)> nativeTokens, string? returnAddress=null, ulong? expiration=null)
+        public SendNativeTokensOptions(string address, List<KeyValuePair<string, ulong>> nativeTokens, string? returnAddress=null, ulong? expiration=null)
         {
             Address = address;
             ReturnAddress = returnAddress;
             Expiration = expiration;
-            NativeTokens = nativeTokens;
+            NativeTokens = nativeTokens.Select(keyValuePair => new List<string> { keyValuePair.Key, keyValuePair.Value.ToHex()}).ToList();
         }
 
         /// <summary>
@@ -31,8 +32,8 @@ namespace IotaSDK.NET.Domain.Options
         public ulong? Expiration { get; }
 
         /// <summary>
-        /// The Native Tokens to send
+        /// The Native Tokens to send, token id to amount mapping
         /// </summary>
-        public List<(string tokenId, BigInteger amount)> NativeTokens { get; }
+        public List<List<string>> NativeTokens { get; }
     }
 }
