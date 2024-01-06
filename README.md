@@ -35,6 +35,7 @@ We have yet to publish the package as it is still in development.
   - [Burn Nfts](https://github.com/IOTA-NET/IotaSDK.NET/blob/main/IotaSDK.NET.Main/Examples/Nfts/Burn%20an%20NFT/README.md)
 - Native Tokens
   - [Creating a Foundry](https://github.com/IOTA-NET/IotaSDK.NET/blob/main/IotaSDK.NET.Main/Examples/Native%20Tokens/Creating%20a%20Foundry/README.md)
+  - [Sending Native Tokens](https://github.com/IOTA-NET/IotaSDK.NET/blob/main/IotaSDK.NET.Main/Examples/Native%20Tokens/SendNativeTokens/README.md)
     
 # Supported bindings
 
