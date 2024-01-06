@@ -447,6 +447,8 @@ namespace IotaSDK.NET.Common.Interfaces
         /// <returns>The transaction.</returns>
         Task<IotaSDKResponse<Transaction>> SendNativeTokensAsync(List<SendNativeTokensOptions> sendNativeTokensOptions, TransactionOptions? transactionOptions = null);
 
+        SendNativeTokensBuilder SendNativeTokensUsingBuilder();
+
         /// <summary>
         /// Function to destroy a foundry output with a circulating supply of 0.
         /// Native tokens in the foundry (minted by other foundries) will be transacted to the controlling alias.
