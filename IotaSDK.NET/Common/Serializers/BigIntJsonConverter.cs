@@ -28,8 +28,11 @@ namespace IotaSDK.NET.Common.Serializers
             if (token.ToLower().StartsWith("0x"))
                 token = token.Substring(2);
 
-            return BigInteger.Parse(token, NumberStyles.HexNumber);
+            // Prepend "0" to ensure it's parsed as a positive number
+            token = "0" + token;
 
+            var parsedUnsignedBigInteger = BigInteger.Parse(token, NumberStyles.HexNumber);
+            return parsedUnsignedBigInteger;
         }
 
         public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
