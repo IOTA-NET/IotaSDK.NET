@@ -59,10 +59,10 @@ namespace IotaSDK.NET.Main.Examples.Native_Tokens.SendNativeTokens
                         FoundryIds = new List<string> { tokenId }
                     };
                     OutputData outputData = (await spendingAccount.GetUnspentOutputsAsync(outputFilterOptions)).Payload.First();
+                    FoundryOutput? foundryOutput = outputData.Output as FoundryOutput;
+                    SimpleTokenScheme? tokenScheme = foundryOutput!.TokenScheme as SimpleTokenScheme;
 
-                    SimpleTokenScheme tokenScheme = (SimpleTokenScheme)((FoundryOutput)outputData.Output)!.TokenScheme;
-
-                    Console.WriteLine($"Max Supply: {tokenScheme.MaximumSupply}\nMinted:{tokenScheme.MintedTokens}\nMelted:{tokenScheme.MeltedTokens}\n\n");
+                    Console.WriteLine($"Max Supply: {tokenScheme!.MaximumSupply}\nMinted:{tokenScheme.MintedTokens}\nMelted:{tokenScheme.MeltedTokens}\n\n");
                 };
 
                 Console.WriteLine("Before:");
