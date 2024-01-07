@@ -20,7 +20,7 @@
         /// A recipient address
         /// </summary>
         public string RecipientAddress { get; }
-        
+
         /// <summary>
         /// Assets to include
         /// </summary>

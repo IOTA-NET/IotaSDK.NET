@@ -9,7 +9,7 @@ namespace IotaSDK.NET.Contexts.AccountContext.Commands.PrepareSendBaseCoinWithSt
 {
     internal class PrepareSendBaseCoinToAddressesCommand : AccountRequest<IotaSDKResponse<PreparedTransactionData>>
     {
-        public PrepareSendBaseCoinToAddressesCommand(IntPtr walletHandle, int accountIndex, SendBaseCoinToAddressOptions sendBaseCoinToAddressOptions, TransactionOptions? transactionOptions=null) : base(walletHandle, accountIndex)
+        public PrepareSendBaseCoinToAddressesCommand(IntPtr walletHandle, int accountIndex, SendBaseCoinToAddressOptions sendBaseCoinToAddressOptions, TransactionOptions? transactionOptions = null) : base(walletHandle, accountIndex)
         {
             SendBaseCoinToAddressOptions = sendBaseCoinToAddressOptions;
             TransactionOptions = transactionOptions;

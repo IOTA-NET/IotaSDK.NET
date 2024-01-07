@@ -7,7 +7,7 @@ namespace IotaSDK.NET.Contexts.AccountContext.Commands.DestroyFoundry
 {
     internal class DestroyFoundryCommand : AccountRequest<IotaSDKResponse<Transaction>>
     {
-        public DestroyFoundryCommand(IntPtr walletHandle, int accountIndex, string foundryId, TransactionOptions? transactionOptions=null) : base(walletHandle, accountIndex)
+        public DestroyFoundryCommand(IntPtr walletHandle, int accountIndex, string foundryId, TransactionOptions? transactionOptions = null) : base(walletHandle, accountIndex)
         {
             FoundryId = foundryId;
             TransactionOptions = transactionOptions;

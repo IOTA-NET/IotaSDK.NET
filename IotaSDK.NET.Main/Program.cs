@@ -1,6 +1,4 @@
-﻿using IotaSDK.NET.Main.Examples.Native_Tokens.Creating_a_Foundry;
-using IotaSDK.NET.Main.Examples.Native_Tokens.SendNativeTokens;
-using IotaSDK.NET.Main.Examples.Nfts.Burn_an_NFT;
+﻿using IotaSDK.NET.Main.Examples.Native_Tokens.SendNativeTokens;
 
 namespace IotaSDK.NET.Main
 {

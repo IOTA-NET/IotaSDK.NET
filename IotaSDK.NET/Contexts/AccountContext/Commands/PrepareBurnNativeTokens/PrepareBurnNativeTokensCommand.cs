@@ -9,7 +9,7 @@ namespace IotaSDK.NET.Contexts.AccountContext.Commands.PrepareBurnNativeTokens
 {
     internal class PrepareBurnNativeTokensCommand : AccountRequest<IotaSDKResponse<PreparedTransactionData>>
     {
-        public PrepareBurnNativeTokensCommand(IntPtr walletHandle, int accountIndex, string tokenId, BigInteger numberOfTokensToBurn, TransactionOptions? transactionOptions=null) 
+        public PrepareBurnNativeTokensCommand(IntPtr walletHandle, int accountIndex, string tokenId, BigInteger numberOfTokensToBurn, TransactionOptions? transactionOptions = null)
             : base(walletHandle, accountIndex)
         {
             TokenId = tokenId;

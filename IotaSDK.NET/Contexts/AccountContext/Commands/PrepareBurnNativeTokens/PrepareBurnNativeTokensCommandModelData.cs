@@ -4,7 +4,7 @@ namespace IotaSDK.NET.Contexts.AccountContext.Commands.PrepareBurnNativeTokens
 {
     internal class PrepareBurnNativeTokensCommandModelData
     {
-        public PrepareBurnNativeTokensCommandModelData(PrepareBurnNativeTokensCommandInnerModelData burn, TransactionOptions? options=null)
+        public PrepareBurnNativeTokensCommandModelData(PrepareBurnNativeTokensCommandInnerModelData burn, TransactionOptions? options = null)
         {
             Burn = burn;
             Options = options;

@@ -53,7 +53,7 @@ namespace IotaSDK.NET.Domain.Tokens
 
         public CreateNativeTokenBuilder Then()
         {
-            if(_name == null || _symbol == null)
+            if (_name == null || _symbol == null)
             {
                 throw new ArgumentNullException("Ensure to set Token name, Symbol and decimal");
             }
@@ -62,7 +62,7 @@ namespace IotaSDK.NET.Domain.Tokens
             nativeTokenIrc30.LogoUrl = _logoUrl;
             nativeTokenIrc30.Description = _description;
             nativeTokenIrc30.Url = _resourceUrl;
-            
+
             _setNativeTokenIrc30(nativeTokenIrc30);
 
             return _nativeTokenBuilder;

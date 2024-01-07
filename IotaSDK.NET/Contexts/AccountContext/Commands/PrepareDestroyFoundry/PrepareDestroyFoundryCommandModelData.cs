@@ -4,7 +4,7 @@ namespace IotaSDK.NET.Contexts.AccountContext.Commands.PrepareDestroyFoundry
 {
     internal class PrepareDestroyFoundryCommandModelData
     {
-        public PrepareDestroyFoundryCommandModelData(PrepareDestroyFoundryCommandInnerModelData burn, TransactionOptions? options=null)
+        public PrepareDestroyFoundryCommandModelData(PrepareDestroyFoundryCommandInnerModelData burn, TransactionOptions? options = null)
         {
             Burn = burn;
             Options = options;
