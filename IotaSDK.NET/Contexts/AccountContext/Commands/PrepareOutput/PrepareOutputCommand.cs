@@ -9,7 +9,7 @@ namespace IotaSDK.NET.Contexts.AccountContext.Commands.PrepareOutput
 {
     internal class PrepareOutputCommand : AccountRequest<IotaSDKResponse<Output>>
     {
-        public PrepareOutputCommand(IntPtr walletHandle, int accountIndex, PrepareOutputOptions prepareOutputOptions, TransactionOptions? transactionOptions=null) 
+        public PrepareOutputCommand(IntPtr walletHandle, int accountIndex, PrepareOutputOptions prepareOutputOptions, TransactionOptions? transactionOptions = null)
             : base(walletHandle, accountIndex)
         {
             PrepareOutputOptions = prepareOutputOptions;

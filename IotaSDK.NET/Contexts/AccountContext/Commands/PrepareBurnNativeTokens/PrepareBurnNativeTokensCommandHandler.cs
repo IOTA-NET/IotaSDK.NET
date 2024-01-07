@@ -22,7 +22,7 @@ namespace IotaSDK.NET.Contexts.AccountContext.Commands.PrepareBurnNativeTokens
         }
         public async Task<IotaSDKResponse<PreparedTransactionData>> Handle(PrepareBurnNativeTokensCommand request, CancellationToken cancellationToken)
         {
-            PrepareBurnNativeTokensCommandInnerModelData innerModelData = 
+            PrepareBurnNativeTokensCommandInnerModelData innerModelData =
                 new PrepareBurnNativeTokensCommandInnerModelData(new Dictionary<string, BigInteger> { { request.TokenId, request.NumberOfTokensToBurn } });
 
             PrepareBurnNativeTokensCommandModelData modelData = new PrepareBurnNativeTokensCommandModelData(innerModelData);

@@ -60,7 +60,7 @@ namespace IotaSDK.NET.Main.Examples.Native_Tokens.SendNativeTokens
                                                                                                 .SetReceiverAddress(receiverAddress)
                                                                                                 .Then()
                                                                                             .AddNativeTokensOptions()
-                                                                                                .AddNativeTokens(tokenId, numberOfTokens:200)
+                                                                                                .AddNativeTokens(tokenId, numberOfTokens: 200)
                                                                                                 .SetReceiverAddress(receiverAddress)
                                                                                                 .UseGiftStorage() //Allow gift storage!
                                                                                                 .Then()

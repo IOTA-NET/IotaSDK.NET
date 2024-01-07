@@ -50,7 +50,7 @@ namespace IotaSDK.NET.Main.Examples.Native_Tokens.Creating_a_Foundry
                 //We need a Foundry to create Native Tokens.
                 //However, we also need an Alias Output to create a Foundry Output
                 //Let's check if we have any alias outputs, if not let's create one
-                if(balance.Payload.Aliases.Any() == false)
+                if (balance.Payload.Aliases.Any() == false)
                 {
                     Transaction createAliasTransaction = (await spendingAccount.CreateAliasOutputAsync()).Payload;
                     await spendingAccount.RetryTransactionUntilIncludedAsync(createAliasTransaction.TransactionId);

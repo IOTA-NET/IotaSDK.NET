@@ -6,12 +6,12 @@ namespace IotaSDK.NET.Domain.Options
 {
     public class SendNativeTokensOptions
     {
-        public SendNativeTokensOptions(string address, List<KeyValuePair<string, ulong>> nativeTokens, string? returnAddress=null, ulong? expiration=null)
+        public SendNativeTokensOptions(string address, List<KeyValuePair<string, ulong>> nativeTokens, string? returnAddress = null, ulong? expiration = null)
         {
             Address = address;
             ReturnAddress = returnAddress;
             Expiration = expiration;
-            NativeTokens = nativeTokens.Select(keyValuePair => new List<string> { keyValuePair.Key, keyValuePair.Value.ToHex()}).ToList();
+            NativeTokens = nativeTokens.Select(keyValuePair => new List<string> { keyValuePair.Key, keyValuePair.Value.ToHex() }).ToList();
         }
 
         /// <summary>

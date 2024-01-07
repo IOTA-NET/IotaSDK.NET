@@ -16,7 +16,7 @@ namespace IotaSDK.NET.Domain.Tokens
         private string? _returnAddress;
 
         public SendNativeTokensOptionsBuilder(
-            SendNativeTokensBuilder sendNativeTokensBuilder, 
+            SendNativeTokensBuilder sendNativeTokensBuilder,
             Action<SendNativeTokensOptions> AddOptionsAction,
             Action<bool> SetGiftStorageAction)
         {
@@ -69,7 +69,7 @@ namespace IotaSDK.NET.Domain.Tokens
             SendNativeTokensOptions sendNativeTokensOptions = new SendNativeTokensOptions(_address, _nativeTokens, _returnAddress, _expiration);
             _addOptionsAction(sendNativeTokensOptions);
 
-            _setGiftStorageAction(_shouldGiftStorage == null? false : true);
+            _setGiftStorageAction(_shouldGiftStorage == null ? false : true);
             return _sendNativeTokensBuilder;
         }
 

@@ -50,9 +50,6 @@ namespace IotaSDK.NET.Main.Examples.Native_Tokens.SendNativeTokens
                 //Let's get the tokenId of the Native Token "$CUTE" that we previously created.
                 string tokenId = spendingBalance.Payload.NativeTokens.First().TokenId;
 
-                //Let's get our foundry o
-                var output = (await spendingAccount.GetUnspentOutputsAsync(new OutputFilterOptions() { FoundryIds = new List<string> { tokenId } })).Payload.First(); ;
-
                 //Let's create a function which get more details of the foundry, particularly the number of tokens Minted/Melted and Max Supply.
                 Func<Task> printFoundryInformationAsync = async () =>
                 {

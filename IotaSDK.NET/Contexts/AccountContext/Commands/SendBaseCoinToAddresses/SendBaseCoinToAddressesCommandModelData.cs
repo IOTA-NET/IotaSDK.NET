@@ -5,7 +5,7 @@ namespace IotaSDK.NET.Contexts.AccountContext.Commands.SendBaseCoinToAddresses
 {
     internal class SendBaseCoinToAddressesCommandModelData
     {
-        public SendBaseCoinToAddressesCommandModelData(SendBaseCoinToAddressOptions @params, TransactionOptions? transactionOptions=null)
+        public SendBaseCoinToAddressesCommandModelData(SendBaseCoinToAddressOptions @params, TransactionOptions? transactionOptions = null)
         {
             Params = @params;
             TransactionOptions = transactionOptions;

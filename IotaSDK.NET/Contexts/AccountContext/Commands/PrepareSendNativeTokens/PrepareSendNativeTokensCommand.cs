@@ -10,7 +10,7 @@ namespace IotaSDK.NET.Contexts.AccountContext.Commands.PrepareSendNativeTokens
 {
     internal class PrepareSendNativeTokensCommand : AccountRequest<IotaSDKResponse<PreparedTransactionData>>
     {
-        public PrepareSendNativeTokensCommand(IntPtr walletHandle, int accountIndex, List<SendNativeTokensOptions> sendNativeTokensOptions, TransactionOptions? transactionOptions=null) 
+        public PrepareSendNativeTokensCommand(IntPtr walletHandle, int accountIndex, List<SendNativeTokensOptions> sendNativeTokensOptions, TransactionOptions? transactionOptions = null)
             : base(walletHandle, accountIndex)
         {
             SendNativeTokensOptions = sendNativeTokensOptions;

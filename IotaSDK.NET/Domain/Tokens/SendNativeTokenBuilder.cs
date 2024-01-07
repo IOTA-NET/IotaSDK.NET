@@ -5,7 +5,6 @@ using IotaSDK.NET.Domain.Options;
 using IotaSDK.NET.Domain.Options.PrepareOutput;
 using IotaSDK.NET.Domain.Outputs;
 using IotaSDK.NET.Domain.Transactions;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
@@ -45,7 +44,7 @@ namespace IotaSDK.NET.Domain.Tokens
 
                 PrepareOutputStorageDepositOptions prepareOutputStorageDepositOptions = new PrepareOutputStorageDepositOptions(_giftStorageDepositOptions[i] ? PrepareOutputReturnStrategyType.Gift : PrepareOutputReturnStrategyType.Return, useExcessIfLow: false);
 
-                
+
                 PrepareOutputOptions prepareOutputOptions = new PrepareOutputOptions(sendNativeTokensOptions.Address, amount: 0, prepareOutputAssetOptions, features: null, unlocks: null, prepareOutputStorageDepositOptions);
 
                 Output output = (await _account.PrepareOutputAsync(prepareOutputOptions, transactionOptions)).Payload;

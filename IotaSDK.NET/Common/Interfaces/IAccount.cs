@@ -477,7 +477,7 @@ namespace IotaSDK.NET.Common.Interfaces
         /// <param name="numberOfTokensToBurn">The to be burned amount.</param>
         /// <param name="transactionOptions">Additional transaction options or custom inputs.</param>
         /// <returns>The prepared transaction.</returns>
-        Task<IotaSDKResponse<PreparedTransactionData>> PrepareBurnNativeTokensAsync(string tokenId, BigInteger numberOfTokensToBurn,  TransactionOptions? transactionOptions = null);
+        Task<IotaSDKResponse<PreparedTransactionData>> PrepareBurnNativeTokensAsync(string tokenId, BigInteger numberOfTokensToBurn, TransactionOptions? transactionOptions = null);
 
         /// <summary>
         /// Burn native tokens. This doesn't require the foundry output which minted them, but will not increase

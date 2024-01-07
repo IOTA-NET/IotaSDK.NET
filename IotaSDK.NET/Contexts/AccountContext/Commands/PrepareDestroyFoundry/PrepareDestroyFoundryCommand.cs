@@ -8,7 +8,7 @@ namespace IotaSDK.NET.Contexts.AccountContext.Commands.PrepareDestroyFoundry
 {
     internal class PrepareDestroyFoundryCommand : AccountRequest<IotaSDKResponse<PreparedTransactionData>>
     {
-        public PrepareDestroyFoundryCommand(IntPtr walletHandle, int accountIndex, string foundryId, TransactionOptions? transactionOptions=null)
+        public PrepareDestroyFoundryCommand(IntPtr walletHandle, int accountIndex, string foundryId, TransactionOptions? transactionOptions = null)
             : base(walletHandle, accountIndex)
         {
             FoundryId = foundryId;

@@ -52,7 +52,7 @@ namespace IotaSDK.NET.Main.Examples.Nfts.Burn_an_NFT
                 List<string> nftIds = balance.Payload.Nfts;
 
                 //Let's use the generic Burn API which can burn more than one NFT
-                IotaSDKResponse<Transaction> burnResponse =  await spendingAccount.BurnAsync(new BurnIds{ Nfts = nftIds });
+                IotaSDKResponse<Transaction> burnResponse = await spendingAccount.BurnAsync(new BurnIds { Nfts = nftIds });
                 Transaction transaction = burnResponse.Payload;
 
                 //Let's wait until the transaction is included

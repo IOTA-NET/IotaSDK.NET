@@ -6,7 +6,7 @@ namespace IotaSDK.NET.Contexts.WalletContext.Commands.RestoreBackup
 {
     internal class RestoreBackupCommand : WalletRequest<IotaSDKResponse<bool>>
     {
-        public RestoreBackupCommand(IntPtr walletHandle, string sourcePath, string password, bool ignoreIfCoinTypeMismatch=true, bool ignoreIfBech32Mismatch=true) 
+        public RestoreBackupCommand(IntPtr walletHandle, string sourcePath, string password, bool ignoreIfCoinTypeMismatch = true, bool ignoreIfBech32Mismatch = true)
             : base(walletHandle)
         {
             SourcePath = sourcePath;
