@@ -1,4 +1,6 @@
-﻿using IotaSDK.NET.Domain.Transactions;
+﻿using IotaSDK.NET.Common.Serializers;
+using IotaSDK.NET.Domain.Transactions;
+using Newtonsoft.Json;
 using System.Numerics;
 
 namespace IotaSDK.NET.Contexts.AccountContext.Commands.PrepareMeltNativeTokens
@@ -13,6 +15,9 @@ namespace IotaSDK.NET.Contexts.AccountContext.Commands.PrepareMeltNativeTokens
         }
 
         public string TokenId { get; }
+
+
+        [JsonConverter(typeof(BigIntJsonConverter))]
         public BigInteger MeltAmount { get; }
         public TransactionOptions? Options { get; }
     }

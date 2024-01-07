@@ -11,6 +11,7 @@ namespace IotaSDK.NET.Contexts.AccountContext.Commands.PrepareMeltNativeTokens
 {
     internal class PrepareMeltNativeTokensCommand : AccountRequest<IotaSDKResponse<PreparedTransactionData>>
     {
+        [JsonConstructor]
         public PrepareMeltNativeTokensCommand(IntPtr walletHandle, int accountIndex, string tokenId, BigInteger numberOfTokensToMelt, TransactionOptions? transactionOptions = null)
             : base(walletHandle, accountIndex)
         {

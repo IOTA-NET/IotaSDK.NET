@@ -17,7 +17,8 @@ namespace IotaSDK.NET.Main
             //await SendNftExample.Run();
             //await BurnNftExample.Run();
             //await CreateFoundryExample.Run();
-            await SendNativeTokensExample.Run();
+            //await SendNativeTokensExample.Run();
+            await MeltNativeTokensExample.Run();
         }
 
     }
