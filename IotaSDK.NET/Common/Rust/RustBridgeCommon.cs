@@ -6,65 +6,87 @@ namespace IotaSDK.NET.Common.Rust
 {
     public class RustBridgeCommon
     {
-        private const string DllName = "iota_sdk.dll";
+        #if WINDOWS
+                private const string DllName = "iota_sdk.dll";
+
+        #elif LINUX
+
+                private const string DllName = "libiota_sdk.so";
+        
+        #endif
+
+        [DllImport(DllName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+        private static extern IntPtr binding_get_last_error();
+
+        [DllImport(DllName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+        private static extern bool init_logger(IntPtr configPtr);
+
+        [DllImport(DllName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+        private static extern IntPtr call_utils_method(IntPtr configPtr);
 
         public RustBridgeCommon()
         {
-
+            // Constructor code if necessary
         }
+
         public async Task<string?> GetLastErrorAsync()
         {
-            object? errorResponse = await PInvoke.DynamicPInvokeBuilderAsync(typeof(IntPtr), DllName, "binding_get_last_error", new object[] { }, new Type[] { });
-
-            try
+            return await Task.Run(() =>
             {
-                return errorResponse == null || (IntPtr)errorResponse == IntPtr.Zero
-                    ? null
-                    : Marshal.PtrToStringAnsi((IntPtr)errorResponse);
-            }
-            finally
-            {
-                if (errorResponse != null)
-                    Marshal.FreeHGlobal((IntPtr)errorResponse!);
-            }
+                IntPtr errorResponse = binding_get_last_error();
+                try
+                {
+                    return errorResponse == IntPtr.Zero
+                        ? null
+                        : Marshal.PtrToStringAnsi(errorResponse);
+                }
+                finally
+                {
+                    if (errorResponse != IntPtr.Zero)
+                        Marshal.FreeHGlobal(errorResponse);
+                }
+            });
         }
 
         public async Task<bool?> InitLoggerAsync(string config)
         {
-            IntPtr configPtr = IntPtr.Zero;
+            return await Task.Run(() =>
+            {
+                IntPtr configPtr = IntPtr.Zero;
 
-            try
-            {
-                configPtr = Marshal.StringToHGlobalAnsi(config);
-                object? loggerInitResponse = await PInvoke.DynamicPInvokeBuilderAsync(typeof(bool), DllName, "init_logger", new object[] { configPtr }, new Type[] { typeof(IntPtr) });
-                return (bool?)loggerInitResponse;
-            }
-            finally
-            {
-                Marshal.FreeHGlobal(configPtr);
-            }
+                try
+                {
+                    configPtr = Marshal.StringToHGlobalAnsi(config);
+                    return init_logger(configPtr);
+                }
+                finally
+                {
+                    Marshal.FreeHGlobal(configPtr);
+                }
+            });
         }
 
         public async Task<string?> CallUtilsMethodAsync(string config)
         {
-            IntPtr configPtr = IntPtr.Zero;
-
-            try
+            return await Task.Run(() =>
             {
-                configPtr = Marshal.StringToHGlobalAnsi(config);
-                object? utilsResponse = await PInvoke.DynamicPInvokeBuilderAsync(typeof(IntPtr), DllName, "call_utils_method", new object[] { configPtr }, new Type[] { typeof(IntPtr) });
+                IntPtr configPtr = IntPtr.Zero;
 
-                if (utilsResponse == null || (IntPtr)utilsResponse == IntPtr.Zero)
-                    return null;
-                else
-                    return Marshal.PtrToStringAnsi((IntPtr)utilsResponse);
-            }
-            finally
-            {
-                Marshal.FreeHGlobal(configPtr);
-            }
+                try
+                {
+                    configPtr = Marshal.StringToHGlobalAnsi(config);
+                    IntPtr utilsResponse = call_utils_method(configPtr);
+
+                    if (utilsResponse == IntPtr.Zero)
+                        return null;
+                    else
+                        return Marshal.PtrToStringAnsi(utilsResponse);
+                }
+                finally
+                {
+                    Marshal.FreeHGlobal(configPtr);
+                }
+            });
         }
-
     }
-
 }

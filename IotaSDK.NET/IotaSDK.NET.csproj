@@ -1,63 +1,70 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
-    <Nullable>enable</Nullable>
-    <SignAssembly>False</SignAssembly>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <PackageId>IotaSDK</PackageId>
-    <Title>IOTA SDK</Title>
-    <Authors>Razali, $(AssemblyName)</Authors>
-    <Company>$(AssemblyName)</Company>
-    <Product>IOTA SDK</Product>
-    <Description>Iota or Shimmer Wallet Library for .NET</Description>
-    <PackageProjectUrl>https://github.com/IOTA-NET/IotaSDK.NET</PackageProjectUrl>
-    <PackageIcon>main iota.jpg</PackageIcon>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
-    <RepositoryUrl>https://github.com/IOTA-NET/IotaSDK.NET</RepositoryUrl>
-    <PackageTags>c#; csharp; iota; stardust; sdk;</PackageTags>
-	<RuntimeIdentifiers>win-x64;linux-x64</RuntimeIdentifiers>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<LangVersion>8.0</LangVersion>
+		<Nullable>enable</Nullable>
+		<SignAssembly>False</SignAssembly>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<PackageId>IotaSDK</PackageId>
+		<Title>IOTA SDK</Title>
+		<Authors>Razali, $(AssemblyName)</Authors>
+		<Company>$(AssemblyName)</Company>
+		<Product>IOTA SDK</Product>
+		<Description>Iota or Shimmer Wallet Library for .NET</Description>
+		<PackageProjectUrl>https://github.com/IOTA-NET/IotaSDK.NET</PackageProjectUrl>
+		<PackageIcon>main iota.jpg</PackageIcon>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<RepositoryUrl>https://github.com/IOTA-NET/IotaSDK.NET</RepositoryUrl>
+		<PackageTags>c#; csharp; iota; stardust; sdk;</PackageTags>
+		<RuntimeIdentifiers>win-x64;linux-x64</RuntimeIdentifiers>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(OS)' == 'Windows_NT'">
+		<DefineConstants>$(DefineConstants);WINDOWS</DefineConstants>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(OS)' != 'Windows_NT'">
+		<DefineConstants>$(DefineConstants);LINUX</DefineConstants>
+	</PropertyGroup>
 
 	<ItemGroup>
-    <PackageReference Include="JsonSubTypes" Version="2.0.1" />
-    <PackageReference Include="MediatR" Version="12.2.0" />
-    <PackageReference Include="MimeMapping" Version="2.0.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-  </ItemGroup>
+		<PackageReference Include="JsonSubTypes" Version="2.0.1" />
+		<PackageReference Include="MediatR" Version="12.2.0" />
+		<PackageReference Include="MimeMapping" Version="2.0.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <None Update="iota_sdk.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
+	<ItemGroup>
+		<Folder Include="Contexts\ClientContext\Queries\" />
+		<Folder Include="Contexts\SecretManagerContext\Command\" />
+		<Folder Include="Contexts\SecretManagerContext\Queries\" />
+		<Folder Include="Contexts\UtilsContext\Queries\" />
+		<Folder Include="Domain\StorageDeposit\" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Contexts\ClientContext\Queries\" />
-    <Folder Include="Contexts\SecretManagerContext\Command\" />
-    <Folder Include="Contexts\SecretManagerContext\Queries\" />
-    <Folder Include="Contexts\UtilsContext\Queries\" />
-    <Folder Include="Domain\StorageDeposit\" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="assets\images\main iota.jpg">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+		<None Include="..\README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
 
-  <ItemGroup>
-	<None Include="assets\images\main iota.jpg">
-		<Pack>True</Pack>
-		<PackagePath>\</PackagePath>
-	</None>
-    <None Include="..\README.md">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-
-	  <None Include="runtimes\win-x64\native\iota_sdk.dll">
-		  <Pack>True</Pack>
-		  <PackagePath>runtimes\win-x64\native\</PackagePath>
-	  </None>
-	  <None Include="runtimes\linux-x64\native\libiota_sdk.so">
-		  <Pack>True</Pack>
-		  <PackagePath>runtimes\linux-x64\native\</PackagePath>
-	  </None>
-  </ItemGroup>
+		<None Include="runtimes\win-x64\native\iota_sdk.dll">
+			<Pack>True</Pack>
+			<PackagePath>runtimes\win-x64\native\</PackagePath>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<Link>iota_sdk.dll</Link>
+		</None>
+		<None Include="runtimes\linux-x64\native\libiota_sdk.so">
+			<Pack>True</Pack>
+			<PackagePath>runtimes\linux-x64\native\</PackagePath>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<Link>libiota_sdk.so</Link>
+		</None>
+	</ItemGroup>
 
 </Project>
