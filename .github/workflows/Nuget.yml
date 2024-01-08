@@ -1,0 +1,47 @@
+name: Deploy IotaSDK.NET to NuGet
+
+on:
+  workflow_dispatch:
+  release:
+    types: [published]
+
+env:
+  SOLUTION_PATH: ./IotaSDK.NET/IotaSDK.NET.csproj
+  NUGET_PATH: ${{ github.workspace }}/nugets
+  NUGET_SRC_URL: 'https://api.nuget.org/v3/index.json'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: myenv
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: 3.1.x  # Adjust to match your project's .NET version
+
+      - name: Restore dependencies
+        run: dotnet restore ${{ env.SOLUTION_PATH }}
+
+      - name: Build
+        run: dotnet build ${{ env.SOLUTION_PATH }} --configuration Release --no-restore
+
+      - name: Get Version
+        id: version
+        uses: battila7/get-version-action@v2
+
+      - name: Pack Nuget
+        run: dotnet pack ${{ env.SOLUTION_PATH }} -c Release /p:Version=${{ steps.version.outputs.version-without-v }} /p:PackageReleaseNotes="See https://github.com/IOTA-NET/IotaSDK.NET/releases/tag/${{ github.event.release.tag_name }}" --include-symbols --output ${{ env.NUGET_PATH }}
+        
+      - name: Create NuGet Package Artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: IotaSDK
+          path: ${{ env.NUGET_PATH }}/IotaSDK.${{ steps.version.outputs.version-without-v }}.nupkg
+       
+      - name: Push Nuget to NuGet.org
+        run:  dotnet nuget push ${{ env.NUGET_PATH }}/*.nupkg -s ${{ env.NUGET_SRC_URL }} --api-key ${{ secrets.NUGET_API_KEY }} --skip-duplicate --no-symbols
