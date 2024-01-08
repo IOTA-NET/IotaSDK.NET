@@ -41,10 +41,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\..\..\Desktop\main iota.jpg">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
+	<None Include="assets\images\main iota.jpg">
+		<Pack>True</Pack>
+		<PackagePath>\</PackagePath>
+	</None>
     <None Include="..\README.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
