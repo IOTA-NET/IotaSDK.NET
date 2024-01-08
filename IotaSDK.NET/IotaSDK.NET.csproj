@@ -3,9 +3,23 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <Nullable>enable</Nullable>
+    <SignAssembly>False</SignAssembly>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageId>IotaSDK</PackageId>
+    <Title>IOTA SDK</Title>
+    <Authors>Razali, $(AssemblyName)</Authors>
+    <Company>$(AssemblyName)</Company>
+    <Product>IOTA SDK</Product>
+    <Description>Iota or Shimmer Wallet Library for .NET</Description>
+    <PackageProjectUrl>https://github.com/IOTA-NET/IotaSDK.NET</PackageProjectUrl>
+    <PackageIcon>main iota.jpg</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/IOTA-NET/IotaSDK.NET</RepositoryUrl>
+    <PackageTags>c#; csharp; iota; stardust; sdk;</PackageTags>
+	<RuntimeIdentifiers>win-x64;linux-x64</RuntimeIdentifiers>
   </PropertyGroup>
 
-  <ItemGroup>
+	<ItemGroup>
     <PackageReference Include="JsonSubTypes" Version="2.0.1" />
     <PackageReference Include="MediatR" Version="12.2.0" />
     <PackageReference Include="MimeMapping" Version="2.0.0" />
@@ -24,6 +38,26 @@
     <Folder Include="Contexts\SecretManagerContext\Queries\" />
     <Folder Include="Contexts\UtilsContext\Queries\" />
     <Folder Include="Domain\StorageDeposit\" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<None Include="assets\images\main iota.jpg">
+		<Pack>True</Pack>
+		<PackagePath>\</PackagePath>
+	</None>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+
+	  <None Include="runtimes\win-x64\native\iota_sdk.dll">
+		  <Pack>True</Pack>
+		  <PackagePath>runtimes\win-x64\native\</PackagePath>
+	  </None>
+	  <None Include="runtimes\linux-x64\native\libiota_sdk.so">
+		  <Pack>True</Pack>
+		  <PackagePath>runtimes\linux-x64\native\</PackagePath>
+	  </None>
   </ItemGroup>
 
 </Project>
