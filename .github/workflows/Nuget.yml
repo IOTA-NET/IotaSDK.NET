@@ -12,7 +12,7 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     environment: myenv
     
     steps:
@@ -22,7 +22,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v2
         with:
-          dotnet-version: 3.1.x  # Adjust to match your project's .NET version
+          dotnet-version: '7.0.403'  # Adjust to match your project's .NET version
 
       - name: Restore dependencies
         run: dotnet restore ${{ env.SOLUTION_PATH }}
