@@ -67,4 +67,18 @@
 		</None>
 	</ItemGroup>
 
+	<ItemGroup>
+		<Content Include="contentFiles\any\net48\iota_sdk.dll">
+			<Pack>true</Pack>
+			<PackagePath>contentFiles\any\net48\</PackagePath>
+			<PackageCopyToOutput>true</PackageCopyToOutput>
+		</Content>
+		<Content Include="contentFiles\any\net48\libiota_sdk.so">
+			<Pack>true</Pack>
+			<PackagePath>contentFiles\any\net48\</PackagePath>
+			<PackageCopyToOutput>true</PackageCopyToOutput>
+		</Content>
+	</ItemGroup>
+
+
 </Project>
