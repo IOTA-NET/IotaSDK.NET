@@ -1,0 +1,8 @@
+<Project>
+	<Target Name="CopyNativeLibraries" AfterTargets="Build">
+		<Copy SourceFiles="$(MSBuildThisFileDirectory)..\..\contentFiles\any\net48\iota_sdk.dll"
+			  DestinationFolder="$(OutputPath)" />
+		<Copy SourceFiles="$(MSBuildThisFileDirectory)..\..\contentFiles\any\net48\libiota_sdk.so"
+			  DestinationFolder="$(OutputPath)" />
+	</Target>
+</Project>
