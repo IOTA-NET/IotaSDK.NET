@@ -80,5 +80,14 @@
 		</Content>
 	</ItemGroup>
 
+	<ItemGroup>
+		<None Include="build\net48\IotaSDK.targets">
+			<Pack>true</Pack>
+			<PackagePath>build\net48\</PackagePath>
+		</None>
+	</ItemGroup>
+
+
+
 
 </Project>
