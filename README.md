@@ -11,14 +11,17 @@ Now .Net developers can have a chance trying out IOTA/Shimmer as well!
 
 # Installation from Nuget.org
 
-We have yet to publish the package as it is still in development.
+We have an alpha release of our nuget package [here](https://www.nuget.org/packages/IotaSDK/). Do let us know if there are any bugs!
+
+To install,
+> dotnet add package IotaSDK 
 
 
 ### Architecture support :grin:
 
 - [x] Windows
 - [x] Linux
-- [x] Mac
+- [ ] Mac (Soon)
 
 
 # Examples :heart_eyes:
