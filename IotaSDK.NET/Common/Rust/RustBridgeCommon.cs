@@ -6,29 +6,14 @@ namespace IotaSDK.NET.Common.Rust
 {
     public class RustBridgeCommon
     {
-        private static class WindowsNativeMethods
-        {
-            [DllImport("iota_sdk.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-            public static extern IntPtr binding_get_last_error();
+        [DllImport("iota_sdk", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+        private static extern IntPtr binding_get_last_error();
 
-            [DllImport("iota_sdk.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-            public static extern bool init_logger(IntPtr configPtr);
+        [DllImport("iota_sdk", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+        private static extern bool init_logger(IntPtr configPtr);
 
-            [DllImport("iota_sdk.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-            public static extern IntPtr call_utils_method(IntPtr configPtr);
-        }
-
-        private static class LinuxNativeMethods
-        {
-            [DllImport("libiota_sdk.so", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-            public static extern IntPtr binding_get_last_error();
-
-            [DllImport("libiota_sdk.so", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-            public static extern bool init_logger(IntPtr configPtr);
-
-            [DllImport("libiota_sdk.so", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-            public static extern IntPtr call_utils_method(IntPtr configPtr);
-        }
+        [DllImport("iota_sdk", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+        private static extern IntPtr call_utils_method(IntPtr configPtr);
 
         public RustBridgeCommon()
         {
@@ -39,19 +24,10 @@ namespace IotaSDK.NET.Common.Rust
         {
             return await Task.Run(() =>
             {
-                IntPtr errorResponse;
-                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-                    errorResponse = WindowsNativeMethods.binding_get_last_error();
-                else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-                    errorResponse = LinuxNativeMethods.binding_get_last_error();
-                else
-                    throw new PlatformNotSupportedException();
-
+                IntPtr errorResponse = binding_get_last_error();
                 try
                 {
-                    return errorResponse == IntPtr.Zero
-                        ? null
-                        : Marshal.PtrToStringAnsi(errorResponse);
+                    return errorResponse == IntPtr.Zero ? null : Marshal.PtrToStringAnsi(errorResponse);
                 }
                 finally
                 {
@@ -70,9 +46,7 @@ namespace IotaSDK.NET.Common.Rust
                 try
                 {
                     configPtr = Marshal.StringToHGlobalAnsi(config);
-                    return RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
-                        ? WindowsNativeMethods.init_logger(configPtr)
-                        : LinuxNativeMethods.init_logger(configPtr);
+                    return init_logger(configPtr);
                 }
                 finally
                 {
@@ -90,17 +64,9 @@ namespace IotaSDK.NET.Common.Rust
                 try
                 {
                     configPtr = Marshal.StringToHGlobalAnsi(config);
-                    IntPtr utilsResponse;
-                    if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-                        utilsResponse = WindowsNativeMethods.call_utils_method(configPtr);
-                    else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-                        utilsResponse = LinuxNativeMethods.call_utils_method(configPtr);
-                    else
-                        throw new PlatformNotSupportedException();
+                    IntPtr utilsResponse = call_utils_method(configPtr);
 
-                    return utilsResponse == IntPtr.Zero
-                        ? null
-                        : Marshal.PtrToStringAnsi(utilsResponse);
+                    return utilsResponse == IntPtr.Zero ? null : Marshal.PtrToStringAnsi(utilsResponse);
                 }
                 finally
                 {
