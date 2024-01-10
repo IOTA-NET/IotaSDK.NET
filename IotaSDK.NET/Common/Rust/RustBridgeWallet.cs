@@ -7,47 +7,23 @@ namespace IotaSDK.NET.Common.Rust
 {
     public class RustBridgeWallet
     {
-        private static class WindowsNativeMethods
-        {
-            [DllImport("iota_sdk.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-            public static extern IntPtr create_wallet(IntPtr optionsPtr);
+        [DllImport("iota_sdk", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+        private static extern IntPtr create_wallet(IntPtr optionsPtr);
 
-            [DllImport("iota_sdk.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-            public static extern bool destroy_wallet(IntPtr wallet);
+        [DllImport("iota_sdk", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+        private static extern bool destroy_wallet(IntPtr wallet);
 
-            [DllImport("iota_sdk.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-            public static extern IntPtr call_wallet_method(IntPtr walletPtr, IntPtr methodPtr);
+        [DllImport("iota_sdk", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+        private static extern IntPtr call_wallet_method(IntPtr walletPtr, IntPtr methodPtr);
 
-            [DllImport("iota_sdk.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-            public static extern IntPtr get_secret_manager_from_wallet(IntPtr walletPtr);
+        [DllImport("iota_sdk", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+        private static extern IntPtr get_secret_manager_from_wallet(IntPtr walletPtr);
 
-            [DllImport("iota_sdk.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-            public static extern IntPtr get_client_from_wallet(IntPtr walletPtr);
+        [DllImport("iota_sdk", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+        private static extern IntPtr get_client_from_wallet(IntPtr walletPtr);
 
-            [DllImport("iota_sdk.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-            public static extern bool listen_wallet(IntPtr walletPtr, IntPtr eventsPtr, WalletEventHandler handler);
-        }
-
-        private static class LinuxNativeMethods
-        {
-            [DllImport("libiota_sdk.so", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-            public static extern IntPtr create_wallet(IntPtr optionsPtr);
-
-            [DllImport("libiota_sdk.so", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-            public static extern bool destroy_wallet(IntPtr wallet);
-
-            [DllImport("libiota_sdk.so", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-            public static extern IntPtr call_wallet_method(IntPtr walletPtr, IntPtr methodPtr);
-
-            [DllImport("libiota_sdk.so", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-            public static extern IntPtr get_secret_manager_from_wallet(IntPtr walletPtr);
-
-            [DllImport("libiota_sdk.so", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-            public static extern IntPtr get_client_from_wallet(IntPtr walletPtr);
-
-            [DllImport("libiota_sdk.so", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-            public static extern bool listen_wallet(IntPtr walletPtr, IntPtr eventsPtr, WalletEventHandler handler);
-        }
+        [DllImport("iota_sdk", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+        private static extern bool listen_wallet(IntPtr walletPtr, IntPtr eventsPtr, WalletEventHandler handler);
 
         public delegate void WalletEventHandler(IntPtr eventPtr);
 
@@ -60,10 +36,7 @@ namespace IotaSDK.NET.Common.Rust
                 try
                 {
                     optionsPtr = Marshal.StringToHGlobalAnsi(options);
-                    IntPtr walletPtr = RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
-                        ? WindowsNativeMethods.create_wallet(optionsPtr)
-                        : LinuxNativeMethods.create_wallet(optionsPtr);
-
+                    IntPtr walletPtr = create_wallet(optionsPtr);
                     return walletPtr == IntPtr.Zero ? (IntPtr?)null : (IntPtr?)walletPtr;
                 }
                 finally
@@ -75,12 +48,7 @@ namespace IotaSDK.NET.Common.Rust
 
         public async Task<bool?> DestroyWalletAsync(IntPtr wallet)
         {
-            return await Task.Run(() =>
-            {
-                return RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
-                    ? WindowsNativeMethods.destroy_wallet(wallet)
-                    : LinuxNativeMethods.destroy_wallet(wallet);
-            });
+            return await Task.Run(() => destroy_wallet(wallet));
         }
 
         public async Task<string?> CallWalletMethodAsync(IntPtr walletPtr, string method)
@@ -92,9 +60,7 @@ namespace IotaSDK.NET.Common.Rust
                 try
                 {
                     methodPtr = Marshal.StringToHGlobalAnsi(method);
-                    IntPtr walletResponse = RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
-                        ? WindowsNativeMethods.call_wallet_method(walletPtr, methodPtr)
-                        : LinuxNativeMethods.call_wallet_method(walletPtr, methodPtr);
+                    IntPtr walletResponse = call_wallet_method(walletPtr, methodPtr);
 
                     if (walletResponse == IntPtr.Zero)
                     {
@@ -116,26 +82,12 @@ namespace IotaSDK.NET.Common.Rust
 
         public async Task<IntPtr?> GetSecretManagerFromWalletAsync(IntPtr walletPtr)
         {
-            return await Task.Run(() =>
-            {
-                IntPtr secretManager = RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
-                    ? WindowsNativeMethods.get_secret_manager_from_wallet(walletPtr)
-                    : LinuxNativeMethods.get_secret_manager_from_wallet(walletPtr);
-
-                return secretManager == IntPtr.Zero ? (IntPtr?)null : (IntPtr?)secretManager;
-            });
+            return await Task.Run(() => get_secret_manager_from_wallet(walletPtr));
         }
 
         public async Task<IntPtr?> GetClientFromWalletAsync(IntPtr walletPtr)
         {
-            return await Task.Run(() =>
-            {
-                IntPtr client = RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
-                    ? WindowsNativeMethods.get_client_from_wallet(walletPtr)
-                    : LinuxNativeMethods.get_client_from_wallet(walletPtr);
-
-                return client == IntPtr.Zero ? (IntPtr?)null : (IntPtr?)client;
-            });
+            return await Task.Run(() => get_client_from_wallet(walletPtr));
         }
 
         public async Task<bool?> ListenWalletAsync(IntPtr walletPtr, string events, WalletEventHandler handler)
@@ -147,9 +99,7 @@ namespace IotaSDK.NET.Common.Rust
                 try
                 {
                     eventsPtr = Marshal.StringToHGlobalAnsi(events);
-                    return RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
-                        ? WindowsNativeMethods.listen_wallet(walletPtr, eventsPtr, handler)
-                        : LinuxNativeMethods.listen_wallet(walletPtr, eventsPtr, handler);
+                    return listen_wallet(walletPtr, eventsPtr, handler);
                 }
                 finally
                 {
