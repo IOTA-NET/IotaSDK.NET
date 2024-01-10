@@ -6,23 +6,29 @@ namespace IotaSDK.NET.Common.Rust
 {
     internal class RustBridgeClient
     {
-        #if WINDOWS
-                private const string DllName = "iota_sdk.dll";
+        private static class WindowsNativeMethods
+        {
+            [DllImport("iota_sdk.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+            public static extern IntPtr create_client(IntPtr optionsPtr);
 
-        #elif LINUX
+            [DllImport("iota_sdk.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+            public static extern bool destroy_client(IntPtr clientPtr);
 
-                private const string DllName = "libiota_sdk.so";
-        
-        #endif
+            [DllImport("iota_sdk.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+            public static extern IntPtr call_client_method(IntPtr clientPtr, IntPtr methodPtr);
+        }
 
-        [DllImport(DllName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-        private static extern IntPtr create_client(IntPtr optionsPtr);
+        private static class LinuxNativeMethods
+        {
+            [DllImport("libiota_sdk.so", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+            public static extern IntPtr create_client(IntPtr optionsPtr);
 
-        [DllImport(DllName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-        private static extern bool destroy_client(IntPtr clientPtr);
+            [DllImport("libiota_sdk.so", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+            public static extern bool destroy_client(IntPtr clientPtr);
 
-        [DllImport(DllName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-        private static extern IntPtr call_client_method(IntPtr clientPtr, IntPtr methodPtr);
+            [DllImport("libiota_sdk.so", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+            public static extern IntPtr call_client_method(IntPtr clientPtr, IntPtr methodPtr);
+        }
 
         public async Task<IntPtr?> CreateClientAsync(string options)
         {
@@ -33,11 +39,16 @@ namespace IotaSDK.NET.Common.Rust
                 try
                 {
                     optionsPtr = Marshal.StringToHGlobalAnsi(options);
-                    IntPtr client = create_client(optionsPtr);
+                    IntPtr client = IntPtr.Zero;
 
-                    if (client == IntPtr.Zero)
-                        return (IntPtr?)null;
-                    return (IntPtr?)client;
+                    if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                        client = WindowsNativeMethods.create_client(optionsPtr);
+                    else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+                        client = LinuxNativeMethods.create_client(optionsPtr);
+                    else
+                        throw new PlatformNotSupportedException();
+
+                    return client == IntPtr.Zero ? (IntPtr?)null : client;
                 }
                 finally
                 {
@@ -50,7 +61,12 @@ namespace IotaSDK.NET.Common.Rust
         {
             return await Task.Run(() =>
             {
-                return destroy_client(clientPtr);
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                    return WindowsNativeMethods.destroy_client(clientPtr);
+                else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+                    return LinuxNativeMethods.destroy_client(clientPtr);
+                else
+                    throw new PlatformNotSupportedException();
             });
         }
 
@@ -63,12 +79,16 @@ namespace IotaSDK.NET.Common.Rust
                 try
                 {
                     methodPtr = Marshal.StringToHGlobalAnsi(method);
-                    IntPtr clientResponse = call_client_method(clientPtr, methodPtr);
+                    IntPtr clientResponse = IntPtr.Zero;
 
-                    if (clientResponse == IntPtr.Zero)
-                        return null;
+                    if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                        clientResponse = WindowsNativeMethods.call_client_method(clientPtr, methodPtr);
+                    else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+                        clientResponse = LinuxNativeMethods.call_client_method(clientPtr, methodPtr);
                     else
-                        return Marshal.PtrToStringAnsi(clientResponse);
+                        throw new PlatformNotSupportedException();
+
+                    return clientResponse == IntPtr.Zero ? null : Marshal.PtrToStringAnsi(clientResponse);
                 }
                 finally
                 {

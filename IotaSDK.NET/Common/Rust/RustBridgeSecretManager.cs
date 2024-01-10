@@ -6,24 +6,29 @@ namespace IotaSDK.NET.Common.Rust
 {
     internal class RustBridgeSecretManager
     {
-        #if WINDOWS
-                private const string DllName = "iota_sdk.dll";
+        private static class WindowsNativeMethods
+        {
+            [DllImport("iota_sdk.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+            public static extern IntPtr create_secret_manager(IntPtr optionsPtr);
 
-        #elif LINUX
+            [DllImport("iota_sdk.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+            public static extern bool destroy_secret_manager(IntPtr secretManagerPtr);
 
-                private const string DllName = "libiota_sdk.so";
-        
-        #endif
+            [DllImport("iota_sdk.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+            public static extern IntPtr call_secret_manager_method(IntPtr secretManagerPtr, IntPtr methodPtr);
+        }
 
+        private static class LinuxNativeMethods
+        {
+            [DllImport("libiota_sdk.so", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+            public static extern IntPtr create_secret_manager(IntPtr optionsPtr);
 
-        [DllImport(DllName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-        private static extern IntPtr create_secret_manager(IntPtr optionsPtr);
+            [DllImport("libiota_sdk.so", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+            public static extern bool destroy_secret_manager(IntPtr secretManagerPtr);
 
-        [DllImport(DllName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-        private static extern bool destroy_secret_manager(IntPtr secretManagerPtr);
-
-        [DllImport(DllName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-        private static extern IntPtr call_secret_manager_method(IntPtr secretManagerPtr, IntPtr methodPtr);
+            [DllImport("libiota_sdk.so", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+            public static extern IntPtr call_secret_manager_method(IntPtr secretManagerPtr, IntPtr methodPtr);
+        }
 
         public async Task<IntPtr?> CreateSecretManagerAsync(string options)
         {
@@ -34,12 +39,15 @@ namespace IotaSDK.NET.Common.Rust
                 try
                 {
                     optionsPtr = Marshal.StringToHGlobalAnsi(options);
-                    IntPtr secretManagerResponse = create_secret_manager(optionsPtr);
-
-                    if (secretManagerResponse == IntPtr.Zero)
-                        return (IntPtr?)null;
+                    IntPtr secretManagerResponse;
+                    if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                        secretManagerResponse = WindowsNativeMethods.create_secret_manager(optionsPtr);
+                    else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+                        secretManagerResponse = LinuxNativeMethods.create_secret_manager(optionsPtr);
                     else
-                        return (IntPtr?)secretManagerResponse;
+                        throw new PlatformNotSupportedException();
+
+                    return secretManagerResponse == IntPtr.Zero ? (IntPtr?)null : (IntPtr?)secretManagerResponse;
                 }
                 finally
                 {
@@ -52,7 +60,9 @@ namespace IotaSDK.NET.Common.Rust
         {
             return await Task.Run(() =>
             {
-                return destroy_secret_manager(secretManagerPtr);
+                return RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
+                    ? WindowsNativeMethods.destroy_secret_manager(secretManagerPtr)
+                    : LinuxNativeMethods.destroy_secret_manager(secretManagerPtr);
             });
         }
 
@@ -65,11 +75,15 @@ namespace IotaSDK.NET.Common.Rust
                 try
                 {
                     methodPtr = Marshal.StringToHGlobalAnsi(method);
-                    IntPtr methodResponse = call_secret_manager_method(secretManagerPtr, methodPtr);
+                    IntPtr methodResponse;
+                    if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                        methodResponse = WindowsNativeMethods.call_secret_manager_method(secretManagerPtr, methodPtr);
+                    else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+                        methodResponse = LinuxNativeMethods.call_secret_manager_method(secretManagerPtr, methodPtr);
+                    else
+                        throw new PlatformNotSupportedException();
 
-                    if (methodResponse == IntPtr.Zero)
-                        return null;
-                    return Marshal.PtrToStringAnsi(methodResponse);
+                    return methodResponse == IntPtr.Zero ? null : Marshal.PtrToStringAnsi(methodResponse);
                 }
                 finally
                 {
