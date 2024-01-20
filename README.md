@@ -55,6 +55,7 @@ To install,
     <li>ClearStrongholdPassword</li>
     <li>CreateAccount</li>
     <li>DeleteLatestAccount</li>
+	<li>GenerateEd25519Address</li>
 	<li>RestoreBackup</li>
     <li>SetClientOptions</li>
     <li>SetStrongholdPasswordClearInterval</li>
