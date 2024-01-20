@@ -53,5 +53,6 @@ namespace IotaSDK.NET.Common.Interfaces
 
         Task<IotaSDKResponse<bool>> RestoreBackupAsync(string sourcePath, string password, bool ignoreIfCoinTypeMismatch = true, bool ignoreIfBech32Mismatch = true);
 
+        Task<IotaSDKResponse<string>> GenerateEd25519AddressCommandAsync(int accountIndex, int addressIndex, AddressGenerationOptions? addressGenerationOptions = null, string? bech32Hrp = null);
     }
 }
