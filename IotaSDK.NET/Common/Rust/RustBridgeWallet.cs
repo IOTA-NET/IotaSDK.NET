@@ -23,7 +23,7 @@ namespace IotaSDK.NET.Common.Rust
         private static extern IntPtr get_client_from_wallet(IntPtr walletPtr);
 
         [DllImport("iota_sdk", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-        private static extern bool listen_wallet(IntPtr walletPtr, IntPtr eventsPtr, WalletEventHandler handler);
+        private static extern bool listen_wallet(IntPtr walletPtr, IntPtr eventsPtr, [MarshalAs(UnmanagedType.FunctionPtr)] WalletEventHandler handler);
 
         public delegate void WalletEventHandler(IntPtr eventPtr);
 
@@ -99,7 +99,8 @@ namespace IotaSDK.NET.Common.Rust
                 try
                 {
                     eventsPtr = Marshal.StringToHGlobalAnsi(events);
-                    return listen_wallet(walletPtr, eventsPtr, handler);
+                    var x =  listen_wallet(walletPtr, eventsPtr, handler);
+                    return x;
                 }
                 finally
                 {

@@ -26,7 +26,7 @@ using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareMeltNativeTokens;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareMintNativeTokens;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareMintNfts;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareOutput;
-using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareSendBaseCoinWithStorageDeposit;
+using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareSendBaseCoinToAddresses;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareSendNativeTokens;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareSendNfts;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareTransaction;
