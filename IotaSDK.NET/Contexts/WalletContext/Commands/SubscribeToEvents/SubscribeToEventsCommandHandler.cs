@@ -3,7 +3,6 @@ using IotaSDK.NET.Common.Rust;
 using IotaSDK.NET.Domain.Events;
 using MediatR;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -28,7 +27,7 @@ namespace IotaSDK.NET.Contexts.WalletContext.Commands.SubscribeToEvents
             bool? listenResponse = await _rustBridgeWallet.ListenWalletAsync(request.WalletHandle, eventsAsJsonArray, request.Callback);
 
             bool success = false;
-            if(listenResponse.HasValue && listenResponse.Value)
+            if (listenResponse.HasValue && listenResponse.Value)
                 success = true;
 
             return new IotaSDKResponse<bool>("SubscribeToEvents") { Payload = success };

@@ -8,7 +8,7 @@ namespace IotaSDK.NET.Contexts.WalletContext.Commands.GenerateEd25519Address
 {
     internal class GenerateEd25519AddressCommand : WalletRequest<IotaSDKResponse<string>>
     {
-        public GenerateEd25519AddressCommand(IntPtr walletHandle, int accountIndex, int addressIndex, AddressGenerationOptions? addressGenerationOptions=null, HumanReadablePart? bech32Hrp=null) 
+        public GenerateEd25519AddressCommand(IntPtr walletHandle, int accountIndex, int addressIndex, AddressGenerationOptions? addressGenerationOptions = null, HumanReadablePart? bech32Hrp = null)
             : base(walletHandle)
         {
             AccountIndex = accountIndex;

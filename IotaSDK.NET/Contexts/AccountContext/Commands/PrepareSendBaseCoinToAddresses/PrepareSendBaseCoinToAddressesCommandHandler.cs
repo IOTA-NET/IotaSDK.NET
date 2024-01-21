@@ -6,7 +6,7 @@ using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace IotaSDK.NET.Contexts.AccountContext.Commands.PrepareSendBaseCoinWithStorageDeposit
+namespace IotaSDK.NET.Contexts.AccountContext.Commands.PrepareSendBaseCoinToAddresses
 {
     internal class PrepareSendBaseCoinToAddressesCommandHandler : IRequestHandler<PrepareSendBaseCoinToAddressesCommand, IotaSDKResponse<PreparedTransactionData>>
     {

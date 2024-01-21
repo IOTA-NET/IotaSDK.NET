@@ -99,7 +99,7 @@ namespace IotaSDK.NET.Common.Rust
                 try
                 {
                     eventsPtr = Marshal.StringToHGlobalAnsi(events);
-                    var x =  listen_wallet(walletPtr, eventsPtr, handler);
+                    var x = listen_wallet(walletPtr, eventsPtr, handler);
                     return x;
                 }
                 finally

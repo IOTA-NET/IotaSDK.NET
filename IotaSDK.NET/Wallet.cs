@@ -255,7 +255,7 @@ namespace IotaSDK.NET
 
         }
 
-        public event EventHandler<WalletEventNotification> OnConsolidationRequired = (sender,e) =>{};
+        public event EventHandler<WalletEventNotification> OnConsolidationRequired = (sender, e) => { };
         public event EventHandler<WalletEventNotification> OnLedgerAddressGeneration = (sender, e) => { };
         public event EventHandler<WalletEventNotification> OnNewOutput = (sender, e) => { };
         public event EventHandler<WalletEventNotification> OnSpentOutput = (sender, e) => { };

@@ -6,7 +6,7 @@ using IotaSDK.NET.Domain.Transactions.Prepared;
 using System;
 using System.Collections.Generic;
 
-namespace IotaSDK.NET.Contexts.AccountContext.Commands.PrepareSendBaseCoinWithStorageDeposit
+namespace IotaSDK.NET.Contexts.AccountContext.Commands.PrepareSendBaseCoinToAddresses
 {
     internal class PrepareSendBaseCoinToAddressesCommand : AccountRequest<IotaSDKResponse<PreparedTransactionData>>
     {

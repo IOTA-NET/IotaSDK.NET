@@ -16,7 +16,7 @@ namespace IotaSDK.NET.Domain.Events
         AllEvents = ConsolidationRequired | NewOutput | SpentOutput | TransactionInclusion | TransactionProgress | LedgerAddressGeneration
     };
 
-    internal static class  WalletEventFlagToInt
+    internal static class WalletEventFlagToInt
     {
         public static List<int> ConvertWalletEventType(WalletEventType walletEventType)
         {

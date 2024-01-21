@@ -1,5 +1,5 @@
 ﻿using IotaSDK.NET.Common.Models;
-using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareSendBaseCoinWithStorageDeposit;
+using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareSendBaseCoinToAddresses;
 using IotaSDK.NET.Contexts.AccountContext.Commands.SignAndSubmitTransaction;
 using IotaSDK.NET.Domain.Transactions;
 using IotaSDK.NET.Domain.Transactions.Prepared;

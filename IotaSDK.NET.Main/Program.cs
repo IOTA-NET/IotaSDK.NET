@@ -1,5 +1,4 @@
 ﻿using IotaSDK.NET.Main.Examples.Accounts_and_Addresses.Check_Balance;
-using IotaSDK.NET.Main.Examples.Native_Tokens.SendNativeTokens;
 
 namespace IotaSDK.NET.Main
 {

@@ -1,5 +1,4 @@
-﻿using IotaSDK.NET.Domain.Accounts;
-using IotaSDK.NET.Domain.Outputs;
+﻿using IotaSDK.NET.Domain.Outputs;
 
 namespace IotaSDK.NET.Domain.Inputs
 {
