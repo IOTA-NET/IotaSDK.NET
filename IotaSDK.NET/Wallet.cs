@@ -15,19 +15,24 @@ using IotaSDK.NET.Contexts.WalletContext.Commands.SetStrongholdPasswordClearInte
 using IotaSDK.NET.Contexts.WalletContext.Commands.StartBackgroundSync;
 using IotaSDK.NET.Contexts.WalletContext.Commands.StopBackgroundSync;
 using IotaSDK.NET.Contexts.WalletContext.Commands.StoreMnemonic;
+using IotaSDK.NET.Contexts.WalletContext.Commands.SubscribeToEvents;
 using IotaSDK.NET.Contexts.WalletContext.Queries.CheckIfStrongholdPasswordExists;
 using IotaSDK.NET.Contexts.WalletContext.Queries.GetAccountIndexes;
 using IotaSDK.NET.Contexts.WalletContext.Queries.GetAccounts;
 using IotaSDK.NET.Contexts.WalletContext.Queries.GetAccountWithAlias;
 using IotaSDK.NET.Contexts.WalletContext.Queries.GetAccountWithIndex;
 using IotaSDK.NET.Domain.Accounts;
+using IotaSDK.NET.Domain.Events;
+using IotaSDK.NET.Domain.Network;
 using IotaSDK.NET.Domain.Options;
 using IotaSDK.NET.Domain.Options.Builders;
 using MediatR;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using static IotaSDK.NET.Common.Rust.RustBridgeWallet;
 
 namespace IotaSDK.NET
 {
@@ -206,10 +211,56 @@ namespace IotaSDK.NET
             return await _mediator.Send(new RestoreBackupCommand(_walletHandle, sourcePath, password, ignoreIfCoinTypeMismatch, ignoreIfBech32Mismatch));
         }
 
-        public async Task<IotaSDKResponse<string>> GenerateEd25519AddressCommandAsync(int accountIndex, int addressIndex, AddressGenerationOptions? addressGenerationOptions = null, string? bech32Hrp = null)
+        public async Task<IotaSDKResponse<string>> GenerateEd25519AddressCommandAsync(int accountIndex, int addressIndex, AddressGenerationOptions? addressGenerationOptions = null, HumanReadablePart? bech32Hrp = null)
         {
             return await _mediator.Send(new GenerateEd25519AddressCommand(_walletHandle, accountIndex, addressIndex, addressGenerationOptions, bech32Hrp));
         }
+
+        public async Task<IotaSDKResponse<bool>> SubscribeToEventsAsync(WalletEventType walletEventTypes, WalletEventHandler callback)
+        {
+            return await _mediator.Send(new SubscribeToEventsCommand(_walletHandle, walletEventTypes, WalletEventCallback));
+        }
+
+        private void WalletEventCallback(IntPtr intPtr)
+        {
+            if (intPtr == IntPtr.Zero) return;
+
+            string eventJson = Marshal.PtrToStringAnsi(intPtr);
+            WalletEventNotification? walletEventNotification = JsonConvert.DeserializeObject<WalletEventNotification>(eventJson);
+
+            if (walletEventNotification == null)
+                throw new IotaSDKException($"Unable to deserialize: {eventJson}");
+
+            switch (walletEventNotification.Event.GetWalletEventType())
+            {
+                case WalletEventType.TransactionInclusion:
+                    OnTransactionInclusion?.Invoke(this, walletEventNotification);
+                    break;
+                case WalletEventType.TransactionProgress:
+                    OnTransactionProgress?.Invoke(this, walletEventNotification);
+                    break;
+                case WalletEventType.LedgerAddressGeneration:
+                    OnLedgerAddressGeneration?.Invoke(this, walletEventNotification);
+                    break;
+                case WalletEventType.ConsolidationRequired:
+                    OnConsolidationRequired?.Invoke(this, walletEventNotification);
+                    break;
+                case WalletEventType.NewOutput:
+                    OnNewOutput?.Invoke(this, walletEventNotification);
+                    break;
+                case WalletEventType.SpentOutput:
+                    OnSpentOutput?.Invoke(this, walletEventNotification);
+                    break;
+            }
+
+        }
+
+        public event EventHandler<WalletEventNotification> OnConsolidationRequired = (sender,e) =>{};
+        public event EventHandler<WalletEventNotification> OnLedgerAddressGeneration = (sender, e) => { };
+        public event EventHandler<WalletEventNotification> OnNewOutput = (sender, e) => { };
+        public event EventHandler<WalletEventNotification> OnSpentOutput = (sender, e) => { };
+        public event EventHandler<WalletEventNotification> OnTransactionInclusion = (sender, e) => { };
+        public event EventHandler<WalletEventNotification> OnTransactionProgress = (sender, e) => { };
     }
 
 }

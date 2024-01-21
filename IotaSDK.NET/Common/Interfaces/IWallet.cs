@@ -1,10 +1,13 @@
 ﻿using IotaSDK.NET.Common.Models;
 using IotaSDK.NET.Domain.Accounts;
+using IotaSDK.NET.Domain.Events;
+using IotaSDK.NET.Domain.Network;
 using IotaSDK.NET.Domain.Options;
 using IotaSDK.NET.Domain.Options.Builders;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using static IotaSDK.NET.Common.Rust.RustBridgeWallet;
 
 namespace IotaSDK.NET.Common.Interfaces
 {
@@ -53,6 +56,8 @@ namespace IotaSDK.NET.Common.Interfaces
 
         Task<IotaSDKResponse<bool>> RestoreBackupAsync(string sourcePath, string password, bool ignoreIfCoinTypeMismatch = true, bool ignoreIfBech32Mismatch = true);
 
-        Task<IotaSDKResponse<string>> GenerateEd25519AddressCommandAsync(int accountIndex, int addressIndex, AddressGenerationOptions? addressGenerationOptions = null, string? bech32Hrp = null);
+        Task<IotaSDKResponse<string>> GenerateEd25519AddressCommandAsync(int accountIndex, int addressIndex, AddressGenerationOptions? addressGenerationOptions = null, HumanReadablePart? bech32Hrp = null);
+
+        Task<IotaSDKResponse<bool>> SubscribeToEventsAsync(WalletEventType walletEventTypes, WalletEventHandler callback);
     }
 }
