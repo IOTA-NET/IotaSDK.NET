@@ -300,7 +300,7 @@ namespace IotaSDK.NET
             return await _mediator.Send(new PrepareOutputCommand(_walletHandle, Index, prepareOutputOptions, transactionOptions));
         }
 
-        public async Task<IotaSDKResponse<PreparedTransactionData>> PrepareSendBaseCoinToAddressesAsync(SendBaseCoinToAddressOptions sendBaseCoinToAddressOptions, TransactionOptions? transactionOptions = null)
+        public async Task<IotaSDKResponse<PreparedTransactionData>> PrepareSendBaseCoinToAddressesAsync(List<SendBaseCoinToAddressOptions> sendBaseCoinToAddressOptions, TransactionOptions? transactionOptions = null)
         {
             return await _mediator.Send(new PrepareSendBaseCoinToAddressesCommand(_walletHandle, Index, sendBaseCoinToAddressOptions, transactionOptions));
         }
@@ -336,7 +336,7 @@ namespace IotaSDK.NET
             return await _mediator.Send(new SendBaseCoinCommand(_walletHandle, Index, amount, bech32ReceiverAddress, transactionOptions));
         }
 
-        public async Task<IotaSDKResponse<Transaction>> SendBaseCoinToAddressesAsync(SendBaseCoinToAddressOptions sendBaseCoinToAddressOptions, TransactionOptions? transactionOptions = null)
+        public async Task<IotaSDKResponse<Transaction>> SendBaseCoinToAddressesAsync(List<SendBaseCoinToAddressOptions> sendBaseCoinToAddressOptions, TransactionOptions? transactionOptions = null)
         {
             return await _mediator.Send(new SendBaseCoinToAddressesCommand(_walletHandle, Index, sendBaseCoinToAddressOptions, transactionOptions));
         }
