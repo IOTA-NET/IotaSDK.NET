@@ -9,7 +9,7 @@ namespace IotaSDK.NET.Common.Extensions
             return "0x" + BitConverter.ToString(bytes).Replace("-", "");
         }
 
-        public static byte[] FromHexString(this string hexString)
+        public static byte[] FromHexStringToBytes(this string hexString)
         {
             hexString = hexString.StartsWith("0x", StringComparison.OrdinalIgnoreCase) ? hexString.Substring(2) : hexString;
 
