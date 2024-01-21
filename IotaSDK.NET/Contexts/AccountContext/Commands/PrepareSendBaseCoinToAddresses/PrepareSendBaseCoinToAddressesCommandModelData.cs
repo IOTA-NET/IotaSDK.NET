@@ -1,17 +1,18 @@
 ﻿using IotaSDK.NET.Domain.Options;
 using IotaSDK.NET.Domain.Transactions;
+using System.Collections.Generic;
 
 namespace IotaSDK.NET.Contexts.AccountContext.Commands.PrepareSendBaseCoinWithStorageDeposit
 {
     internal class PrepareSendBaseCoinToAddressesCommandModelData
     {
-        public PrepareSendBaseCoinToAddressesCommandModelData(SendBaseCoinToAddressOptions @params, TransactionOptions? transactionOptions = null)
+        public PrepareSendBaseCoinToAddressesCommandModelData(List<SendBaseCoinToAddressOptions> @params, TransactionOptions? options = null)
         {
             Params = @params;
-            TransactionOptions = transactionOptions;
+            Options = options;
         }
 
-        public SendBaseCoinToAddressOptions Params { get; }
-        public TransactionOptions? TransactionOptions { get; }
+        public List<SendBaseCoinToAddressOptions> Params { get; }
+        public TransactionOptions? Options { get; }
     }
 }
