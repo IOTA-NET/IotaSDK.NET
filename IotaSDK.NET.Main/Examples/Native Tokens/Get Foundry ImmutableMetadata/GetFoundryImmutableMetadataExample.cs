@@ -1,10 +1,8 @@
 ﻿using IotaSDK.NET.Common.Extensions;
 using IotaSDK.NET.Common.Interfaces;
-using IotaSDK.NET.Common.Models;
 using IotaSDK.NET.Domain.Features;
 using IotaSDK.NET.Domain.Outputs;
 using IotaSDK.NET.Domain.Tokens;
-using IotaSDK.NET.Domain.Transactions;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 
