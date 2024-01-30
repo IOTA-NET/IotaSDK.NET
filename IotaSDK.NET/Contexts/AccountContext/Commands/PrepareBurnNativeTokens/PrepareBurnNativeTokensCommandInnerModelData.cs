@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using IotaSDK.NET.Common.Serializers;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.Numerics;
 
 namespace IotaSDK.NET.Contexts.AccountContext.Commands.PrepareBurnNativeTokens
@@ -9,7 +11,7 @@ namespace IotaSDK.NET.Contexts.AccountContext.Commands.PrepareBurnNativeTokens
         {
             NativeTokens = nativeTokens;
         }
-
-        public Dictionary<string, BigInteger> NativeTokens { get; }
+            [JsonConverter(typeof(DictBigIntJsonConverter))]
+            public Dictionary<string, BigInteger> NativeTokens { get; }
     }
 }

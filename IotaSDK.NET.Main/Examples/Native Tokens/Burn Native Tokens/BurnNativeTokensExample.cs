@@ -1,14 +1,12 @@
 ﻿using IotaSDK.NET.Common.Extensions;
 using IotaSDK.NET.Common.Interfaces;
-using IotaSDK.NET.Domain.Features;
-using IotaSDK.NET.Domain.Outputs;
 using IotaSDK.NET.Domain.Tokens;
-using Microsoft.Extensions.DependencyInjection;
-using Newtonsoft.Json;
 
-namespace IotaSDK.NET.Main.Examples.Native_Tokens.Creating_a_Foundry
+using Microsoft.Extensions.DependencyInjection;
+
+namespace IotaSDK.NET.Main.Examples.Native_Tokens.Burn_Native_Tokens
 {
-    public static class GetFoundryImmutableMetadataExample
+    public static class BurnNativeTokensExample
     {
         public static async Task Run()
         {
@@ -42,27 +40,42 @@ namespace IotaSDK.NET.Main.Examples.Native_Tokens.Creating_a_Foundry
                                 .InitializeAsync();
 
 
-                //Let's proceed to retrieve our previously created "spending" account.
+                //Let's proceed to retrieve our previously created "savings" & "spending" account.
+                IAccount savingsAccount = (await wallet.GetAccountAsync("savings")).Payload;
                 IAccount spendingAccount = (await wallet.GetAccountAsync("spending")).Payload;
 
-                //Let's sync our account to the Tangle
-                var balance = await spendingAccount.SyncAcountAsync();
 
-                //Let's get out Native Token's unique Id
-                string tokenId = balance.Payload.NativeTokens.First().TokenId;
+                var savingsBalance = await savingsAccount.SyncAcountAsync();
+                var spendingBalance = await spendingAccount.SyncAcountAsync();
 
-                //The foundry's immutable metadata is stored in the Foundry Output
-                var foundryOutputFilter = new OutputFilterOptions() { FoundryIds = new List<string> { tokenId } };
-                FoundryOutput? foundryOutput = (await spendingAccount.GetUnspentOutputsAsync(foundryOutputFilter)).Payload.First().Output as FoundryOutput;
+                Console.WriteLine($"[* Before Native Tokens] :\n{savingsBalance}");
 
-                //We need to seek its immutable metadata feature
-                string hexEncodedData  = (foundryOutput!.ImmutableFeatures!.First(x => x.GetFeatureType() == FeatureType.Metadata) as MetadataFeature)!.Data;
-                string immutableMetadataJson = hexEncodedData.FromHexString();
+                string savingsAddress = (await savingsAccount.GetAddressesAsync()).Payload.First().Address;
 
-                //Let's prettify it
-                string formattedJson = JsonConvert.SerializeObject(JsonConvert.DeserializeObject(immutableMetadataJson), Formatting.Indented);
 
-                Console.WriteLine(formattedJson);
+                //Lets send 100 native tokens from the spendings account to the savings account
+                string tokenId = spendingBalance.Payload.NativeTokens.First().TokenId;
+                var txResponse = await spendingAccount.SendNativeTokensUsingBuilder()
+                                        .AddNativeTokensOptions()
+                                            .AddNativeTokens(tokenId, numberOfTokens: 100)
+                                            .SetReceiverAddress(savingsAddress)
+                                            .UseGiftStorage()
+                                            .Then()
+                                        .SendAsync();
+
+                await spendingAccount.RetryTransactionUntilIncludedAsync(txResponse.Payload.TransactionId);
+
+                savingsBalance = await savingsAccount.SyncAcountAsync();
+
+                Console.WriteLine($"[* After Getting Native Tokens] :\n{savingsBalance}");
+
+                txResponse = await savingsAccount.BurnNativeTokensAsync(tokenId, numberOfTokensToBurn: 100);
+                await savingsAccount.RetryTransactionUntilIncludedAsync(txResponse.Payload.TransactionId);
+
+                savingsBalance = await savingsAccount.SyncAcountAsync();
+                Console.WriteLine($"[* After Burning Native Tokens] :\n{savingsBalance}");
+
+
             }
         }
     }
