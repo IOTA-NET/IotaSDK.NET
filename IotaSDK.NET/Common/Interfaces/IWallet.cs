@@ -58,6 +58,13 @@ namespace IotaSDK.NET.Common.Interfaces
 
         Task<IotaSDKResponse<string>> GenerateEd25519AddressCommandAsync(int accountIndex, int addressIndex, AddressGenerationOptions? addressGenerationOptions = null, HumanReadablePart? bech32Hrp = null);
 
-        Task<IotaSDKResponse<bool>> SubscribeToEventsAsync(WalletEventType walletEventTypes, WalletEventHandler callback);
+        Task<IotaSDKResponse<bool>> SubscribeToEventsAsync(WalletEventType walletEventTypes);
+
+        public event EventHandler<WalletEventNotification> OnConsolidationRequired;
+        public event EventHandler<WalletEventNotification> OnLedgerAddressGeneration;
+        public event EventHandler<WalletEventNotification> OnNewOutput;
+        public event EventHandler<WalletEventNotification> OnSpentOutput;
+        public event EventHandler<WalletEventNotification> OnTransactionInclusion;
+        public event EventHandler<WalletEventNotification> OnTransactionProgress;
     }
 }

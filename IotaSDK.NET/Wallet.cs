@@ -216,7 +216,7 @@ namespace IotaSDK.NET
             return await _mediator.Send(new GenerateEd25519AddressCommand(_walletHandle, accountIndex, addressIndex, addressGenerationOptions, bech32Hrp));
         }
 
-        public async Task<IotaSDKResponse<bool>> SubscribeToEventsAsync(WalletEventType walletEventTypes, WalletEventHandler callback)
+        public async Task<IotaSDKResponse<bool>> SubscribeToEventsAsync(WalletEventType walletEventTypes)
         {
             return await _mediator.Send(new SubscribeToEventsCommand(_walletHandle, walletEventTypes, WalletEventCallback));
         }
