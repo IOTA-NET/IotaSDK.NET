@@ -40,6 +40,8 @@ To install,
   - [Creating a Foundry](https://github.com/IOTA-NET/IotaSDK.NET/blob/main/IotaSDK.NET.Main/Examples/Native%20Tokens/Creating%20a%20Foundry/README.md)
   - [Sending Native Tokens](https://github.com/IOTA-NET/IotaSDK.NET/blob/main/IotaSDK.NET.Main/Examples/Native%20Tokens/SendNativeTokens/README.md)
   - [Melt Native Tokens](https://github.com/IOTA-NET/IotaSDK.NET/blob/main/IotaSDK.NET.Main/Examples/Native%20Tokens/Melt%20Native%20Tokens/README.md)
+- Events
+  - [Subscribe To Events](https://github.com/IOTA-NET/IotaSDK.NET/blob/main/IotaSDK.NET.Main/Examples/Events/Subscribe%20To%20Events/README.md)
     
 # Supported bindings
 
