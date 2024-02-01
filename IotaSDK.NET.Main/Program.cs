@@ -25,7 +25,8 @@ namespace IotaSDK.NET.Main
             //await SendNativeTokensExample.Run();
             //await MeltNativeTokensExample.Run();
             //await GetFoundryImmutableMetadataExample.Run();
-            await BurnNativeTokensExample.Run();
+            //await BurnNativeTokensExample.Run();
+            await SubscribeToEventsExample.Run();
         }
 
     }

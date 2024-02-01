@@ -62,6 +62,7 @@ To install,
     <li>StartBackgroundSync</li>
     <li>StopBackgroundSync</li>
     <li>StoreMnemonic</li>
+	<li>SubscribeToEvents</li>
   </ul>
 </details>
 
