@@ -490,5 +490,14 @@ namespace IotaSDK.NET.Common.Interfaces
         /// <returns>The transaction.</returns>
         Task<IotaSDKResponse<Transaction>> BurnNativeTokensAsync(string tokenId, BigInteger numberOfTokensToBurn, TransactionOptions? transactionOptions = null);
 
+        /// <summary>
+        /// Prepare a vote.
+        /// </summary>
+        /// <param name="participationEventId">The participation event ID.</param>
+        /// <param name="answers">Answers for a voting event, can be empty.</param>
+        /// <returns>An instance of `PreparedTransaction`.</returns>
+        Task<IotaSDKResponse<PreparedTransactionData>> PrepareVoteAsync(string? participationEventId = null, List<int>? answers = null);
+
+
     }
 }

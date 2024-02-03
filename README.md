@@ -119,6 +119,7 @@ To install,
 	<li>PrepareSendNativeTokens</li>
     <li>PrepareSendNfts</li>
     <li>PrepareTransactions</li>
+	<li>PrepareVote</li>
 	<li>RequestFundsFromFaucet</li>
     <li>RetryTransactionUntilIncluded</li>
     <li>SendBaseCoin</li>
