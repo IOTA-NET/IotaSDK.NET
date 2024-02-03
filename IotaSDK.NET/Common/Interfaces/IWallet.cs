@@ -60,6 +60,8 @@ namespace IotaSDK.NET.Common.Interfaces
 
         Task<IotaSDKResponse<bool>> SubscribeToEventsAsync(WalletEventType walletEventTypes);
 
+        Task UnsubscribeToEventsAsync(WalletEventType walletEventTypes);
+
         public event EventHandler<WalletEventNotification> OnConsolidationRequired;
         public event EventHandler<WalletEventNotification> OnLedgerAddressGeneration;
         public event EventHandler<WalletEventNotification> OnNewOutput;
