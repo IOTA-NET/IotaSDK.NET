@@ -30,6 +30,7 @@ using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareSendBaseCoinToAddresse
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareSendNativeTokens;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareSendNfts;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareTransaction;
+using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareVote;
 using IotaSDK.NET.Contexts.AccountContext.Commands.RetryTransactionUntilIncluded;
 using IotaSDK.NET.Contexts.AccountContext.Commands.SendBaseCoin;
 using IotaSDK.NET.Contexts.AccountContext.Commands.SendBaseCoinToAddresses;
@@ -318,6 +319,11 @@ namespace IotaSDK.NET
         public async Task<IotaSDKResponse<PreparedTransactionData>> PrepareTransactionAsync(List<Output> outputs, TransactionOptions? transactionOptions = null)
         {
             return await _mediator.Send(new PrepareTransactionCommand(_walletHandle, Index, outputs, transactionOptions));
+        }
+
+        public async Task<IotaSDKResponse<PreparedTransactionData>> PrepareVoteAsync(string? participationEventId = null, List<int>? answers = null)
+        {
+            return await _mediator.Send(new PrepareVoteCommand(_walletHandle, Index, participationEventId, answers));
         }
 
         public async Task<IotaSDKResponse<FaucetResponse>> RequestFundsFromFaucetAsync(string? bech32Address = null)
