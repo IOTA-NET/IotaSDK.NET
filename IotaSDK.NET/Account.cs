@@ -20,6 +20,7 @@ using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareClaimOutputs;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareConsolidateOutputs;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareCreateAliasOutput;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareCreateNativeTokens;
+using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareDecreaseVotingPower;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareDestroyAlias;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareDestroyFoundry;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareIncreaseVotingPower;
@@ -270,6 +271,11 @@ namespace IotaSDK.NET
         public async Task<IotaSDKResponse<PreparedNativeTokenTransactionData>> PrepareCreateNativeTokenAsync(NativeTokenCreationOptions nativeTokenCreationOptions, TransactionOptions? transactionOptions = null)
         {
             return await _mediator.Send(new PrepareCreateNativeTokensCommand(_walletHandle, Index, nativeTokenCreationOptions, transactionOptions));
+        }
+
+        public async Task<IotaSDKResponse<PreparedTransactionData>> PrepareDecreaseVotingPowerAsync(uint votingPower)
+        {
+            return await _mediator.Send(new PrepareDecreaseVotingPowerCommand(_walletHandle, Index, votingPower));
         }
 
         public async Task<IotaSDKResponse<PreparedTransactionData>> PrepareDestroyAliasAsync(string aliasId, TransactionOptions? transactionOptions = null)
