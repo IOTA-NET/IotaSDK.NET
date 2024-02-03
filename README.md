@@ -109,6 +109,7 @@ To install,
     <li>PrepareConsolidateOutputs</li>
     <li>PrepareCreateAliasOutput</li>
     <li>PrepareCreateNativeTokens</li>
+	<li>PrepareDecreaseVotingPower</li>
 	<li>PrepareDestroyAlias</li>
 	<li>PrepareDestroyFoundry</li>
 	<li>PrepareMeltNativeTokens</li>

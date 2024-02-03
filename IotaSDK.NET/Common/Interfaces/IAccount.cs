@@ -504,5 +504,12 @@ namespace IotaSDK.NET.Common.Interfaces
         /// <param name="votingPower">The amount to increase the voting power by.</param>
         /// <returns>An instance of `PreparedTransaction`.</returns>
         Task<IotaSDKResponse<PreparedTransactionData>> PrepareIncreaseVotingPowerAsync(uint votingPower);
+
+        /// <summary>
+        /// Prepare to decrease the voting power.
+        /// </summary>
+        /// <param name="votingPower">The amount to increase the voting power by.</param>
+        /// <returns>An instance of `PreparedTransaction`.</returns>
+        Task<IotaSDKResponse<PreparedTransactionData>> PrepareDecreaseVotingPowerAsync(uint votingPower);
     }
 }
