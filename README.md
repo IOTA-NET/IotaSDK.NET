@@ -120,6 +120,7 @@ To install,
     <li>PrepareSendNfts</li>
     <li>PrepareTransactions</li>
 	<li>PrepareVote</li>
+	<li>PrepareIncreaseVotingPower</li>
 	<li>RequestFundsFromFaucet</li>
     <li>RetryTransactionUntilIncluded</li>
     <li>SendBaseCoin</li>
