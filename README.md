@@ -51,20 +51,21 @@ To install,
     Commands
   </summary>
   <ul>
-    <li>AuthenticateToStronghold</li>
+	  <li>AuthenticateToStronghold</li>
     <li>BackupStronghold</li>
     <li>ChangeStrongholdPassword</li>
     <li>ClearStrongholdPassword</li>
     <li>CreateAccount</li>
     <li>DeleteLatestAccount</li>
-	<li>GenerateEd25519Address</li>
-	<li>RestoreBackup</li>
+    <li>GenerateEd25519Address</li>
+	  <li>RestoreBackup</li>
     <li>SetClientOptions</li>
     <li>SetStrongholdPasswordClearInterval</li>
     <li>StartBackgroundSync</li>
     <li>StopBackgroundSync</li>
     <li>StoreMnemonic</li>
 	<li>SubscribeToEvents</li>
+	<li>UnsubscribeToEvents</li>
   </ul>
 </details>
 
