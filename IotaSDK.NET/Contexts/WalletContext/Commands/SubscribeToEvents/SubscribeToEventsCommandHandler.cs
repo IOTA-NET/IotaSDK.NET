@@ -20,7 +20,7 @@ namespace IotaSDK.NET.Contexts.WalletContext.Commands.SubscribeToEvents
 
         public async Task<IotaSDKResponse<bool>> Handle(SubscribeToEventsCommand request, CancellationToken cancellationToken)
         {
-            List<int> eventNames = WalletEventFlagToInt.ConvertWalletEventType(request.WalletEventType);
+            List<int> eventNames = WalletEventFlagConverter.ConvertWalletEventTypeToInt(request.WalletEventType);
 
             string eventsAsJsonArray = JsonConvert.SerializeObject(eventNames);
 

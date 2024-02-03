@@ -16,6 +16,7 @@ using IotaSDK.NET.Contexts.WalletContext.Commands.StartBackgroundSync;
 using IotaSDK.NET.Contexts.WalletContext.Commands.StopBackgroundSync;
 using IotaSDK.NET.Contexts.WalletContext.Commands.StoreMnemonic;
 using IotaSDK.NET.Contexts.WalletContext.Commands.SubscribeToEvents;
+using IotaSDK.NET.Contexts.WalletContext.Commands.UnsubscribeToEvents;
 using IotaSDK.NET.Contexts.WalletContext.Queries.CheckIfStrongholdPasswordExists;
 using IotaSDK.NET.Contexts.WalletContext.Queries.GetAccountIndexes;
 using IotaSDK.NET.Contexts.WalletContext.Queries.GetAccounts;
@@ -32,7 +33,6 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
-using static IotaSDK.NET.Common.Rust.RustBridgeWallet;
 
 namespace IotaSDK.NET
 {
@@ -253,6 +253,11 @@ namespace IotaSDK.NET
                     break;
             }
 
+        }
+
+        public async Task UnsubscribeToEventsAsync(WalletEventType walletEventTypes)
+        {
+            await _mediator.Send(new UnsubscribeToEventsCommand(_walletHandle, walletEventTypes));
         }
 
         public event EventHandler<WalletEventNotification> OnConsolidationRequired = (sender, e) => { };
