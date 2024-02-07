@@ -31,6 +31,7 @@ using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareOutput;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareSendBaseCoinToAddresses;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareSendNativeTokens;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareSendNfts;
+using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareStopParticipating;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareTransaction;
 using IotaSDK.NET.Contexts.AccountContext.Commands.PrepareVote;
 using IotaSDK.NET.Contexts.AccountContext.Commands.RetryTransactionUntilIncluded;
@@ -326,6 +327,11 @@ namespace IotaSDK.NET
         public async Task<IotaSDKResponse<PreparedTransactionData>> PrepareSendNftsAsync(List<AddressAndNftId> addressAndNftIds, TransactionOptions? transactionOptions = null)
         {
             return await _mediator.Send(new PrepareSendNftsCommand(_walletHandle, Index, addressAndNftIds, transactionOptions));
+        }
+
+        public async Task<IotaSDKResponse<PreparedTransactionData>> PrepareStopParticipatingAsync(string participationEventId)
+        {
+            return await _mediator.Send(new PrepareStopParticipatingCommand(_walletHandle, Index, participationEventId));
         }
 
         public async Task<IotaSDKResponse<PreparedTransactionData>> PrepareTransactionAsync(List<Output> outputs, TransactionOptions? transactionOptions = null)

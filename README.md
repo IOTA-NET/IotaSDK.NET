@@ -119,6 +119,7 @@ To install,
 	<li>PrepareSendBaseCoinToAddresses</li>
 	<li>PrepareSendNativeTokens</li>
     <li>PrepareSendNfts</li>
+	<li>PrepareStopParticipating</li>
     <li>PrepareTransactions</li>
 	<li>PrepareVote</li>
 	<li>PrepareIncreaseVotingPower</li>
