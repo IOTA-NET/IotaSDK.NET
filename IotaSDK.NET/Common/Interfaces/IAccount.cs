@@ -526,5 +526,13 @@ namespace IotaSDK.NET.Common.Interfaces
         /// <param name="participationEventRegistrationOptions">Options to register participation events.</param>
         /// <returns> A mapping between event IDs and their corresponding event data.</returns>
         Task<IotaSDKResponse<ParticipationEventMap>> RegisterParticipationEventsAsync(ParticipationEventRegistrationOptions participationEventRegistrationOptions);
+
+        /// <summary>
+        /// Calculates the voting overview of an account.
+        /// </summary>
+        /// <param name="participationEventIds">eventIds Optional, filters participations only for provided events.</param>
+        /// <returns>An instance of `ParticipationOverview`</returns>
+        Task<IotaSDKResponse<ParticipationOverview>> GetParticipationOverviewAsync(List<string>? participationEventIds=null);
     }
+
 }
