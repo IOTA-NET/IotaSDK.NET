@@ -2,6 +2,7 @@
 using IotaSDK.NET.Domain.Accounts;
 using IotaSDK.NET.Domain.Addresses;
 using IotaSDK.NET.Domain.Faucet;
+using IotaSDK.NET.Domain.Network;
 using IotaSDK.NET.Domain.Nft;
 using IotaSDK.NET.Domain.Options;
 using IotaSDK.NET.Domain.Options.PrepareOutput;
@@ -533,6 +534,15 @@ namespace IotaSDK.NET.Common.Interfaces
         /// <param name="participationEventIds">eventIds Optional, filters participations only for provided events.</param>
         /// <returns>An instance of `ParticipationOverview`</returns>
         Task<IotaSDKResponse<ParticipationOverview>> GetParticipationOverviewAsync(List<string>? participationEventIds=null);
+
+        /// <summary>
+        /// Get IDs of participation events of a certain type.
+        /// </summary>
+        /// <param name="node">The node to get events from.</param>
+        /// <param name="participationEventType">The type of events to get.</param>
+        /// <returns></returns>
+        Task<IotaSDKResponse<List<string>>> GetParticipationEventIdsAsync(Node node, ParticipationEventType? participationEventType = null);
+
     }
 
 }
