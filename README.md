@@ -122,6 +122,7 @@ To install,
 	<li>PrepareStopParticipating</li>
     <li>PrepareTransactions</li>
 	<li>PrepareVote</li>
+	<li>RegisterParticipationEvents</li>
 	<li>PrepareIncreaseVotingPower</li>
 	<li>RequestFundsFromFaucet</li>
     <li>RetryTransactionUntilIncluded</li>

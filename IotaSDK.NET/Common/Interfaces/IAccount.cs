@@ -6,6 +6,7 @@ using IotaSDK.NET.Domain.Nft;
 using IotaSDK.NET.Domain.Options;
 using IotaSDK.NET.Domain.Options.PrepareOutput;
 using IotaSDK.NET.Domain.Outputs;
+using IotaSDK.NET.Domain.ParticipationEvents;
 using IotaSDK.NET.Domain.Signatures;
 using IotaSDK.NET.Domain.Tokens;
 using IotaSDK.NET.Domain.Transactions;
@@ -518,5 +519,12 @@ namespace IotaSDK.NET.Common.Interfaces
         /// <param name="participationEventId">The event ID to stop participating in.</param>
         /// <returns>An instance of `PreparedTransaction`.</returns>
         Task<IotaSDKResponse<PreparedTransactionData>> PrepareStopParticipatingAsync(string participationEventId);
+
+        /// <summary>
+        /// Register participation events.
+        /// </summary>
+        /// <param name="participationEventRegistrationOptions">Options to register participation events.</param>
+        /// <returns> A mapping between event IDs and their corresponding event data.</returns>
+        Task<IotaSDKResponse<ParticipationEventMap>> RegisterParticipationEventsAsync(ParticipationEventRegistrationOptions participationEventRegistrationOptions);
     }
 }
