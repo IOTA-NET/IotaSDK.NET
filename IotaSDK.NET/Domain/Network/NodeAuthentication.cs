@@ -8,7 +8,7 @@ namespace IotaSDK.NET.Domain.Network
         {
             Jwt = jwt;
 
-            if(username != null && password != null)
+            if (username != null && password != null)
             {
                 BasicAuthNamePwd = new List<string>() { username!, password! };
             }

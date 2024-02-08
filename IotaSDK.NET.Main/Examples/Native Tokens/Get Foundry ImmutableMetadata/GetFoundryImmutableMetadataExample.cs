@@ -56,7 +56,7 @@ namespace IotaSDK.NET.Main.Examples.Native_Tokens.Creating_a_Foundry
                 FoundryOutput? foundryOutput = (await spendingAccount.GetUnspentOutputsAsync(foundryOutputFilter)).Payload.First().Output as FoundryOutput;
 
                 //We need to seek its immutable metadata feature
-                string hexEncodedData  = (foundryOutput!.ImmutableFeatures!.First(x => x.GetFeatureType() == FeatureType.Metadata) as MetadataFeature)!.Data;
+                string hexEncodedData = (foundryOutput!.ImmutableFeatures!.First(x => x.GetFeatureType() == FeatureType.Metadata) as MetadataFeature)!.Data;
                 string immutableMetadataJson = hexEncodedData.FromHexString();
 
                 //Let's prettify it

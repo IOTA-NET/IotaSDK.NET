@@ -7,7 +7,6 @@ using IotaSDK.NET.Domain.Options.Builders;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using static IotaSDK.NET.Common.Rust.RustBridgeWallet;
 
 namespace IotaSDK.NET.Common.Interfaces
 {

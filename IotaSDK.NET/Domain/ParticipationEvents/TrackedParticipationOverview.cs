@@ -11,7 +11,7 @@ namespace IotaSDK.NET.Domain.ParticipationEvents
         {
             Amount = amount;
             Answers = answers;
-            BlockId = blockId;  
+            BlockId = blockId;
             EndMilestoneIndex = endMilestoneIndex;
             StartMilestoneIndex = startMilestoneIndex;
         }

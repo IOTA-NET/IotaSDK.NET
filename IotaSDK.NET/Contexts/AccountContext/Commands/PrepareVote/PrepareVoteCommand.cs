@@ -8,7 +8,7 @@ namespace IotaSDK.NET.Contexts.AccountContext.Commands.PrepareVote
 {
     internal class PrepareVoteCommand : AccountRequest<IotaSDKResponse<PreparedTransactionData>>
     {
-        public PrepareVoteCommand(IntPtr walletHandle, int accountIndex, string? participationEventId=null, List<int>? answers=null) 
+        public PrepareVoteCommand(IntPtr walletHandle, int accountIndex, string? participationEventId = null, List<int>? answers = null)
             : base(walletHandle, accountIndex)
         {
             ParticipationEventId = participationEventId;

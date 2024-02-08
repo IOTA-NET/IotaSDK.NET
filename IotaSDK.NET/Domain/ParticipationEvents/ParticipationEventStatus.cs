@@ -24,7 +24,7 @@ namespace IotaSDK.NET.Domain.ParticipationEvents
         /// The overall status of the event.
         /// </summary>
         public string Status { get; }
-        
+
         /// <summary>
         /// The answer status of the different questions of the event.
         /// </summary>

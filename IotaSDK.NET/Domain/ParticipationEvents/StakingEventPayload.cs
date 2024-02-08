@@ -2,7 +2,7 @@
 {
     public class StakingEventPayload : ParticipationEventPayload
     {
-        public StakingEventPayload(string text, string symbol, string numerator, string denominator, string requiredMinimumRewards, string additionalInfo   ) : base((int)ParticipationEventType.Staking)
+        public StakingEventPayload(string text, string symbol, string numerator, string denominator, string requiredMinimumRewards, string additionalInfo) : base((int)ParticipationEventType.Staking)
         {
             Text = text;
             Symbol = symbol;

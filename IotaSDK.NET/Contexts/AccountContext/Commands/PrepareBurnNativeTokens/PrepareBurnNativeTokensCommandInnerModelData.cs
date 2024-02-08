@@ -11,7 +11,7 @@ namespace IotaSDK.NET.Contexts.AccountContext.Commands.PrepareBurnNativeTokens
         {
             NativeTokens = nativeTokens;
         }
-            [JsonConverter(typeof(DictBigIntJsonConverter))]
-            public Dictionary<string, BigInteger> NativeTokens { get; }
+        [JsonConverter(typeof(DictBigIntJsonConverter))]
+        public Dictionary<string, BigInteger> NativeTokens { get; }
     }
 }
