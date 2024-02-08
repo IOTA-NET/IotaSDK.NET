@@ -156,6 +156,7 @@ To install,
    <li>GetOutput</li>
    <li>GetOutputs</li>
    <li>GetParticipationEventIds</li>
+   <li>GetParticipationEvents</li>
    <li>GetParticipationEventStatus</li>
    <li>GetParticipationOverview</li>
    <li>GetPendingTransactions</li>

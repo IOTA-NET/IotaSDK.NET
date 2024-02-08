@@ -549,6 +549,12 @@ namespace IotaSDK.NET.Common.Interfaces
         /// <param name="eventId">The ID of the event status to get.</param>
         /// <returns>ParticipationEventStatus</returns>
         Task<IotaSDKResponse<ParticipationEventStatus>> GetParticipationEventStatusAsync(string eventId);
+
+        /// <summary>
+        /// Get all participation events.
+        /// </summary>
+        /// <returns></returns>
+        Task<IotaSDKResponse<ParticipationEventMap>> GetParticipationEventsAsync();
     }
 
 }
