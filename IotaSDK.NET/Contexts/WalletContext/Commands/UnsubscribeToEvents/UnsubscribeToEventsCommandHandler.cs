@@ -26,7 +26,7 @@ namespace IotaSDK.NET.Contexts.WalletContext.Commands.UnsubscribeToEvents
             string json = model.AsJson();
 
             string? walletResponse = await _rustBridgeWallet.CallWalletMethodAsync(request.WalletHandle, json);
-            
+
             IotaSDKException.CheckForException(walletResponse!);
 
         }
