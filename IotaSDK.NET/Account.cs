@@ -56,6 +56,7 @@ using IotaSDK.NET.Contexts.AccountContext.Queries.GetIncomingTransaction;
 using IotaSDK.NET.Contexts.AccountContext.Queries.GetIncomingTransactions;
 using IotaSDK.NET.Contexts.AccountContext.Queries.GetOutput;
 using IotaSDK.NET.Contexts.AccountContext.Queries.GetOutputs;
+using IotaSDK.NET.Contexts.AccountContext.Queries.GetParticipationEventIds;
 using IotaSDK.NET.Contexts.AccountContext.Queries.GetParticipationOverview;
 using IotaSDK.NET.Contexts.AccountContext.Queries.GetPendingTransactions;
 using IotaSDK.NET.Contexts.AccountContext.Queries.GetTransaction;
@@ -64,6 +65,7 @@ using IotaSDK.NET.Contexts.AccountContext.Queries.GetUnspentOutputs;
 using IotaSDK.NET.Domain.Accounts;
 using IotaSDK.NET.Domain.Addresses;
 using IotaSDK.NET.Domain.Faucet;
+using IotaSDK.NET.Domain.Network;
 using IotaSDK.NET.Domain.Nft;
 using IotaSDK.NET.Domain.Options;
 using IotaSDK.NET.Domain.Options.PrepareOutput;
@@ -199,6 +201,11 @@ namespace IotaSDK.NET
         public async Task<IotaSDKResponse<List<OutputData>>> GetOutputsAsync(OutputFilterOptions? outputFilterOptions)
         {
             return await _mediator.Send(new GetOutputsQuery(_walletHandle, Index, outputFilterOptions));
+        }
+
+        public async Task<IotaSDKResponse<List<string>>> GetParticipationEventIdsAsync(Node node, ParticipationEventType? participationEventType = null)
+        {
+            return await _mediator.Send(new GetParticipationEventIdsQuery(_walletHandle, Index, node, participationEventType));
         }
 
         public async Task<IotaSDKResponse<ParticipationOverview>> GetParticipationOverviewAsync(List<string>? participationEventIds = null)

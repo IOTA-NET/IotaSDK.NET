@@ -2,9 +2,9 @@
 
 namespace IotaSDK.NET.Contexts.AccountContext.Queries.GetParticipationOverview
 {
-    internal class GetParticipationOverviewModelData
+    internal class GetParticipationOverviewQueryModelData
     {
-        public GetParticipationOverviewModelData(List<string>? eventIds=null)
+        public GetParticipationOverviewQueryModelData(List<string>? eventIds=null)
         {
             EventIds = eventIds;
         }

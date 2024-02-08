@@ -155,6 +155,7 @@ To install,
    <li>GetIncomingTransactions</li>
    <li>GetOutput</li>
    <li>GetOutputs</li>
+   <li>GetParticipationEventIds</li>
    <li>GetParticipationOverview</li>
    <li>GetPendingTransactions</li>
    <li>GetTransaction</li>
