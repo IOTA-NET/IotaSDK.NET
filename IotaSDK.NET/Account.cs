@@ -56,6 +56,7 @@ using IotaSDK.NET.Contexts.AccountContext.Queries.GetIncomingTransaction;
 using IotaSDK.NET.Contexts.AccountContext.Queries.GetIncomingTransactions;
 using IotaSDK.NET.Contexts.AccountContext.Queries.GetOutput;
 using IotaSDK.NET.Contexts.AccountContext.Queries.GetOutputs;
+using IotaSDK.NET.Contexts.AccountContext.Queries.GetParticipationEvent;
 using IotaSDK.NET.Contexts.AccountContext.Queries.GetParticipationEventIds;
 using IotaSDK.NET.Contexts.AccountContext.Queries.GetParticipationEvents;
 using IotaSDK.NET.Contexts.AccountContext.Queries.GetParticipationEventStatus;
@@ -203,6 +204,11 @@ namespace IotaSDK.NET
         public async Task<IotaSDKResponse<List<OutputData>>> GetOutputsAsync(OutputFilterOptions? outputFilterOptions)
         {
             return await _mediator.Send(new GetOutputsQuery(_walletHandle, Index, outputFilterOptions));
+        }
+
+        public async Task<IotaSDKResponse<ParticipationEventWithNodes>> GetParticipationEventAsync(string participationEventId)
+        {
+            return await _mediator.Send(new GetParticipationEventQuery(_walletHandle, Index, participationEventId));
         }
 
         public async Task<IotaSDKResponse<List<string>>> GetParticipationEventIdsAsync(Node node, ParticipationEventType? participationEventType = null)
