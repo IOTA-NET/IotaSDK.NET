@@ -138,6 +138,7 @@ To install,
 	<li>SignTransactionEssence</li>
 	<li>SubmitSignedTransactionEssence</li>
     <li>Sync</li>
+	<li>UnregisterParticipationEvent</li>
   </ul>
 </details>
 

@@ -562,6 +562,13 @@ namespace IotaSDK.NET.Common.Interfaces
         /// <param name="participationEventId">The ID of the event to get.</param>
         /// <returns></returns>
         Task<IotaSDKResponse<ParticipationEventWithNodes>> GetParticipationEventAsync(string participationEventId);
+
+        /// <summary>
+        ///  Deregister a participation event.
+        /// </summary>
+        /// <param name="participationEventId">The id of the participation event to deregister.</param>
+        /// <returns></returns>
+        Task UnregisterParticipationEventAsync(string participationEventId);
     }
 
 }
