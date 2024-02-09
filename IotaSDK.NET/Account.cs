@@ -47,6 +47,7 @@ using IotaSDK.NET.Contexts.AccountContext.Commands.SignAndSubmitTransaction;
 using IotaSDK.NET.Contexts.AccountContext.Commands.SignTransactionEssence;
 using IotaSDK.NET.Contexts.AccountContext.Commands.SubmitSignedTransaction;
 using IotaSDK.NET.Contexts.AccountContext.Commands.Sync;
+using IotaSDK.NET.Contexts.AccountContext.Commands.UnregisterParticipationEvent;
 using IotaSDK.NET.Contexts.AccountContext.Queries.GetAddresses;
 using IotaSDK.NET.Contexts.AccountContext.Queries.GetAddressesWithUnspentOutputs;
 using IotaSDK.NET.Contexts.AccountContext.Queries.GetBalance;
@@ -453,6 +454,11 @@ namespace IotaSDK.NET
         {
             return await _mediator.Send(new SyncCommand(_walletHandle, Index, syncOptions));
 
+        }
+
+        public async Task UnregisterParticipationEventAsync(string participationEventId)
+        {
+            await _mediator.Send(new UnregisterParticipationEventCommand(_walletHandle, Index, participationEventId));
         }
     }
 }
