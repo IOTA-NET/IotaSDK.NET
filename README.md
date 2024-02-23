@@ -58,6 +58,7 @@ To install,
     <li>CreateAccount</li>
     <li>DeleteLatestAccount</li>
     <li>GenerateEd25519Address</li>
+	<li>RecoverAccounts</li>
 	  <li>RestoreBackup</li>
     <li>SetClientOptions</li>
     <li>SetStrongholdPasswordClearInterval</li>

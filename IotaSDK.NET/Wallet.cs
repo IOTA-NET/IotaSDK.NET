@@ -9,6 +9,7 @@ using IotaSDK.NET.Contexts.WalletContext.Commands.ClearStrongholdPassword;
 using IotaSDK.NET.Contexts.WalletContext.Commands.CreateAccount;
 using IotaSDK.NET.Contexts.WalletContext.Commands.DeleteLatestAccount;
 using IotaSDK.NET.Contexts.WalletContext.Commands.GenerateEd25519Address;
+using IotaSDK.NET.Contexts.WalletContext.Commands.RecoverAccounts;
 using IotaSDK.NET.Contexts.WalletContext.Commands.RestoreBackup;
 using IotaSDK.NET.Contexts.WalletContext.Commands.SetClientOptions;
 using IotaSDK.NET.Contexts.WalletContext.Commands.SetStrongholdPasswordClearInterval;
@@ -122,6 +123,17 @@ namespace IotaSDK.NET
         public async Task<IotaSDKResponse<bool>> AuthenticateToStrongholdAsync(string password)
         {
             return await _mediator.Send(new AuthenticateToStrongholdCommand(_walletHandle, password));
+        }
+
+        public async Task<List<IAccount>> RecoverAccountsAsync(int accountStartIndex, int accountGapLimit, int addressGapLimit, SyncOptions syncOptions)
+        {
+            IotaSDKResponse<List<AccountMeta>> iotaSDKResponse = await _mediator.Send(new RecoverAccountsCommand(_walletHandle, accountStartIndex, accountGapLimit, addressGapLimit, syncOptions));
+            
+            List<IAccount> accounts = new List<IAccount>();
+
+            iotaSDKResponse.Payload.ForEach(accountMeta => accounts.Add(new Account(_walletHandle, this, _mediator, accountMeta.Index, accountMeta.Alias)));
+
+            return accounts;
         }
 
         public async Task<IotaSDKResponse<IAccount>> CreateAccountAsync(string? username = null)
@@ -259,6 +271,8 @@ namespace IotaSDK.NET
         {
             await _mediator.Send(new UnsubscribeToEventsCommand(_walletHandle, walletEventTypes));
         }
+
+ 
 
         public event EventHandler<WalletEventNotification> OnConsolidationRequired = (sender, e) => { };
         public event EventHandler<WalletEventNotification> OnLedgerAddressGeneration = (sender, e) => { };
