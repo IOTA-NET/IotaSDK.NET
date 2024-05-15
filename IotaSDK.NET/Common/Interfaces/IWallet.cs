@@ -16,6 +16,8 @@ namespace IotaSDK.NET.Common.Interfaces
 
         IClient GetClient();
 
+        ISecretManager GetSecretManager();
+
         ClientOptionsBuilder ConfigureClientOptions();
         SecretManagerOptionsBuilder ConfigureSecretManagerOptions();
         WalletOptionsBuilder ConfigureWalletOptions();

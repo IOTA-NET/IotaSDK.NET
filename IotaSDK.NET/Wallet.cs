@@ -46,6 +46,7 @@ namespace IotaSDK.NET
         private readonly RustBridgeCommon _rustBridgeCommon;
 
         private IClient? _client;
+        private ISecretManager? _secretManager;
         private IAccount? _account;
 
         public Wallet(IMediator mediator, RustBridgeWallet rustBridgeWallet, RustBridgeCommon rustBridgeCommon)
@@ -59,6 +60,7 @@ namespace IotaSDK.NET
             _rustBridgeCommon = rustBridgeCommon;
             _account = null;
             _client = null;
+            _secretManager = null;
         }
 
         public async Task<IWallet> InitializeAsync()
@@ -85,11 +87,25 @@ namespace IotaSDK.NET
 
             _client = new Client(_mediator, clientHandle.Value, faucetUrl: _walletOptions.ClientOptions.FaucetUrl);
 
+            IntPtr? walletHandler = await _rustBridgeWallet.GetSecretManagerFromWalletAsync(_walletHandle);
+
+            if (walletHandler.HasValue == false)
+            {
+                string? error = await _rustBridgeCommon.GetLastErrorAsync();
+                throw new IotaSDKException($"Unable to create secretmanager.\nError:{error}");
+            }
+
+            _secretManager = new SecretManager(_mediator, walletHandler.Value);
+
             return this;
         }
 
         public IClient GetClient()
             => _client!;
+
+        public ISecretManager GetSecretManager()
+            => _secretManager!;
+
         public ClientOptionsBuilder ConfigureClientOptions()
             => new ClientOptionsBuilder(this);
 
