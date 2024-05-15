@@ -4,7 +4,7 @@ namespace IotaSDK.NET.Domain.Options
 {
     public class ClientOptions
     {
-        public HashSet<string> Nodes { get; set; } = new HashSet<string>() { "https://api.testnet.shimmer.network" };
+        public HashSet<string> Nodes { get; set; } = new HashSet<string>() { };
 
         public bool LocalPow { get; set; } = true;
 
