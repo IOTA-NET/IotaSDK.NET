@@ -220,5 +220,19 @@ To install,
 </details>
 
 ## SecretManager
-TBD
+<details>
+  <summary> 
+    Commands
+  </summary>
+  <ul>
+   <li>SignStringData</li>
+  </ul>
+</details>
 
+<details>
+  <summary> 
+    Queries
+  </summary>
+  <ul>
+  
+  </ul>
