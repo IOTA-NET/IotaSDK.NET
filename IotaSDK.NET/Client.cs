@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using IotaSDK.NET.Domain.Outputs;
 using System.Collections.Generic;
 using IotaSDK.NET.Contexts.ClientContext.Queries.GetOutputs;
+using IotaSDK.NET.Domain.Queries;
+using IotaSDK.NET.Contexts.ClientContext.Queries.GetNftOutputIds;
 
 namespace IotaSDK.NET
 {
@@ -37,9 +39,14 @@ namespace IotaSDK.NET
             return await _mediator.Send(new GetOutputQuery(_clientHandle, outputId));
         }
 
-        public async Task<IotaSDKResponse<List<ClientOutputResponse>>> GetOutputAsync(List<string> outputIds)
+        public async Task<IotaSDKResponse<List<ClientOutputResponse>>> GetOutputsAsync(List<string> outputIds)
         {
             return await _mediator.Send(new GetOutputsQuery(_clientHandle, outputIds));
+        }
+
+        public async Task<IotaSDKResponse<ClientOutputsResponse>> GetNftOutputIdsAsync(List<INftQueryParameter> nftQueryParameters)
+        {
+            return await _mediator.Send(new GetNftOutputIdsQuery(_clientHandle, nftQueryParameters));
         }
     }
 }

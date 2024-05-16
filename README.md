@@ -184,6 +184,7 @@ To install,
     Queries
   </summary>
   <ul>
+	<li>GetNftOutputIds</li>
 	<li>GetOutput</li>
 	<li>GetOutputs</li>
   </ul>

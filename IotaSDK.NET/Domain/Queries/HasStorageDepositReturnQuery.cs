@@ -1,9 +1,11 @@
-﻿namespace IotaSDK.NET.Domain.Query
+﻿using IotaSDK.NET.Domain.Queries;
+
+namespace IotaSDK.NET.Domain.Query
 {
     /// <summary>
     /// Filters outputs based on the presence of storage deposit return unlock condition.
     /// </summary>
-    public class HasStorageDepositReturnQuery
+    public class HasStorageDepositReturnQuery: IQueryParameter, INftQueryParameter
     {
         public HasStorageDepositReturnQuery(bool hasStorageDepositReturn)
         {

@@ -1,7 +1,9 @@
-﻿namespace IotaSDK.NET.Domain.Query
+﻿using IotaSDK.NET.Domain.Queries;
+
+namespace IotaSDK.NET.Domain.Query
 {
     /** Filter outputs based on bech32-encoded governor (governance controller) address. */
-    public class GovernorQuery
+    public class GovernorQuery : IQueryParameter, IAliasQueryParameter
     {
         public string Governor { get; }
 
