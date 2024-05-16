@@ -1,10 +1,12 @@
 ﻿using IotaSDK.NET.Common.Interfaces;
 using IotaSDK.NET.Common.Models;
+using IotaSDK.NET.Contexts.ClientContext.Queries.GetOutput;
 using IotaSDK.NET.Contexts.ClientContext.Commands.RequestFundsFromFaucet;
 using IotaSDK.NET.Domain.Faucet;
 using MediatR;
 using System;
 using System.Threading.Tasks;
+using IotaSDK.NET.Domain.Outputs;
 
 namespace IotaSDK.NET
 {
@@ -26,6 +28,11 @@ namespace IotaSDK.NET
             return _faucetUrl == null
                 ? await _mediator.Send(new RequestFundsFromFaucetCommand(_clientHandle, bech32Address))
                 : await _mediator.Send(new RequestFundsFromFaucetCommand(_clientHandle, bech32Address, _faucetUrl));
+        }
+
+        public async Task<IotaSDKResponse<ClientOutputResponse>> GetOutputAsync(string outputId)
+        {
+            return await _mediator.Send(new GetOutputQuery(_clientHandle, outputId));
         }
     }
 }

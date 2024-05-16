@@ -184,7 +184,7 @@ To install,
     Queries
   </summary>
   <ul>
-  
+	<li>GetOutput</li>
   </ul>
 </details>
 

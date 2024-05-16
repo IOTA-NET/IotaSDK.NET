@@ -15,9 +15,9 @@ namespace IotaSDK.NET.Common.Interfaces
 
     internal abstract class ClientRequest<TResponse> : IRequest<TResponse>
     {
-        public ClientRequest(IntPtr walletHandle)
+        public ClientRequest(IntPtr clientHandle)
         {
-            ClientHandle = walletHandle;
+            ClientHandle = clientHandle;
         }
 
         public IntPtr ClientHandle { get; }
