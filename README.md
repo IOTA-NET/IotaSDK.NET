@@ -185,6 +185,7 @@ To install,
   </summary>
   <ul>
 	<li>GetOutput</li>
+	<li>GetOutputs</li>
   </ul>
 </details>
 

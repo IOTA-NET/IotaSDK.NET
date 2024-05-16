@@ -1,4 +1,5 @@
-﻿using IotaSDK.NET.Common.Models;
+﻿using IotaSDK.NET.Common.Exceptions;
+using IotaSDK.NET.Common.Models;
 using IotaSDK.NET.Common.Rust;
 using IotaSDK.NET.Domain.Outputs;
 using MediatR;
@@ -24,9 +25,9 @@ namespace IotaSDK.NET.Contexts.ClientContext.Queries.GetOutput
 
             string? clientResponse = await _rustBridgeClient.CallClientMethodAsync(request.ClientHandle, json);
 
-            var r = IotaSDKResponse < ClientOutputResponse >.CreateInstance(clientResponse);
+            IotaSDKException.CheckForException(clientResponse!);
 
-            return r;
+            return IotaSDKResponse < ClientOutputResponse >.CreateInstance(clientResponse);
         }
     }
 }

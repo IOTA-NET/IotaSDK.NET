@@ -7,6 +7,8 @@ using MediatR;
 using System;
 using System.Threading.Tasks;
 using IotaSDK.NET.Domain.Outputs;
+using System.Collections.Generic;
+using IotaSDK.NET.Contexts.ClientContext.Queries.GetOutputs;
 
 namespace IotaSDK.NET
 {
@@ -33,6 +35,11 @@ namespace IotaSDK.NET
         public async Task<IotaSDKResponse<ClientOutputResponse>> GetOutputAsync(string outputId)
         {
             return await _mediator.Send(new GetOutputQuery(_clientHandle, outputId));
+        }
+
+        public async Task<IotaSDKResponse<List<ClientOutputResponse>>> GetOutputAsync(List<string> outputIds)
+        {
+            return await _mediator.Send(new GetOutputsQuery(_clientHandle, outputIds));
         }
     }
 }
