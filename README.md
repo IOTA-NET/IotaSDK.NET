@@ -185,6 +185,8 @@ To install,
   </summary>
   <ul>
 	<li>GetNftOutputIds</li>
+	<li>GetNode</li>
+	<li>GetNodeHealthStatus</li>
 	<li>GetOutput</li>
 	<li>GetOutputs</li>
   </ul>

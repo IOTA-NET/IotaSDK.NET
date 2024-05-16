@@ -1,16 +1,19 @@
 ﻿using IotaSDK.NET.Common.Interfaces;
 using IotaSDK.NET.Common.Models;
-using IotaSDK.NET.Contexts.ClientContext.Queries.GetOutput;
 using IotaSDK.NET.Contexts.ClientContext.Commands.RequestFundsFromFaucet;
+using IotaSDK.NET.Contexts.ClientContext.Queries.GetNftOutputIds;
+using IotaSDK.NET.Contexts.ClientContext.Queries.GetNode;
+using IotaSDK.NET.Contexts.ClientContext.Queries.GetNodeHealthStatus;
+using IotaSDK.NET.Contexts.ClientContext.Queries.GetOutput;
+using IotaSDK.NET.Contexts.ClientContext.Queries.GetOutputs;
 using IotaSDK.NET.Domain.Faucet;
+using IotaSDK.NET.Domain.Network;
+using IotaSDK.NET.Domain.Outputs;
+using IotaSDK.NET.Domain.Queries;
 using MediatR;
 using System;
-using System.Threading.Tasks;
-using IotaSDK.NET.Domain.Outputs;
 using System.Collections.Generic;
-using IotaSDK.NET.Contexts.ClientContext.Queries.GetOutputs;
-using IotaSDK.NET.Domain.Queries;
-using IotaSDK.NET.Contexts.ClientContext.Queries.GetNftOutputIds;
+using System.Threading.Tasks;
 
 namespace IotaSDK.NET
 {
@@ -47,6 +50,16 @@ namespace IotaSDK.NET
         public async Task<IotaSDKResponse<ClientOutputsResponse>> GetNftOutputIdsAsync(List<INftQueryParameter> nftQueryParameters)
         {
             return await _mediator.Send(new GetNftOutputIdsQuery(_clientHandle, nftQueryParameters));
+        }
+
+        public async Task<IotaSDKResponse<Node>> GetHealthyNodeAsync()
+        {
+            return await _mediator.Send(new GetNodeQuery(_clientHandle));
+        }
+
+        public async Task<IotaSDKResponse<bool>> GetNodeHealthStatusAsync(string url)
+        {
+            return await _mediator.Send(new GetNodeHealthStatusQuery(_clientHandle, url));
         }
     }
 }
