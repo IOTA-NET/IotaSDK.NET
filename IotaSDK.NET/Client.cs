@@ -8,6 +8,7 @@ using IotaSDK.NET.Contexts.ClientContext.Queries.GetOutput;
 using IotaSDK.NET.Contexts.ClientContext.Queries.GetOutputs;
 using IotaSDK.NET.Domain.Faucet;
 using IotaSDK.NET.Domain.Network;
+using IotaSDK.NET.Domain.Options.Builders;
 using IotaSDK.NET.Domain.Outputs;
 using IotaSDK.NET.Domain.Queries;
 using MediatR;
@@ -29,6 +30,7 @@ namespace IotaSDK.NET
             _clientHandle = clientHandle;
             _faucetUrl = faucetUrl;
         }
+
 
         public async Task<IotaSDKResponse<FaucetResponse>> RequestFundsFromFaucetAsync(string bech32Address)
         {

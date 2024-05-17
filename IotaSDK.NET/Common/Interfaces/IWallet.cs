@@ -4,6 +4,7 @@ using IotaSDK.NET.Domain.Events;
 using IotaSDK.NET.Domain.Network;
 using IotaSDK.NET.Domain.Options;
 using IotaSDK.NET.Domain.Options.Builders;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -13,6 +14,8 @@ namespace IotaSDK.NET.Common.Interfaces
     public interface IWallet : IDisposable
     {
         WalletOptions GetWalletOptions();
+
+        IMediator GetMediator();
 
         IClient GetClient();
 

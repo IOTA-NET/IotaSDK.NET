@@ -288,7 +288,7 @@ namespace IotaSDK.NET
             await _mediator.Send(new UnsubscribeToEventsCommand(_walletHandle, walletEventTypes));
         }
 
- 
+        public IMediator GetMediator() => _mediator;
 
         public event EventHandler<WalletEventNotification> OnConsolidationRequired = (sender, e) => { };
         public event EventHandler<WalletEventNotification> OnLedgerAddressGeneration = (sender, e) => { };
