@@ -8,6 +8,7 @@ namespace IotaSDK.NET.Domain.Network
         Atoi,
         Smr,
         Rms,
+        Test
     }
 
     internal static class HumanReadablePartEnumConverter
@@ -24,6 +25,8 @@ namespace IotaSDK.NET.Domain.Network
                     return "smr";
                 case HumanReadablePart.Rms:
                     return "rms";
+                case HumanReadablePart.Test:
+                    return "tst";
                 default:
                     throw new ArgumentException("Failure to convert, Unknown enum value of HumanReadablePart");
             }
